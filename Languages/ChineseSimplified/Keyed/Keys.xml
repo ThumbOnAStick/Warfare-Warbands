@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<!--Settings-->
+	<AllianceAssaultRelease>委托袭击(发布)</AllianceAssaultRelease>
+	<AssaultPoints>委托袭击点数</AssaultPoints>
+	<AssaultPoints.Explained>委托袭击事件的点数，决定了友军的强度。</AssaultPoints.Explained>
+	<TribalAttackDelay>部落攻击延迟(h)</TribalAttackDelay>
+	<TribalAttackDelay.Explained>低科技派系的攻击延迟(小时)</TribalAttackDelay.Explained>
+	<HighTechAttackDelay>高科技攻击延迟(h)</HighTechAttackDelay>
+	<HighTechAttackDelay.Explained>高于工业派系的攻击延迟(小时)</HighTechAttackDelay.Explained>
+
+	<!--Gameplay-->
+	<CommandAllianceAssult>委托袭击</CommandAllianceAssult>
+	<CommandAllianceAssultDesc>花费50点好感度，让你的盟友袭击敌人的基地</CommandAllianceAssultDesc>
+	<CommandCancelAttack>取消进攻</CommandCancelAttack>
+	<CommandStopObserving>停止观察</CommandStopObserving>
+	<CommandObserver>观察</CommandObserver>
+	<LetterAllyAssaultEnemyBase>进攻马上就要开始了</LetterAllyAssaultEnemyBase>
+	<LetterTribleAssaultEnemyBase>你们帮了我们部落很多忙，现在轮到我们帮你了。进攻会在数小时后开始</LetterTribleAssaultEnemyBase>
+	<LetterMechAssaultEnemyBase>(机械族的噪音)</LetterMechAssaultEnemyBase>
+	<LetterInsectAssaultEnemyBase>(愤怒的虫子叫声)</LetterInsectAssaultEnemyBase>
+	<LetterLabelInsectoidExpansion>虫巢扩张</LetterLabelInsectoidExpansion>
+	<LetterInsectoidExpansion>然而，人们认为你应该为{0}的扩张负责.</LetterInsectoidExpansion>
+	<LetterLabelAllianceAssaultRelation>摧毁基地(盟友)</LetterLabelAllianceAssaultRelation>
+	<LetterAllianceAssaultRelation>由于{0}是袭击的主力，我们的行为并没有受到太多赞赏。</LetterAllianceAssaultRelation>
+</LanguageData>

@@ -1,0 +1,4 @@
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\1.5\Assemblies\WarfareAndWarbands.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\Source\WarfareAndWarbands\WarfareAndWarbands\obj\Debug\WarfareAndWarbands.csproj.AssemblyReference.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\Source\WarfareAndWarbands\WarfareAndWarbands\obj\Debug\WarfareAndWarbands.csproj.CoreCompileInputs.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\Source\WarfareAndWarbands\WarfareAndWarbands\obj\Debug\WarfareAndWarbands.dll

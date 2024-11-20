@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Warfare and Warbands</name>
+	<author>Thumb</author>
+	<supportedVersions>
+		<li>1.5</li>
+	</supportedVersions>
+	<description>A mod that brings more to the "world" aspect of Rimworld.</description>
+	<packageId>Thumb.Warbands</packageId>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+		</li>	
+	</modDependencies>
+	
+</ModMetaData>

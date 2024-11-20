@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<MechRaidSummoner.label>机械袭击召唤器</MechRaidSummoner.label>
+	<MechRaidSummoner.description>这是一种由殖民者制作的的信号发射器，如果利用运输仓投射至敌人的基地（前提是这个基地没有打开的地图），敌人的基地会受到机械族袭击。</MechRaidSummoner.description>
+
+	<InsectoidRaidSummoner.label>虫族袭击召唤器</InsectoidRaidSummoner.label>
+	<InsectoidRaidSummoner.description>这个费洛蒙发散器会吸引大批的虫族，如果利用运输仓投射至敌人的基地（前提是这个基地没有打开的地图），敌人的基地会受到虫族袭击。</InsectoidRaidSummoner.description>
+
+</LanguageData>
