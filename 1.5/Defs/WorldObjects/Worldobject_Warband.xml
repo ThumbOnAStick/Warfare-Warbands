@@ -2,7 +2,7 @@
 <Defs>
 
   <WorldObjectDef>
-    <defName>Warband</defName>
+    <defName>WAW_Warband</defName>
     <label>warband</label>
     <description>A warband.</description>
     <worldObjectClass>WarfareAndWarbands.Warband.Warband</worldObjectClass>
@@ -24,5 +24,9 @@
       <li>WITab_Caravan_Items</li>
       <li>WITab_Caravan_Feeding</li> -->
     </inspectorTabs>
+    <comps>
+      <li Class="WarfareAndWarbands.Warband.WorldObjectCompProperties_PlayerWarband" />
+
+    </comps>
   </WorldObjectDef>
   </Defs>

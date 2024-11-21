@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
 using Verse;
 using WarfareAndWarbands.UI;
+using WarfareAndWarbands.Warband.HarmonyPatches;
+using WarfareAndWarbands.Warfare.HarmonyPatches;
 
 namespace WarfareAndWarbands.HarmonyPatches
 {
@@ -16,6 +18,9 @@ namespace WarfareAndWarbands.HarmonyPatches
             }
             WAWHarmony.harmony = harmony;
             CommsPatch.PatchHarmony();
+            GetHomeFactionPatch.PatchHarmony();
+            ExitMapPatch.PatchHarmony();
+            SettlemntDestroyedPatch.PatchHarmony();
             WAWHarmony.harmony.PatchAll();
             Log.Message("WAW: patches successful");
         }

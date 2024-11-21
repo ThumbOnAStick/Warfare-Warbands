@@ -73,15 +73,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Warband\DebugActionWarband.cs" />
+    <Compile Include="Warband\HarmonyPatches\ExitMapPatch.cs" />
+    <Compile Include="Warband\HarmonyPatches\GetHomeFactionPatch.cs" />
+    <Compile Include="Warband\CompMercenary.cs" />
+    <Compile Include="Warband\PlayerWarbandArrangement.cs" />
+    <Compile Include="Warband\UI\WarbandUI.cs" />
     <Compile Include="Warband\Warband.cs" />
+    <Compile Include="Warband\UI\Window_ArrangeWarband.cs" />
+    <Compile Include="Warband\WarbandUtil.cs" />
+    <Compile Include="Warband\WorldObjectCompProperties_PlayerWarband.cs" />
+    <Compile Include="Warband\WorldObjectComp_PlayerWarband.cs" />
     <Compile Include="Warfare\GameComponent_WAW.cs" />
-    <Compile Include="HarmonyPatches\WAWHarmony.cs" />
-    <Compile Include="HarmonyPatches\CommsPatch.cs" />
-    <Compile Include="UI\JobGiver_TryGetInformation.cs" />
-    <Compile Include="UI\Window_WAW.cs" />
+    <Compile Include="Warfare\HarmonyPatches\SettlemntDestroyedPatch.cs" />
+    <Compile Include="WAWHarmony.cs" />
+    <Compile Include="Warfare\HarmonyPatches\CommsPatch.cs" />
+    <Compile Include="Warfare\UI\JobGiver_TryGetInformation.cs" />
+    <Compile Include="Warfare\UI\Window_WAW.cs" />
     <Compile Include="WarfareAndWarbandsMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WarfareUtil.cs" />
+    <Compile Include="Warfare\WarfareUtil.cs" />
     <Compile Include="WAWDefof.cs" />
     <Compile Include="WAWTex.cs" />
   </ItemGroup>

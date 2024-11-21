@@ -12,5 +12,7 @@ namespace WarfareAndWarbands
     public static class WAWDefof
     {
         public static JobDef GetInformationFromConsole;
+        public static FactionDef PlayerWarband;
+        public static WorldObjectDef WAW_Warband;
     }
 }

@@ -54,7 +54,6 @@ namespace WarfareAndWarbands
         {
             IEnumerable<FloatMenuOption> opts = DecreaseDurabilityByOptions(50);
             Find.WindowStack.Add(new FloatMenu(opts.ToList()));
-
         }
 
 
@@ -71,7 +70,7 @@ namespace WarfareAndWarbands
         }
 
 
-        public static string GetWarDurabilityString(Faction f)
+        public static string GetWarDurabilityString(this Faction f)
         {
             int warProgress = CompWAW.GetDurability(f);
             if (warProgress < 25)

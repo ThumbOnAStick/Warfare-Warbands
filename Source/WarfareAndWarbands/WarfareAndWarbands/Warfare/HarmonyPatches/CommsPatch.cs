@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.AI;
-using WarfareAndWarbands.HarmonyPatches;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace WarfareAndWarbands.UI
+
+namespace WarfareAndWarbands.HarmonyPatches
 {
     public static class CommsPatch
     {

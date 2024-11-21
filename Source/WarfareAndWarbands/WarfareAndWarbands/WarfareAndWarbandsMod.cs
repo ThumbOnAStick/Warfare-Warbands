@@ -12,11 +12,9 @@ namespace WarfareAndWarbands
     {
         public WarfareAndWarbandsMod(ModContentPack content) : base(content)
         {
-            harmonyInstance = new Harmony("W&W");
-            harmonyInstance.PatchAll();
+
         }
 
 
-        public static Harmony harmonyInstance;
     }
 }

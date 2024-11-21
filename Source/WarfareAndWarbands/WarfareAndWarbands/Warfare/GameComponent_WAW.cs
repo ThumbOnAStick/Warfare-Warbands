@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using WarfareAndWarbands.Warband;
 
 namespace WarfareAndWarbands
 {
@@ -20,6 +21,7 @@ namespace WarfareAndWarbands
         public GameComponent_WAW(Game game)
         {
             GameComponent_WAW.Instance = this;
+            playerWarband = new PlayerWarbandArrangement();
         }
 
         public override void ExposeData()
@@ -27,6 +29,7 @@ namespace WarfareAndWarbands
             base.ExposeData();
             Scribe_Collections.Look<Faction, int>(ref this.factionsAndWarDurabilities,
                 "factionsAndWarDurabilities", LookMode.Reference, LookMode.Value, ref factions, ref durabilitities);
+            playerWarband.ExposeData();
         }
 
         public void AppendFactionInfoToTable(Faction faction)
@@ -36,6 +39,10 @@ namespace WarfareAndWarbands
 
         public void DecreaseDurability(Faction f, int value)
         {
+            if (f.Hidden)
+            {
+                return;
+            }
             if (!factionsAndWarDurabilities.ContainsKey(f))
             {
                 AppendFactionInfoToTable(f);
@@ -90,6 +97,7 @@ namespace WarfareAndWarbands
         {
             base.LoadedGame();
             LoadAllFactions();
+
         }
 
         public override void StartedNewGame()
@@ -102,5 +110,8 @@ namespace WarfareAndWarbands
         {
 
         }
+
+        public static PlayerWarbandArrangement playerWarband;
+
     }
 }

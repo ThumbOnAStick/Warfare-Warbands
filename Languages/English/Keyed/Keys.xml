@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
 	<!--Settings-->
-	<WAWWindowExit>Close Window</WAWWindowExit>
 	<!--Gameplay-->
-
+	<OpenFactionInformationTab>Open faction information tab</OpenFactionInformationTab>
+	<factionLosing>This faction is losing the war, sooner or later they will collpase.</factionLosing>
+	<factionStrikeToSurvive>This faction barely stands, they have suffered from continues military failures.</factionStrikeToSurvive>
+	<factionWillingToFight>This faction suffered some losses, but they are willing to fight.</factionWillingToFight>
+	<factionHungerForWar>This faction beleives they are the winning side.</factionHungerForWar>
+	<ArrangeWarband>Arrange Warband</ArrangeWarband>
+	<soldierAmount>amount</soldierAmount>
+	<WAW.Cost>Total cost: ${0}</WAW.Cost>
+	<WAW.RecruitWarband>recruit warband</WAW.RecruitWarband>
+	<WAW.ResettleWarband>re-settle warband</WAW.ResettleWarband>
+	<WAW.ResettleWarband.Desc>Move warband On another tile, it will take few days.</WAW.ResettleWarband.Desc>
+	<WAW.OrderAttack>order attack</WAW.OrderAttack>
+	<WAW.OrderAttack.Desc>Order warband to attack hostile settlemnt, or another warband.</WAW.OrderAttack.Desc>
+	<WAW.DefeatWarbandLetter.Label>hostile warband defeated</WAW.DefeatWarbandLetter.Label>
+	<WAW.DefeatWarbandLetter.Desc>We defeated a hostile warband! It's not a noticeable achievement, but another malicious attempt of {0} has been stopped.</WAW.DefeatWarbandLetter.Desc>
+	<WAW.TargetingMapParent>Trying to occupy {0}.</WAW.TargetingMapParent>
 </LanguageData>

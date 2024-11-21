@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 using Verse;
+using WarfareAndWarbands.Warband;
 using static HarmonyLib.Code;
 
 namespace WarfareAndWarbands.UI
@@ -17,7 +18,7 @@ namespace WarfareAndWarbands.UI
 
         public Window_WAW(Pawn actor, Map map) : base(null)
         {
-           
+
         }
         
         public override Vector2 InitialSize
@@ -39,22 +40,30 @@ namespace WarfareAndWarbands.UI
                 this.Close();
             }
             // display factions
-            var visibleFactions = Find.FactionManager.AllFactionsVisible;
-            Rect outRect = new Rect(inRect.x, exitButtonRect.yMax + 35f, inRect.width, 200f);
-            Rect viewRect = new Rect(inRect.x, outRect.y, inRect.width - 30f, (float)(visibleFactions.Count() * 24));
+            var visibleFactions = Find.FactionManager.AllFactionsVisible.Where(x => !x.def.isPlayer && !x.defeated);
+            Rect outRect = new Rect(inRect.x, exitButtonRect.yMax + 50f, inRect.width, 200f);
+            Rect viewRect = new Rect(inRect.x, outRect.y, inRect.width - 30f, (float)(visibleFactions.Count() * (descriptionHeight + 10)));
             Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect);
-            float factionPosition = 60f;
+            float factionPosition = outRect.y;
             foreach (Faction f in visibleFactions)
             {
                 Widgets.ButtonImage(new Rect(30, factionPosition, 24, 24), f.def.FactionIcon, f.Color, false, null);
-                factionPosition += 30f;
+                Widgets.Label(new Rect(75, factionPosition, descriptionWidth, descriptionHeight), f.GetWarDurabilityString());
+                factionPosition += descriptionHeight + 10;
             }
-            Widgets.EndScrollView();
 
+            Widgets.EndScrollView();
+            bool arrangeWarbandWindow = Widgets.ButtonText(new Rect(200, 400, 100, 50), "ArrangeWarband".Translate());
+            if (arrangeWarbandWindow)
+            {
+                this.Close();
+                Find.WindowStack.Add(new Window_ArrangeWarband());
+            }
         }
 
         private Vector2 scrollPosition;
-
+        private readonly float descriptionHeight = 50f;
+        private readonly float descriptionWidth = 300f;
 
     }
 }
