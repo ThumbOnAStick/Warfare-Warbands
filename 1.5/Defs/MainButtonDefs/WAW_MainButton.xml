@@ -3,7 +3,7 @@
 
   <MainButtonDef>
     <defName>Thumb_WAW</defName>
-    <label>WAW</label>
+    <iconPath>UI/Icon/ModIconGrey</iconPath>
     <description>See how's the war going and design your own warband.</description>
     <tabWindowClass>WarfareAndWarbands.UI.Window_WAW</tabWindowClass>
     <order>95</order>

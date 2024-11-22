@@ -20,7 +20,7 @@ namespace WarfareAndWarbands.Warband
     {
         bool servesPlayerFaction = false;
         int lastServeTick = 0;
-
+        Warband warband;
         public CompProperties_Mercenary Props
         {
             get
@@ -75,6 +75,16 @@ namespace WarfareAndWarbands.Warband
             Mercenary.SetFaction(Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband));
         }
 
+        public void SetWarband(Warband warband)
+        {
+            this.warband = warband;
+        }
+        public Warband GetWarband()
+        {
+            return this.warband;
+        }
+
+
         public override void PostPostMake()
         {
             base.PostPostMake();
@@ -93,6 +103,7 @@ namespace WarfareAndWarbands.Warband
                 }
             }
         }
+
 
         public override void PostExposeData()
         {

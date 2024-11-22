@@ -396,12 +396,36 @@ namespace WarfareAndWarbands.Warband
             return true;
         }
 
+        public void Store(ref Thing thing)
+        {
+            thing.DeSpawn();
+            storage.Add(thing); 
+        }
+
+        public void DumpLoot()
+        {
+            Map playerMap = Find.AnyPlayerHomeMap;
+            if(storage.Count < 1)
+            {
+                return;
+            }
+            if(playerMap ==  null)
+            {
+                return;
+            }
+            ActiveDropPodInfo activeDropPodInfo = new ActiveDropPodInfo();
+            activeDropPodInfo.innerContainer.TryAddRangeOrTransfer(storage, true, false);
+            activeDropPodInfo.spawnWipeMode = new WipeMode?(WipeMode.Vanish);
+            DropPodUtility.MakeDropPodAt(CellFinder.StandableCellNear(playerMap.Center, playerMap, 10), playerMap, activeDropPodInfo);
+        }
+
       
 
         public Dictionary<string, int> bandMembers;
         public int targetTile = 0;
         private List<string> bandPawns;
         private List<string> stringBuffers;
+        private List<Thing> storage = new List<Thing>();
         private List<int> intBuffers;
         public static readonly int playerAttackRange = 10;
         private static readonly int defeatAward = 5;

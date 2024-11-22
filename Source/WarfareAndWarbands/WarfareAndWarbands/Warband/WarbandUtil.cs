@@ -126,6 +126,7 @@ namespace WarfareAndWarbands.Warband
                         continue;
                     }
                     comp.ServesPlayerFaction = true;
+                    comp.SetWarband(warband);
                     list.Add(pawn);
                 }
 
