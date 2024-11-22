@@ -15,7 +15,7 @@ namespace WarfareAndWarbands
         List<Faction> factions = new List<Faction>();
         List<int> durabilitities = new List<int>();
         Dictionary<Faction, int> factionsAndWarDurabilities = new Dictionary<Faction, int>();
-
+        public static PlayerWarbandArrangement playerWarband;
         public static GameComponent_WAW Instance;
 
         public GameComponent_WAW(Game game)
@@ -39,7 +39,7 @@ namespace WarfareAndWarbands
 
         public void DecreaseDurability(Faction f, int value)
         {
-            if (f.Hidden)
+            if (f.Hidden || f.IsPlayer)
             {
                 return;
             }
@@ -50,8 +50,22 @@ namespace WarfareAndWarbands
             factionsAndWarDurabilities[f] = factionsAndWarDurabilities[f] - value;
             if (factionsAndWarDurabilities[f] <= 0)
             {
-                WarfareUtil.DefeatFaction(f);
+                WarfareUtil.TryToDefeatFaction(f);
             }
+        }
+
+
+        public void AddDurability(Faction f, int value)
+        {
+            if (f.Hidden)
+            {
+                return;
+            }
+            if (!factionsAndWarDurabilities.ContainsKey(f))
+            {
+                AppendFactionInfoToTable(f);
+            }
+            factionsAndWarDurabilities[f] = Math.Min(factionsAndWarDurabilities[f] + value, 100);
         }
 
         public int GetDurability(Faction faction)
@@ -72,9 +86,10 @@ namespace WarfareAndWarbands
             factionsAndWarDurabilities[f] = value;
             if (value <= 0)
             {
-                WarfareUtil.DefeatFaction(f);
+                WarfareUtil.TryToDefeatFaction(f);
             }
         }
+
 
         public void DecreaseDurabilityBy(Faction f, int amount)
         {
@@ -104,6 +119,13 @@ namespace WarfareAndWarbands
         {
             base.StartedNewGame();
             LoadAllFactions();
+            GiveModLetter();
+        }
+
+        void GiveModLetter()
+        {
+            Letter modLoadded = LetterMaker.MakeLetter("WAW.Welcome".Translate(), "WAW.Welcome.Desc".Translate(),LetterDefOf.NeutralEvent);
+            Find.LetterStack.ReceiveLetter(modLoadded);
         }
 
         public override void GameComponentTick()
@@ -111,7 +133,6 @@ namespace WarfareAndWarbands
 
         }
 
-        public static PlayerWarbandArrangement playerWarband;
 
     }
 }

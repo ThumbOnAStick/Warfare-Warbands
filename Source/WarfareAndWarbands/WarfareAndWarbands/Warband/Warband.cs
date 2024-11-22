@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.AI.Group;
+using Verse.Sound;
 using static System.Collections.Specialized.BitVector32;
 
 namespace WarfareAndWarbands.Warband
@@ -32,12 +33,12 @@ namespace WarfareAndWarbands.Warband
 
         public override Color ExpandingIconColor => this.Faction.Color;
 
-        public override string Label => this.def.label;
+        public override string Label => this.def.label + "(" + this.Faction.NameColored + ")";
 
 
         private bool IsWarbandDefeated()
         {
-            return this.HasMap && !GenHostility.AnyHostileActiveThreatToPlayer(base.Map, true, false);
+            return this.HasMap && !GenHostility.AnyHostileActiveThreatToPlayer(base.Map, false, false);
         }
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan)
         {
@@ -73,9 +74,9 @@ namespace WarfareAndWarbands.Warband
         public Dictionary<string, int> GenerateNPCCombatGroup()
         {
             Faction f = this.Faction;
-
             var combatGroup = f.def.pawnGroupMakers.Where(x => x.kindDef == PawnGroupKindDefOf.Combat && x.maxTotalPoints > 1000).RandomElement();
-            PawnGroupMakerParms parms = new PawnGroupMakerParms() { points = ThreatPoints, faction = f, groupKind = combatGroup.kindDef };
+            float actualPoints = Math.Max(StorytellerUtility.DefaultThreatPointsNow(Find.AnyPlayerHomeMap), 1000) ;
+            PawnGroupMakerParms parms = new PawnGroupMakerParms(){ points = actualPoints, faction = f, groupKind = combatGroup.kindDef };
             var results = PawnGroupMakerUtility.ChoosePawnGenOptionsByPoints(parms.points, combatGroup.options, parms);
             bandMembers = new Dictionary<string, int>();
             foreach (var ele in results)
@@ -147,7 +148,7 @@ namespace WarfareAndWarbands.Warband
 
         void CheckAllEnemiesDefeated()
         {
-            if (IsWarbandDefeated() && !defeated)
+            if (IsWarbandDefeated() && defeated == false)
             {
                 this.defeated = true;
                 OnDefeated();
@@ -160,6 +161,7 @@ namespace WarfareAndWarbands.Warband
             if (!this.HasMap && this.defeated)
             {
                 this.Destroy();
+                return;
             }
         }
 
@@ -195,7 +197,7 @@ namespace WarfareAndWarbands.Warband
             {
                 return;
             }
-            if (!this.HasTargetingFaction()) 
+            if (!this.HasTargetingFaction())
             {
                 return;
             }
@@ -206,20 +208,64 @@ namespace WarfareAndWarbands.Warband
             }
             if (Find.TickManager.TicksGame - this.creationGameTicks > assaultDuration && factionBase.Map == null)
             {
-                factionBase.Destroy();
-                WarbandUtil.AddNewHome(targetTile, Faction, factionBase.def);
-                this.Destroy();
+                if (factionBase as Warband != null)
+                {
+                    GameComponent_WAW.Instance.DecreaseDurability(this.Faction, progressPoint);
+                    MoveAndDestroy(factionBase);
+                    BeatOpponent();
+                }
+                else if (factionBase as Settlement != null)
+                {
+                    TryToOccupySettlement(ref factionBase);
+                    Destroy();
+                }
+                else
+                {
+                    MoveAndDestroy(factionBase);
+                }
             }
 
 
         }
 
-        void OnDefeated()
+        void TryToOccupySettlement(ref MapParent factionBase)
+        {
+            IntRange range = new IntRange(0, 100);
+            int val = range.RandomInRange;
+            if (val < WAWSettings.occupyChance)
+            {
+                factionBase.Destroy();
+                WarbandUtil.AddNewHome(targetTile, Faction, factionBase.def);
+                BeatOpponent();
+            }
+        }
+
+        void MoveAndDestroy(MapParent factionBase)
+        {
+            var tile = factionBase.Tile;
+            factionBase.Destroy();
+            this.ResettleTo(tile);
+        }
+        void BeatOpponent()
+        {
+            GameComponent_WAW.Instance.AddDurability(this.Faction, progressPoint);
+        }
+
+        public void OnDefeated()
         {
             GameComponent_WAW.Instance.DecreaseDurability(this.Faction, progressPoint);
+
             SendWarbandDefeatedMessage();
 
         }
+
+
+        public void ResettleTo(int tile)
+        {
+            this.Tile = tile;
+        }
+
+
 
         public void SpawnPawns()
         {
@@ -259,6 +305,7 @@ namespace WarfareAndWarbands.Warband
   "bandMembers", LookMode.Value, LookMode.Value, ref stringBuffers, ref intBuffers);
             Scribe_Values.Look(ref this.defeated, "defeated");
             Scribe_Values.Look(ref this.targetTile, "targetTile");
+            Scribe_Values.Look(ref this.isSettling, "isSettling");
             Scribe_Collections.Look(ref this.bandPawns, "bandPawns", LookMode.Value);
 
         }
@@ -274,41 +321,95 @@ namespace WarfareAndWarbands.Warband
             return outPawns;
         }
 
+        public void OrderPlayerWarbandToResettle()
+        {
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(this), CameraJumper.MovementMode.Pan);
+            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(OrderPlayerWarbandToResettle), true);
+        }
+
+        public bool OrderPlayerWarbandToResettle(GlobalTargetInfo info)
+        {
+            if (info.WorldObject != null)
+            {
+                Messages.Message("WAW.InvalidObject".Translate(), MessageTypeDefOf.NegativeEvent);
+                return false;
+            }
+
+            float distance = Find.WorldGrid.ApproxDistanceInTiles(info.Tile, this.Tile);
+            int cost = (int)distance * 100;
+            if (!WarbandUtil.TryToSpendSilver(Find.AnyPlayerHomeMap, cost))
+            {
+                Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent);
+                return false;
+            }
+            TransportPodsArrivalAction_SpawnWarband action = new TransportPodsArrivalAction_SpawnWarband(this);
+            TravelingTransportPods travelingTransportPods = (TravelingTransportPods)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.TravelingTransportPods);
+            travelingTransportPods.Tile = this.Tile;
+            travelingTransportPods.SetFaction(Faction.OfPlayer);
+            travelingTransportPods.destinationTile = info.Tile;
+            travelingTransportPods.arrivalAction = action;
+            Find.WorldObjects.Add(travelingTransportPods);
+            SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
+            return true;
+        }
+
         public void OrderPlayerWarbandToAttack()
         {
-            CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
-            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(OrderPlayerWarbandToAttack), false);
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(this), CameraJumper.MovementMode.Pan);
+            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(OrderPlayerWarbandToAttack), false,
+                onUpdate: delegate
+                {
+                    GenDraw.DrawWorldRadiusRing(this.Tile, playerAttackRange);
+                });
         }
 
         public bool OrderPlayerWarbandToAttack(GlobalTargetInfo info)
         {
             if (info.WorldObject == null ||
-                info.WorldObject.Faction == null || !info.WorldObject.Faction.HostileTo(Faction.OfPlayer) ||
-                (MapParent)info.WorldObject == null)
+                info.WorldObject as MapParent == null||
+                WarbandUtil.IsWorldObjectNonHostile(info.WorldObject))
             {
+                Messages.Message("WAW.InvalidObject".Translate(), MessageTypeDefOf.NegativeEvent);
                 return false;
             }
+
+            if (Find.WorldGrid.ApproxDistanceInTiles(info.Tile, this.Tile) > playerAttackRange)
+            {
+                Messages.Message("WAW.FarObject".Translate(), MessageTypeDefOf.NegativeEvent);
+                return false;
+            }
+
+            int cost = (int)PlayerWarbandArrangement.GetCost(this.bandMembers);
+            if (!WarbandUtil.TryToSpendSilver(Find.AnyPlayerHomeMap, cost))
+            {
+                Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent);
+                return false;
+            }
+
             var enemy = (MapParent)info.WorldObject;
             LongEventHandler.QueueLongEvent(delegate ()
             {
                 WarbandUtil.OrderPlayerWarbandToAttack(enemy, this);
+                SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
             }, "GeneratingMapForNewEncounter", false, null, true);
 
             return true;
         }
 
+      
 
         public Dictionary<string, int> bandMembers;
         public int targetTile = 0;
         private List<string> bandPawns;
         private List<string> stringBuffers;
         private List<int> intBuffers;
-        private static MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
-        private static readonly int ThreatPoints = 10000;
+        public static readonly int playerAttackRange = 10;
         private static readonly int defeatAward = 5;
-        private readonly int assaultDuration = 60000;
+        private readonly int assaultDuration = WAWSettings.eventFrequency * 60000;
+        private readonly int progressPoint = 5;
         private bool defeated = false;
-        private int progressPoint = 5;
+        private bool isSettling = false;
+
 
     }
 }

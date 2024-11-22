@@ -57,11 +57,20 @@ namespace WarfareAndWarbands
         }
 
 
-        public static void DefeatFaction(Faction f)
+        public static void TryToDefeatFaction(Faction f)
         {
+            if (!WAWSettings.enableFactionDefeat)
+            {
+                return;
+            }
+            if(f.IsPlayer || f.Hidden)
+            {
+                return;
+            }
+            
             foreach (var facBase in Find.WorldObjects.SettlementBases.FindAll(b => b.Faction == f))
             {
-                if(!facBase.HasMap)
+                if(!facBase.HasMap && !facBase.Destroyed)
                 {
                     facBase.Destroy();
                 }

@@ -15,8 +15,10 @@ namespace WarfareAndWarbands.Warband
         {
             if (this.parent.Faction.IsPlayer)
             {
-                yield return WarbandUI.MoveWarbandCommand();
+                yield return WarbandUI.MoveWarbandCommand((Warband)this.parent);
                 yield return WarbandUI.OrderWarbandToAttackCommand((Warband)this.parent);
+                yield return WarbandUI.DismissWarband((Warband)this.parent);
+
             }
 
         }

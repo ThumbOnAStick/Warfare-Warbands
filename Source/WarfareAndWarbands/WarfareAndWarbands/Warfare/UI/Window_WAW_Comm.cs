@@ -1,37 +1,26 @@
 ﻿using RimWorld;
-using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Diagnostics;
 using Verse;
 using WarfareAndWarbands.Warband;
-using static HarmonyLib.Code;
 
-namespace WarfareAndWarbands.UI
+namespace WarfareAndWarbands.Warfare.UI
 {
-    public class Window_WAW : MainTabWindow
+    public class Window_WAW_Comm : Window
     {
-        public override Vector2 RequestedTabSize
-        {
-            get
-            {
-                return new Vector2((float)Verse.UI.screenWidth, (float)Verse.UI.screenHeight * 0.66f);
-            }
-        }        
-
-        public Window_WAW()
+        public Window_WAW_Comm()
         {
             this.map = Find.AnyPlayerHomeMap;
         }
-        public Window_WAW(Map map) 
+        public Window_WAW_Comm(Map map)
         {
             this.map = map;
         }
-        
+
         public override Vector2 InitialSize
         {
             get

@@ -10,17 +10,18 @@ using Verse;
 
 namespace WarfareAndWarbands.Warband.UI
 {
+    [StaticConstructorOnStartup]
     public static class WarbandUI
     {
-        public static Command MoveWarbandCommand()
+        public static Command MoveWarbandCommand(Warband band)
         {
             Command_Action command_Action = new Command_Action();
             command_Action.defaultLabel = "WAW.ResettleWarband".Translate();
             command_Action.defaultDesc = "WAW.ResettleWarband.Desc".Translate();
-            command_Action.icon = CommandIcon;
+            command_Action.icon = WAWTex.CommandIcon;
             command_Action.action = delegate ()
             {
-
+                band.OrderPlayerWarbandToResettle();
             };
             command_Action.Order = 3000f;
             return command_Action;
@@ -29,7 +30,7 @@ namespace WarfareAndWarbands.Warband.UI
         public static Command OrderWarbandToAttackCommand(Warband band)
         {
             Command_Action command_Action = new Command_Action();
-            command_Action.defaultLabel = "WAW.OrderAttack".Translate();
+            command_Action.defaultLabel = "WAW.OrderAttack".Translate() + $"(${(int)PlayerWarbandArrangement.GetCost(band.bandMembers)})";
             command_Action.defaultDesc = "WAW.OrderAttack.Desc".Translate();
             command_Action.icon = TexCommand.Attack;
             command_Action.action = delegate ()
@@ -39,9 +40,54 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.Order = 3000f;
             return command_Action;
         }
+        public static Command DismissWarband(Warband band)
+        {
+            Command_Action command_Action = new Command_Action();
+            command_Action.defaultLabel = "WAW.Dismiss".Translate();
+            command_Action.defaultDesc = "WAW.Dismiss.Desc".Translate();
+            command_Action.icon = TexButton.CloseXSmall;
+            command_Action.action = delegate ()
+            {
+                band.Destroy();
+            };
+            command_Action.Order = 3000f;
+            return command_Action;
+        }
 
+        public static Command RetreatPawn(CompMercenary comp)
+        {
+            Command_Action command_Action = new Command_Action();
+            command_Action.defaultLabel = "WAW.Retreat".Translate();
+            command_Action.defaultDesc = "WAW.Retreat.Desc".Translate();
+            command_Action.icon = TexUI.RotLeftTex;
+            command_Action.action = delegate ()
+            {
+                comp.Retreat();
+            };
+            command_Action.Order = 3000f;
+            return command_Action;
+        }
 
-        private static readonly Texture2D CommandIcon = ContentFinder<Texture2D>.Get("UI/Commands/Resettle", true);
+        public static Command RetreatAllPawns(Map m)
+        {
+            Command_Action command_Action = new Command_Action();
+            command_Action.defaultLabel = "WAW.RetreatAll".Translate();
+            command_Action.defaultDesc = "WAW.RetreatAll.Desc".Translate();
+            command_Action.icon = TexUI.RotLeftTex;
+            command_Action.action = delegate ()
+            {
+                foreach(var p in m.mapPawns.AllPawnsSpawned)
+                {
+                    var comp = p.TryGetComp<CompMercenary>();   
+                    if(comp != null && comp.ServesPlayerFaction)
+                    {
+                        comp.Retreat();
+                    }
+                }
+            };
+            command_Action.Order = 3000f;
+            return command_Action;
+        }
 
     }
 }

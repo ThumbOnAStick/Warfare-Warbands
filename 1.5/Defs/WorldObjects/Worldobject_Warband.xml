@@ -26,7 +26,6 @@
     </inspectorTabs>
     <comps>
       <li Class="WarfareAndWarbands.Warband.WorldObjectCompProperties_PlayerWarband" />
-
     </comps>
   </WorldObjectDef>
   </Defs>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using WarfareAndWarbands.Warband.UI;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -61,6 +62,18 @@ namespace WarfareAndWarbands.Warband
             }
         }
 
+        public override IEnumerable<Gizmo> CompGetGizmosExtra()
+        {
+            if (this.ServesPlayerFaction)
+                yield return WarbandUI.RetreatPawn(this);
+
+        }
+
+        public void Retreat()
+        {
+            this.servesPlayerFaction = false;
+            Mercenary.SetFaction(Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband));
+        }
 
         public override void PostPostMake()
         {
@@ -76,8 +89,7 @@ namespace WarfareAndWarbands.Warband
                 if (Find.TickManager.TicksGame - LastServeTick > serveDuration)
                 {
                     LastServeTick = Find.TickManager.TicksGame;
-                    this.servesPlayerFaction = false;
-                    Mercenary.SetFaction(Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband));
+                    Retreat();
                 }
             }
         }

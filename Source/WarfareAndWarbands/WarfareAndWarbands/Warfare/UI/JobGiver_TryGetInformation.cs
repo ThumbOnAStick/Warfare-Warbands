@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Verse.AI;
 using Verse;
 using RimWorld;
+using WarfareAndWarbands.Warfare.UI;
 
 namespace WarfareAndWarbands.UI
 {
@@ -35,7 +36,7 @@ namespace WarfareAndWarbands.UI
                 bool canUseCommsNow = building_CommsConsole.CanUseCommsNow;
                 if (canUseCommsNow)
                 {
-                    Find.WindowStack.Add(new Window_WAW(actor, actor.Map));
+                    Find.WindowStack.Add(new Window_WAW_Comm(actor.Map));
                 }
             };
             yield return openComms;

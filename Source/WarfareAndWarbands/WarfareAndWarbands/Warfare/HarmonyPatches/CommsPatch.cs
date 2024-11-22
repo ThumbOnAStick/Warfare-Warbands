@@ -37,7 +37,7 @@ namespace WarfareAndWarbands.HarmonyPatches
                     Job job = new Job(WAWDefof.GetInformationFromConsole, __instance);
                     myPawn.jobs.TryTakeOrderedJob(job, new JobTag?(JobTag.Misc), false);
                     PlayerKnowledgeDatabase.KnowledgeDemonstrated(ConceptDefOf.OpeningComms, KnowledgeAmount.Total);
-                }, WAWTex.modIcon, Color.white, MenuOptionPriority.Default, null, null, 0f, null, null, true, 0, HorizontalJustification.Left, false), myPawn, __instance, "ReservedBy", null);
+                }, WAWTex.ModIcon, Color.white, MenuOptionPriority.Default, null, null, 0f, null, null, true, 0, HorizontalJustification.Left, false), myPawn, __instance, "ReservedBy", null);
                 __result = __result.AddItem(item);
             }
 
