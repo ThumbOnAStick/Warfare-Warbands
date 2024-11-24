@@ -14,5 +14,6 @@ namespace WarfareAndWarbands
         public static JobDef GetInformationFromConsole;
         public static FactionDef PlayerWarband;
         public static WorldObjectDef WAW_Warband;
+        public static ThingDef WAW_LootChest;
     }
 }

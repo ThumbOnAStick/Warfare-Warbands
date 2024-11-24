@@ -82,22 +82,25 @@ namespace WarfareAndWarbands
         public static string GetWarDurabilityString(this Faction f)
         {
             int warProgress = CompWAW.GetDurability(f);
+            string result = "";
             if (warProgress < 25)
             {
-                return warProgressString1;
+                result = warProgressString1;
             }
             else if (warProgress < 50)
             {
-                return warProgressString2;
+                result = warProgressString2;
             }
             else if (warProgress < 75)
             {
-                return warProgressString3;
+                result = warProgressString3;
             }
             else
             {
-                return warProgressString4;
+                result = warProgressString4;
             }
+            result += $"({warProgress}/100)";
+            return result;
         }
 
 

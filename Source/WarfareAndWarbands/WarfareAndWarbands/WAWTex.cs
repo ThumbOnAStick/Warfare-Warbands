@@ -13,7 +13,14 @@ namespace WarfareAndWarbands
     internal static class WAWTex
     {
         public static readonly Texture2D ModIcon = ContentFinder<Texture2D>.Get("UI/Icon/ModIcon", true);
-        public static readonly Texture2D CommandIcon = ContentFinder<Texture2D>.Get("UI/Commands/Resettle", true);
+        public static readonly Texture2D ResettleIcon = ContentFinder<Texture2D>.Get("UI/Commands/Resettle", true);
+        public static readonly Texture2D ReArrangeIcon = ContentFinder<Texture2D>.Get("UI/Commands/ConfigureWarband", true);
+        public static readonly Texture2D CancelLoadCommandTex = ContentFinder<Texture2D>.Get("UI/Designators/Cancel");
+        public static readonly Texture2D LoadCommandTex = ContentFinder<Texture2D>.Get("UI/Commands/LoadTransporter", true);
+        public static readonly Texture2D OpenTex = ContentFinder<Texture2D>.Get("UI/Designators/Open");
+        public static readonly Texture2D DismissTex = ContentFinder<Texture2D>.Get("UI/Commands/WarbandDismiss");
+        public static readonly Texture2D WarbandWithdrawTex = ContentFinder<Texture2D>.Get("UI/Commands/WarbandWithdraw");
+
 
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,10 +66,26 @@ namespace WarfareAndWarbands.Warband
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             if (this.ServesPlayerFaction)
+            {
+                if (!Find.CurrentMap.listerThings.AllThings.Any(x => x.def == WAWDefof.WAW_LootChest))
+                    yield return WarbandUI.PlaceLootChest(this.warband);
                 yield return WarbandUI.RetreatPawn(this);
+            }
 
         }
 
+        public override void Notify_Killed(Map prevMap, DamageInfo? dinfo = null)
+        {
+            base.Notify_Killed(prevMap, dinfo);
+            if (servesPlayerFaction)
+            {
+                Messages.Message("WAW.WarbandLoss".Translate(), MessageTypeDefOf.NegativeEvent);
+                string pawnKindName = Mercenary.kindDef.defName;
+                this.warband?.TryToRemovePawn(pawnKindName);
+            }
+        }
+
+ 
         public void Retreat()
         {
             this.servesPlayerFaction = false;
@@ -84,6 +101,17 @@ namespace WarfareAndWarbands.Warband
             return this.warband;
         }
 
+
+        public override void PostDeSpawn(Map map)
+        {
+            base.PostDeSpawn(map);
+            var inventory = Mercenary.inventory;
+            for (int i = 0; i < inventory.innerContainer.Count; i++)
+            {
+                Thing t = inventory.innerContainer[i];
+                this.warband?.Store(ref t);
+            }
+        }
 
         public override void PostPostMake()
         {

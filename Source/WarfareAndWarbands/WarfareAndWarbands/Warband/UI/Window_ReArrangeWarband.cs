@@ -11,7 +11,7 @@ using Verse.Sound;
 
 namespace WarfareAndWarbands.Warband
 {
-    public class Window_ArrangeWarband : Window
+    public class Window_ReArrangeWarband : Window
     {
 
         public override Vector2 InitialSize
@@ -21,9 +21,9 @@ namespace WarfareAndWarbands.Warband
                 return new Vector2(500f, 500f);
             }
         }
-        public Window_ArrangeWarband(Map map)
+        public Window_ReArrangeWarband(Warband warband)
         {
-            this.map = map; 
+            this.warband = warband; 
         }
         protected override void SetInitialSizeAndPosition()
         {
@@ -32,15 +32,18 @@ namespace WarfareAndWarbands.Warband
         }
         public override void DoWindowContents(Rect inRect)
         {
+            if(this.warband == null)
+            {
+                this.Close();
+            }
             Rect exitButtonRect = new Rect(430, 0, 30, 30);
-
             bool exit = Widgets.ButtonImage(exitButtonRect, TexButton.CloseXSmall);
             if (exit)
             {
                 this.Close();
             }
             Rect costRect = new Rect(30, 0, 100, 50);
-            Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostEstablishment().ToString()));
+            Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostExtra(warband.bandMembers).ToString()));
             Rect techRect = new Rect(300, 30, 100, 50);
             Rect techRectMinus = new Rect(270, 30, entryWidth, entryHeight);
             Rect techRectAddon = new Rect(400, 30, entryWidth, entryHeight);
@@ -84,8 +87,7 @@ namespace WarfareAndWarbands.Warband
             if (doRecruit)
             {
                 this.Close();
-                GameComponent_WAW.playerWarband.CreatWarbandeWorldObject(map);
-
+                GameComponent_WAW.playerWarband.SetNewWarBandMembers(warband);
             }
 
             bool doReset = Widgets.ButtonText(new Rect(330, 370, 100, 20), "WAW.ResetWarband".Translate());
@@ -104,7 +106,7 @@ namespace WarfareAndWarbands.Warband
         }
 
         private Vector2 scrollPosition;
-        private Map map;
+        private Warband warband;
         private readonly float descriptionHeight = 70f;
         private readonly float descriptionWidth = 120f;
         private readonly float entryHeight = 20f;

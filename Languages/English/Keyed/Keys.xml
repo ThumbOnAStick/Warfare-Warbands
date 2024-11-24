@@ -24,7 +24,7 @@
 	<WAW.TechLevel>Tech level: {0}</WAW.TechLevel> 
 	<WAW.RecruitWarband>recruit warband</WAW.RecruitWarband>
 	<WAW.ResettleWarband>re-settle warband</WAW.ResettleWarband>
-	<WAW.ResettleWarband.Desc>Move warband On another tile, it will cost 100 per tile.</WAW.ResettleWarband.Desc>
+	<WAW.ResettleWarband.Desc>Move warband On another tile, it will cost $10 per tile and person.</WAW.ResettleWarband.Desc>
 	<WAW.OrderAttack>order attack</WAW.OrderAttack>
 	<WAW.OrderAttack.Desc>Order warband to attack hostile settlemnt, or another warband.</WAW.OrderAttack.Desc>
 	<WAW.DefeatWarbandLetter.Label>hostile warband defeated</WAW.DefeatWarbandLetter.Label>
@@ -41,5 +41,22 @@
 	<WAW.CantAfford>insufficient funds</WAW.CantAfford>
 	<WAW.FoundZeroPawns>Found zero combat pawns on this tech level.</WAW.FoundZeroPawns>
 	<WAW.ResetWarband>reset warband</WAW.ResetWarband>
-
+	<WAW.WarbandWithdraw>withdraw loot</WAW.WarbandWithdraw>
+	<WAW.WarbandWithdraw.Desc>Return all loots with drop pods</WAW.WarbandWithdraw.Desc>
+	<WAW.EmptyWarband>There's nothing to withdraw.</WAW.EmptyWarband>
+	<WAW.InItems>directly send items</WAW.InItems>
+	<WAW.InSilvers>send in the form of silvers</WAW.InSilvers>
+	<WAW.ConfirmDestroyWarBand>Are you sure you want to remove this warband?</WAW.ConfirmDestroyWarBand>
+	<WAW.Configure>configure warband</WAW.Configure>
+	<WAW.Configure.Desc>re-arrange this warband</WAW.Configure.Desc>
+	<WAW.PlaceLootBox>place loot box</WAW.PlaceLootBox>
+	<WAW.PlaceLootBox.Desc>place a loot box on disired location</WAW.PlaceLootBox.Desc>
+	<WAW.emptyBand>empty warband</WAW.emptyBand>
+	<WAW.TransferContent>transfer to warband</WAW.TransferContent>
+	<WAW.TransferContent.Desc>transfer contents to warband</WAW.TransferContent.Desc>
+	<WAW.warbandRaidCooldown>player warband raid cooldown: {0} days</WAW.warbandRaidCooldown>
+	<WAW.warbandRaidCooldown.Desc>How many days before next player raid</WAW.warbandRaidCooldown.Desc>
+	<WAW.AvialableIn>avialable in: {0} days</WAW.AvialableIn>
+	<WAW.WaitForCooldown>Sorry, we won't be avialable in next {0} days.</WAW.WaitForCooldown>
+	<WAW.WarbandLoss>This warband has permanently lost a member, recruit new from recruiting window.</WAW.WarbandLoss>
 </LanguageData>

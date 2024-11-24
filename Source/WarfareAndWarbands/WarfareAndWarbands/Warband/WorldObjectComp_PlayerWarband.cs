@@ -18,6 +18,8 @@ namespace WarfareAndWarbands.Warband
                 yield return WarbandUI.MoveWarbandCommand((Warband)this.parent);
                 yield return WarbandUI.OrderWarbandToAttackCommand((Warband)this.parent);
                 yield return WarbandUI.DismissWarband((Warband)this.parent);
+                yield return WarbandUI.WithdrawWarbandItems((Warband)this.parent);
+                yield return WarbandUI.ConfigureWarband((Warband)this.parent);
 
             }
 

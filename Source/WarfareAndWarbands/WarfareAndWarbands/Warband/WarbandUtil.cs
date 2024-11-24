@@ -6,9 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
-using Verse.Noise;
-using static System.Collections.Specialized.BitVector32;
-using static UnityEngine.GraphicsBuffer;
+using Verse.Sound;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -18,6 +16,7 @@ namespace WarfareAndWarbands.Warband
         static WarbandUtil()
         {
             SoldierPawnKindsCache = SoldierPawnKinds();
+
         }
         public static List<PawnKindDef> SoldierPawnKinds()
         {
@@ -31,6 +30,11 @@ namespace WarfareAndWarbands.Warband
         public static bool InTechLevel(PawnKindDef def, TechLevel level)
         {
             return def.defaultFactionType != null && def.defaultFactionType.techLevel == level;
+        }
+
+        public static bool HasPawnKind(string name)
+        {
+            return SoldierPawnKindsCache.Any(x => x.defName == name);
         }
 
         public static PawnKindDef TargetPawnKindDef(string name)
@@ -71,7 +75,7 @@ namespace WarfareAndWarbands.Warband
             TileFinder.TryFindNewSiteTile(out int warbandTile, 3, 7, false, TileFinderMode.Near, info.Tile);
             warband.Tile = warbandTile;
             warband.SetFaction(f);
-            warband.targetTile = info.Tile;
+            warband.npcComponent.SetTargetTile(info.Tile);
             if (sitePartDefsWithParams != null)
             {
                 foreach (SitePartDefWithParams sitePart in sitePartDefsWithParams)
@@ -91,13 +95,13 @@ namespace WarfareAndWarbands.Warband
         public static void OrderPlayerWarbandToAttack(MapParent mapP, Warband warband)
         {
 
-            Caravan caravan = SpawnCaravan(mapP.Tile, warband);
+            Caravan caravan = SpawnWarbandCaravan(mapP.Tile, warband);
             Map orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(mapP.Tile, null);
             CaravanEnterMapUtility.Enter(caravan, orGenerateMap, CaravanEnterMode.Edge, CaravanDropInventoryMode.DoNotDrop, draftColonists: true);
-            
+
         }
 
-        private static Caravan SpawnCaravan(int tileId, Warband warband)
+        private static Caravan SpawnWarbandCaravan(int tileId, Warband warband)
         {
             List<Pawn> list = new List<Pawn>();
             foreach (var ele in warband.bandMembers)
@@ -109,8 +113,10 @@ namespace WarfareAndWarbands.Warband
                     {
                         kindDef = SoldierPawnKindsCache.First(x => x.defName == ele.Key);
                     }
-                    PawnGenerationRequest request = new PawnGenerationRequest(kindDef, Faction.OfPlayer, mustBeCapableOfViolence: true);
+                    Faction faction = kindDef.defaultFactionType != null ? Find.FactionManager.FirstFactionOfDef(kindDef.defaultFactionType) : Faction.OfPlayer;
+                    PawnGenerationRequest request = new PawnGenerationRequest(kindDef, faction, mustBeCapableOfViolence: true);
                     Pawn pawn = PawnGenerator.GeneratePawn(request);
+                    pawn.SetFaction(Faction.OfPlayer);
                     pawn.apparel.LockAll();
                     var equipments = pawn.equipment.AllEquipmentListForReading;
                     foreach (var equipment in equipments)
@@ -135,8 +141,18 @@ namespace WarfareAndWarbands.Warband
             return caravan;
         }
 
+        public static void ReArrangePlayerWarband(Warband playerWarband)
+        {
+            Find.WindowStack.Add(new Window_ReArrangeWarband(playerWarband));
+
+        }
+
         public static bool TryToSpendSilver(Map currentMap, int cost)
         {
+            if (cost <= 0)
+            {
+                return true;
+            }
             IEnumerable<Thing> silvers = from x in currentMap.listerThings.AllThings
                                          where x.def == ThingDefOf.Silver && x.IsInAnyStorage()
                                          select x;
@@ -198,10 +214,50 @@ namespace WarfareAndWarbands.Warband
 
         public static bool IsWorldObjectNonHostile(WorldObject o)
         {
-            return o.Faction != null && o.Faction != Faction.OfPlayer && !o.Faction.HostileTo(Faction.OfPlayer);
+            return o.Faction != null && o.Faction != Faction.OfPlayer && !o.Faction.Hidden && !o.Faction.HostileTo(Faction.OfPlayer);
+        }
+
+        public static SimpleCurve ResettleCurve()
+        {
+            CurvePoint p1 = new CurvePoint(1, 10);
+            CurvePoint p2 = new CurvePoint(10, 5);
+            CurvePoint p3 = new CurvePoint(100, 1);
+            List<CurvePoint> points = new List<CurvePoint>() { p1, p2, p3 };
+            return new SimpleCurve(points);
+        }
+
+        public static void TryToSpawnLootChest(Warband warband)
+        {
+            SetWarband(warband);
+            Targeter targeter = Find.Targeter;
+            TargetingParameters targetParams = TargetingParameters.ForDropPodsDestination();
+            SoundDefOf.Designate_PlaceBuilding.PlayOneShotOnCamera();
+            targeter.BeginTargeting(targetParams: targetParams, action: SpawnLootChest, onGuiAction: GUIAction);
+        }
+
+        static void SpawnLootChest(LocalTargetInfo info)
+        {
+            if (Find.CurrentMap.listerThings.AllThings.Any(x => x.def == WAWDefof.WAW_LootChest))
+            {
+                return;
+            }
+            Thing chest = GenSpawn.Spawn(WAWDefof.WAW_LootChest, info.Cell, Find.CurrentMap);
+            chest.TryGetComp<CompLootChest>()?.AssignWarband(warbandCache);
+        }
+
+        static void GUIAction(LocalTargetInfo info)
+        {
+
+        }
+
+        public static void SetWarband(Warband warband)
+        {
+            warbandCache = warband;
         }
 
         public static List<PawnKindDef> SoldierPawnKindsCache;
+
+        static Warband warbandCache;
     }
 
 
