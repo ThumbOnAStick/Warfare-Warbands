@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using Verse.Sound;
+using static RimWorld.ColonistBar;
+using WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates;
+using WarfareAndWarbands.Warband.UI;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents
 {
@@ -16,6 +19,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         public PlayerWarbandAttackManager(Warband warband)
         {
             this.warband = warband;
+            droppodUpgrade = new DroppodUpgrade(warband);
         }
 
         public void OrderPlayerWarbandToAttack()
@@ -62,21 +66,37 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent);
                 return false;
             }
-
+            SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
             var enemy = (MapParent)info.WorldObject;
-            LongEventHandler.QueueLongEvent(delegate ()
-            {
-                warband.playerWarbandCoolDown.SetLastRaidTick();
-                WarbandUtil.OrderPlayerWarbandToAttack(enemy, warband);
-                SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
-            }, "GeneratingMapForNewEncounter", false, null, true);
-
+            targetMapP = enemy;
+            WarbandUI.GetPlayerWarbandAttackOptions(this);
             return true;
         }
 
 
+        public void AttackLand()
+        {
+            if (targetMapP != null)
+                LongEventHandler.QueueLongEvent(delegate ()
+                {
+                    warband.playerWarbandCoolDown.SetLastRaidTick();
+                    WarbandUtil.OrderPlayerWarbandToAttack(targetMapP, warband);
+                }, "GeneratingMapForNewEncounter", false, null, true);
+
+        }
+
+        public void AttackDropPod()
+        {
+            if (targetMapP != null && targetMapP.Map != null)
+            {
+                warband.playerWarbandCoolDown.SetLastRaidTick();
+                droppodUpgrade.LaunchWarbandInMap(targetMapP.Map);
+            }
+        }
+
         private readonly Warband warband;
         private static readonly int playerAttackRange = 10;
-
+        public MapParent targetMapP;
+        public DroppodUpgrade droppodUpgrade;
     }
 }

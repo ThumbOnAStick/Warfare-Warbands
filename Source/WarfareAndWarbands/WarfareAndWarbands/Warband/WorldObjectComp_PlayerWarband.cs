@@ -21,6 +21,11 @@ namespace WarfareAndWarbands.Warband
                 yield return WarbandUI.WithdrawWarbandItems((Warband)this.parent);
                 yield return WarbandUI.ConfigureWarband((Warband)this.parent);
 
+                if (DebugSettings.godMode)
+                {
+                    yield return WarbandUI.ResetRaidCooldown((Warband)this.parent);
+
+                }
             }
 
         }

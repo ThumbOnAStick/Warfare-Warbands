@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!--Settings-->
+  <WAW.Settings>战团战争</WAW.Settings>
+  <WAW.occupyChance>征服概率：{0}%</WAW.occupyChance>
+  <WAW.occupyChance.Desc>战团占领定居点的机会</WAW.occupyChance.Desc>
+  <WAW.establishFeeMultiplier>建立费用乘数：{0} 倍</WAW.establishFeeMultiplier>
+  <WAW.establishFeeMultiplier.Desc>您需要花费 {0} 倍于战团战斗力的费用来建立它。</WAW.establishFeeMultiplier.Desc>
+  <WAW.eventFrequency>事件频率：{0}天</WAW.eventFrequency>
+  <WAW.eventFrequency.Desc>新战团产生的频率</WAW.eventFrequency.Desc>
+  <WAW.enableFactionDefeat>启用派系失败</WAW.enableFactionDefeat>
+  <WAW.enableFactionDefeat.Desc>派系是否应该被击败取决于该模组的事件。</WAW.enableFactionDefeat.Desc>
+  <!--Gameplay-->
+  <WAW.Welcome>战团战争</WAW.Welcome>
+  <WAW.Welcome.Desc>感谢您玩此模组，欲了解更多信息，请参阅创意工坊页面。</WAW.Welcome.Desc>
+  <OpenFactionInformationTab>打开派系信息选项卡</OpenFactionInformationTab>
+  <factionLosing>这个派系正在输掉战争，迟早会崩溃。</factionLosing>
+  <factionStrikeToSurvive>这个派系勉强站住了，他们遭受了持续的军事失败。</factionStrikeToSurvive>
+  <factionWillingToFight>这一派系虽然遭受了一些损失，但他们愿意战斗。</factionWillingToFight>
+  <factionHungerForWar>这个派系相信他们是胜利的一方。</factionHungerForWar>
+  <ArrangeWarband>安排战团</ArrangeWarband>
+  <soldierAmount>数量</soldierAmount>
+  <WAW.Cost>总费用：${0}</WAW.Cost>
+  <WAW.TechLevel>技术水平：{0}</WAW.TechLevel>
+  <WAW.RecruitWarband>招募战团</WAW.RecruitWarband>
+  <WAW.ResettleWarband>重新安置战团</WAW.ResettleWarband>
+  <WAW.ResettleWarband.Desc>将战团移动到另一个板块上，每个板块和每个人将花费 10 美元。</WAW.ResettleWarband.Desc>
+  <WAW.OrderAttack>命令攻击</WAW.OrderAttack>
+  <WAW.OrderAttack.Desc>命令战团攻击敌对定居点或其他战团。</WAW.OrderAttack.Desc>
+  <WAW.DefeatWarbandLetter.Label>敌对战团被击败</WAW.DefeatWarbandLetter.Label>
+  <WAW.DefeatWarbandLetter.Desc>我们击败了敌对战团！ 这不是一项引人注目的成就，但 {0} 受到了打击。</WAW.DefeatWarbandLetter.Desc>
+  <WAW.TargetingMapParent>试图占领{0}。</WAW.TargetingMapParent>
+  <WAW.Retreat>撤退</WAW.Retreat>
+  <WAW.Retreat.Desc>迫使该士兵撤退。</WAW.Retreat.Desc>
+  <WAW.RetreatAll>撤退</WAW.RetreatAll>
+  <WAW.RetreatAll.Desc>迫使所有雇佣兵撤退。</WAW.RetreatAll.Desc>
+  <WAW.Dismiss>解雇</WAW.Dismiss>
+  <WAW.Dismiss.Desc>解散这个战团。</WAW.Dismiss.Desc>
+  <WAW.InvalidObject>抱歉，我们不打算攻击这里。</WAW.InvalidObject>
+  <WAW.FarObject>报告，我们最多不能到达十格的距离。</WAW.FarObject>
+  <WAW.CantAfford>资金不足</WAW.CantAfford>
+  <WAW.FoundZeroPawns>该科技水平没有兵种。</WAW.FoundZeroPawns>
+  <WAW.ResetWarband>重置战团</WAW.ResetWarband>
+  <WAW.WarbandWithdraw>撤回战利品</WAW.WarbandWithdraw>
+  <WAW.WarbandWithdraw.Desc>使用空投舱归还所有战利品</WAW.WarbandWithdraw.Desc>
+  <WAW.EmptyWarband>没有什么可以撤回的。</WAW.EmptyWarband>
+  <WAW.InItems>直接发送物品</WAW.InItems>
+  <WAW.InSilvers>以银子的形式发送</WAW.InSilvers>
+  <WAW.ConfirmDestroyWarBand>您确定要移除该战团吗？</WAW.ConfirmDestroyWarBand>
+  <WAW.Configure>配置战团</WAW.Configure>
+  <WAW.Configure.Desc>重新安排这个战团</WAW.Configure.Desc>
+  <WAW.PlaceLootBox>放置战利品箱</WAW.PlaceLootBox>
+  <WAW.PlaceLootBox.Desc>将战利品箱放置在所需位置</WAW.PlaceLootBox.Desc>
+  <WAW.emptyBand>空战团</WAW.emptyBand>
+  <WAW.TransferContent>转移到战团</WAW.TransferContent>
+  <WAW.TransferContent.Desc>将内容转移到战团</WAW.TransferContent.Desc>
+  <WAW.warbandRaidCooldown>玩家战团突袭冷却时间：{0} 天</WAW.warbandRaidCooldown>
+  <WAW.warbandRaidCooldown.Desc>距离下一次玩家袭击还有多少天</WAW.warbandRaidCooldown.Desc>
+  <WAW.AvialableIn>可在：{0} 天后提供</WAW.AvialableIn>
+  <WAW.WaitForCooldown>抱歉，我们在接下来的 {0} 天内无法进行新的行动。</WAW.WaitForCooldown>
+  <WAW.WarbandLoss>该战团已永久失去一名成员，请从招募窗口招募新成员。</WAW.WarbandLoss>
+  <WAW.ResettleFee>重新安置费用：{0}</WAW.ResettleFee>
+  <WAW.LandAttack>发起对地攻击</WAW.LandAttack>
+  <WAW.PodAttack>运输舱遭遇袭击</WAW.PodAttack>
+  <WAW.LostWarband>战团被摧毁</WAW.LostWarband>
+  <WAW.LostWarband.Desc>所有人都死了，整个战团都被摧毁了。</WAW.LostWarband.Desc>
+  <WAW.LeaveIn>将在 {0} 天后离开地图</WAW.LeaveIn>
+</LanguageData>

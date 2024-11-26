@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using Verse.Sound;
+using WarfareAndWarbands.Warband.UI;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -101,7 +102,7 @@ namespace WarfareAndWarbands.Warband
 
         }
 
-        private static Caravan SpawnWarbandCaravan(int tileId, Warband warband)
+        public static List<Pawn> GenerateWarbandPawns(Warband warband)
         {
             List<Pawn> list = new List<Pawn>();
             foreach (var ele in warband.bandMembers)
@@ -133,10 +134,17 @@ namespace WarfareAndWarbands.Warband
                     }
                     comp.ServesPlayerFaction = true;
                     comp.SetWarband(warband);
+                    comp.SetPawnKindName(ele.Key);
                     list.Add(pawn);
                 }
 
             }
+            return list;
+        }
+
+        private static Caravan SpawnWarbandCaravan(int tileId, Warband warband)
+        {
+            List<Pawn> list = GenerateWarbandPawns(warband); 
             Caravan caravan = CaravanMaker.MakeCaravan(list, Faction.OfPlayer, tileId, true);
             return caravan;
         }

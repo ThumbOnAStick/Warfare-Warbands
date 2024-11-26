@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using WarfareAndWarbands.Warband.WarbandComponents;
 
 namespace WarfareAndWarbands.Warband.UI
 {
@@ -48,18 +49,43 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.icon = WAWTex.WarbandWithdrawTex;
             command_Action.action = delegate ()
             {
-                FloatMenu floatMenuMap = new FloatMenu(DumpLootOptions(band).ToList());
+                FloatMenu floatMenuMap = new FloatMenu(WithDrawLootOptions(band).ToList());
                 Find.WindowStack.Add(floatMenuMap);
             };
             command_Action.Order = 3000f;
             return command_Action;
         }
+        public static Command ResetRaidCooldown(Warband band)
+        {
+            Command_Action command_Action = new Command_Action();
+            command_Action.defaultLabel = "Reset raid cooldown";
+            command_Action.action = delegate ()
+            {
+                band.playerWarbandCoolDown.ResetRaidTick();
+            };
+            command_Action.Order = 3000f;
+            return command_Action;
+        }
 
-        static IEnumerable<FloatMenuOption> DumpLootOptions(Warband band)
+        static IEnumerable<FloatMenuOption> WithDrawLootOptions(Warband band)
         {
             yield return new FloatMenuOption("WAW.InItems".Translate(), delegate { band.DumpLoot(); });
             yield return new FloatMenuOption("WAW.InSilvers".Translate(), delegate { band.DumpLootInSilver(); });
 
+        }
+
+        public static IEnumerable<FloatMenuOption> PlayerWarbandAttackOptions(PlayerWarbandAttackManager attackManager)
+        {
+            yield return new FloatMenuOption("WAW.LandAttack".Translate(), delegate { attackManager.AttackLand(); });
+            if (attackManager.targetMapP.HasMap)
+                yield return new FloatMenuOption("WAW.PodAttack".Translate(), delegate { attackManager.AttackDropPod(); });
+
+        }
+
+        public static void GetPlayerWarbandAttackOptions(PlayerWarbandAttackManager attackManager)
+        {
+            FloatMenu floatMenuMap = new FloatMenu(PlayerWarbandAttackOptions(attackManager).ToList());
+            Find.WindowStack.Add(floatMenuMap);
         }
 
         public static Command DismissWarband(Warband band)

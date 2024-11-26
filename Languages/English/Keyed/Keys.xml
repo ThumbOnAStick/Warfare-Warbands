@@ -59,4 +59,10 @@
 	<WAW.AvialableIn>avialable in: {0} days</WAW.AvialableIn>
 	<WAW.WaitForCooldown>Sorry, we won't be avialable in next {0} days.</WAW.WaitForCooldown>
 	<WAW.WarbandLoss>This warband has permanently lost a member, recruit new from recruiting window.</WAW.WarbandLoss>
+	<WAW.ResettleFee>Cost to resettle: {0}</WAW.ResettleFee>
+	<WAW.LandAttack>Initiate ground attack</WAW.LandAttack>
+	<WAW.PodAttack>Attack in transport pods</WAW.PodAttack>
+	<WAW.LostWarband>warband destroyed</WAW.LostWarband>
+	<WAW.LostWarband.Desc>Everyone is dead, the entire warband is destroyed.</WAW.LostWarband.Desc>
+	<WAW.LeaveIn>will leave map in {0} days</WAW.LeaveIn>
 </LanguageData>

@@ -6,8 +6,10 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 using Verse.AI.Group;
+using Verse.Noise;
 using Verse.Sound;
 using WarfareAndWarbands.Warband.WarbandComponents;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -223,10 +225,18 @@ namespace WarfareAndWarbands.Warband
             return outPawns;
         }
 
+
+
         public void OrderPlayerWarbandToResettle()
         {
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(this), CameraJumper.MovementMode.Pan);
-            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(OrderPlayerWarbandToResettle), true);
+            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(OrderPlayerWarbandToResettle), true, extraLabelGetter: ExtraLabel);
+        }
+
+        public string ExtraLabel(GlobalTargetInfo targetInfo)
+        {
+            int cost = GetResettleCost(targetInfo);
+            return "WAW.ResettleFee".Translate(cost);
         }
 
         public void TryToRemovePawn(string kindName)
@@ -234,6 +244,13 @@ namespace WarfareAndWarbands.Warband
             if (this.bandMembers.ContainsKey(kindName) && bandMembers[kindName] > 0)
             {
                 bandMembers[kindName]--;
+            }
+            if (this.GetMemberCount() < 1)
+            {
+                this.Destroy();
+                Letter lostWarband = LetterMaker.MakeLetter(label: "WAW.LostWarband".Translate(), text: "WAW.LostWarband.Desc".Translate(), LetterDefOf.NegativeEvent);
+                Find.LetterStack.ReceiveLetter(lostWarband);
+
             }
         }
 
@@ -243,32 +260,28 @@ namespace WarfareAndWarbands.Warband
             this.playerWarbandCoolDown.ResetRaidTick();
         }
 
-        public bool OrderPlayerWarbandToResettle(GlobalTargetInfo info)
+        public override void Draw()
         {
-            if (info.WorldObject != null)
-            {
-                Messages.Message("WAW.InvalidObject".Translate(), MessageTypeDefOf.NegativeEvent);
-                return false;
-            }
+            base.Draw();
+        }
 
-            float distance = Find.WorldGrid.ApproxDistanceInTiles(info.Tile, this.Tile);
+        public int GetResettleCost(GlobalTargetInfo targetInfo)
+        {
+            if (!targetInfo.IsValid)
+            {
+                return 0;
+            }
+            float distance = Find.WorldGrid.ApproxDistanceInTiles(targetInfo.Tile, this.Tile);
             var curve = WarbandUtil.ResettleCurve();
             int memberCount = this.GetMemberCount();
             int costPerPawn = (int)curve.Evaluate(memberCount);
             int cost = (int)distance * costPerPawn * memberCount;
-            if (!WarbandUtil.TryToSpendSilver(Find.AnyPlayerHomeMap, cost))
-            {
-                Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent);
-                return false;
-            }
-            TransportPodsArrivalAction_SpawnWarband action = new TransportPodsArrivalAction_SpawnWarband(this);
-            TravelingTransportPods travelingTransportPods = (TravelingTransportPods)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.TravelingTransportPods);
-            travelingTransportPods.Tile = this.Tile;
-            travelingTransportPods.SetFaction(Faction.OfPlayer);
-            travelingTransportPods.destinationTile = info.Tile;
-            travelingTransportPods.arrivalAction = action;
-            Find.WorldObjects.Add(travelingTransportPods);
-            SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
+            return cost;
+        }
+
+        public bool OrderPlayerWarbandToResettle(GlobalTargetInfo info)
+        {
+            this.resettleManager.OrderPlayerWarbandToResettle(info, this);
             return true;
         }
 
@@ -309,7 +322,7 @@ namespace WarfareAndWarbands.Warband
             lootManager.DumpLootInSilver();
         }
 
-
+        
 
         public Dictionary<string, int> bandMembers;
         public PlayerWarbandCooldown playerWarbandCoolDown;
@@ -322,6 +335,5 @@ namespace WarfareAndWarbands.Warband
         private List<string> stringBuffers;
         private List<int> intBuffers;
         private bool isSettling = false;
-
     }
 }

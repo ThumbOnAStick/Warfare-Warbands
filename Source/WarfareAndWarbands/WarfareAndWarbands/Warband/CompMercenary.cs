@@ -21,6 +21,7 @@ namespace WarfareAndWarbands.Warband
     {
         bool servesPlayerFaction = false;
         int lastServeTick = 0;
+        string pawnKindName;
         Warband warband;
         public CompProperties_Mercenary Props
         {
@@ -74,14 +75,24 @@ namespace WarfareAndWarbands.Warband
 
         }
 
+        public string RemainingDays()
+        {
+            return GenDate.TicksToDays(lastServeTick + serveDuration - Find.TickManager.TicksGame).ToString("0.0");
+        }
+
+        public override string CompInspectStringExtra()
+        {
+            return "WAW.LeaveIn".Translate(RemainingDays());
+        }
+
         public override void Notify_Killed(Map prevMap, DamageInfo? dinfo = null)
         {
             base.Notify_Killed(prevMap, dinfo);
             if (servesPlayerFaction)
             {
                 Messages.Message("WAW.WarbandLoss".Translate(), MessageTypeDefOf.NegativeEvent);
-                string pawnKindName = Mercenary.kindDef.defName;
-                this.warband?.TryToRemovePawn(pawnKindName);
+                string targetName = pawnKindName;
+                this.warband?.TryToRemovePawn(targetName);
             }
         }
 
@@ -96,11 +107,15 @@ namespace WarfareAndWarbands.Warband
         {
             this.warband = warband;
         }
+        public void SetPawnKindName(string pawnKindName)
+        {
+            this.pawnKindName = pawnKindName;
+        }
+
         public Warband GetWarband()
         {
             return this.warband;
         }
-
 
         public override void PostDeSpawn(Map map)
         {
@@ -136,8 +151,10 @@ namespace WarfareAndWarbands.Warband
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look(ref servesPlayerFaction, "servesPlayerFaction");
-            Scribe_Values.Look(ref lastServeTick, "lastServeTick");
+            Scribe_Values.Look(ref servesPlayerFaction, "servesPlayerFaction", false);
+            Scribe_Values.Look(ref lastServeTick, "lastServeTick", 0);
+            Scribe_Values.Look(ref pawnKindName, "pawnKindName", "none");
+            Scribe_References.Look(ref warband, "warband");
 
         }
 

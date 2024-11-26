@@ -24,7 +24,7 @@ namespace WarfareAndWarbands.Warfare.HarmonyPatches
 
         public static void RemoveSettlemntPatch(ref Settlement __instance)
         {
-            GameComponent_WAW.Instance.DecreaseDurability(__instance.Faction, 15);
+            GameComponent_WAW.Instance.DecreaseDurability(__instance.Faction, 5);
         }
     }
 }
