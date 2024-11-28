@@ -8,9 +8,9 @@ using Verse;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents
 {
-    public class PlayerWarbandCooldown : IExposable
+    public class PlayerWarbandCooldownManager : IExposable
     {
-        public PlayerWarbandCooldown() 
+        public PlayerWarbandCooldownManager() 
         {
             lastRaidTick = 0;
         }

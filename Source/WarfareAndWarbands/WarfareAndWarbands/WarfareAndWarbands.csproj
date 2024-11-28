@@ -78,8 +78,9 @@
     <Compile Include="Warband\DebugActionWarband.cs" />
     <Compile Include="Warband\HarmonyPatches\ExitMapPatch.cs" />
     <Compile Include="Warband\HarmonyPatches\GetHomeFactionPatch.cs" />
-    <Compile Include="Warband\CompMercenary.cs" />
+    <Compile Include="Warband\Mercenary\CompMercenary.cs" />
     <Compile Include="Warband\HarmonyPatches\WorldObjectGizmosPatch.cs" />
+    <Compile Include="Warband\Mercenary\MercenaryUtil.cs" />
     <Compile Include="Warband\PlayerWarbandArrangement.cs" />
     <Compile Include="Warband\TransportPodsArrivalAction_SpawnWarband.cs" />
     <Compile Include="Warband\UI\WarbandUI.cs" />
@@ -87,12 +88,13 @@
     <Compile Include="Warband\Warband.cs" />
     <Compile Include="Warband\UI\Window_ArrangeWarband.cs" />
     <Compile Include="Warband\GameComponent_Warband.cs" />
-    <Compile Include="Warband\WarbandComponents\NPCWarbandComponent.cs" />
-    <Compile Include="Warband\WarbandComponents\PlayerWarbandAttackManager.cs" />
-    <Compile Include="Warband\WarbandComponents\PlayerWarbandCooldown.cs" />
-    <Compile Include="Warband\WarbandComponents\PlayerWarbandLootManager.cs" />
-    <Compile Include="Warband\WarbandComponents\PlayerWarbandResettleManager.cs" />
-    <Compile Include="Warband\WarbandComponents\WarbandUpdates\DroppodUpgrade.cs" />
+    <Compile Include="Warband\WarbandComponents\NPCWarbandManager.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandColorOverride.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandCooldownManager.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandLootManager.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandResettleManager.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandManager.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandUpdates\DroppodUpgrade.cs" />
     <Compile Include="Warband\WarbandUtil.cs" />
     <Compile Include="Warband\WorldObjectCompProperties_PlayerWarband.cs" />
     <Compile Include="Warband\WorldObjectComp_PlayerWarband.cs" />
@@ -110,6 +112,8 @@
     <Compile Include="WAWSettings.cs" />
     <Compile Include="WAWTex.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Warfare\Events\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

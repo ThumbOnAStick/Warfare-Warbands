@@ -29,6 +29,7 @@ namespace WarfareAndWarbands
             base.ExposeData();
             Scribe_Collections.Look<Faction, int>(ref this.factionsAndWarDurabilities,
                 "factionsAndWarDurabilities", LookMode.Reference, LookMode.Value, ref factions, ref durabilitities);
+            Scribe_Values.Look(ref lastTick, "lastTick");
             playerWarband.ExposeData();
         }
 
@@ -128,11 +129,34 @@ namespace WarfareAndWarbands
             Find.LetterStack.ReceiveLetter(modLoadded);
         }
 
+
+
+        private int lastTick = 0;
+
         public override void GameComponentTick()
         {
-
+            base.GameComponentTick();
+            if (Find.TickManager.TicksGame - lastTick > WAWSettings.eventFrequency * 60000)
+            {
+                lastTick = Find.TickManager.TicksGame;
+                SelfTick();
+            }
         }
 
+        void SelfTick()
+        {
+            var validFactions = WarfareUtil.GetValidWarFactions();
+            int len = validFactions.Count;
+            IntRange r = new IntRange(0, len - 1);
+            int rndIdx = r.RandomInRange;
+            var pickedFaction = validFactions.ElementAt(rndIdx);
+            var worldObject = WarfareUtil.RandomHostileSettlement(pickedFaction);
+            if (worldObject == null)
+            {
+                return;
+            }
+            WarfareUtil.SpawnWarbandTargetingBase(pickedFaction, worldObject);
+        }
 
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Verse;
+using WarfareAndWarbands.Warband;
 
 namespace WarfareAndWarbands
 {
@@ -121,5 +122,37 @@ namespace WarfareAndWarbands
                 yield return new FloatMenuOption($"faction: {f.Name}",  delegate {CompWAW.DecreaseDurabilityBy(f, amount); });
             }
         }
+
+
+        public static WorldObject RandomHostileSettlement(Faction myFaction)
+        {
+            if (Find.WorldObjects.MapParents.Any(x => x.Faction != null && x.Faction.HostileTo(myFaction)))
+                return Find.WorldObjects.MapParents.Where(x => x.Faction != null && x.Faction != Faction.OfPlayer && x.Faction.HostileTo(myFaction)).RandomElement();
+            return null;
+        }
+
+        public static void SpawnWarbandTargetingBase(Faction f, GlobalTargetInfo info)
+        {
+            List<SitePartDef> sitePartList = new List<SitePartDef>
+            {
+                DefDatabase<SitePartDef>.GetNamed("Outpost")
+            };
+            List<SitePartDefWithParams> sitePartDefsWithParams;
+            SiteMakerHelper.GenerateDefaultParams(0f, info.Tile, f, sitePartList, out sitePartDefsWithParams);
+            var warband = (Warband.Warband)WorldObjectMaker.MakeWorldObject(WAWDefof.WAW_Warband);
+            TileFinder.TryFindNewSiteTile(out int warbandTile, 3, 7, false, TileFinderMode.Near, info.Tile);
+            warband.Tile = warbandTile;
+            warband.SetFaction(f);
+            warband.npcWarbandManager.SetTargetTile(info.Tile);
+            if (sitePartDefsWithParams != null)
+            {
+                foreach (SitePartDefWithParams sitePart in sitePartDefsWithParams)
+                {
+                    warband.AddPart(new SitePart(warband, sitePart.def, sitePart.parms));
+                }
+            }
+            Find.WorldObjects.Add(warband);
+        }
+
     }
 }

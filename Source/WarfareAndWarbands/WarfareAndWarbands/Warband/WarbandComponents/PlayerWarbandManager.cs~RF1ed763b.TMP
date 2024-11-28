@@ -13,13 +13,15 @@ using WarfareAndWarbands.Warband.UI;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents
 {
-    public class PlayerWarbandAttackManager
+    public class PlayerWarbandManager : IExposable
     {
 
-        public PlayerWarbandAttackManager(Warband warband)
+        public PlayerWarbandManager(Warband warband)
         {
             this.warband = warband;
             droppodUpgrade = new DroppodUpgrade(warband);
+            cooldownManager = new PlayerWarbandCooldownManager();
+            this.lootManager = new PlayerWarbandLootManager();
         }
 
         public void OrderPlayerWarbandToAttack()
@@ -40,9 +42,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 return false;
             }
 
-            if (!warband.playerWarbandCoolDown.CanFireRaid())
+            if (!this.cooldownManager.CanFireRaid())
             {
-                Messages.Message("WAW.WaitForCooldown".Translate(warband.playerWarbandCoolDown.GetRemainingDays().ToString("0.0")), MessageTypeDefOf.RejectInput);
+                Messages.Message("WAW.WaitForCooldown".Translate(this.cooldownManager.GetRemainingDays().ToString("0.0")), MessageTypeDefOf.RejectInput);
                 return false;
             }
 
@@ -79,7 +81,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             if (targetMapP != null)
                 LongEventHandler.QueueLongEvent(delegate ()
                 {
-                    warband.playerWarbandCoolDown.SetLastRaidTick();
+                    this.cooldownManager.SetLastRaidTick();
                     WarbandUtil.OrderPlayerWarbandToAttack(targetMapP, warband);
                 }, "GeneratingMapForNewEncounter", false, null, true);
 
@@ -89,14 +91,72 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         {
             if (targetMapP != null && targetMapP.Map != null)
             {
-                warband.playerWarbandCoolDown.SetLastRaidTick();
+                this.cooldownManager.SetLastRaidTick();
                 droppodUpgrade.LaunchWarbandInMap(targetMapP.Map);
             }
         }
 
+        public void WithdrawLoot()
+        {
+            this.lootManager.WidthdrawLoot();
+        }
+
+        public void WithdrawLootInSilver()
+        {
+            this.lootManager.WithdrawLootInSilver();
+        }
+
+        public void StoreAll(IEnumerable<Thing> things)
+        {
+            this.lootManager.StoreAll(things);
+        }
+
+        public void StoreThing(ref Thing thing)
+        {
+            lootManager.StoreThing(ref thing);
+        }
+
+        public void ResetRaidTick()
+        {
+            this.cooldownManager.ResetRaidTick();
+        }
+
+        public bool OrderPlayerWarbandToResettle(GlobalTargetInfo info, Warband warband)
+        {
+            return this.resettleManager.OrderPlayerWarbandToResettle(info, warband);
+        }
+
+        public void ExposeData()
+        {
+            lootManager.ExposeData();
+            //cooldownManager.ExposeData();
+            //resettleManager.ExposeData();
+        }
+
+        internal bool CanFireRaid()
+        {
+           return cooldownManager.CanFireRaid();
+        }
+
+        internal float GetRemainingDays()
+        {
+            return cooldownManager.GetRemainingDays();
+        }
+
         private readonly Warband warband;
-        private static readonly int playerAttackRange = 10;
         public MapParent targetMapP;
+
+        //upgrades
         public DroppodUpgrade droppodUpgrade;
+
+        //sub managers
+        public PlayerWarbandLootManager lootManager;
+        public PlayerWarbandCooldownManager cooldownManager;
+        public PlayerWarbandResettleManager resettleManager;
+
+
+
+        private static readonly int playerAttackRange = 10;
+
     }
 }

@@ -36,7 +36,7 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.icon = TexCommand.Attack;
             command_Action.action = delegate ()
             {
-                band.attackManager.OrderPlayerWarbandToAttack();
+                band.playerWarbandManager.OrderPlayerWarbandToAttack();
             };
             command_Action.Order = 3000f;
             return command_Action;
@@ -44,6 +44,8 @@ namespace WarfareAndWarbands.Warband.UI
         public static Command WithdrawWarbandItems(Warband band)
         {
             Command_Action command_Action = new Command_Action();
+            command_Action.Disabled = band.playerWarbandManager.lootManager.GetLootCount() < 1;
+            command_Action.disabledReason = "WAW.EmptyStorage".Translate();
             command_Action.defaultLabel = "WAW.WarbandWithdraw".Translate();
             command_Action.defaultDesc = "WAW.WarbandWithdraw.Desc".Translate();
             command_Action.icon = WAWTex.WarbandWithdrawTex;
@@ -61,7 +63,7 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.defaultLabel = "Reset raid cooldown";
             command_Action.action = delegate ()
             {
-                band.playerWarbandCoolDown.ResetRaidTick();
+                band.playerWarbandManager.ResetRaidTick();
             };
             command_Action.Order = 3000f;
             return command_Action;
@@ -69,12 +71,12 @@ namespace WarfareAndWarbands.Warband.UI
 
         static IEnumerable<FloatMenuOption> WithDrawLootOptions(Warband band)
         {
-            yield return new FloatMenuOption("WAW.InItems".Translate(), delegate { band.DumpLoot(); });
-            yield return new FloatMenuOption("WAW.InSilvers".Translate(), delegate { band.DumpLootInSilver(); });
+            yield return new FloatMenuOption("WAW.InItems".Translate(), delegate { band.WithdrawLoot(); });
+            yield return new FloatMenuOption("WAW.InSilvers".Translate(), delegate { band.WithdrawLootInSilver(); });
 
         }
 
-        public static IEnumerable<FloatMenuOption> PlayerWarbandAttackOptions(PlayerWarbandAttackManager attackManager)
+        public static IEnumerable<FloatMenuOption> PlayerWarbandAttackOptions(PlayerWarbandManager attackManager)
         {
             yield return new FloatMenuOption("WAW.LandAttack".Translate(), delegate { attackManager.AttackLand(); });
             if (attackManager.targetMapP.HasMap)
@@ -82,7 +84,7 @@ namespace WarfareAndWarbands.Warband.UI
 
         }
 
-        public static void GetPlayerWarbandAttackOptions(PlayerWarbandAttackManager attackManager)
+        public static void GetPlayerWarbandAttackOptions(PlayerWarbandManager attackManager)
         {
             FloatMenu floatMenuMap = new FloatMenu(PlayerWarbandAttackOptions(attackManager).ToList());
             Find.WindowStack.Add(floatMenuMap);

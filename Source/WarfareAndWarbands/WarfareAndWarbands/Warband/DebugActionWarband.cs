@@ -78,7 +78,7 @@ namespace WarfareAndWarbands.Warband
             HashSet<Faction> valids = WarfareUtil.GetValidWarFactions();
             foreach (Faction f in valids)
             {
-                yield return new FloatMenuOption($"faction: {f.Name}", delegate { WarbandUtil.SpawnWarbandTargetingBase(f, info); });
+                yield return new FloatMenuOption($"faction: {f.Name}", delegate { WarfareUtil.SpawnWarbandTargetingBase(f, info); });
             }
         }
 

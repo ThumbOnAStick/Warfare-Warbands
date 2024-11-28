@@ -65,4 +65,8 @@
 	<WAW.LostWarband>warband destroyed</WAW.LostWarband>
 	<WAW.LostWarband.Desc>Everyone is dead, the entire warband is destroyed.</WAW.LostWarband.Desc>
 	<WAW.LeaveIn>will leave map in {0} days</WAW.LeaveIn>
+	<WAW.UpgradeWarband>upgrade warband</WAW.UpgradeWarband>
+	<WAW.EmptyStorage>The storage is empty</WAW.EmptyStorage>
+	<WAW.ColorOverride>color override: </WAW.ColorOverride>
+	<WAW.ConfigWarband>confirm changes</WAW.ConfigWarband>
 </LanguageData>

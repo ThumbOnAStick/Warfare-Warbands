@@ -32,11 +32,20 @@ namespace WarfareAndWarbands.Warband
             {
                 return;
             }
+            if (this.warband == null) 
+            {
+                Log.Error("Warband is invalid");
+            }
             warband?.StoreAll(CompTransporter.innerContainer.ToList());
             CompTransporter.innerContainer.Clear();
             CompTransporter.CancelLoad();
         }
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_References.Look(ref warband, "warband");
+        }
 
 
 

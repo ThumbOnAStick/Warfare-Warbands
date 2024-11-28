@@ -9,9 +9,9 @@ using Verse;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents
 {
-    public class NPCWarbandComponent:IExposable
+    public class NPCWarbandManager:IExposable
     {
-        public NPCWarbandComponent(Warband warband)
+        public NPCWarbandManager(Warband warband)
         {
             this.warband = warband;
             this.targetTile = 0;
@@ -41,7 +41,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             }
             if (IsWarbandDefeated() && defeated == false)
             {
-                this.defeated = true;
+                SetDefeated();
                 OnDefeated();
             }
 
@@ -156,16 +156,20 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         private bool IsWarbandDefeated()
         {
-            return warband.HasMap && !GenHostility.AnyHostileActiveThreatToPlayer(warband.Map, false, false);
+            return warband.HasMap && (!GenHostility.AnyHostileActiveThreatToPlayer(warband.Map, false, false) || this.warband.bandMembers.Count < 1);
         }
 
         public void ExposeData()
         {
-            Scribe_Values.Look(ref this.defeated, "defeated");
-            Scribe_Values.Look(ref this.targetTile, "targetTile");
+            Scribe_Values.Look(ref this.defeated, "defeated", false);
+            Scribe_Values.Look(ref this.targetTile, "targetTile", 0);
 
         }
 
+        public void SetDefeated()
+        {
+            this.defeated = true;
+        }
 
         private bool defeated = false;
         private readonly Warband warband;

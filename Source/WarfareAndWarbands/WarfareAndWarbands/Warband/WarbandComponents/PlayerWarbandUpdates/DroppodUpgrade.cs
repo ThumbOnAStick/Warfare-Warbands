@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using WarfareAndWarbands.Warband.Mercenary;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
 {
@@ -36,7 +37,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
 
         public void LaunchWarband(LocalTargetInfo lInfo)
         {
-            List<Pawn> list = WarbandUtil.GenerateWarbandPawns(warband);
+            List<Pawn> list = MercenaryUtil.GenerateWarbandPawns(warband);
             List<ActiveDropPodInfo> pods = new List<ActiveDropPodInfo>();   
             foreach (Pawn p in list) 
             {
@@ -63,8 +64,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
 
         public void TravelingTransportPodsArrived(List<ActiveDropPodInfo> dropPods, Map map, LocalTargetInfo info)
         {
-            IntVec3 near;
-            if (!DropCellFinder.TryFindDropSpotNear(info.Cell, map, out near, allowFogged: false, true))
+            if (!DropCellFinder.TryFindDropSpotNear(info.Cell, map, out IntVec3 near, allowFogged: false, true))
             {
                 near = DropCellFinder.FindRaidDropCenterDistant(map, false);
             }

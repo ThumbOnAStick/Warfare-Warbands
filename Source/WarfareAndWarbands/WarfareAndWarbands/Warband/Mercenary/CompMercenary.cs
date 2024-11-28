@@ -20,6 +20,7 @@ namespace WarfareAndWarbands.Warband
     public class CompMercenary : ThingComp
     {
         bool servesPlayerFaction = false;
+        Faction servingFaction;
         int lastServeTick = 0;
         string pawnKindName;
         Warband warband;
@@ -88,17 +89,26 @@ namespace WarfareAndWarbands.Warband
         public override void Notify_Killed(Map prevMap, DamageInfo? dinfo = null)
         {
             base.Notify_Killed(prevMap, dinfo);
-            if (servesPlayerFaction)
+            if (this.servingFaction != null && this.Mercenary.MapHeld != null)
             {
-                Messages.Message("WAW.WarbandLoss".Translate(), MessageTypeDefOf.NegativeEvent);
+                TryNotifyPlayerPawnKilled();
                 string targetName = pawnKindName;
                 this.warband?.TryToRemovePawn(targetName);
             }
+
         }
 
- 
+        void TryNotifyPlayerPawnKilled()
+        {
+            if (servesPlayerFaction)
+            {
+                Messages.Message("WAW.WarbandLoss".Translate(), MessageTypeDefOf.NegativeEvent);
+            }
+        }
+
         public void Retreat()
         {
+            this.servingFaction = null; 
             this.servesPlayerFaction = false;
             Mercenary.SetFaction(Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband));
         }
@@ -107,6 +117,22 @@ namespace WarfareAndWarbands.Warband
         {
             this.warband = warband;
         }
+
+        public void SetServingFaction(Faction f)
+        {
+            this.servingFaction = f;
+        }
+
+        public Faction GetServingFaction()
+        {
+            return this.servingFaction;
+        }
+
+        public bool HasServingFaction()
+        {
+            return servingFaction != null;
+        }
+
         public void SetPawnKindName(string pawnKindName)
         {
             this.pawnKindName = pawnKindName;

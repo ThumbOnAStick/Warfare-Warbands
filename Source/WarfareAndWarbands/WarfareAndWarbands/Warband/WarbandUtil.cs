@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using Verse.Sound;
+using WarfareAndWarbands.Warband.Mercenary;
 using WarfareAndWarbands.Warband.UI;
 
 namespace WarfareAndWarbands.Warband
@@ -64,29 +65,6 @@ namespace WarfareAndWarbands.Warband
             Find.WorldObjects.Add(warband);
         }
 
-        public static void SpawnWarbandTargetingBase(Faction f, GlobalTargetInfo info)
-        {
-            List<SitePartDef> sitePartList = new List<SitePartDef>
-            {
-                DefDatabase<SitePartDef>.GetNamed("Outpost")
-            };
-            List<SitePartDefWithParams> sitePartDefsWithParams;
-            SiteMakerHelper.GenerateDefaultParams(0f, info.Tile, f, sitePartList, out sitePartDefsWithParams);
-            var warband = (Warband)WorldObjectMaker.MakeWorldObject(WAWDefof.WAW_Warband);
-            TileFinder.TryFindNewSiteTile(out int warbandTile, 3, 7, false, TileFinderMode.Near, info.Tile);
-            warband.Tile = warbandTile;
-            warband.SetFaction(f);
-            warband.npcComponent.SetTargetTile(info.Tile);
-            if (sitePartDefsWithParams != null)
-            {
-                foreach (SitePartDefWithParams sitePart in sitePartDefsWithParams)
-                {
-                    warband.AddPart(new SitePart(warband, sitePart.def, sitePart.parms));
-                }
-            }
-            Find.WorldObjects.Add(warband);
-        }
-
         public static bool IsPlayerWarband(this WorldObject o)
         {
             return o.Faction == Faction.OfPlayer && o as Warband != null;
@@ -102,49 +80,10 @@ namespace WarfareAndWarbands.Warband
 
         }
 
-        public static List<Pawn> GenerateWarbandPawns(Warband warband)
-        {
-            List<Pawn> list = new List<Pawn>();
-            foreach (var ele in warband.bandMembers)
-            {
-                for (int i = 0; i < ele.Value; i++)
-                {
-                    PawnKindDef kindDef = PawnKindDefOf.Pirate;
-                    if (SoldierPawnKindsCache.Any(x => x.defName == ele.Key))
-                    {
-                        kindDef = SoldierPawnKindsCache.First(x => x.defName == ele.Key);
-                    }
-                    Faction faction = kindDef.defaultFactionType != null ? Find.FactionManager.FirstFactionOfDef(kindDef.defaultFactionType) : Faction.OfPlayer;
-                    PawnGenerationRequest request = new PawnGenerationRequest(kindDef, faction, mustBeCapableOfViolence: true);
-                    Pawn pawn = PawnGenerator.GeneratePawn(request);
-                    pawn.SetFaction(Faction.OfPlayer);
-                    pawn.apparel.LockAll();
-                    var equipments = pawn.equipment.AllEquipmentListForReading;
-                    foreach (var equipment in equipments)
-                    {
-                        if (equipment.def.IsWeapon && equipment.TryGetComp<CompBiocodable>() != null)
-                        {
-                            equipment.TryGetComp<CompBiocodable>().CodeFor(pawn);
-                        }
-                    }
-                    CompMercenary comp = pawn.TryGetComp<CompMercenary>();
-                    if (comp == null)
-                    {
-                        continue;
-                    }
-                    comp.ServesPlayerFaction = true;
-                    comp.SetWarband(warband);
-                    comp.SetPawnKindName(ele.Key);
-                    list.Add(pawn);
-                }
-
-            }
-            return list;
-        }
 
         private static Caravan SpawnWarbandCaravan(int tileId, Warband warband)
         {
-            List<Pawn> list = GenerateWarbandPawns(warband); 
+            List<Pawn> list = MercenaryUtil.GenerateWarbandPawns(warband); 
             Caravan caravan = CaravanMaker.MakeCaravan(list, Faction.OfPlayer, tileId, true);
             return caravan;
         }
@@ -213,15 +152,11 @@ namespace WarfareAndWarbands.Warband
             return settlement;
         }
 
-        public static WorldObject RandomHostileSettlement(Faction myFaction)
-        {
-            if (Find.WorldObjects.MapParents.Any(x => x.Faction != null && x.Faction.HostileTo(myFaction)))
-                return Find.WorldObjects.MapParents.Where(x => x.Faction != null && x.Faction != Faction.OfPlayer && x.Faction.HostileTo(myFaction)).RandomElement();
-            return null;
-        }
-
         public static bool IsWorldObjectNonHostile(WorldObject o)
         {
+            var mp = (MapParent)o;
+            if (mp.HasMap)
+                return false;
             return o.Faction != null && o.Faction != Faction.OfPlayer && !o.Faction.Hidden && !o.Faction.HostileTo(Faction.OfPlayer);
         }
 

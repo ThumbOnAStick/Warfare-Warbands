@@ -7,15 +7,9 @@ using Verse.Sound;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents
 {
-    public class PlayerWarbandResettleManager
+    public static class PlayerWarbandResettleManager
     {
-        public PlayerWarbandResettleManager() 
-        {
-
-        }
-
-
-        public bool OrderPlayerWarbandToResettle(GlobalTargetInfo info, Warband warband)
+        public static bool OrderPlayerWarbandToResettle(GlobalTargetInfo info, Warband warband)
         {
             if (info.WorldObject != null)
             {

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.Windows.Speech;
 using Verse;
 using Verse.Noise;
@@ -20,6 +21,7 @@ namespace WarfareAndWarbands.Warband
         public Map currentMap;
         public Dictionary<string, int> bandMembers;
         public TechLevel techLevel = TechLevel.Industrial;
+        public Color colorOverride;
 
         public PlayerWarbandArrangement()
         {
@@ -129,6 +131,7 @@ namespace WarfareAndWarbands.Warband
     "bandMembers", LookMode.Value, LookMode.Value, ref stringBuffers, ref intBuffers);
             Scribe_References.Look<Map>(ref this.currentMap, "currentMap");
             Scribe_Values.Look(ref this.techLevel, "techLevel");
+            Scribe_Values.Look(ref this.colorOverride, "colorOverride", Color.white);
             // cache player warband arrangement
             foreach (var ele in WarbandUtil.SoldierPawnKindsCache)
             {

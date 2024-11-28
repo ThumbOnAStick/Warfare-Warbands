@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
@@ -32,11 +33,11 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             storage.Add(thing);
         }
 
-        public void DumpLoot()
+        public void WidthdrawLoot()
         {
             if (storage.Count < 1)
             {
-                Message m = new Message("WAW.EmptyWarband".Translate(), MessageTypeDefOf.RejectInput);
+                Message m = new Message("WAW.EmptyStorage".Translate(), MessageTypeDefOf.RejectInput);
                 Messages.Message(m);
                 return;
             }
@@ -50,23 +51,30 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
       
 
-        public void DumpLootInSilver()
+        public void WithdrawLootInSilver()
         {
+
             if (storage.Count < 1)
             {
                 Message m = new Message("WAW.EmptyWarband".Translate(), MessageTypeDefOf.RejectInput);
                 Messages.Message(m);
                 return;
             }
-
+            Log.Message("Try to withdraw");
             ActiveDropPodInfo activeDropPodInfo = new ActiveDropPodInfo();
-            List<Thing> silvers = new List<Thing>();
-            float value = 0;
+            List<Thing> silvers = GetLootValueInSilver();
+            activeDropPodInfo.innerContainer.TryAddRangeOrTransfer(silvers, true, false);
+            activeDropPodInfo.spawnWipeMode = new WipeMode?(WipeMode.Vanish);
+            storage?.Clear();
+            LaunchItemsToHome(activeDropPodInfo);
+
+        }
+
+        public List<Thing> GetLootValueInSilver()
+        {
+            float value = GetLootValue();
             int stackCount = ThingDefOf.Silver.stackLimit;
-            foreach (var thing in storage)
-            {
-                value += thing.MarketValue * thing.stackCount;
-            }
+            List<Thing> silvers = new List<Thing>();
             while (value > 1)
             {
                 Thing silver = ThingMaker.MakeThing(ThingDefOf.Silver);
@@ -74,13 +82,25 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 silvers.Add(silver);
                 value -= stackCount;
             }
-            activeDropPodInfo.innerContainer.TryAddRangeOrTransfer(silvers, true, false);
-            activeDropPodInfo.spawnWipeMode = new WipeMode?(WipeMode.Vanish);
-            storage.Clear();
-            LaunchItemsToHome(activeDropPodInfo);
 
+            return silvers;
         }
 
+        public float GetLootValue()
+        {
+            float value = 0;
+
+            foreach (var thing in storage)
+            {
+                value += thing.MarketValue * thing.stackCount;
+            }
+            return value;
+        }
+
+        public int GetLootCount()
+        {
+            return this.storage.Count;
+        }
         void LaunchItemsToHome(ActiveDropPodInfo activeDropPodInfo)
         {
             Map playerMap = Find.AnyPlayerHomeMap;
@@ -89,7 +109,11 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 return;
             }
             Current.Game.CurrentMap = playerMap;
-            var cell = CellFinder.StandableCellNear(playerMap.Center, playerMap, 10);
+            var cell = CellFinder.StandableCellNear(playerMap.Center, playerMap, 50);
+            if(cell == IntVec3.Invalid)
+            {
+                cell = DropCellFinder.RandomDropSpot(playerMap);
+            }
             CameraJumper.TryJump(cell, playerMap);
             DropPodUtility.MakeDropPodAt(cell, playerMap, activeDropPodInfo);
         }
