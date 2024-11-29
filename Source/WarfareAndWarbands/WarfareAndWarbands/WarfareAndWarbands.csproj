@@ -113,6 +113,7 @@
     <Compile Include="WAWTex.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CharacterCustomization\" />
     <Folder Include="Warfare\Events\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -24,12 +24,19 @@ namespace WarfareAndWarbands.Warband
         public Window_ReArrangeWarband(Warband warband)
         {
             this.warband = warband;
-            GameComponent_WAW.playerWarband.bandMembers = new Dictionary<string, int>(warband.bandMembers);
+            for (int i = 0; i < GameComponent_WAW.playerWarband.bandMembers.Count; i++)
+            {
+                var ele = GameComponent_WAW.playerWarband.bandMembers.ElementAt(i);
+                if (warband.bandMembers.ContainsKey(ele.Key))
+                {
+                    GameComponent_WAW.playerWarband.bandMembers[ele.Key] = warband.bandMembers[ele.Key];
+                }
+            }
         }
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
-          
+
         }
         public override void DoWindowContents(Rect inRect)
         {
