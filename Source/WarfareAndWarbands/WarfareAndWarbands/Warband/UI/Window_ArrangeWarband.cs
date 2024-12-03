@@ -8,6 +8,8 @@ using UnityEngine;
 using Verse;
 using Verse.Noise;
 using Verse.Sound;
+using WarfareAndWarbands.CharacterCustomization;
+using WarfareAndWarbands.Warband.UI;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -53,7 +55,7 @@ namespace WarfareAndWarbands.Warband
 
             var allCombatPawns = WarbandUtil.SoldierPawnKindsWithTechLevel(GameComponent_WAW.playerWarband.techLevel);
             Rect outRect = new Rect(inRect.x, exitButtonRect.yMax + 50f, inRect.width, 200f);
-            Rect viewRect = new Rect(inRect.x, outRect.y, inRect.width - 30f, (float)(allCombatPawns.Count() / pawnKindsEachRow * (descriptionHeight + 10)));
+            Rect viewRect = new Rect(inRect.x, outRect.y, inRect.width - 30f, (float)((allCombatPawns.Count() / pawnKindsEachRow + 1) * (descriptionHeight + 10)));
             Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect);
             float depth = outRect.y;
             int pawnKindsStacked = 0;
@@ -70,7 +72,7 @@ namespace WarfareAndWarbands.Warband
                     depth += descriptionHeight + 10;
                 }
                 float distance = 30 + 110 * (pawnKindsStacked - 1);
-                Widgets.Label(new Rect(distance, depth, descriptionWidth, descriptionHeight), p.label + "(" + p.combatPower + ")");
+                Widgets.Label(new Rect(distance, depth, descriptionWidth, descriptionHeight), WarbandUI.PawnKindLabel(p) + "(" + p.combatPower + ")");
                 var amount = GameComponent_WAW.playerWarband.bandMembers[p.defName];
                 bool minus = Widgets.ButtonImage(new Rect(distance, depth + 30, entryWidth, entryHeight), TexUI.ArrowTexLeft);
                 Widgets.Label(new Rect(distance + entryWidth, depth + 30, entryWidth, entryHeight), amount.ToString());
@@ -103,7 +105,7 @@ namespace WarfareAndWarbands.Warband
 
         private Vector2 scrollPosition;
         private Map map;
-        private readonly float descriptionHeight = 70f;
+        private readonly float descriptionHeight = 100f;
         private readonly float descriptionWidth = 120f;
         private readonly float entryHeight = 20f;
         private readonly float entryWidth = 20f;

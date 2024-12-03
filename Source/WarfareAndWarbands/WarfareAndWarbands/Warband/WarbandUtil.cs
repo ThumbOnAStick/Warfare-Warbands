@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using Verse.Sound;
+using WarfareAndWarbands.CharacterCustomization;
 using WarfareAndWarbands.Warband.Mercenary;
 using WarfareAndWarbands.Warband.UI;
 
@@ -17,12 +18,42 @@ namespace WarfareAndWarbands.Warband
     {
         static WarbandUtil()
         {
-            SoldierPawnKindsCache = SoldierPawnKinds();
+            Refresh();
 
         }
+
+        public static void Refresh()
+        {
+            SoldierPawnKindsCache = SoldierPawnKinds();
+        }
+
+        public static string GetSoldierLabel(string defName)
+        {
+            if (!SoldierPawnKindsCache.Any(x => x.defName == defName))
+            {
+                return "";
+            }
+            return SoldierPawnKindsCache.First(x => x.defName == defName).label;
+        }
+
         public static List<PawnKindDef> SoldierPawnKinds()
         {
-            return DefDatabase<PawnKindDef>.AllDefs.Where(x => x.isFighter && x.race.race.Humanlike).OrderBy(x => x.combatPower).ToList();
+            var cache = DefDatabase<PawnKindDef>.AllDefs.Where(x => x.isFighter && x.race.race.Humanlike).OrderBy(x => x.combatPower).ToList();
+            List<PawnKindDef> result = new List<PawnKindDef>(cache);
+            if (GameComponent_Customization.Instance != null)
+            {
+                var dic = GameComponent_Customization.Instance.customizationRequests;
+                var generated = GameComponent_Customization.Instance.generatedKindDefs;
+                foreach (var ele in dic)
+                {
+                    if (!result.Any(x => x.defName == ele.defName) &&
+                        generated.Any(x => x.defName == ele.defName))
+                    {
+                        result.Add(generated.First(x => x.defName == ele.defName));
+                    }
+                }
+            }
+            return result;
         }
         public static List<PawnKindDef> SoldierPawnKindsWithTechLevel(TechLevel level)
         {

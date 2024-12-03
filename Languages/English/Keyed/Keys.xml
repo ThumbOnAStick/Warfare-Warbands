@@ -69,4 +69,8 @@
 	<WAW.EmptyStorage>The storage is empty</WAW.EmptyStorage>
 	<WAW.ColorOverride>color override: </WAW.ColorOverride>
 	<WAW.ConfigWarband>confirm changes</WAW.ConfigWarband>
+	<WAW.CustomizeCharacter>character customization</WAW.CustomizeCharacter>
+	<WAW.DisplayEquipped>Display Equipped:</WAW.DisplayEquipped>
+	<WAW.NoCustomPawnKinds>There's no custom pawnkinds, please create new.</WAW.NoCustomPawnKinds>
+	<WAW.PawnKindName>pawn kind name:</WAW.PawnKindName>
 </LanguageData>

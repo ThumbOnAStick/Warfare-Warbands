@@ -3,7 +3,9 @@ using Verse;
 using WarfareAndWarbands.UI;
 using WarfareAndWarbands.Warband.HarmonyPatches;
 using WarfareAndWarbands.Warfare.HarmonyPatches;
-
+using RimWorld;
+using WarfareAndWarbands.CharacterCustomization;
+using System.Collections.Generic;
 namespace WarfareAndWarbands.HarmonyPatches
 {
     [StaticConstructorOnStartup]
@@ -23,12 +25,12 @@ namespace WarfareAndWarbands.HarmonyPatches
             SettlemntDestroyedPatch.PatchHarmony();
             WAWHarmony.harmony.PatchAll();
             Log.Message("WAW: patches successful");
+
         }
 
-        
+
 
         public static Harmony harmony;
-
     }
 
 

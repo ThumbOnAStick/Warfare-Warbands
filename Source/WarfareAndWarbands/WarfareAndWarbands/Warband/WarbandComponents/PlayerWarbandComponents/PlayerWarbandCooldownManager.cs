@@ -12,7 +12,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
     {
         public PlayerWarbandCooldownManager() 
         {
-            lastRaidTick = 0;
+            ResetRaidTick();
         }
 
         public void ExposeData()
@@ -22,7 +22,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public void ResetRaidTick()
         {
-            lastRaidTick = -TickGame;
+            lastRaidTick = -RaidCoolDownTicks;
         }
 
 

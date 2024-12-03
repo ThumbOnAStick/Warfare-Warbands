@@ -25,16 +25,22 @@ namespace WarfareAndWarbands.Warband
 
         public PlayerWarbandArrangement()
         {
+            Refresh();
+        }
+
+        public void Refresh()
+        {
             bandMembers = new Dictionary<string, int>();
             var allPawnKinds = WarbandUtil.SoldierPawnKinds();
             foreach (var kind in allPawnKinds)
             {
-                bandMembers.Add(kind.defName, 0);
+                if (!bandMembers.ContainsKey(kind.defName))
+                {
+                    bandMembers.Add(kind.defName, 0);
+                }
+
             }
-
-            techLevel = TechLevel.Industrial;
         }
-
 
         public static float GetCost(Dictionary<string, int> bandMembers)
         {

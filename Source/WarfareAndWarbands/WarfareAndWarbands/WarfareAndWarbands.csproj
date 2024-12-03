@@ -35,6 +35,10 @@
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="CombatExtended">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2890901044\Assemblies\CombatExtended.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="HarmonyLib">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2873415404\1.5\Lunar\Components\HarmonyLib.dll</HintPath>
       <Private>False</Private>
@@ -73,6 +77,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterCustomization\Compatibility\CE.cs" />
+    <Compile Include="CharacterCustomization\CustomizationRequest.cs" />
+    <Compile Include="CharacterCustomization\CustomizationUtil.cs" />
+    <Compile Include="CharacterCustomization\UI\Window_Customization.cs" />
+    <Compile Include="CharacterCustomization\GameComponent_Customization.cs" />
     <Compile Include="Warband\LootChest\CompLootChest.cs" />
     <Compile Include="Warband\LootChest\CompProperties_LootChest.cs" />
     <Compile Include="Warband\DebugActionWarband.cs" />
@@ -100,6 +109,7 @@
     <Compile Include="Warband\WorldObjectComp_PlayerWarband.cs" />
     <Compile Include="Warfare\GameComponent_WAW.cs" />
     <Compile Include="Warfare\HarmonyPatches\SettlemntDestroyedPatch.cs" />
+    <Compile Include="Warfare\UI\WAWUI.cs" />
     <Compile Include="Warfare\UI\Window_WAW_Comm.cs" />
     <Compile Include="WAWHarmony.cs" />
     <Compile Include="Warfare\HarmonyPatches\CommsPatch.cs" />
@@ -113,7 +123,6 @@
     <Compile Include="WAWTex.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CharacterCustomization\" />
     <Folder Include="Warfare\Events\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

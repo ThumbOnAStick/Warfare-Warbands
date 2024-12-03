@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 using Verse.Noise;
 using Verse.Sound;
+using WarfareAndWarbands.Warband.UI;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -101,7 +102,7 @@ namespace WarfareAndWarbands.Warband
                     depth += descriptionHeight + 10;
                 }
                 float distance = 30 + 110 * (pawnKindsStacked - 1);
-                Widgets.Label(new Rect(distance, depth, descriptionWidth, descriptionHeight), p.label + "(" + p.combatPower + ")");
+                Widgets.Label(new Rect(distance, depth, descriptionWidth, descriptionHeight), WarbandUI.PawnKindLabel(p) + "(" + p.combatPower + ")");
                 var amount = GameComponent_WAW.playerWarband.bandMembers[p.defName];
                 bool minus = Widgets.ButtonImage(new Rect(distance, depth + 30, entryWidth, entryHeight), TexUI.ArrowTexLeft);
                 Widgets.Label(new Rect(distance + entryWidth, depth + 30, entryWidth, entryHeight), amount.ToString());

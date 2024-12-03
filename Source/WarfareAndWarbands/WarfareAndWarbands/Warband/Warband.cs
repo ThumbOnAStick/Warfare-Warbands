@@ -67,7 +67,7 @@ namespace WarfareAndWarbands.Warband
             foreach (var member in bandMembers)
             {
                 if (member.Value > 0)
-                    outString += "\n" + member.Key + "(" + member.Value + ")";
+                    outString += "\n" + WarbandUtil.GetSoldierLabel(member.Key) + "(" + member.Value + ")";
             }
             if (npcWarbandManager.HasTargetingFaction())
             {
@@ -80,7 +80,7 @@ namespace WarfareAndWarbands.Warband
                     string cooldownString = "WAW.AvialableIn".Translate(playerWarbandManager.GetRemainingDays().ToString("0.0"));
                     outString += "\n" + cooldownString;
                 }
-   
+
             }
             return outString;
         }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using WarfareAndWarbands.CharacterCustomization;
 using WarfareAndWarbands.Warband.WarbandComponents;
 
 namespace WarfareAndWarbands.Warband.UI
@@ -197,6 +198,11 @@ namespace WarfareAndWarbands.Warband.UI
         }
 
 
-
+        public static string PawnKindLabel(PawnKindDef p)
+        {
+            string label = GameComponent_Customization.Instance.customizationRequests.Any(x => x.defName == p.defName) ?
+        p.label.Colorize(FactionDefOf.PlayerColony.DefaultColor) : p.label;
+            return label;   
+        }
     }
 }
