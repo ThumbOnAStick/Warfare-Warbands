@@ -34,8 +34,6 @@ namespace WarfareAndWarbands.CharacterCustomization
                 race = ThingDefOf.Human,
                 defaultFactionType = FactionDefOf.OutlanderCivil
             };
-            if (DefDatabase<PawnKindDef>.GetNamed(defaultKindDef.defName, false) == null)
-                DefDatabase<PawnKindDef>.Add(defaultKindDef);
             AddSkills(defaultKindDef);
 
             return defaultKindDef;

@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AlienRace">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\Assemblies\AlienRace.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
@@ -78,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterCustomization\Compatibility\CE.cs" />
+    <Compile Include="CharacterCustomization\Compatibility\HAR.cs" />
     <Compile Include="CharacterCustomization\CustomizationRequest.cs" />
     <Compile Include="CharacterCustomization\CustomizationUtil.cs" />
     <Compile Include="CharacterCustomization\UI\Window_Customization.cs" />

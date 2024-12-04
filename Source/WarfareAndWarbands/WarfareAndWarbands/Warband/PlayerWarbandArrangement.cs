@@ -47,7 +47,8 @@ namespace WarfareAndWarbands.Warband
             float cost = 0;
             foreach (var val in bandMembers)
             {
-                cost += val.Value * WarbandUtil.SoldierPawnKindsCache.First(x => x.defName == val.Key).combatPower;
+                if (WarbandUtil.SoldierPawnKindsCache.Any(x => x.defName == val.Key))
+                    cost += val.Value * WarbandUtil.SoldierPawnKindsCache.First(x => x.defName == val.Key).combatPower;
             }
             return cost;
         }

@@ -26,6 +26,7 @@ namespace WarfareAndWarbands.Warband
         public Window_ArrangeWarband(Map map)
         {
             this.map = map;
+            WarbandUtil.Refresh();
         }
         protected override void SetInitialSizeAndPosition()
         {

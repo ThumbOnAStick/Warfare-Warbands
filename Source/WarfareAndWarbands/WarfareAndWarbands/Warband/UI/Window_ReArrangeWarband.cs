@@ -24,6 +24,7 @@ namespace WarfareAndWarbands.Warband
         }
         public Window_ReArrangeWarband(Warband warband)
         {
+            WarbandUtil.Refresh();
             this.warband = warband;
             for (int i = 0; i < GameComponent_WAW.playerWarband.bandMembers.Count; i++)
             {

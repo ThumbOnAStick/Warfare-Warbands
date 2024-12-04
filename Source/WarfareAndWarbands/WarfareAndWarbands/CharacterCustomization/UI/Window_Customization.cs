@@ -2,10 +2,12 @@
 
 using CombatExtended;
 using RimWorld;
+using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Verse;
+using WarfareAndWarbands.CharacterCustomization.Compatibility;
 using WarfareAndWarbands.Warband;
 
 namespace WarfareAndWarbands.CharacterCustomization
@@ -27,6 +29,7 @@ namespace WarfareAndWarbands.CharacterCustomization
         private Vector2 scrollPosition1;
         private bool displayEquipped;
         private string textBuffer;
+        private string filterBuffer;
 
         private static readonly int boxSize = 50;
         private static readonly int pawnkindSpacing = 5;
@@ -38,7 +41,7 @@ namespace WarfareAndWarbands.CharacterCustomization
         {
             get
             {
-                return new Vector2(800f, 500f);
+                return new Vector2(800f, 600f);
             }
         }
         public Window_Customization()
@@ -57,7 +60,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             apparelBottomsCache.SortBy(x => x.BaseMarketValue);
             apparelUtilsCache = DefDatabase<ThingDef>.AllDefs.Where(x => IsUtility(x)).ToList();
             apparelUtilsCache.SortBy(x => x.BaseMarketValue);
-            weaponsCache = DefDatabase<ThingDef>.AllDefs.Where(x => x.IsWeapon).ToList();
+            weaponsCache = DefDatabase<ThingDef>.AllDefs.Where(x => x.IsWeapon && x.BaseMarketValue > 1).ToList();
             weaponsCache.SortBy(x => x.BaseMarketValue);
             selectedList = apparelHeadsCache;
         }
@@ -81,8 +84,11 @@ namespace WarfareAndWarbands.CharacterCustomization
             {
                 DrawTextBox(inRect);
                 DrawSelectionPanel(inRect);
+                DrwaXenoType(inRect);
+                DrawAlien(inRect);
             }
         }
+
 
         void DrawCutomizationRequests(Rect inRect)
         {
@@ -93,10 +99,11 @@ namespace WarfareAndWarbands.CharacterCustomization
                 Widgets.Label(noPawnKindsFoundRect, "WAW.NoCustomPawnKinds".Translate());
             }
 
-            Rect outRect = new Rect(50, 50, 150, 400);
+            Rect outRect = new Rect(50, 100, 150, 400);
             Rect viewRect = new Rect(outRect.x, outRect.y, outRect.width, (pawnkindHeight + pawnkindSpacing) * requests.Count + 5);
-            Rect boxRect = new Rect(40, 40, 170, 420);
+            Rect boxRect = new Rect(outRect.x - 10, outRect.y - 10, 170, 420);
             Rect newRequestRect = new Rect(boxRect.xMax, boxRect.y, 30, 30);
+            Rect deleteRequestRect = new Rect(boxRect.xMax, newRequestRect.yMax + 10, 30, 30);
 
             Widgets.DrawBox(boxRect, 1);
             Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect);
@@ -106,14 +113,15 @@ namespace WarfareAndWarbands.CharacterCustomization
                 Rect buttonRect = new Rect(viewRect.x, viewRect.y - 5 + requestIndex * (pawnkindHeight + pawnkindSpacing), pawnkindWidth, pawnkindHeight);
                 Rect requestRect = new Rect(viewRect.x + 10, viewRect.y + 5 + requestIndex * (pawnkindHeight + pawnkindSpacing), pawnkindWidth, pawnkindHeight);
                 bool selectTargetRequest = Widgets.ButtonImage(buttonRect, TexUI.FastFillTex, new Color() { a = 0 });
+                string requestAndItsPrice = request.label + $"\n({request.GetCombatPower()})";
                 Widgets.DrawBox(buttonRect);
-                Widgets.Label(requestRect, request.label);
+                Widgets.Label(requestRect, requestAndItsPrice);
                 requestIndex++;
                 if (selectTargetRequest)
                 {
                     SelectNextRequest(request);
                 }
-                if (selectedRequest == request)   
+                if (selectedRequest == request)
                 {
                     Widgets.DrawHighlight(buttonRect);
                 }
@@ -128,23 +136,75 @@ namespace WarfareAndWarbands.CharacterCustomization
                 GameComponent_Customization.Instance.AddPawnKindDefFromRequest(pawnKindName, pawnKindLabel, customizationRequest);
                 SelectNextRequest(customizationRequest);
             }
+
+            bool deleteRequest = Widgets.ButtonImage(deleteRequestRect, TexButton.Delete);
+            if (deleteRequest && selectedRequest != null)
+            {
+                GameComponent_Customization.Instance.DeleteRequest(selectedRequest);
+            }
         }
 
         void SelectNextRequest(CustomizationRequest customizationRequest)
         {
+            filterBuffer = "";
             selectedRequest = customizationRequest;
             textBuffer = customizationRequest.label;
         }
 
         void DrawTextBox(Rect inRect)
         {
-            int boxWidth = 200;
+            int boxWidth = 300;
             Rect boxRect = new Rect(inRect.x + 200, 400, boxWidth, 50);
             string label = Widgets.TextEntryLabeled(boxRect, "WAW.PawnKindName".Translate(), textBuffer);
             textBuffer = label;
             selectedRequest.label = label;
-            UpdatePawnKindDef();
 
+        }
+
+        void DrwaXenoType(Rect inRect)
+        {
+            if (!ModsConfig.BiotechActive)
+            {
+                return;
+            }
+            Rect xenoRect = new Rect(inRect.x + 500, 400, 50, 50);
+            bool click = Widgets.ButtonImage(xenoRect, selectedRequest.TryGetXeno().Icon);
+            if (click)
+            {
+                GetXenoOptionsMenu();
+            }
+        }
+
+        void DrawAlien(Rect inRect)
+        {
+            if (ModsConfig.IsActive("erdelf.HumanoidAlienRaces"))
+            {
+                Rect buttonRect = new Rect(inRect.x + 450, 500, 100, 50);
+                HAR.DrwaAlienButton(buttonRect, selectedRequest);
+            }
+            UpdatePawnKindDef();
+        }
+
+
+        public void GetXenoOptionsMenu()
+        {
+            IEnumerable<FloatMenuOption> opts = XenoOptions();
+            Find.WindowStack.Add(new FloatMenu(opts.ToList()));
+        }
+
+        public IEnumerable<FloatMenuOption> XenoOptions()
+        {
+            var xenoTypes = DefDatabase<XenotypeDef>.AllDefs;
+            foreach (XenotypeDef xeno in xenoTypes)
+            {
+                var option = new FloatMenuOption(xeno.label, delegate { SetXeno(xeno); }, itemIcon: xeno.Icon, iconColor: Color.white);
+                yield return option;
+            }
+        }
+
+        public void SetXeno(XenotypeDef xenoTypeDef)
+        {
+            selectedRequest.SetXeno(xenoTypeDef);
         }
 
         void DrawPawn(Rect inRect)
@@ -194,14 +254,26 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         }
 
+        void DrawSearchBar(Rect selectionPanelBar)
+        {
+            int boxHeight = 30;
+            int boxWidth = (int)selectionPanelBar.width - boxHeight;
+            Rect searchBoxRect = new Rect(selectionPanelBar.x, selectionPanelBar.yMin - boxHeight, boxHeight, boxHeight);
+            Rect boxRect = new Rect(searchBoxRect.xMax + 5, selectionPanelBar.yMin - boxHeight, boxWidth, boxHeight);
+            filterBuffer = Widgets.TextField(boxRect, filterBuffer);
+            Widgets.ButtonImage(searchBoxRect, TexButton.Search);
+        }
+
+
         void DrawSelectionPanel(Rect inRect)
         {
             int itemHeight = 50;
             int optionHeight = 20;
-            Rect outRect = new Rect(inRect.xMax - 200, 50, 150, 400);
+            Rect outRect = new Rect(inRect.xMax - 200, 100, 150, 400);
             Rect viewRect = new Rect(outRect.x, outRect.y, outRect.width, (itemHeight + pawnkindSpacing) * selectedList.Count);
             Rect boxRect = new Rect(outRect.x - 10, outRect.y - 10, 170, 420);
-            Rect optionRect = new Rect(boxRect.x - 150, boxRect.y - optionHeight, 150, optionHeight);
+            Rect optionRect = new Rect(boxRect.x, boxRect.yMax + optionHeight, 150, optionHeight);
+            DrawSearchBar(boxRect);
             Widgets.CheckboxLabeled(optionRect, "WAW.DisplayEquipped".Translate(), ref displayEquipped);
             Widgets.DrawBox(boxRect, 1);
             Widgets.BeginScrollView(outRect, ref scrollPosition1, viewRect);
@@ -209,7 +281,12 @@ namespace WarfareAndWarbands.CharacterCustomization
             var listToDisplay = selectedList;
             if (displayEquipped)
             {
+                scrollPosition1 = new Vector2();
                 listToDisplay = AllEquippedItems(selectedList);
+            }
+            if (filterBuffer != "")
+            {
+                listToDisplay = listToDisplay.Where(x => x.label.Contains(filterBuffer)).ToList();
             }
 
             foreach (var item in listToDisplay)
@@ -238,7 +315,7 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             Texture2D weaponTex = itemTex != null ? itemTex : Texture2D.redTexture;
 
             if (selectedRequest.apparelRequests.Any(x => x.defName == item.defName)
-               || (selectedRequest.weaponRequest!=null && selectedRequest.weaponRequest.defName == item.defName))
+               || (selectedRequest.weaponRequest != null && selectedRequest.weaponRequest.defName == item.defName))
             {
                 Widgets.DrawHighlight(rect);
             }
@@ -269,15 +346,15 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
 
         }
 
+        public override void Close(bool doCloseSound = true)
+        {
+            base.Close(doCloseSound);
+            UpdatePawnKindDef();
+        }
+
         void UpdatePawnKindDef()
         {
-            string name = selectedRequest.defName;
-            if (DefDatabase<PawnKindDef>.AllDefs.Any(x => x.defName == name))
-            {
-                PawnKindDef targetDef = DefDatabase<PawnKindDef>.AllDefs.First(x => x.defName == name);
-                targetDef.combatPower = selectedRequest.GetCombatPower();
-                targetDef.label = selectedRequest.label;
-            }
+            selectedRequest.UpdatePawnKindDef();
         }
 
         void DrawEquipment(Rect rect, ThingDef equipment = null, SelectionType selectionType = SelectionType.none)
@@ -296,8 +373,10 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
         }
 
 
+
         void SelectList(SelectionType selectionType = SelectionType.none)
         {
+            scrollPosition1 = new Vector2();
             this.selectionType = selectionType;
             if (selectionType == SelectionType.none)
             {
@@ -368,7 +447,7 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
 
         bool IsUtility(ThingDef apparel)
         {
-            if (apparel.apparel == null)
+            if (apparel.apparel == null || apparel.thingCategories == null)
                 return false;
             return apparel.thingCategories.Any(c => c.defName == "ApparelUtility");
         }

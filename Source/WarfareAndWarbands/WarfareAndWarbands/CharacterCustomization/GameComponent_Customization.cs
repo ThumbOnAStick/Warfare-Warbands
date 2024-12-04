@@ -74,6 +74,17 @@ namespace WarfareAndWarbands.CharacterCustomization
             GameComponent_WAW.playerWarband.Refresh();
         }
 
+        public void DeleteRequest(CustomizationRequest request)
+        {
+            if (generatedKindDefs.Any(x => x.defName == request.defName))
+            {
+                generatedKindDefs.RemoveAll(x => x.defName == request.defName);
+            }
+            customizationRequests.RemoveAll(x => x.defName == request.defName);
+            WarbandUtil.Refresh();
+            GameComponent_WAW.playerWarband.Refresh();
+        }
+
         public void DeletePawnKindDef(PawnKindDef def)
         {
             if (generatedKindDefs.Contains(def))

@@ -73,4 +73,5 @@
 	<WAW.DisplayEquipped>Display Equipped:</WAW.DisplayEquipped>
 	<WAW.NoCustomPawnKinds>There's no custom pawnkinds, please create new.</WAW.NoCustomPawnKinds>
 	<WAW.PawnKindName>pawn kind name:</WAW.PawnKindName>
+	<WAW.AlienRace>Alien Race: {0}</WAW.AlienRace>
 </LanguageData>

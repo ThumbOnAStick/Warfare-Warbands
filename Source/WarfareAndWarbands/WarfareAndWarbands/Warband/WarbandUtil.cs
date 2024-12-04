@@ -42,12 +42,10 @@ namespace WarfareAndWarbands.Warband
             List<PawnKindDef> result = new List<PawnKindDef>(cache);
             if (GameComponent_Customization.Instance != null)
             {
-                var dic = GameComponent_Customization.Instance.customizationRequests;
                 var generated = GameComponent_Customization.Instance.generatedKindDefs;
-                foreach (var ele in dic)
+                foreach (var ele in generated)
                 {
-                    if (!result.Any(x => x.defName == ele.defName) &&
-                        generated.Any(x => x.defName == ele.defName))
+                    if (!result.Any(x => x.defName == ele.defName))
                     {
                         result.Add(generated.First(x => x.defName == ele.defName));
                     }

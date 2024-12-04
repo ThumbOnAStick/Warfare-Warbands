@@ -14,6 +14,8 @@ namespace WarfareAndWarbands.CharacterCustomization.Compatibility
 
         public static void GenerateAmmoFor(Pawn p)
         {
+            if (!p.kindDef.modExtensions.Any(x => x.GetType() == typeof(LoadoutPropertiesExtension)))
+                p.kindDef.modExtensions.Add(new LoadoutPropertiesExtension());
             var modExtension = p.kindDef.GetModExtension<LoadoutPropertiesExtension>();
             modExtension?.GenerateLoadoutFor(p, 1);
         }
