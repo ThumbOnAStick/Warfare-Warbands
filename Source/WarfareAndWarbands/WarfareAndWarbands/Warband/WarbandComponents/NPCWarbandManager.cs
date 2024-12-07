@@ -11,6 +11,13 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 {
     public class NPCWarbandManager:IExposable
     {
+        private bool defeated = false;
+        private int targetTile;
+        private readonly Warband warband;
+        private static readonly int progressPoint = 5;
+        private static readonly int defeatAward = 5;
+        private static readonly int assaultDuration = WAWSettings.eventFrequency * 60000;
+
         public NPCWarbandManager(Warband warband)
         {
             this.warband = warband;
@@ -111,6 +118,44 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             }
         }
 
+        public Dictionary<string, int> GenerateNPCCombatGroup(List<Pawn> pawns)
+        {
+            var bandMembers = new Dictionary<string, int>();
+            Faction f = warband.Faction;
+            foreach (var ele in pawns)
+            {
+                if (ele.Dead)
+                    continue;
+                string defName = ele.kindDef.defName;
+                if (!bandMembers.ContainsKey(defName))
+                    bandMembers.Add(defName, 1);
+                else
+                    bandMembers[defName]++;
+            }
+            Log.Message(pawns.Count);
+            return bandMembers;
+        }
+
+        public Dictionary<string, int> GenerateNPCCombatGroup()
+        {
+            Faction f = warband.Faction;
+            var combatGroup = f.def.pawnGroupMakers.Where(x => x.kindDef == PawnGroupKindDefOf.Combat && x.maxTotalPoints > 1000).RandomElement();
+            float actualPoints = Math.Max(StorytellerUtility.DefaultThreatPointsNow(Find.AnyPlayerHomeMap), 1000);
+            PawnGroupMakerParms parms = new PawnGroupMakerParms() { points = actualPoints, faction = f, groupKind = combatGroup.kindDef };
+            var results = PawnGroupMakerUtility.ChoosePawnGenOptionsByPoints(parms.points, combatGroup.options, parms);
+            var bandMembers = new Dictionary<string, int>();
+            foreach (var ele in results)
+            {
+                string defName = ele.Option.kind.defName;
+                if (!bandMembers.ContainsKey(defName))
+                    bandMembers.Add(defName, 1);
+                else
+                    bandMembers[defName]++;
+            }
+
+            return bandMembers;
+        }
+
         void AIWarbandRaidUpdate()
         {
             if (warband.Faction == Faction.OfPlayer)
@@ -171,12 +216,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             this.defeated = true;
         }
 
-        private bool defeated = false;
-        private readonly Warband warband;
-        private int targetTile;
-        private static readonly int progressPoint = 5;
-        private static readonly int defeatAward = 5;
-        private static readonly int assaultDuration = WAWSettings.eventFrequency * 60000;
+
 
 
     }

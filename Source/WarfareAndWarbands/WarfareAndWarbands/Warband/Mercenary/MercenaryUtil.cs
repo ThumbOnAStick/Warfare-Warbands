@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using WarfareAndWarbands.CharacterCustomization;
+using WarfareAndWarbands.CharacterCustomization.Compatibility;
 using WarfareAndWarbands.Warband.UI;
 
 namespace WarfareAndWarbands.Warband.Mercenary
@@ -22,14 +23,30 @@ namespace WarfareAndWarbands.Warband.Mercenary
                 for (int i = 0; i < ele.Value; i++)
                 {
                     Pawn pawn = warband.Faction == Faction.OfPlayer ? GenerateWarbandPawnForPlayer(warband, ele.Key) : GenerateWarbandPawnForNPC(warband, ele.Key);
+                    if (CEActive())
+                    {
+                        CE.GenerateAmmoFor(pawn);
+                    }
                     if (SetMercenaryComp(pawn, warband, ele.Key, warband.Faction))
                         list.Add(pawn);
+                }
+
+                if(warband.Faction == Faction.OfPlayer &&
+                    warband.playerWarbandManager.leader != null &&
+                    warband.playerWarbandManager.leader.IsLeaderAvailable())
+                {
+                    var leader = warband.playerWarbandManager.leader.Leader;
+                    if (SetMercenaryComp(leader, warband, ele.Key, warband.Faction))
+                        list.Add(leader);
                 }
 
             }
             return list;
         }
-
+        static bool CEActive()
+        {
+            return ModsConfig.IsActive("CETeam.CombatExtended");
+        }
         static PawnGenerationRequest GetRequest(Warband warband, string kindDefName)
         {
             PawnKindDef kindDef = PawnKindDefOf.Pirate;
@@ -101,13 +118,16 @@ namespace WarfareAndWarbands.Warband.Mercenary
             {
                 return false;
             }
-            if (warband.Faction == Faction.OfPlayer)
-                comp.ServesPlayerFaction = true;
+            pawn.health.Reset();
+            comp.ResetAll();
+            comp.ServesPlayerFaction = warband.Faction == Faction.OfPlayer;
+            if (pawn.Faction != faction)
+                pawn.SetFaction(faction);
             comp.SetWarband(warband);
             comp.SetServingFaction(warband.Faction);
             comp.SetRetreat(false);
-            comp.ResetDuration();   
-            if(faction != null)
+            comp.ResetDuration();
+            if (faction != null)
             {
                 comp.SetServingFaction(faction);
             }

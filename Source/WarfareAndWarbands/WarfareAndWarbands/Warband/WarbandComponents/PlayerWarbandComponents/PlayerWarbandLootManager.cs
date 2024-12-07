@@ -92,7 +92,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
             foreach (var thing in storage)
             {
-                value += thing.MarketValue * thing.stackCount;
+                if (!thing.DestroyedOrNull())
+                    value += thing.MarketValue * thing.stackCount;
             }
             return value;
         }

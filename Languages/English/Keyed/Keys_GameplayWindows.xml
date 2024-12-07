@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<!-- Gameplay Windows -->
+	<WAW.Cost>Total cost: ${0}</WAW.Cost>
+	<WAW.TechLevel>Tech level: {0}</WAW.TechLevel>
+	<WAW.FoundZeroPawns>Found zero combat pawns on this tech level.</WAW.FoundZeroPawns>
+	<WAW.RecruitWarband>recruit warband</WAW.RecruitWarband>
+	<WAW.ResetWarband>reset warband</WAW.ResetWarband>
+	<WAW.ColorOverride>color override: </WAW.ColorOverride>
+	<WAW.ConfigWarband>confirm changes</WAW.ConfigWarband>
+	<WAW.PawnKindName>pawn kind name:</WAW.PawnKindName>
+	<WAW.NoCustomPawnKinds>There's no custom pawnkinds, please create new.</WAW.NoCustomPawnKinds>
+</LanguageData>

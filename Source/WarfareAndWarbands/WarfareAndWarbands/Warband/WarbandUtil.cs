@@ -18,11 +18,18 @@ namespace WarfareAndWarbands.Warband
     {
         static WarbandUtil()
         {
-            Refresh();
-
+            AllPlayerWarbandsCache = new HashSet<WorldObject>();
+            RefreshSoldierPawnKinds();
         }
 
-        public static void Refresh()
+        public static HashSet<WorldObject> AllPlayerWarbandsCache;
+
+        public static void RefreshAllPlayerWarbands()
+        {
+            AllPlayerWarbandsCache = AllPlayerWarbands().ToHashSet();
+        }
+
+        public static void RefreshSoldierPawnKinds()
         {
             SoldierPawnKindsCache = SoldierPawnKinds();
         }
@@ -40,6 +47,16 @@ namespace WarfareAndWarbands.Warband
         {
             return AllPlayerWarbandsCount() < WAWSettings.maxPlayerWarband;
         }
+
+        public static IEnumerable<WorldObject> AllPlayerWarbands()
+        {
+            var predicate = new Func<WorldObject, bool>(x => (x as Warband != null || x as WorldObject_WarbandRecruiting != null)
+            && x.Faction == Faction.OfPlayer);
+            if (Find.WorldObjects.AllWorldObjects.Any(predicate))
+                return Find.WorldObjects.AllWorldObjects.Where(predicate);
+            return new HashSet<WorldObject>();
+        }
+
 
         public static int AllPlayerWarbandsCount()
         {
@@ -192,6 +209,14 @@ namespace WarfareAndWarbands.Warband
 
         public static void ReArrangePlayerWarband(Warband playerWarband)
         {
+            if (!playerWarband.playerWarbandManager.cooldownManager.CanFireRaid())
+            {
+                string label = "WAW.CannotConfigureWarband".Translate(
+                    playerWarband.playerWarbandManager.cooldownManager.GetRemainingDays());
+                Messages.Message(label, MessageTypeDefOf.RejectInput);
+                return;
+            }
+
             Find.WindowStack.Add(new Window_ReArrangeWarband(playerWarband));
 
         }

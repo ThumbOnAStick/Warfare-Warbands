@@ -34,7 +34,7 @@ namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
             return this.letterSent;
         }
 
-        bool ValidateMap()
+        public bool ValidateMap()
         {
             return this.map.ParentFaction == Faction.OfPlayer && this.map.Parent != null && this.map.Parent as Warband != null;
         }

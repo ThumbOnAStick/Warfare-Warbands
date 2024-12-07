@@ -70,7 +70,19 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
 
         public bool CanBeRemoved(int ticksGame)
         {
-            return ticksGame - this.startTick > this.GetRecoveriesTick();
+            return ticksGame - this.startTick > this.GetRecoveriesTick() ||
+                this.injuries.Count < 1 ||
+                !this.injuries.Any(x => x.Value > 0);
+        }
+
+        public bool TryToRemovePawn(string kindName)
+        {
+            if (this.injuries.ContainsKey(kindName) && this.injuries[kindName] > 0)
+            {
+                this.injuries[kindName] = Math.Max(this.injuries[kindName] - 1, 0);
+                return true;
+            }
+            return false;
         }
 
         public Dictionary<string, int> GetInjuries()

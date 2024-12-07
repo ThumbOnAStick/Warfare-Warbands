@@ -15,6 +15,19 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 {
     public class PlayerWarbandManager : IExposable
     {
+
+
+        public MapParent targetMapP;
+        public DroppodUpgrade droppodUpgrade;
+        public PlayerWarbandColorOverride colorOverride;
+        public PlayerWarbandInjuries injuriesManager;
+        public PlayerWarbandLootManager lootManager;
+        public PlayerWarbandCooldownManager cooldownManager;
+        public PlayerWarbandLeader leader;
+
+        private readonly Warband warband;
+
+        private static readonly int playerAttackRange = 10;
         public PlayerWarbandManager(Warband warband)
         {
             this.warband = warband;
@@ -23,6 +36,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             this.lootManager = new PlayerWarbandLootManager();
             this.colorOverride = new PlayerWarbandColorOverride();
             this.injuriesManager = new PlayerWarbandInjuries();
+            leader = new PlayerWarbandLeader();
         }
 
         public void OrderPlayerWarbandToAttack()
@@ -58,7 +72,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 }
                 else
                 {
-                    bool flag3 = info.WorldObject == null || !(info.WorldObject is MapParent) || WarbandUtil.IsWorldObjectNonHostile(info.WorldObject);
+                    bool flag3 = info.WorldObject == null || 
+                        !(info.WorldObject is MapParent) || 
+                        WarbandUtil.IsWorldObjectNonHostile(info.WorldObject)
+                        ||Find.World.Impassable(info.Tile);
                     if (flag3)
                     {
                         Messages.Message("WAW.InvalidObject".Translate(), MessageTypeDefOf.RejectInput, true);
@@ -74,26 +91,28 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                         }
                         else
                         {
-                            int cost = (int)PlayerWarbandArrangement.GetCostOriginal(this.warband.bandMembers);
-                            bool flag5 = !WarbandUtil.TryToSpendSilver(Find.AnyPlayerHomeMap, cost);
-                            if (flag5)
-                            {
-                                Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent, true);
-                                result = false;
-                            }
-                            else
-                            {
-                                SoundDefOf.ExecuteTrade.PlayOneShotOnCamera(null);
-                                MapParent mapParent = (MapParent)info.WorldObject;
-                                this.targetMapP = mapParent;
-                                WarbandUI.GetPlayerWarbandAttackOptions(this);
-                                result = true;
-                            }
+                            SoundDefOf.ExecuteTrade.PlayOneShotOnCamera(null);
+                            MapParent mapParent = (MapParent)info.WorldObject;
+                            this.targetMapP = mapParent;
+                            WarbandUI.GetPlayerWarbandAttackOptions(this);
+                            result = true;
                         }
                     }
                 }
             }
             return result;
+        }
+
+        bool CantAffordToAttack()
+        {
+            int cost = (int)PlayerWarbandArrangement.GetCostOriginal(this.warband.bandMembers);
+            bool cantAfford = !WarbandUtil.TryToSpendSilver(Find.AnyPlayerHomeMap, cost);
+            if (cantAfford)
+            {
+                Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent, true);
+                return false;
+            }
+            return true;
         }
 
         public void AttackLand()
@@ -103,9 +122,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             {
                 LongEventHandler.QueueLongEvent(delegate ()
                 {
+                    if (!CantAffordToAttack())
+                        return;
                     this.cooldownManager.SetLastRaidTick();
                     WarbandUtil.OrderPlayerWarbandToAttack(this.targetMapP, this.warband);
                 }, "GeneratingMapForNewEncounter", false, null, true, null);
+      
             }
         }
 
@@ -114,6 +136,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             bool flag = this.targetMapP != null && this.targetMapP.Map != null;
             if (flag)
             {
+                if (!CantAffordToAttack())
+                    return;
                 this.cooldownManager.SetLastRaidTick();
                 this.droppodUpgrade.LaunchWarbandInMap(this.targetMapP.Map);
             }
@@ -154,6 +178,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             this.lootManager?.ExposeData();
             this.colorOverride?.ExposeData();
             this.injuriesManager?.ExposeData();
+            this.leader?.ExposeData();
         }
 
         public string GetInspectString()
@@ -166,9 +191,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                     outString += "\n" + WarbandUtil.GetSoldierLabel(member.Key) + "(" + member.Value + ")";
             }
 
-            outString += "\n" + "WAW.Injuries".Translate();
             if (injuries.Count > 0)
             {
+                outString += "\n" + "WAW.Injuries".Translate();
                 outString += "WAW.RecoverIn".Translate(injuriesManager.GetRecoveryDays().ToString("0.0"));
                 foreach (var member in injuries)
                 {
@@ -181,6 +206,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             {
                 string cooldownString = "WAW.AvialableIn".Translate(GetRemainingDays().ToString("0.0"));
                 outString += "\n" + cooldownString;
+            }
+
+            if (this.warband.HasLeader())
+            {
+                string leaderString = "WAW.Leader".Translate(this.leader.Leader.NameFullColored);
+                outString += "\n" + leaderString;
             }
 
 
@@ -199,19 +230,22 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         internal void Tick()
         {
-            this.injuriesManager?.Tick();
+            if(warband.Faction != Faction.OfPlayer)
+            {
+                return;
+            }
+            injuriesManager?.Tick();
+            if (ShouldPlayerWarbandBeRemoved())
+            {
+                warband.Destroy();
+            }
         }
 
-        private readonly Warband warband;
+        bool ShouldPlayerWarbandBeRemoved()
+        {
+            return warband.GetMemberCount() < 1 && !warband.HasLeader();
+        }
 
-        public MapParent targetMapP;
 
-        public DroppodUpgrade droppodUpgrade;
-        public PlayerWarbandColorOverride colorOverride;
-        public PlayerWarbandInjuries injuriesManager;
-        public PlayerWarbandLootManager lootManager;
-        public PlayerWarbandCooldownManager cooldownManager;
-
-        private static readonly int playerAttackRange = 10;
     }
 }

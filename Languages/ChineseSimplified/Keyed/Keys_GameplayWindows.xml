@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<!-- Gameplay Windows -->
+	<WAW.Cost>总耗费 ${0}</WAW.Cost>
+	<WAW.TechLevel>科技水平： {0}</WAW.TechLevel>
+	<WAW.FoundZeroPawns>在这个科技水平找到了零个兵种。</WAW.FoundZeroPawns>
+	<WAW.RecruitWarband>招募战团</WAW.RecruitWarband>
+	<WAW.ResetWarband>重置选择</WAW.ResetWarband>
+	<WAW.ColorOverride>颜色选择： </WAW.ColorOverride>
+	<WAW.ConfigWarband>确认更改</WAW.ConfigWarband>
+	<WAW.PawnKindName>兵种名称</WAW.PawnKindName>
+	<WAW.NoCustomPawnKinds>没有自定义兵种，请新建。</WAW.NoCustomPawnKinds>
+</LanguageData>

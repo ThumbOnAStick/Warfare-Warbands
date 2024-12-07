@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using CombatExtended.HarmonyCE;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using WarfareAndWarbands.Warband.UI;
+using static System.Collections.Specialized.BitVector32;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -75,14 +77,25 @@ namespace WarfareAndWarbands.Warband
                 if (!Mercenary.Downed && !retreated)
                     yield return WarbandUI.RetreatPawn(this);
             }
+            
+        }
 
+        public void ResetAll()
+        {
+            servesPlayerFaction = false;
+            retreated = false;
+            servingFaction = null;
+            lastServeTick = 0;
+            pawnKindName = "";
+            warband = null;
         }
 
         public override void Notify_Downed()
         {
             base.Notify_Downed();
             this.warband?.playerWarbandManager?.injuriesManager?.InjurePawn(pawnKindName, GenTicks.TicksGame);
-
+            var faction = Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband);
+            this.Retreat();
         }
         public string RemainingDays()
         {
@@ -106,8 +119,8 @@ namespace WarfareAndWarbands.Warband
                 string targetName = pawnKindName;
                 this.warband?.TryToRemovePawn(targetName);
             }
-
         }
+
         void TryNotifyPlayerPawnKilled()
         {
             if (servesPlayerFaction)
@@ -119,8 +132,12 @@ namespace WarfareAndWarbands.Warband
         public void Retreat()
         {
             SetRetreat(true);
+            if (servingFaction != Faction.OfPlayer)
+            {
+                return;
+            }
             var faction = Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband);
-            if(faction == null)
+            if (faction == null)
             {
                 Find.FactionManager.TryGetRandomNonColonyHumanlikeFaction(out faction, true);
             }
@@ -172,8 +189,6 @@ namespace WarfareAndWarbands.Warband
         {
             base.PostDeSpawn(map);
             var inventory = Mercenary.inventory;
-            //this.servesPlayerFaction = false;
-            //this.servingFaction = null;
             for (int i = 0; i < inventory.innerContainer.Count; i++)
             {
                 Thing t = inventory.innerContainer[i];

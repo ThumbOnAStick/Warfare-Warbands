@@ -87,7 +87,7 @@
     <Compile Include="CharacterCustomization\CustomizationUtil.cs" />
     <Compile Include="CharacterCustomization\UI\Window_Customization.cs" />
     <Compile Include="CharacterCustomization\GameComponent_Customization.cs" />
-    <Compile Include="Misc\Alert_ModsConflict.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\Leader\PlayerWarbandLeaderUtil.cs" />
     <Compile Include="Warband\WarbandRecruiting\DebugAction_WarbandRecruiting.cs" />
     <Compile Include="Warband\WarbandRecruiting\WorldObject_WarbandRecruiting.cs" />
     <Compile Include="Warband\GameComponent_Warband.cs" />
@@ -112,7 +112,7 @@
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandColorOverride.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandCooldownManager.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\Injuries\PlayerWarbandInjuries.cs" />
-    <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandLeader.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\Leader\PlayerWarbandLeader.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandLootManager.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\Injuries\PlayerWarbandRecoveryGroup.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandResettleManager.cs" />
@@ -136,7 +136,7 @@
     <Compile Include="WAWDefof.cs" />
     <Compile Include="WAWSettings.cs" />
     <Compile Include="WAWTex.cs" />
-    <Compile Include="Window_WAWUpdateLog.cs" />
+    <Compile Include="Misc\Window_WAWUpdateLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Warfare\Events\" />

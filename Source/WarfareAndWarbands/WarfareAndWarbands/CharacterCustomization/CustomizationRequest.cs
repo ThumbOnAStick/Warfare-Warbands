@@ -21,13 +21,17 @@ namespace WarfareAndWarbands.CharacterCustomization
         public string xenoTypeDefName;
         public string alienDefName;
         public List<ThingDef> apparelRequests;
+        public Dictionary<ThingDef, ThingDef> itemAndStuff;
         public ThingDef weaponRequest;
 
+        private List<ThingDef> itemCache;
+        private List<ThingDef> stuffCache;
         private XenotypeDef xenoTypeCache;
 
         public CustomizationRequest()
         {
             apparelRequests = new List<ThingDef>();
+            itemAndStuff = new Dictionary<ThingDef, ThingDef>();    
             if (ModsConfig.BiotechActive)
                 this.xenoTypeDefName = XenotypeDefOf.Baseliner.defName;
         }
@@ -37,6 +41,8 @@ namespace WarfareAndWarbands.CharacterCustomization
             this.defName = name;
             this.label = label;
             apparelRequests = new List<ThingDef>();
+            itemAndStuff = new Dictionary<ThingDef, ThingDef>();
+
         }
 
         public void CustomizePawn(ref Pawn p)
@@ -117,26 +123,43 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         public ThingWithComps GenerateWeapon(ref Pawn p)
         {
-           if(this.weaponRequest == null)
+            if (this.weaponRequest == null)
             {
                 return null;
             }
-            ThingDef stuff = null;
-            if (weaponRequest.MadeFromStuff)
-            {
-                stuff = GenStuff.DefaultStuffFor(weaponRequest);
-            }
+            ThingDef stuff = GetStuff(weaponRequest);
             ThingWithComps weapon = (ThingWithComps)ThingMaker.MakeThing(weaponRequest, stuff);
             weapon.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
             p.equipment?.DestroyAllEquipment();
-            p.equipment?.AddEquipment(weapon);
-            if (CEActive())
-            {
-                CE.GenerateAmmoFor(p);
-            }
+            p.equipment?.AddEquipment(weapon);         
             return weapon;
         }
 
+        public ThingDef GetStuff(ThingDef def)
+        {
+            if (!def.MadeFromStuff)
+            {
+                return null;
+            }
+            if (this.itemAndStuff.ContainsKey(def) && itemAndStuff[def] != null)
+            {
+                return this.itemAndStuff[def];
+            }
+            return GenStuff.DefaultStuffFor(def);
+
+        }
+
+        public void SetStuff(ThingDef def, ThingDef stuff)
+        {
+            if (this.itemAndStuff.ContainsKey(def))
+            {
+                itemAndStuff[def] = stuff;
+            }
+            else
+            {
+                itemAndStuff.Add(def, stuff);
+            }
+        }
 
         public List<ThingWithComps> GenerateApparels(ref Pawn p)
         {
@@ -144,11 +167,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             p.apparel?.DestroyAll();
             foreach (ThingDef apparelRequest in apparelRequests)
             {
-                ThingDef stuff = null;
-                if (apparelRequest.MadeFromStuff)
-                {
-                    stuff = GenStuff.DefaultStuffFor(apparelRequest);
-                }
+                ThingDef stuff = GetStuff(apparelRequest);
                 Apparel apparel = (Apparel)ThingMaker.MakeThing(apparelRequest, stuff);
                 apparel.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
                 p.apparel.Wear(apparel);
@@ -158,6 +177,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             return result;
         }
 
+
         public XenotypeDef TryGetXeno()
         {
             bool anyXeno = DefDatabase<XenotypeDef>.AllDefs.Any(x => x.defName == this.xenoTypeDefName);
@@ -165,7 +185,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             {
                 return XenotypeDefOf.Baseliner;
             }
-            
+
             return xenoTypeCache ?? DefDatabase<XenotypeDef>.AllDefs.First(x => x.defName == this.xenoTypeDefName);
         }
 
@@ -203,7 +223,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             ThingDef weaponDef = DefDatabase<ThingDef>.GetNamed(weaponName);
             weaponRequest = weaponDef;
         }
-    
+
 
         public string GetUniqueLoadID()
         {
@@ -218,7 +238,8 @@ namespace WarfareAndWarbands.CharacterCustomization
             Scribe_Values.Look(ref this.alienDefName, "alienDefName");
             Scribe_Collections.Look(ref this.apparelRequests, "apparelRequests", LookMode.Def);
             Scribe_Defs.Look(ref this.weaponRequest, "weaponRequest");
-
+            Scribe_Collections.Look<ThingDef, ThingDef>(ref this.itemAndStuff,
+"bandMembers", LookMode.Def, LookMode.Def, ref itemCache, ref stuffCache, false);
         }
     }
 

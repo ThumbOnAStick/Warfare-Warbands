@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<!-- Warband Commands -->
+	<WAW.OrderAttack>order attack</WAW.OrderAttack>
+	<WAW.OrderAttack.Desc>Order warband to attack hostile settlemnt, or another warband, or other world objects.</WAW.OrderAttack.Desc>
+	<WAW.EmptyStorage>The storage is empty</WAW.EmptyStorage>
+	<WAW.WarbandWithdraw>withdraw loot</WAW.WarbandWithdraw>
+	<WAW.WarbandWithdraw.Desc>Return all loots with drop pods</WAW.WarbandWithdraw.Desc>
+	<WAW.InItems>directly send items</WAW.InItems>
+	<WAW.InSilvers>send in the form of silvers</WAW.InSilvers>
+	<WAW.LandAttack>Initiate ground attack</WAW.LandAttack>
+	<WAW.PodAttack>Attack in transport pods</WAW.PodAttack>
+	<WAW.Dismiss>dismiss</WAW.Dismiss>
+	<WAW.Dismiss.Desc>dismiss this warband.</WAW.Dismiss.Desc>
+	<WAW.ConfirmDestroyWarBand>Are you sure you want to remove this warband?</WAW.ConfirmDestroyWarBand>
+	<WAW.Configure>configure warband</WAW.Configure>
+	<WAW.Configure.Desc>re-arrange and recruit more troops for this warband</WAW.Configure.Desc>
+	<WAW.Retreat>retreat</WAW.Retreat>
+	<WAW.Retreat.Desc>force this pawn to retreat.</WAW.Retreat.Desc>
+	<WAW.RetreatAll>retreat</WAW.RetreatAll>
+	<WAW.RetreatAll.Desc>force all mercenaries to retreat.</WAW.RetreatAll.Desc>
+	<WAW.Surrounded>surrounded by hostiles</WAW.Surrounded>
+	<WAW.Surrounded.Desc>This warband is surrounded by hostile forces, they are unable to retreat, however you can still make them exit from map edge.</WAW.Surrounded.Desc>
+	<WAW.PlaceLootBox>place loot box</WAW.PlaceLootBox>
+	<WAW.PlaceLootBox.Desc>place a loot box on disired location</WAW.PlaceLootBox.Desc>
+	<WAW.TransferContent>transfer to warband</WAW.TransferContent>
+	<WAW.TransferContent.Desc>transfer contents to warband</WAW.TransferContent.Desc>
+	<WAW.ResettleWarband>re-settle warband</WAW.ResettleWarband>
+	<WAW.ResettleWarband.Desc>Move warband On another tile, it will cost $10 per tile and person.</WAW.ResettleWarband.Desc>
+</LanguageData>	

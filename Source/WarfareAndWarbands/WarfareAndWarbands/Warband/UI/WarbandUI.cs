@@ -62,7 +62,7 @@ namespace WarfareAndWarbands.Warband.UI
 
         static bool LootDisabled(Warband band)
         {
-            return band.playerWarbandManager==null || band.playerWarbandManager.lootManager==null || band.playerWarbandManager.lootManager.GetLootCount() < 1;
+            return band.playerWarbandManager == null || band.playerWarbandManager.lootManager == null || band.playerWarbandManager.lootManager.GetLootCount() < 1;
         }
         public static Command ResetRaidCooldown(Warband band)
         {
@@ -111,13 +111,15 @@ namespace WarfareAndWarbands.Warband.UI
             return command_Action;
         }
 
+
         static void ConfirmDestroy(Warband warband)
         {
             WindowStack windowStack = Find.WindowStack;
             TaggedString text = "WAW.ConfirmDestroyWarBand".Translate();
             void confirmedAct()
             {
-                warband.Destroy();
+                warband?.playerWarbandManager?.leader?.ReturnLeader(); 
+                warband?.Destroy();
             }
 
             windowStack.Add(Dialog_MessageBox.CreateConfirmation(text, confirmedAct, true, null, WindowLayer.Dialog));
@@ -142,7 +144,7 @@ namespace WarfareAndWarbands.Warband.UI
         {
             Command_Action command_Action = new Command_Action();
             command_Action.defaultLabel = "WAW.Retreat".Translate();
-            command_Action.defaultDesc = CannotRetreat(comp.Mercenary)? "WAW.Surrounded.Desc".Translate() : "WAW.Retreat.Desc".Translate();
+            command_Action.defaultDesc = CannotRetreat(comp.Mercenary) ? "WAW.Surrounded.Desc".Translate() : "WAW.Retreat.Desc".Translate();
             command_Action.disabledReason = "WAW.Surrounded".Translate();
             command_Action.Disabled = CannotRetreat(comp.Mercenary);
             command_Action.icon = TexUI.RotLeftTex;
@@ -193,10 +195,10 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.icon = TexUI.RotLeftTex;
             command_Action.action = delegate ()
             {
-                foreach(var p in m.mapPawns.AllPawnsSpawned)
+                foreach (var p in m.mapPawns.AllPawnsSpawned)
                 {
-                    var comp = p.TryGetComp<CompMercenary>();   
-                    if(comp != null && comp.ServesPlayerFaction)
+                    var comp = p.TryGetComp<CompMercenary>();
+                    if (comp != null && comp.ServesPlayerFaction)
                     {
                         comp.Retreat();
                     }
@@ -206,19 +208,60 @@ namespace WarfareAndWarbands.Warband.UI
             return command_Action;
         }
 
+        public static IEnumerable<FloatMenuOption> PlayerWarbandLeaderChoices(Warband warband, Caravan caravan)
+        {
+            if (warband.Tile != caravan.Tile)
+            {
+                yield break;
+            }
+            if (warband.playerWarbandManager.leader == null)
+            {
+                yield break;
+            }
+            if (warband.playerWarbandManager.leader.Leader != null &&
+                !warband.playerWarbandManager.leader.Leader.Dead)
+            {
+                yield break;
+            }
+            ThingOwner<Pawn> pawns = caravan.pawns;
+            for (int i = 0; i < pawns.Count; i++)
+            {
+                var pawn = pawns[i];
+                if (pawn.IsColonist)
+                    yield return AssignLeaderOption(pawn, caravan, warband);
+            }
+        }
+
+        static FloatMenuOption AssignLeaderOption(Pawn pawn, Caravan caravan, Warband warband)
+        {
+            var option = new FloatMenuOption(
+                "WAW.AssignLeader".Translate(pawn.NameFullColored),
+                delegate { AssignLeader(pawn, caravan, warband); },
+                iconThing: pawn,
+                iconColor: Color.white
+                );
+            return option;
+        }
+
+        static void AssignLeader(Pawn pawn, Caravan caravan, Warband warband)
+        {
+            warband.playerWarbandManager?.leader?.AssignLeader(pawn, caravan);
+        }
+
 
         public static string PawnKindLabel(PawnKindDef p)
         {
             string label = GameComponent_Customization.Instance.customizationRequests.Any(x => x.defName == p.defName) ?
         p.label.Colorize(FactionDefOf.PlayerColony.DefaultColor) : p.label;
-            return label;   
+            return label;
         }
 
         static bool CannotRetreat(Pawn p)
         {
-            return 
+            return
                 p.MapHeld != null &&
-                p.MapHeld.GetComponent<MapComponent_WarbandRaidTracker>() !=null &&
+                p.MapHeld.GetComponent<MapComponent_WarbandRaidTracker>() != null &&
+                p.MapHeld.GetComponent<MapComponent_WarbandRaidTracker>().ValidateMap() &&
                 !p.MapHeld.GetComponent<MapComponent_WarbandRaidTracker>().LtterSent();
         }
     }

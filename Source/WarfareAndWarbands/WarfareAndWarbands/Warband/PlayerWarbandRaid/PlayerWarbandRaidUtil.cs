@@ -30,8 +30,8 @@ namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
      
             LongEventHandler.QueueLongEvent(delegate ()
             {
-                string label = "WAW.RaidPlayerWarband".Translate();
-                string desc = "WAW.RaidPlayerWarband.Desc".Translate(f.def.pawnsPlural, f.NameColored);
+                var label = "WAW.RaidPlayerWarband".Translate();
+                var desc = "WAW.RaidPlayerWarband.Desc".Translate(f.def.pawnsPlural, f.NameColored);
                 Letter letter = LetterMaker.MakeLetter(label, desc, LetterDefOf.ThreatBig);
                 Find.LetterStack.ReceiveLetter(letter);
                 Map orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(playerWarband.Tile, WAWDefof.WAW_Warband);

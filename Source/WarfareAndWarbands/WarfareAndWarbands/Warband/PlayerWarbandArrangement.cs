@@ -57,7 +57,12 @@ namespace WarfareAndWarbands.Warband
 
         public int GetCostExtra(Dictionary<string, int> bandMembers)
         {
-            return (int)Math.Max(GetCostNormal() - GetCostOriginal(bandMembers), 0);
+            return (int)Math.Max(GetCostNormal() - GetCostNormal(bandMembers), 0);
+        }
+
+        public float GetCostNormal(Dictionary<string, int> bandMembers)
+        {
+            return (int)GetCostOriginal(bandMembers) * WAWSettings.establishFeeMultiplier * .75f;
         }
 
         public float GetCostNormal()
@@ -83,7 +88,12 @@ namespace WarfareAndWarbands.Warband
                 Messages.Message("WAW.emptyBand".Translate(), MessageTypeDefOf.RejectInput);
                 return;
             }
-            if(!WarbandUtil.CanPlaceMoreWarbands())
+            if (bandMembers.Sum(x => x.Value) < 5)
+            {
+                Messages.Message("WAW.WeakBand".Translate(), MessageTypeDefOf.RejectInput);
+                return;
+            }
+            if (!WarbandUtil.CanPlaceMoreWarbands())
             {
                 Messages.Message("WAW.WarbandLeak".Translate(WAWSettings.maxPlayerWarband), MessageTypeDefOf.RejectInput);
                 return;
@@ -145,7 +155,6 @@ namespace WarfareAndWarbands.Warband
             {
                 return;
             }
-            playerWarbandSite.playerWarbandManager.cooldownManager?.SetLastRaidTick();
             SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
             playerWarbandSite.bandMembers = new Dictionary<string, int>(bandMembers);
         }   

@@ -52,8 +52,7 @@ namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
 
         bool TryRaid(WorldObject worldObject)
         {
-            var warband = worldObject as Warband;
-            if(warband == null)
+            if (!(worldObject is Warband warband))
             {
                 return false;
             }

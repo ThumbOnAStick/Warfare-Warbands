@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+	<!--Gameplay-->
+	<WAW.Welcome>战团战争</WAW.Welcome>
+	<WAW.Welcome.Desc>感谢游玩战团战争，更多信息在创意工坊界面可见</WAW.Welcome.Desc>
+	<OpenFactionInformationTab>打开派系信息选项卡</OpenFactionInformationTab>
+	<factionLosing>这个派系正在输掉这场战争。</factionLosing>
+	<factionStrikeToSurvive>这个派系遭遇了很多困难。</factionStrikeToSurvive>
+	<factionWillingToFight>这个派系遇到了一些麻烦，但是他们依然有信心打赢这场战争。</factionWillingToFight>
+	<factionHungerForWar>这个派系认为他们是胜利的一方。</factionHungerForWar>
+	<ArrangeWarband>安排战团</ArrangeWarband>
+	<soldierAmount>数量</soldierAmount>
+	<WAW.DefeatWarbandLetter.Label>敌对战团被击败</WAW.DefeatWarbandLetter.Label>
+	<WAW.DefeatWarbandLetter.Desc>我们击败了敌对战团！虽然这不是一个显著的成就，但是又一个{0}的企图被挫败了</WAW.DefeatWarbandLetter.Desc>
+	<WAW.TargetingMapParent>试图占领{0}。</WAW.TargetingMapParent>
+	<WAW.InvalidObject>抱歉，我们无法攻击这个目标。</WAW.InvalidObject>
+	<WAW.FarObject>长官，我们只能攻击十格内的目标。</WAW.FarObject>
+	<WAW.CantAfford>资金不足</WAW.CantAfford>
+	<WAW.EmptyWarband>没有什么可以撤回的。</WAW.EmptyWarband>
+	<WAW.emptyBand>这支战团中没有人能够战斗。</WAW.emptyBand>
+	<WAW.WaitForCooldown>抱歉，我们在接下来的 {0} 天内无法活动。</WAW.WaitForCooldown>
+	<WAW.WarbandLoss>该战团已永久失去一名成员，请从招募窗口招募新成员。</WAW.WarbandLoss>
+	<WAW.ResettleFee>重新安置费用：{0}</WAW.ResettleFee>
+	<WAW.LostWarband>战团被摧毁</WAW.LostWarband>
+	<WAW.LostWarband.Desc>所有人都死了，整个战团都被摧毁了。</WAW.LostWarband.Desc>
+	<WAW.LeaveIn>将在 {0} 天后离开地图</WAW.LeaveIn>
+	<WAW.CustomizeCharacter>角色定制</WAW.CustomizeCharacter>
+	<WAW.DisplayEquipped>配备显示器：</WAW.DisplayEquipped>
+	<WAW.AlienRace>外星种族：{0}</WAW.AlienRace>
+	<WAW.tooltip>重新选择已装备的服装以将其卸下。</WAW.tooltip>
+	<WAW.tooltip1>选择另一种武器来取消当前武器的装备。</WAW.tooltip1>
+	<WAW.Title>战团战争更新日志</WAW.Title>
+	<WAW.Desc>9/Dec/2024: ~允许玩家通过远行队将殖民者选为战团的领袖</WAW.Desc>
+	<WAW.DontShowAgain>不要再显示这个：</WAW.DontShowAgain>
+	<WAW.DefenseSuccussful>防御成功</WAW.DefenseSuccussful>
+	<WAW.DefenseSuccussful.Desc>你的战团成功抵御了敌人的进攻，现在可以让士兵们撤退了。</WAW.DefenseSuccussful.Desc>
+	<WAW.WarbandLeak>你不能招募超过{0}个战团，如果你需要更多请调整mod设置。</WAW.WarbandLeak>
+	<WAW.RaidPlayerWarband>战团遭到伏击</WAW.RaidPlayerWarband>
+	<WAW.RaidPlayerWarband.Desc>来自{1}的{0}将你的战团视作麻烦，他们打算袭击其中一个战团以示警告。
+	\n在消灭地图上的所有威胁之前你无法关闭地图。
+	\n（你可以通过减少建立的战团的数量以及调整设置来减少这个事件发生的概率）</WAW.RaidPlayerWarband.Desc>
+	<WAW.WarbandRecruiting>战团（招募）</WAW.WarbandRecruiting>
+	<WAW.WarbandCreated>战团创建</WAW.WarbandCreated>
+	<WAW.WarbandCreated.Desc>经过几天的招募成员后，您的战团已准备好进行正式的的战斗。</WAW.WarbandCreated.Desc>
+	<WAW.Default>默认(${0})</WAW.Default>
+	<WAW.Immediate>立刻招募完毕(${0})</WAW.Immediate>
+	<WAW.AssignLeader>指定 {0} 为战团领袖</WAW.AssignLeader>
+	<WAW.CannotConfigureWarband>在接下来的 {0} 天内无法配置战团。</WAW.CannotConfigureWarband>
+	<WAW.LeaderSet>领袖被指定</WAW.LeaderSet>
+	<WAW.LeaderSet.Desc>{0} 成为了你的其中一个战团的新领袖，只要{1}活着这个战团就不会灭亡。如果你想把{1}送回来，你需要解散整个战团。</WAW.LeaderSet.Desc>
+	<WAW.WeakBand>需要至少五个成员。</WAW.WeakBand>
+
+</LanguageData>

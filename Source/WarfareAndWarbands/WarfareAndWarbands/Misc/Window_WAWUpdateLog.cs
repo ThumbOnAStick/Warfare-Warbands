@@ -27,9 +27,9 @@ namespace WarfareAndWarbands
             Rect IconRect = new Rect((inRect.xMax + inRect.x) / 2 - iconSize / 2, 0, iconSize, iconSize);
             Widgets.DrawTextureFitted(IconRect, WAWTex.ModIcon, 1);
 
-            int textWidth = 150;
-            Rect showAgainRect = new Rect(30, 0, textWidth, 50);
-            Widgets.CheckboxLabeled(showAgainRect, "WAW.DontShowAgain".Translate(), ref WAWSettings.everReadUpdateLog);
+            var checkBox = "WAW.DontShowAgain".Translate();
+            Rect showAgainRect = new Rect(30, 700f, 200, 50);
+            Widgets.CheckboxLabeled(showAgainRect, checkBox, ref WAWSettings.everReadUpdateLog);
 
             Text.Font = GameFont.Medium;
             var title = "WAW.Title".Translate();
@@ -48,7 +48,7 @@ namespace WarfareAndWarbands
             int content1Width = 400;
             Rect content1Rect = new Rect((inRect.xMax + inRect.x) / 2 - content1Width / 2, contentRect.yMax + 50,
                content1Width, 300);
-            Widgets.DrawTextureFitted(content1Rect, WAWTex.ScreenShot,1);
+            Widgets.DrawTextureFitted(content1Rect, WAWTex.Screenshot,1);
         }
     }
 }

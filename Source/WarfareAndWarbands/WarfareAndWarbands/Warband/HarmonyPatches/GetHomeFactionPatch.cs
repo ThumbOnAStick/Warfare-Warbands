@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using WarfareAndWarbands.HarmonyPatches;
+using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents.Leader;
 
 namespace WarfareAndWarbands.Warband.HarmonyPatches
 {
@@ -24,8 +25,13 @@ namespace WarfareAndWarbands.Warband.HarmonyPatches
         public static void HomeFactionPatch(Pawn p, ref Faction __result)
         {
             var comp = p.TryGetComp<CompMercenary>();
-            if (__result == null && comp != null && p.GetComp<CompMercenary>().ServesPlayerFaction == true)
-                __result = Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband);
+            if (__result != null ||
+                comp == null ||
+                p.GetComp<CompMercenary>().ServesPlayerFaction != true ||
+PlayerWarbandLeaderUtil.IsLeader(p, out Warband warband)
+                )
+                return;
+            __result = Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband);
 
         }
     }

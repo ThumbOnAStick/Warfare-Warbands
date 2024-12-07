@@ -114,6 +114,7 @@ namespace WarfareAndWarbands
             base.LoadedGame();
             LoadAllFactions();
             OpenUpdateLog();
+            WarbandUtil.RefreshAllPlayerWarbands();
 
         }
 
@@ -124,15 +125,17 @@ namespace WarfareAndWarbands
             LoadAllFactions();
             GiveModLetter();
             OpenUpdateLog();
+            WarbandUtil.RefreshAllPlayerWarbands();
+
         }
         private void OpenUpdateLog()
         {
             if (WAWSettings.everReadUpdateLog)
             {
                 return;
-            }   
-            //Window_WAWUpdateLog updateLog = new Window_WAWUpdateLog();
-            //Find.WindowStack.Add(updateLog);
+            }
+            Window_WAWUpdateLog updateLog = new Window_WAWUpdateLog();
+            Find.WindowStack.Add(updateLog);
         }
 
         void GiveModLetter()

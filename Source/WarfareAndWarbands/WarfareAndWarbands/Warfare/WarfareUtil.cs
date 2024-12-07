@@ -19,8 +19,6 @@ namespace WarfareAndWarbands
         public static readonly string warProgressString3 = "factionWillingToFight".Translate();
         public static readonly string warProgressString4 = "factionHungerForWar".Translate();
 
-
-
         public static GameComponent_WAW CompWAW
         {
             get

@@ -202,6 +202,31 @@ namespace WarfareAndWarbands.CharacterCustomization
             }
         }
 
+        public IEnumerable<FloatMenuOption> StuffOptions(ThingDef equipment)
+        {
+            if (equipment == null || !equipment.MadeFromStuff)
+            {
+                yield break;
+            }
+            var allStuffs = DefDatabase<ThingDef>.AllDefs.Where(x => x.IsStuff).ToList();
+            var validStuffs = AllStuffFromFor(allStuffs, equipment);
+            foreach (var stuff in validStuffs)
+            {
+                yield return new FloatMenuOption(
+                    stuff.label,
+                    delegate
+                {
+                    selectedRequest.SetStuff(equipment, stuff);
+                    MakeSelection(equipment);
+                },
+                 itemIcon: Widgets.GetIconFor(stuff),
+                 iconColor: Color.white);
+            }
+        }
+        private static List<ThingDef> AllStuffFromFor(List<ThingDef> from, ThingDef thingDef)
+        {
+            return from.FindAll((ThingDef t) => thingDef.stuffCategories.Find((StuffCategoryDef c) => t.stuffProps.categories.Contains(c)) != null);
+        }
         public void SetXeno(XenotypeDef xenoTypeDef)
         {
             selectedRequest.SetXeno(xenoTypeDef);
@@ -311,39 +336,29 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
         void DrawSelectorItem(Rect rect, ThingDef item)
         {
             string graphicPath = item.graphicData.texPath;
-            Texture2D itemTex = item.graphicData.graphicClass == typeof(Graphic_Multi) || item.graphicData.graphicClass == typeof(Graphic_StackCount)
-                ? null : ContentFinder<Texture2D>.Get(graphicPath);
-            Texture2D weaponTex = itemTex != null ? itemTex : Texture2D.redTexture;
-
-            if (selectedRequest.apparelRequests.Any(x => x.defName == item.defName)
-               || (selectedRequest.weaponRequest != null && selectedRequest.weaponRequest.defName == item.defName))
+            var stuff = selectedRequest.GetStuff(item);
+            Texture2D itemTex = Widgets.GetIconFor(item, stuff);
+            if (Equipped(item))
             {
                 Widgets.DrawHighlight(rect);
             }
-
             Rect labelRect = new Rect(rect.xMax + 5, rect.y, 80, rect.height);
             Widgets.Label(labelRect, item.label);
             DrawApparelTooltip(rect);
-            bool selectEquipment = Widgets.ButtonImage(rect, itemTex);
+            bool selectEquipment = Widgets.ButtonImage(
+                rect, 
+                itemTex, 
+                baseColor: stuff == null? Color.white : stuff.stuffProps.color);
             if (selectEquipment)
             {
-                if (selectionType != SelectionType.weapons)
-                {
-                    if (selectedRequest.apparelRequests.Any(x => x.defName == item.defName))
-                    {
-                        selectedRequest.apparelRequests.RemoveAll(x => x.defName == item.defName);
-                    }
-                    else
-                    {
-                        selectedRequest.apparelRequests.Add(item);
-                    }
-                }
-                else
-                {
-                    selectedRequest.weaponRequest = item;
-                }
-                UpdatePawnKindDef();
+                TryMakeStuffOptions(item);
             }
+        }
+
+        bool Equipped(ThingDef item)
+        {
+            return selectedRequest.apparelRequests.Any(x => x.defName == item.defName)
+               || (selectedRequest.weaponRequest != null && selectedRequest.weaponRequest.defName == item.defName);
         }
 
         void DrawApparelTooltip(Rect rect)
@@ -389,12 +404,58 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
                 SelectList(selectionType);
             }
 
-            if(selectionType != SelectionType.weapons)
+            if (selectionType != SelectionType.weapons)
             {
                 Rect labelRect = new Rect(rect.xMax - 20, rect.yMax - 20, 25, 25);
                 Widgets.Label(labelRect, $"+{CurrentSelectionWorn(selectionType).Count()}".Colorize(Color.cyan));
 
             }
+        }
+
+        void TryMakeStuffOptions(ThingDef equipment)
+        {
+            if (CanAddFloatMenu(equipment))
+            {
+                AddEquipmentSuffOptions(equipment);
+            }
+            else
+            {
+                MakeSelection(equipment);
+            }
+        }
+
+        void AddEquipmentSuffOptions(ThingDef equipment)
+        {
+            var opts = StuffOptions(equipment).ToList();
+            Find.WindowStack.Add(new FloatMenu(opts));
+        }
+
+        bool CanAddFloatMenu(ThingDef equipment)
+        {
+            return equipment != null &&
+                equipment.MadeFromStuff &&
+            !selectedRequest.apparelRequests.Any(x => x.defName == equipment.defName);
+        }
+
+        void MakeSelection(ThingDef equipment)
+        {
+            if (selectionType != SelectionType.weapons)
+            {
+                if (selectedRequest.apparelRequests.Any(x => x.defName == equipment.defName))
+                {
+                    selectedRequest.apparelRequests.RemoveAll(x => x.defName == equipment.defName);
+                }
+                else
+                {
+                    selectedRequest.apparelRequests.Add(equipment);
+                }
+            }
+            else
+            {
+                selectedRequest.weaponRequest = equipment;
+            }
+            UpdatePawnKindDef();
+
         }
 
         public List<ThingDef> ReturnSelectedList(SelectionType selectionType = SelectionType.none)

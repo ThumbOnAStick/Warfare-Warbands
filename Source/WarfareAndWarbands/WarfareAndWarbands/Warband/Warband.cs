@@ -21,7 +21,7 @@ namespace WarfareAndWarbands.Warband
         {
             base.PostAdd();
             this.forceRemoveWorldObjectWhenMapRemoved = false;
-            if(this.bandMembers.Count < 1)
+            if (this.bandMembers.Count < 1)
             {
                 if (this.Faction.IsPlayer)
                 {
@@ -32,7 +32,9 @@ namespace WarfareAndWarbands.Warband
                     GenerateNPCCombatGroup();
                 }
             }
-        
+            WarbandUtil.RefreshAllPlayerWarbands();
+
+
         }
 
         public Warband()
@@ -40,6 +42,7 @@ namespace WarfareAndWarbands.Warband
             bandMembers = new Dictionary<string, int>();
             npcWarbandManager = new NPCWarbandManager(this);
             playerWarbandManager = new PlayerWarbandManager(this);
+            
         }
 
         public override Color ExpandingIconColor => this.Faction.Color;
@@ -54,8 +57,16 @@ namespace WarfareAndWarbands.Warband
 
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan)
         {
-            if (this.Faction == Faction.OfPlayer || !this.Faction.HostileTo(Faction.OfPlayer))
+            if (this.Faction != Faction.OfPlayer && !this.Faction.HostileTo(Faction.OfPlayer))
             {
+                yield break;
+            }
+            else if (this.Faction == Faction.OfPlayer)
+            {
+                foreach (FloatMenuOption floatMenuOption2 in WarbandUI.PlayerWarbandLeaderChoices(this, caravan))
+                {
+                    yield return floatMenuOption2;
+                }
                 yield break;
             }
             foreach (FloatMenuOption floatMenuOption2 in CaravanArrivalAction_Enter.GetFloatMenuOptions(caravan, this))
@@ -85,7 +96,7 @@ namespace WarfareAndWarbands.Warband
             if (npcWarbandManager != null && npcWarbandManager.HasTargetingFaction())
             {
                 outString += "\n" + "WAW.TargetingMapParent".Translate(npcWarbandManager.TryGetTarget().Label);
-            
+
             }
 
             if (this.Faction == Faction.OfPlayer)
@@ -106,72 +117,33 @@ namespace WarfareAndWarbands.Warband
 
         public Dictionary<string, int> GenerateNPCCombatGroup()
         {
-            Faction f = this.Faction;
-            var combatGroup = f.def.pawnGroupMakers.Where(x => x.kindDef == PawnGroupKindDefOf.Combat && x.maxTotalPoints > 1000).RandomElement();
-            float actualPoints = Math.Max(StorytellerUtility.DefaultThreatPointsNow(Find.AnyPlayerHomeMap), 1000);
-            PawnGroupMakerParms parms = new PawnGroupMakerParms() { points = actualPoints, faction = f, groupKind = combatGroup.kindDef };
-            var results = PawnGroupMakerUtility.ChoosePawnGenOptionsByPoints(parms.points, combatGroup.options, parms);
-            bandMembers = new Dictionary<string, int>();
-            foreach (var ele in results)
-            {
-                string defName = ele.Option.kind.defName;
-                if (!bandMembers.ContainsKey(defName))
-                    bandMembers.Add(defName, 1);
-                else
-                    bandMembers[defName]++;
-            }
-
+            bandMembers = npcWarbandManager.GenerateNPCCombatGroup();
             return bandMembers;
         }
 
         public Dictionary<string, int> GenerateNPCCombatGroup(List<Pawn> pawns)
         {
-            bandMembers = new Dictionary<string, int>();
-            Faction f = this.Faction;
-            foreach (var ele in pawns)
-            {
-                if (ele.Dead)
-                    continue;
-                string defName = ele.kindDef.defName;
-                if (!bandMembers.ContainsKey(defName))
-                    bandMembers.Add(defName, 1);
-                else
-                    bandMembers[defName]++;
-            }
-            Log.Message(pawns.Count);
+            bandMembers = npcWarbandManager.GenerateNPCCombatGroup(pawns);
             return bandMembers;
         }
         public override void PostMapGenerate()
         {
-
-            this.playerWarbandManager?.cooldownManager.SetLastRaidTick();
+            this.playerWarbandManager?.cooldownManager?.SetLastRaidTick();
             SpawnPawns();
         }
 
-        public override void PostRemove()
+        public override void Destroy()
         {
-
-            if (!HasMap)
-            {
-                return;
-            }
-
-            if (Faction == Faction.OfPlayer && GenHostility.AnyHostileActiveThreatToPlayer(Map))
-            {
-                this.Destroy();
-            }
-            base.PostRemove();
+            base.Destroy();
+            WarbandUtil.RefreshAllPlayerWarbands();
         }
+
 
 
         public override void Tick()
         {
 
-            if (!this.HasMap && this.GetMemberCount() < 1)
-            {
-                Destroy();
-            }
-
+        
             npcWarbandManager?.Tick();
             playerWarbandManager?.Tick();
 
@@ -191,7 +163,7 @@ namespace WarfareAndWarbands.Warband
             {
                 result = !GenHostility.AnyHostileActiveThreatToPlayer(this.Map, false, false) && result;
             }
-   
+
             alsoRemoveWorldObject = this.Faction != Faction.OfPlayer;
             return result;
         }
@@ -200,9 +172,6 @@ namespace WarfareAndWarbands.Warband
         {
             this.Tile = tile;
         }
-
-
-
 
         public void SpawnPawns()
         {
@@ -214,6 +183,7 @@ namespace WarfareAndWarbands.Warband
             catch (Exception e)
             {
                 Log.Message($"Error while trying to generate warband pawn:{e.Message},{e.StackTrace}");
+                return;
             }
             SpawnPawnsNearCenter(pawnList);
             if (this.Faction != Faction.OfPlayer)
@@ -228,7 +198,12 @@ namespace WarfareAndWarbands.Warband
             foreach (Pawn p in pawnList)
             {
                 if (!p.Spawned)
-                    GenSpawn.Spawn(p, CellFinder.RandomClosewalkCellNear(Map.Center, Map, 10), Map);
+                {
+                    if (CellFinder.TryFindRandomCellNear(Map.Center, Map, 15, new Predicate<IntVec3>(x => x.Walkable(Map)), out IntVec3 cell))
+                        GenSpawn.Spawn(p, cell, Map);
+                    else
+                        GenSpawn.Spawn(p, Map.Center, Map);
+                }
             }
         }
 
@@ -243,7 +218,7 @@ namespace WarfareAndWarbands.Warband
             npcWarbandManager?.ExposeData();
             playerWarbandManager?.ExposeData();
         }
-   
+
 
 
         public void OrderPlayerWarbandToResettle()
@@ -264,15 +239,38 @@ namespace WarfareAndWarbands.Warband
             {
                 bandMembers[kindName]--;
             }
+            TryRemoveInjuries(kindName);
             if (this.GetMemberCount() < 1)
             {
                 TryDestroyWarband();
             }
-        }   
+        }
 
+        void TryRemoveInjuries(string kindName)
+        {
+            if (this.Faction == Faction.OfPlayer &&
+                this.playerWarbandManager != null &&
+                this.playerWarbandManager.injuriesManager != null)
+            {
+                this.playerWarbandManager.injuriesManager.RemovePawn(kindName);
+            }
+        }
+
+
+        public bool HasLeader()
+        {
+            return this.playerWarbandManager != null &&
+                this.playerWarbandManager.leader != null &&
+                this.playerWarbandManager.leader.Leader != null &&
+                !this.playerWarbandManager.leader.Leader.Dead;
+        }
 
         void TryDestroyWarband()
         {
+            if (HasLeader())
+            {
+                return;
+            }
             if (!this.HasMap)
                 this.Destroy();
             this.npcWarbandManager?.SetDefeated();
@@ -330,7 +328,7 @@ namespace WarfareAndWarbands.Warband
             return result;
         }
 
-    
+
 
         public void StoreAll(IEnumerable<Thing> things)
         {
@@ -343,7 +341,7 @@ namespace WarfareAndWarbands.Warband
             playerWarbandManager?.StoreThing(ref thing);
         }
 
-       
+
 
         public void WithdrawLoot()
         {

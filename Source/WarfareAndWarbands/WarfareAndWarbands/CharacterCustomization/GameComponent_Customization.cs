@@ -43,7 +43,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                 var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request);
                 generatedKindDefs.Add(defaultKindDef);
             }
-            WarbandUtil.Refresh();
+            WarbandUtil.RefreshSoldierPawnKinds();
         }
 
         public override void ExposeData()
@@ -70,7 +70,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                 customizationRequests.Add(request);
                 generatedKindDefs.Add(def);
             }
-            WarbandUtil.Refresh();
+            WarbandUtil.RefreshSoldierPawnKinds();
             GameComponent_WAW.playerWarband.Refresh();
         }
 
@@ -81,7 +81,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                 generatedKindDefs.RemoveAll(x => x.defName == request.defName);
             }
             customizationRequests.RemoveAll(x => x.defName == request.defName);
-            WarbandUtil.Refresh();
+            WarbandUtil.RefreshSoldierPawnKinds();
             GameComponent_WAW.playerWarband.Refresh();
         }
 
@@ -90,7 +90,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             if (generatedKindDefs.Contains(def))
                 generatedKindDefs.Remove(def);
             customizationRequests.RemoveAll(x => x.defName == def.defName);
-            WarbandUtil.Refresh();
+            WarbandUtil.RefreshSoldierPawnKinds();
             GameComponent_WAW.playerWarband.Refresh();
         }
 

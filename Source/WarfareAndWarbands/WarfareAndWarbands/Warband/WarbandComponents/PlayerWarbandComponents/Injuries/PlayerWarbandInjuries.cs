@@ -45,6 +45,22 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             }
             selectedGroup.InjurePawn(pKind);
         }
+        public void RemovePawn(string pKindName)
+        {
+            if (recoveries.Count < 1)
+            {
+                return;
+            }
+            for (int i = 0; i < this.recoveries.Count; i++)
+            {
+                var group = recoveries[i];
+                if (group.TryToRemovePawn(pKindName))
+                {
+                    break;
+                }
+            }
+
+        }
 
         public float GetRecoveryDays()
         {

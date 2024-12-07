@@ -15,13 +15,13 @@ namespace WarfareAndWarbands
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref occupyChance, "occupyChance",20);
+            Scribe_Values.Look(ref occupyChance, "occupyChance", 20);
             Scribe_Values.Look(ref establishFeeMultiplier, "establishFeeMultiplier", 2);
             Scribe_Values.Look(ref eventFrequency, "eventFrequency", 10);
             Scribe_Values.Look(ref maxPlayerWarband, "maxPlayerWarband", 10);
             Scribe_Values.Look(ref raidPlayerWarbandChance, "raidPlayerWarbandChance", 15);
-            Scribe_Values.Look(ref enableFactionDefeat, "enableFactionDefeat", false);
-            Scribe_Values.Look(ref everReadUpdateLog, $"everReadUpdateLog{UpdateVersion}", false);
+            Scribe_Values.Look(ref enableFactionDefeat, "enableFactionDefeat", defaultValue: false);
+            Scribe_Values.Look(ref everReadUpdateLog, $"everReadUpdateLog{UpdateVersion}", defaultValue: false);
             Scribe_Values.Look(ref warbandRaidCooldown, "warbandRaidCooldown", 1.5f);
 
 
@@ -61,6 +61,6 @@ namespace WarfareAndWarbands
         public static bool enableFactionDefeat = false;
         public static bool dropPodRaidRequiresUpgrade = false;
         public static bool everReadUpdateLog = false;
-        private static readonly float UpdateVersion = 1.10f;
+        private static readonly float UpdateVersion = 1.11f;
     }
 }

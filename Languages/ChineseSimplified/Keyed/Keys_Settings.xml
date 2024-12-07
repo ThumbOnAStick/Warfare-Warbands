@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!--Settings-->
+  <WAW.Settings>战团战争</WAW.Settings>
+  <WAW.occupyChance>征服概率：{0}%</WAW.occupyChance>
+  <WAW.occupyChance.Desc>战团占领定居点的机会</WAW.occupyChance.Desc>
+  <WAW.establishFeeMultiplier>建立费用乘数：{0} 倍</WAW.establishFeeMultiplier>
+  <WAW.establishFeeMultiplier.Desc>你需要这个兵种战斗力的{0}倍费用才能将这个兵种加入战团。</WAW.establishFeeMultiplier.Desc>
+  <WAW.eventFrequency>事件频率：{0}天</WAW.eventFrequency>
+  <WAW.eventFrequency.Desc>新战团产生的频率</WAW.eventFrequency.Desc>
+  <WAW.enableFactionDefeat>启用自定义派系战败</WAW.enableFactionDefeat>
+  <WAW.enableFactionDefeat.Desc>本mod的派系战败是否被启用</WAW.enableFactionDefeat.Desc>
+  <WAW.maxPlayerWarband>最大玩家战团：{0}</WAW.maxPlayerWarband>
+  <WAW.maxPlayerWarband.Desc>玩家最多可以创建的战团数量为 {0}</WAW.maxPlayerWarband.Desc>
+  <WAW.warbandRaidCooldown>玩家战团突袭冷却时间：{0} 天</WAW.warbandRaidCooldown>
+  <WAW.warbandRaidCooldown.Desc>距离下一次玩家突袭还有多少天</WAW.warbandRaidCooldown.Desc>
+  <WAW.raidPlayerWarbandChance>玩家战团被突袭的几率：{0}%</WAW.raidPlayerWarbandChance>
+  <WAW.raidPlayerWarbandChance.Desc>玩家战团在每五天遭遇袭击事件的概率是{0}%.</WAW.raidPlayerWarbandChance.Desc>
+</LanguageData>

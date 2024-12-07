@@ -24,7 +24,7 @@ namespace WarfareAndWarbands.Warband
         }
         public Window_ReArrangeWarband(Warband warband)
         {
-            WarbandUtil.Refresh();
+            WarbandUtil.RefreshSoldierPawnKinds();
             this.warband = warband;
             for (int i = 0; i < GameComponent_WAW.playerWarband.bandMembers.Count; i++)
             {
@@ -76,11 +76,13 @@ namespace WarfareAndWarbands.Warband
             GameComponent_WAW.playerWarband.colorOverride = color;
             Rect costRect = new Rect(30, colorSelectorRect.y + colorsHeight, 100, 50);
             Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostExtra(warband.bandMembers).ToString()));
-            Rect techRect = new Rect(300, colorSelectorRect.y + colorsHeight, 100, 50);
-            Rect techRectMinus = new Rect(270, colorSelectorRect.y + colorsHeight, entryWidth, entryHeight);
-            Rect techRectAddon = new Rect(400, colorSelectorRect.y + colorsHeight, entryWidth, entryHeight);
+            var techLeve = "WAW.TechLevel".Translate((int)GameComponent_WAW.playerWarband.techLevel);
+            int techWidth = 80;
+            Rect techRect = new Rect(380 - techWidth/2, colorSelectorRect.y + colorsHeight, techWidth, 50);
+            Rect techRectMinus = new Rect(techRect.x - entryWidth, colorSelectorRect.y + colorsHeight, entryWidth, entryHeight);
+            Rect techRectAddon = new Rect(techRect.xMax + entryWidth, colorSelectorRect.y + colorsHeight, entryWidth, entryHeight);
             bool decreaseTech = Widgets.ButtonImage(techRectMinus, TexUI.ArrowTexLeft);
-            Widgets.Label(techRect, "WAW.TechLevel".Translate((int)GameComponent_WAW.playerWarband.techLevel));
+            Widgets.Label(techRect, techLeve);
             bool addTech = Widgets.ButtonImage(techRectAddon, TexUI.ArrowTexRight);
             if (addTech && GameComponent_WAW.playerWarband.techLevel < TechLevel.Archotech) { GameComponent_WAW.playerWarband.techLevel++; }
             if (decreaseTech && GameComponent_WAW.playerWarband.techLevel > TechLevel.Undefined) { GameComponent_WAW.playerWarband.techLevel -= 1; }
@@ -113,10 +115,8 @@ namespace WarfareAndWarbands.Warband
             }
 
             Widgets.EndScrollView();
-            //int recruitButtonWidth = 200;
-            //int recruitButtonX = 30;
 
-            bool doRecruit = Widgets.ButtonText(new Rect(30, 400, 200, 50), "WAW.ConfigWarband".Translate());
+            bool doRecruit = Widgets.ButtonText(new Rect(330 + 50 - 100, 400, 200, 50), "WAW.ConfigWarband".Translate());
             if (doRecruit)
             {
                 this.Close();
