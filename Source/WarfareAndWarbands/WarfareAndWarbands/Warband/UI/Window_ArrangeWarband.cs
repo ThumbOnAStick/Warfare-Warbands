@@ -87,7 +87,7 @@ namespace WarfareAndWarbands.Warband
             if (doRecruit)
             {
                 this.Close();
-                GameComponent_WAW.playerWarband.CreatWarbandeWorldObject(map);
+                GameComponent_WAW.playerWarband.CreateWarbandWorldObject(map);
 
             }
 

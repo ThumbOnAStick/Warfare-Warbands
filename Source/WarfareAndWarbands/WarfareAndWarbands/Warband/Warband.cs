@@ -21,19 +21,23 @@ namespace WarfareAndWarbands.Warband
         {
             base.PostAdd();
             this.forceRemoveWorldObjectWhenMapRemoved = false;
-            if (this.Faction.IsPlayer)
+            if(this.bandMembers.Count < 1)
             {
-                this.bandMembers = new Dictionary<string, int>(GameComponent_WAW.playerWarband.bandMembers);
+                if (this.Faction.IsPlayer)
+                {
+                    GeneratePlayerCombatGroup();
+                }
+                else
+                {
+                    GenerateNPCCombatGroup();
+                }
             }
-            else
-            {
-                bandMembers = new Dictionary<string, int>();
-                GenerateNPCCombatGroup();
-            }   
+        
         }
 
         public Warband()
         {
+            bandMembers = new Dictionary<string, int>();
             npcWarbandManager = new NPCWarbandManager(this);
             playerWarbandManager = new PlayerWarbandManager(this);
         }
@@ -42,6 +46,11 @@ namespace WarfareAndWarbands.Warband
 
         public override string Label => this.def.label + "(" + this.Faction.NameColored + ")";
 
+
+        public void SetMembers(Dictionary<string, int> members)
+        {
+            this.bandMembers = new Dictionary<string, int>(members);
+        }
 
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan)
         {
@@ -60,6 +69,10 @@ namespace WarfareAndWarbands.Warband
 
         }
 
+        public void GeneratePlayerCombatGroup()
+        {
+            this.bandMembers = new Dictionary<string, int>(GameComponent_WAW.playerWarband.bandMembers);
+        }
 
         public override string GetInspectString()
         {
@@ -69,20 +82,26 @@ namespace WarfareAndWarbands.Warband
                 if (member.Value > 0)
                     outString += "\n" + WarbandUtil.GetSoldierLabel(member.Key) + "(" + member.Value + ")";
             }
-            if (npcWarbandManager.HasTargetingFaction())
+            if (npcWarbandManager != null && npcWarbandManager.HasTargetingFaction())
             {
                 outString += "\n" + "WAW.TargetingMapParent".Translate(npcWarbandManager.TryGetTarget().Label);
+            
             }
+
             if (this.Faction == Faction.OfPlayer)
             {
-                if (!playerWarbandManager.CanFireRaid())
-                {
-                    string cooldownString = "WAW.AvialableIn".Translate(playerWarbandManager.GetRemainingDays().ToString("0.0"));
-                    outString += "\n" + cooldownString;
-                }
-
+                outString = playerWarbandManager.GetInspectString();
             }
+
             return outString;
+        }
+
+        public bool CanPlayerWarbandBeRaidded()
+        {
+            if (this.playerWarbandManager.injuriesManager != null &&
+                !this.playerWarbandManager.injuriesManager.GetActiveMembers(bandMembers).Any(x => x.Value > 0))
+                return false;
+            return true;
         }
 
         public Dictionary<string, int> GenerateNPCCombatGroup()
@@ -124,28 +143,37 @@ namespace WarfareAndWarbands.Warband
         }
         public override void PostMapGenerate()
         {
+
+            this.playerWarbandManager?.cooldownManager.SetLastRaidTick();
             SpawnPawns();
         }
 
         public override void PostRemove()
         {
+
+            if (!HasMap)
+            {
+                return;
+            }
+
+            if (Faction == Faction.OfPlayer && GenHostility.AnyHostileActiveThreatToPlayer(Map))
+            {
+                this.Destroy();
+            }
             base.PostRemove();
         }
 
 
         public override void Tick()
         {
-            for (int i = 0; i < parts.Count; i++)
+
+            if (!this.HasMap && this.GetMemberCount() < 1)
             {
-                parts[i].SitePartTick();
+                Destroy();
             }
 
-            for (int j = 0; j < parts.Count; j++)
-            {
-                parts[j].def.Worker.SitePartWorkerTick(parts[j]);
-            }
-
-            npcWarbandManager.Tick();
+            npcWarbandManager?.Tick();
+            playerWarbandManager?.Tick();
 
             if (this.HasMap && this.ShouldRemoveMapNow(out bool flag))
             {
@@ -156,7 +184,17 @@ namespace WarfareAndWarbands.Warband
 
         }
 
-
+        public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
+        {
+            bool result = base.ShouldRemoveMapNow(out alsoRemoveWorldObject);
+            if (this.Faction == Faction.OfPlayer)
+            {
+                result = !GenHostility.AnyHostileActiveThreatToPlayer(this.Map, false, false) && result;
+            }
+   
+            alsoRemoveWorldObject = this.Faction != Faction.OfPlayer;
+            return result;
+        }
 
         public void ResettleTo(int tile)
         {
@@ -165,8 +203,9 @@ namespace WarfareAndWarbands.Warband
 
 
 
+
         public void SpawnPawns()
-        {            
+        {
             List<Pawn> pawnList = MercenaryUtil.GenerateWarbandPawns(this);
             try
             {
@@ -174,11 +213,14 @@ namespace WarfareAndWarbands.Warband
             }
             catch (Exception e)
             {
-                Log.Message($"Error while trying to generate npc warband pawn:{e.Message},{e.StackTrace}");
+                Log.Message($"Error while trying to generate warband pawn:{e.Message},{e.StackTrace}");
             }
             SpawnPawnsNearCenter(pawnList);
-            LordJob_DefendPoint lordJobDefendPoint = new LordJob_DefendPoint(Map.Center);
-            LordMaker.MakeNewLord(this.Faction, lordJobDefendPoint, base.Map, pawnList);
+            if (this.Faction != Faction.OfPlayer)
+            {
+                LordJob_DefendPoint lordJobDefendPoint = new LordJob_DefendPoint(Map.Center);
+                LordMaker.MakeNewLord(this.Faction, lordJobDefendPoint, base.Map, pawnList);
+            }
         }
 
         void SpawnPawnsNearCenter(List<Pawn> pawnList)
@@ -190,7 +232,6 @@ namespace WarfareAndWarbands.Warband
             }
         }
 
-
         public override Texture2D ExpandingIcon => this.def.ExpandingIconTexture;
 
         public override void ExposeData()
@@ -199,8 +240,8 @@ namespace WarfareAndWarbands.Warband
             Scribe_Collections.Look<string, int>(ref this.bandMembers,
   "bandMembers", LookMode.Value, LookMode.Value, ref stringBuffers, ref intBuffers);
             Scribe_Values.Look(ref this.isSettling, "isSettling");
-            npcWarbandManager.ExposeData();
-            playerWarbandManager.ExposeData();
+            npcWarbandManager?.ExposeData();
+            playerWarbandManager?.ExposeData();
         }
    
 
@@ -250,7 +291,7 @@ namespace WarfareAndWarbands.Warband
         public override void PostMake()
         {
             base.PostMake();
-            playerWarbandManager.ResetRaidTick();
+            playerWarbandManager?.ResetRaidTick();
         }
 
         public override void Draw()
@@ -294,27 +335,26 @@ namespace WarfareAndWarbands.Warband
         public void StoreAll(IEnumerable<Thing> things)
         {
 
-            playerWarbandManager.StoreAll(things);
+            playerWarbandManager?.StoreAll(things);
         }
 
         public void Store(ref Thing thing)
         {
-            playerWarbandManager.StoreThing(ref thing);
+            playerWarbandManager?.StoreThing(ref thing);
         }
 
        
 
         public void WithdrawLoot()
         {
-            playerWarbandManager.WithdrawLoot();
+            playerWarbandManager?.WithdrawLoot();
         }
 
         public void WithdrawLootInSilver()
         {
-            playerWarbandManager.WithdrawLootInSilver();
+            playerWarbandManager?.WithdrawLootInSilver();
         }
 
-        
 
         public Dictionary<string, int> bandMembers;
         public NPCWarbandManager npcWarbandManager;

@@ -49,14 +49,17 @@ namespace WarfareAndWarbands.CharacterCustomization
         public int GetCombatPower()
         {
             return (int)CombatPowerCurve().Evaluate((GetMarketValue() * 0.1f));
-            
+
         }
 
         bool HARActive()
         {
             return ModsConfig.IsActive("erdelf.HumanoidAlienRaces");
         }
-
+        bool CEActive()
+        {
+            return ModsConfig.IsActive("CETeam.CombatExtended");
+        }
         public int GetMarketValue()
         {
             int apparelValue = GetApperalValue();
@@ -118,11 +121,16 @@ namespace WarfareAndWarbands.CharacterCustomization
             {
                 return null;
             }
-            ThingWithComps weapon = (ThingWithComps)ThingMaker.MakeThing(weaponRequest);
+            ThingDef stuff = null;
+            if (weaponRequest.MadeFromStuff)
+            {
+                stuff = GenStuff.DefaultStuffFor(weaponRequest);
+            }
+            ThingWithComps weapon = (ThingWithComps)ThingMaker.MakeThing(weaponRequest, stuff);
             weapon.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
             p.equipment?.DestroyAllEquipment();
             p.equipment?.AddEquipment(weapon);
-            if (ModsConfig.IsActive("CETeam.CombatExtended"))
+            if (CEActive())
             {
                 CE.GenerateAmmoFor(p);
             }
@@ -207,7 +215,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             Scribe_Values.Look(ref this.defName, "defName");
             Scribe_Values.Look(ref this.label, "label");
             Scribe_Values.Look(ref this.xenoTypeDefName, "xenoTypeDefName");
-
+            Scribe_Values.Look(ref this.alienDefName, "alienDefName");
             Scribe_Collections.Look(ref this.apparelRequests, "apparelRequests", LookMode.Def);
             Scribe_Defs.Look(ref this.weaponRequest, "weaponRequest");
 

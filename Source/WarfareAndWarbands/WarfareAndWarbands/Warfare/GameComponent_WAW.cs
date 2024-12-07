@@ -113,19 +113,31 @@ namespace WarfareAndWarbands
         {
             base.LoadedGame();
             LoadAllFactions();
+            OpenUpdateLog();
 
         }
+
 
         public override void StartedNewGame()
         {
             base.StartedNewGame();
             LoadAllFactions();
             GiveModLetter();
+            OpenUpdateLog();
+        }
+        private void OpenUpdateLog()
+        {
+            if (WAWSettings.everReadUpdateLog)
+            {
+                return;
+            }   
+            //Window_WAWUpdateLog updateLog = new Window_WAWUpdateLog();
+            //Find.WindowStack.Add(updateLog);
         }
 
         void GiveModLetter()
         {
-            Letter modLoadded = LetterMaker.MakeLetter("WAW.Welcome".Translate(), "WAW.Welcome.Desc".Translate(),LetterDefOf.NeutralEvent);
+            Letter modLoadded = LetterMaker.MakeLetter("WAW.Welcome".Translate(), "WAW.Welcome.Desc".Translate(), LetterDefOf.NeutralEvent);
             Find.LetterStack.ReceiveLetter(modLoadded);
         }
 

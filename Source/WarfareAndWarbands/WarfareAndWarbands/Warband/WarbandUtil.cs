@@ -36,6 +36,17 @@ namespace WarfareAndWarbands.Warband
             return SoldierPawnKindsCache.First(x => x.defName == defName).label;
         }
 
+        public static bool CanPlaceMoreWarbands()
+        {
+            return AllPlayerWarbandsCount() < WAWSettings.maxPlayerWarband;
+        }
+
+        public static int AllPlayerWarbandsCount()
+        {
+            return Find.WorldObjects.AllWorldObjects.Count(x => (x as Warband != null || x as WorldObject_WarbandRecruiting != null)
+            && x.Faction == Faction.OfPlayer);
+        }
+
         public static List<PawnKindDef> SoldierPawnKinds()
         {
             var cache = DefDatabase<PawnKindDef>.AllDefs.Where(x => x.isFighter && x.race.race.Humanlike).OrderBy(x => x.combatPower).ToList();
@@ -73,16 +84,40 @@ namespace WarfareAndWarbands.Warband
             return SoldierPawnKindsCache.First(x => x.defName == name);
         }
 
-        public static void SpawnWarband(Faction f, GlobalTargetInfo info)
+        public static Warband SpawnWarband(Faction f, GlobalTargetInfo info)
         {
-            List<SitePartDef> sitePartList = new List<SitePartDef>
+            var warband = SpawnWarband(f, info.Tile);
+            return warband;
+        }
+
+        public static Warband SpawnWarband(Faction f, int tile)
+        {
+            List<SitePartDef> sitePartList;
+            if (!f.IsPlayer)
             {
-                DefDatabase<SitePartDef>.GetNamed("Outpost")
+                sitePartList = new List<SitePartDef>
+            {
+                DefDatabase<SitePartDef>.GetNamed("Outpost"),
             };
+            }
+            else
+            {
+                sitePartList = new List<SitePartDef>
+            {
+                WAWDefof.WAWEmptySite,
+
+            };
+            }
+
+            if (Find.World.Impassable(tile))
+            {
+                return null;
+            }
+
             List<SitePartDefWithParams> sitePartDefsWithParams;
-            SiteMakerHelper.GenerateDefaultParams(0f, info.Tile, f, sitePartList, out sitePartDefsWithParams);
+            SiteMakerHelper.GenerateDefaultParams(0f, tile, f, sitePartList, out sitePartDefsWithParams);
             var warband = (Warband)WorldObjectMaker.MakeWorldObject(WAWDefof.WAW_Warband);
-            warband.Tile = info.Tile;
+            warband.Tile = tile;
             warband.SetFaction(f);
             if (sitePartDefsWithParams != null)
             {
@@ -92,7 +127,45 @@ namespace WarfareAndWarbands.Warband
                 }
             }
             Find.WorldObjects.Add(warband);
+            return warband;
         }
+
+        public static Warband SpawnWarband(Faction f, int tile, Dictionary<string, int> members)
+        {
+            List<SitePartDef> sitePartList;
+            if (!f.IsPlayer)
+            {
+                sitePartList = new List<SitePartDef>
+            {
+                DefDatabase<SitePartDef>.GetNamed("Outpost"),
+            };
+            }
+            else
+            {
+                sitePartList = new List<SitePartDef>
+            {
+                WAWDefof.WAWEmptySite,
+
+            };
+            }
+
+            List<SitePartDefWithParams> sitePartDefsWithParams;
+            SiteMakerHelper.GenerateDefaultParams(0f, tile, f, sitePartList, out sitePartDefsWithParams);
+            var warband = (Warband)WorldObjectMaker.MakeWorldObject(WAWDefof.WAW_Warband);
+            warband.Tile = tile;
+            warband.SetFaction(f);
+            warband.SetMembers(members);
+            if (sitePartDefsWithParams != null)
+            {
+                foreach (SitePartDefWithParams sitePart in sitePartDefsWithParams)
+                {
+                    warband.AddPart(new SitePart(warband, sitePart.def, sitePart.parms));
+                }
+            }
+            Find.WorldObjects.Add(warband);
+            return warband;
+        }
+
 
         public static bool IsPlayerWarband(this WorldObject o)
         {

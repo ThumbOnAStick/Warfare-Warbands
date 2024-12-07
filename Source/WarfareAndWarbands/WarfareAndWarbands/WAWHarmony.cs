@@ -25,7 +25,6 @@ namespace WarfareAndWarbands.HarmonyPatches
             SettlemntDestroyedPatch.PatchHarmony();
             WAWHarmony.harmony.PatchAll();
             Log.Message("WAW: patches successful");
-
         }
 
 

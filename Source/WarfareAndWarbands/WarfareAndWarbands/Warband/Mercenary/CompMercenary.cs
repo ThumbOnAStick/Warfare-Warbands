@@ -20,6 +20,7 @@ namespace WarfareAndWarbands.Warband
     public class CompMercenary : ThingComp
     {
         bool servesPlayerFaction = false;
+        bool retreated = false;
         Faction servingFaction;
         int lastServeTick = 0;
         string pawnKindName;
@@ -71,11 +72,18 @@ namespace WarfareAndWarbands.Warband
             {
                 if (!Find.CurrentMap.listerThings.AllThings.Any(x => x.def == WAWDefof.WAW_LootChest))
                     yield return WarbandUI.PlaceLootChest(this.warband);
-                yield return WarbandUI.RetreatPawn(this);
+                if (!Mercenary.Downed && !retreated)
+                    yield return WarbandUI.RetreatPawn(this);
             }
 
         }
 
+        public override void Notify_Downed()
+        {
+            base.Notify_Downed();
+            this.warband?.playerWarbandManager?.injuriesManager?.InjurePawn(pawnKindName, GenTicks.TicksGame);
+
+        }
         public string RemainingDays()
         {
             return GenDate.TicksToDays(lastServeTick + serveDuration - Find.TickManager.TicksGame).ToString("0.0");
@@ -83,13 +91,16 @@ namespace WarfareAndWarbands.Warband
 
         public override string CompInspectStringExtra()
         {
-            return "WAW.LeaveIn".Translate(RemainingDays());
+            string returnString = "";
+            if (this.servesPlayerFaction)
+                returnString = "WAW.LeaveIn".Translate(RemainingDays());
+            return returnString;
         }
 
         public override void Notify_Killed(Map prevMap, DamageInfo? dinfo = null)
         {
             base.Notify_Killed(prevMap, dinfo);
-            if (this.servingFaction != null && this.Mercenary.MapHeld != null)
+            if (HasServingFaction() && Mercenary.MapHeld != null)
             {
                 TryNotifyPlayerPawnKilled();
                 string targetName = pawnKindName;
@@ -97,7 +108,6 @@ namespace WarfareAndWarbands.Warband
             }
 
         }
-
         void TryNotifyPlayerPawnKilled()
         {
             if (servesPlayerFaction)
@@ -108,15 +118,30 @@ namespace WarfareAndWarbands.Warband
 
         public void Retreat()
         {
-            this.servingFaction = null; 
-            this.servesPlayerFaction = false;
-            Mercenary.SetFaction(Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband));
+            SetRetreat(true);
+            var faction = Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband);
+            if(faction == null)
+            {
+                Find.FactionManager.TryGetRandomNonColonyHumanlikeFaction(out faction, true);
+            }
+            Mercenary.SetFaction(faction);
+        }
+
+        public void SetRetreat(bool retreated)
+        {
+            this.retreated = retreated;
         }
 
         public void SetWarband(Warband warband)
         {
             this.warband = warband;
         }
+
+        public void ResetDuration()
+        {
+            this.lastServeTick = GenTicks.TicksGame;
+        }
+
 
         public void SetServingFaction(Faction f)
         {
@@ -147,6 +172,8 @@ namespace WarfareAndWarbands.Warband
         {
             base.PostDeSpawn(map);
             var inventory = Mercenary.inventory;
+            //this.servesPlayerFaction = false;
+            //this.servingFaction = null;
             for (int i = 0; i < inventory.innerContainer.Count; i++)
             {
                 Thing t = inventory.innerContainer[i];
@@ -178,9 +205,13 @@ namespace WarfareAndWarbands.Warband
         {
             base.PostExposeData();
             Scribe_Values.Look(ref servesPlayerFaction, "servesPlayerFaction", false);
+            Scribe_Values.Look(ref retreated, "retreated", false);
             Scribe_Values.Look(ref lastServeTick, "lastServeTick", 0);
             Scribe_Values.Look(ref pawnKindName, "pawnKindName", "none");
+
             Scribe_References.Look(ref warband, "warband");
+            Scribe_References.Look(ref servingFaction, "servingFaction");
+
 
         }
 

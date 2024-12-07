@@ -12,20 +12,24 @@
     <expandingIconTexture>World/WorldObjects/Expanding/Warband</expandingIconTexture>
     <expandingIconPriority>100</expandingIconPriority>
     <expandMore>true</expandMore>
-    <!-- <allowCaravanIncidentsWhichGenerateMap>true</allowCaravanIncidentsWhichGenerateMap> -->
-    <!-- <IncidentTargetTags>
-      <li>Thumb.Warband</li>
-    </IncidentTargetTags> -->
-    <inspectorTabs>
-      <!-- <li>WITab_Caravan_Health</li>
-      <li>WITab_Caravan_Needs</li>
-      <li>WITab_Caravan_Gear</li>
-      <li>WITab_Caravan_Social</li>
-      <li>WITab_Caravan_Items</li>
-      <li>WITab_Caravan_Feeding</li> -->
-    </inspectorTabs>
     <comps>
       <li Class="WarfareAndWarbands.Warband.WorldObjectCompProperties_PlayerWarband" />
     </comps>
+  </WorldObjectDef>
+
+    <WorldObjectDef>
+    <defName>WAW_WarbandRecruiting</defName>
+    <label>warband</label>
+    <description>A warband.</description>
+    <worldObjectClass>WarfareAndWarbands.Warband.WorldObject_WarbandRecruiting</worldObjectClass>
+    <texture>World/WorldObjects/Caravan</texture>
+    <useDynamicDrawer>true</useDynamicDrawer>
+    <expandingIcon>true</expandingIcon>
+    <expandingIconTexture>World/WorldObjects/Expanding/WarbandRecruiting</expandingIconTexture>
+    <expandingIconPriority>100</expandingIconPriority>
+    <expandMore>true</expandMore>
+    <!-- <comps>
+      <li Class="WarfareAndWarbands.Warband.WorldObjectCompProperties_PlayevrWarband" />
+    </comps> -->
   </WorldObjectDef>
   </Defs>

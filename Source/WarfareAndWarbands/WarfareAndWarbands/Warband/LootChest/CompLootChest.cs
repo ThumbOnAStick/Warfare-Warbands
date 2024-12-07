@@ -34,7 +34,8 @@ namespace WarfareAndWarbands.Warband
             }
             if (this.warband == null) 
             {
-                Log.Error("Warband is invalid");
+                this.parent.Destroy();
+                return;
             }
             warband?.StoreAll(CompTransporter.innerContainer.ToList());
             CompTransporter.innerContainer.Clear();

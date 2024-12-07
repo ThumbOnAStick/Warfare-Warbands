@@ -22,6 +22,7 @@ namespace WarfareAndWarbands
         public static readonly Texture2D WarbandWithdrawTex = ContentFinder<Texture2D>.Get("UI/Commands/WarbandWithdraw");
         public static readonly Texture2D HeadTex = ContentFinder<Texture2D>.Get("Things/Pawn/HumanLike/Heads/Male/Male_Average_Normal_south");
         public static readonly Texture2D BodyTex = ContentFinder<Texture2D>.Get("Things/Pawn/HumanLike/Bodies/Naked_Male_south");
+        public static readonly Texture2D ScreenShot = ContentFinder<Texture2D>.Get("Misc/ScreenShot");
 
 
     }

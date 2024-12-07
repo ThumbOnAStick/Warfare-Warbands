@@ -22,6 +22,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             this.cooldownManager = new PlayerWarbandCooldownManager();
             this.lootManager = new PlayerWarbandLootManager();
             this.colorOverride = new PlayerWarbandColorOverride();
+            this.injuriesManager = new PlayerWarbandInjuries();
         }
 
         public void OrderPlayerWarbandToAttack()
@@ -35,13 +36,18 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public bool OrderPlayerWarbandToAttack(GlobalTargetInfo info)
         {
-            bool flag = !this.warband.bandMembers.Any((KeyValuePair<string, int> x) => x.Value > 0);
+            Dictionary<string, int> activeMembers;
+            if (this.injuriesManager != null)
+                activeMembers = this.injuriesManager.GetActiveMembers(warband.bandMembers);
+            else activeMembers = warband.bandMembers;
+            bool emptyWarband = !activeMembers.Any((KeyValuePair<string, int> x) => x.Value > 0);
             bool result;
-            if (flag)
+            if (emptyWarband)
             {
                 Messages.Message("WAW.emptyBand".Translate(), MessageTypeDefOf.RejectInput, true);
                 result = false;
             }
+
             else
             {
                 bool flag2 = !this.cooldownManager.CanFireRaid();
@@ -68,7 +74,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                         }
                         else
                         {
-                            int cost = (int)PlayerWarbandArrangement.GetCost(this.warband.bandMembers);
+                            int cost = (int)PlayerWarbandArrangement.GetCostOriginal(this.warband.bandMembers);
                             bool flag5 = !WarbandUtil.TryToSpendSilver(Find.AnyPlayerHomeMap, cost);
                             if (flag5)
                             {
@@ -145,8 +151,40 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public void ExposeData()
         {
-            this.lootManager.ExposeData();
-            this.colorOverride.ExposeData();
+            this.lootManager?.ExposeData();
+            this.colorOverride?.ExposeData();
+            this.injuriesManager?.ExposeData();
+        }
+
+        public string GetInspectString()
+        {
+            var injuries = this.injuriesManager.GetInjuries();
+            var outString = "WAW.ActiveMembers".Translate();
+            foreach (var member in this.injuriesManager.GetActiveMembers(warband.bandMembers, injuries))
+            {
+                if (member.Value > 0)
+                    outString += "\n" + WarbandUtil.GetSoldierLabel(member.Key) + "(" + member.Value + ")";
+            }
+
+            outString += "\n" + "WAW.Injuries".Translate();
+            if (injuries.Count > 0)
+            {
+                outString += "WAW.RecoverIn".Translate(injuriesManager.GetRecoveryDays().ToString("0.0"));
+                foreach (var member in injuries)
+                {
+                    if (member.Value > 0)
+                        outString += "\n" + WarbandUtil.GetSoldierLabel(member.Key) + "(" + member.Value + ")";
+                }
+            }
+
+            if (!this.cooldownManager.CanFireRaid())
+            {
+                string cooldownString = "WAW.AvialableIn".Translate(GetRemainingDays().ToString("0.0"));
+                outString += "\n" + cooldownString;
+            }
+
+
+            return outString;
         }
 
         internal bool CanFireRaid()
@@ -159,20 +197,20 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             return this.cooldownManager.GetRemainingDays();
         }
 
+        internal void Tick()
+        {
+            this.injuriesManager?.Tick();
+        }
 
         private readonly Warband warband;
 
         public MapParent targetMapP;
 
         public DroppodUpgrade droppodUpgrade;
-
         public PlayerWarbandColorOverride colorOverride;
-
+        public PlayerWarbandInjuries injuriesManager;
         public PlayerWarbandLootManager lootManager;
-
         public PlayerWarbandCooldownManager cooldownManager;
-
-        //public PlayerWarbandResettleManager resettleManager;
 
         private static readonly int playerAttackRange = 10;
     }

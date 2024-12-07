@@ -47,8 +47,8 @@
   <WAW.InItems>直接发送物品</WAW.InItems>
   <WAW.InSilvers>以银子的形式发送</WAW.InSilvers>
   <WAW.ConfirmDestroyWarBand>您确定要移除该战团吗？</WAW.ConfirmDestroyWarBand>
-  <WAW.Configure>配置战团</WAW.Configure>
-  <WAW.Configure.Desc>重新安排这个战团</WAW.Configure.Desc>
+  <WAW.Configure>配置和招募战团</WAW.Configure>
+  <WAW.Configure.Desc>重新配置这个战团或者招募更多士兵</WAW.Configure.Desc>
   <WAW.PlaceLootBox>放置战利品箱</WAW.PlaceLootBox>
   <WAW.PlaceLootBox.Desc>将战利品箱放置在所需位置</WAW.PlaceLootBox.Desc>
   <WAW.emptyBand>空战团</WAW.emptyBand>
@@ -56,7 +56,7 @@
   <WAW.TransferContent.Desc>将内容转移到战团</WAW.TransferContent.Desc>
   <WAW.warbandRaidCooldown>玩家战团突袭冷却时间：{0} 天</WAW.warbandRaidCooldown>
   <WAW.warbandRaidCooldown.Desc>距离下一次玩家袭击还有多少天</WAW.warbandRaidCooldown.Desc>
-  <WAW.AvialableIn>可在：{0} 天后提供</WAW.AvialableIn>
+  <WAW.AvialableIn>在{0}天后可用</WAW.AvialableIn>
   <WAW.WaitForCooldown>抱歉，我们在接下来的 {0} 天内无法进行新的行动。</WAW.WaitForCooldown>
   <WAW.WarbandLoss>该战团已永久失去一名成员，请从招募窗口招募新成员。</WAW.WarbandLoss>
   <WAW.ResettleFee>重新安置费用：{0}</WAW.ResettleFee>
@@ -65,4 +65,19 @@
   <WAW.LostWarband>战团被摧毁</WAW.LostWarband>
   <WAW.LostWarband.Desc>所有人都死了，整个战团都被摧毁了。</WAW.LostWarband.Desc>
   <WAW.LeaveIn>将在 {0} 天后离开地图</WAW.LeaveIn>
+  <WAW.EmptyStorage>战团没有多余的物品</WAW.EmptyStorage>
+	<WAW.ColorOverride>颜色选择 </WAW.ColorOverride>
+	<WAW.ConfigWarband>确认更改</WAW.ConfigWarband>
+	<WAW.CustomizeCharacter>兵种编辑器</WAW.CustomizeCharacter>
+	<WAW.DisplayEquipped>显示已装备：</WAW.DisplayEquipped>
+	<WAW.NoCustomPawnKinds>没有自定义兵种，请添加新的自定义兵种</WAW.NoCustomPawnKinds>
+	<WAW.PawnKindName>兵种名称：</WAW.PawnKindName>
+	<WAW.AlienRace>外星人种族：{0}</WAW.AlienRace>
+	<WAW.ModsConflict>需要外星人mod</WAW.ModsConflict>
+	<WAW.ModsConflict.Desc>战团战争需要外星人框架（HAR）才能和CE一起运行</WAW.ModsConflict.Desc>
+	<WAW.tooltip>点击已装备的衣物以取消装备</WAW.tooltip>
+	<WAW.tooltip1>点击另外一件武器来取消当前的装备</WAW.tooltip1>
+	<WAW.Title>战团战争更新日志</WAW.Title>
+	<WAW.Desc>5/Dec/2024: 允许玩家创建兵种，这个面板可以通过主面板进入。\n玩家创建的兵种在兵种招募面板会显示为青色。</WAW.Desc>
+	<WAW.DontShowAgain>再也不显示这条消息：</WAW.DontShowAgain>
 </LanguageData>

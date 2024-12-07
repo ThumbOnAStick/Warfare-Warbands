@@ -10,6 +10,14 @@
 	<WAW.eventFrequency.Desc>frequency of new warbands spawning</WAW.eventFrequency.Desc>
 	<WAW.enableFactionDefeat>enable faction defeat</WAW.enableFactionDefeat>
 	<WAW.enableFactionDefeat.Desc>whether or not factions should be defeated depending on events of this mod.</WAW.enableFactionDefeat.Desc>
+	<WAW.maxPlayerWarband>max player warband: {0}</WAW.maxPlayerWarband>
+	<WAW.maxPlayerWarband.Desc>the max abount of warband player can create is {0} </WAW.maxPlayerWarband.Desc>
+	<WAW.warbandRaidCooldown>player warband raid cooldown: {0} days</WAW.warbandRaidCooldown>
+	<WAW.warbandRaidCooldown.Desc>How many days before next player raid</WAW.warbandRaidCooldown.Desc>
+	<WAW.raidPlayerWarbandChance>player warband raidded chance: {0}%</WAW.raidPlayerWarbandChance>
+	<WAW.raidPlayerWarbandChance.Desc>the chance of player warband being raidded every five days is {0}%.</WAW.raidPlayerWarbandChance.Desc>
+
+
 	<!--Gameplay-->
 	<WAW.Welcome>warband warfare</WAW.Welcome>
 	<WAW.Welcome.Desc>Thank you for playing this mod, for more information please refer to workshop page.</WAW.Welcome.Desc>
@@ -48,14 +56,12 @@
 	<WAW.InSilvers>send in the form of silvers</WAW.InSilvers>
 	<WAW.ConfirmDestroyWarBand>Are you sure you want to remove this warband?</WAW.ConfirmDestroyWarBand>
 	<WAW.Configure>configure warband</WAW.Configure>
-	<WAW.Configure.Desc>re-arrange this warband</WAW.Configure.Desc>
+	<WAW.Configure.Desc>re-arrange and recruit more troops for this warband</WAW.Configure.Desc>
 	<WAW.PlaceLootBox>place loot box</WAW.PlaceLootBox>
 	<WAW.PlaceLootBox.Desc>place a loot box on disired location</WAW.PlaceLootBox.Desc>
-	<WAW.emptyBand>empty warband</WAW.emptyBand>
+	<WAW.emptyBand>No one in this warband is able to fight.</WAW.emptyBand>
 	<WAW.TransferContent>transfer to warband</WAW.TransferContent>
 	<WAW.TransferContent.Desc>transfer contents to warband</WAW.TransferContent.Desc>
-	<WAW.warbandRaidCooldown>player warband raid cooldown: {0} days</WAW.warbandRaidCooldown>
-	<WAW.warbandRaidCooldown.Desc>How many days before next player raid</WAW.warbandRaidCooldown.Desc>
 	<WAW.AvialableIn>avialable in: {0} days</WAW.AvialableIn>
 	<WAW.WaitForCooldown>Sorry, we won't be avialable in next {0} days.</WAW.WaitForCooldown>
 	<WAW.WarbandLoss>This warband has permanently lost a member, recruit new from recruiting window.</WAW.WarbandLoss>
@@ -65,7 +71,6 @@
 	<WAW.LostWarband>warband destroyed</WAW.LostWarband>
 	<WAW.LostWarband.Desc>Everyone is dead, the entire warband is destroyed.</WAW.LostWarband.Desc>
 	<WAW.LeaveIn>will leave map in {0} days</WAW.LeaveIn>
-	<WAW.UpgradeWarband>upgrade warband</WAW.UpgradeWarband>
 	<WAW.EmptyStorage>The storage is empty</WAW.EmptyStorage>
 	<WAW.ColorOverride>color override: </WAW.ColorOverride>
 	<WAW.ConfigWarband>confirm changes</WAW.ConfigWarband>
@@ -74,4 +79,30 @@
 	<WAW.NoCustomPawnKinds>There's no custom pawnkinds, please create new.</WAW.NoCustomPawnKinds>
 	<WAW.PawnKindName>pawn kind name:</WAW.PawnKindName>
 	<WAW.AlienRace>Alien Race: {0}</WAW.AlienRace>
+	<WAW.ModsConflict>Need alien races mod</WAW.ModsConflict>
+	<WAW.ModsConflict.Desc>Warband Warfare mod requires Humanoid Alien Races(HAR) mod to run with Combat Extended, otherwise there will be bugs.</WAW.ModsConflict.Desc>
+	<WAW.tooltip>Re-select equipped apparel to unequip it.</WAW.tooltip>
+	<WAW.tooltip1>Select another weapon to unequip current weapon.</WAW.tooltip1>
+	<WAW.Title>Warband Warfare Update Log</WAW.Title>
+	<WAW.Desc>5/Dec/2024: Allows player to create custom troops, you can find troop customization panel in the main panel. 
+	\nAll player created troops will be displayed in cyan in troop selection panel.</WAW.Desc>
+	<WAW.DontShowAgain>Dont show this again:</WAW.DontShowAgain>
+	<WAW.ActiveMembers>Active Members:</WAW.ActiveMembers>
+	<WAW.Injuries>Injuries:</WAW.Injuries>
+	<WAW.DefenseSuccussful>Defense Successful</WAW.DefenseSuccussful>
+	<WAW.DefenseSuccussful.Desc>You have beaten an enemy assault, now plase retreat everyone and close warband map.</WAW.DefenseSuccussful.Desc>
+	<WAW.RecoverIn> (Recover in: {0} days)</WAW.RecoverIn>
+	<WAW.WarbandLeak>You cannot recruit more than {0} warbands, please go to the settings if you need more.</WAW.WarbandLeak>
+	<WAW.RaidPlayerWarband>warband ambushed</WAW.RaidPlayerWarband>
+	<WAW.RaidPlayerWarband.Desc>Your warbands are considered as a threat by {0} from {1} and they have decided to raid one of your warbands as a warning.
+	\nNow you will have to eliminate all threats before the map can be closed.
+	\n(You may try to cut the amount of your eatablished warbands or go to the settings to lower the rates of such events.)</WAW.RaidPlayerWarband.Desc>
+	<WAW.Surrounded>surrounded by hostiles</WAW.Surrounded>
+	<WAW.Surrounded.Desc>This warband is surrounded by hostile forces, and this warband member refuses to retreat, however you can still make them exit from map edge.</WAW.Surrounded.Desc>
+	<WAW.WarbandRecruiting>Warband(Recruiting)</WAW.WarbandRecruiting>
+	<WAW.RemainingDays>remaining days: {0} days</WAW.RemainingDays>
+	<WAW.WarbandCreated>warband creaetd</WAW.WarbandCreated>
+	<WAW.WarbandCreated.Desc>After days of recruiting members, your warband is set for a real fight.</WAW.WarbandCreated.Desc>
+	<WAW.Default>Default(${0})</WAW.Default>
+	<WAW.Immediate>Immediate(${0})</WAW.Immediate>
 </LanguageData>

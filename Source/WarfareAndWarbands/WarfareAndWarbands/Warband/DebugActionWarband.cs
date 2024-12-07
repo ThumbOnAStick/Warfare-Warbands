@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using Verse.AI.Group;
+using WarfareAndWarbands.Warband.PlayerWarbandRaid;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -43,6 +44,37 @@ namespace WarfareAndWarbands.Warband
             Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(SpawnForFactionTargetingBase), false);
 
         }
+
+        [DebugAction("WAW", "Raid Player Warband", actionType = DebugActionType.Action)]
+        public static void RaidPlayerWarband()
+        {
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
+            Find.WorldSelector.ClearSelection();
+            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(RaidPlayerWarband), false);
+
+        }
+
+        static bool RaidPlayerWarband(GlobalTargetInfo info)
+        {
+            if (info.WorldObject == null || !info.WorldObject.IsPlayerWarband())
+            {
+                return false;
+            }
+            IEnumerable<FloatMenuOption> opts = RaidPlayerOptions(info, info.WorldObject as Warband);
+            Find.WindowStack.Add(new FloatMenu(opts.ToList()));
+            return true;
+        }
+
+        private static IEnumerable<FloatMenuOption> RaidPlayerOptions(GlobalTargetInfo info, Warband playerWarband)
+        {
+            HashSet<Faction> valids = WarfareUtil.GetValidWarFactions().Where(x => x.HostileTo(Faction.OfPlayer)).ToHashSet();
+            foreach (Faction f in valids)
+            {
+                yield return new FloatMenuOption($"faction: {f.Name}", delegate { PlayerWarbandRaidUtil.RaidPlayer(f, playerWarband); });
+            }
+        }
+
+
 
         static bool SpawnForFaction(GlobalTargetInfo info)
         {

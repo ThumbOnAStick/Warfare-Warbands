@@ -3,6 +3,7 @@
 using CombatExtended;
 using RimWorld;
 using RimWorld.Planet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -130,7 +131,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             bool createNewRequest = Widgets.ButtonImage(newRequestRect, TexButton.NewFile);
             if (createNewRequest)
             {
-                string pawnKindName = $"playermadekinddef{Find.TickManager.TicksGame}";
+                string pawnKindName = Guid.NewGuid().ToString();
                 string pawnKindLabel = "NewCustom";
                 var customizationRequest = new CustomizationRequest(pawnKindName, pawnKindLabel);
                 GameComponent_Customization.Instance.AddPawnKindDefFromRequest(pawnKindName, pawnKindLabel, customizationRequest);
@@ -158,7 +159,6 @@ namespace WarfareAndWarbands.CharacterCustomization
             string label = Widgets.TextEntryLabeled(boxRect, "WAW.PawnKindName".Translate(), textBuffer);
             textBuffer = label;
             selectedRequest.label = label;
-
         }
 
         void DrwaXenoType(Rect inRect)
@@ -250,9 +250,11 @@ namespace WarfareAndWarbands.CharacterCustomization
                 DrawEquipment(weaponRect, selectedRequest.weaponRequest, SelectionType.weapons);
 
 
+
             }
 
         }
+
 
         void DrawSearchBar(Rect selectionPanelBar)
         {
@@ -308,7 +310,6 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
 
         void DrawSelectorItem(Rect rect, ThingDef item)
         {
-
             string graphicPath = item.graphicData.texPath;
             Texture2D itemTex = item.graphicData.graphicClass == typeof(Graphic_Multi) || item.graphicData.graphicClass == typeof(Graphic_StackCount)
                 ? null : ContentFinder<Texture2D>.Get(graphicPath);
@@ -322,9 +323,9 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
 
             Rect labelRect = new Rect(rect.xMax + 5, rect.y, 80, rect.height);
             Widgets.Label(labelRect, item.label);
-
-            bool selectBodyGroup = Widgets.ButtonImage(rect, itemTex);
-            if (selectBodyGroup)
+            DrawApparelTooltip(rect);
+            bool selectEquipment = Widgets.ButtonImage(rect, itemTex);
+            if (selectEquipment)
             {
                 if (selectionType != SelectionType.weapons)
                 {
@@ -343,7 +344,25 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
                 }
                 UpdatePawnKindDef();
             }
+        }
 
+        void DrawApparelTooltip(Rect rect)
+        {
+            string tooltip;
+            if (selectionType != SelectionType.weapons)
+            {
+                tooltip = "WAW.tooltip".Translate();
+            }
+            else
+            {
+                tooltip = "WAW.tooltip1".Translate();
+
+            }
+            if (Mouse.IsOver(rect))
+            {
+                Widgets.DrawHighlight(rect);
+            }
+            TooltipHandler.TipRegion(rect, tooltip);
         }
 
         public override void Close(bool doCloseSound = true)
@@ -370,39 +389,53 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
                 SelectList(selectionType);
             }
 
+            if(selectionType != SelectionType.weapons)
+            {
+                Rect labelRect = new Rect(rect.xMax - 20, rect.yMax - 20, 25, 25);
+                Widgets.Label(labelRect, $"+{CurrentSelectionWorn(selectionType).Count()}".Colorize(Color.cyan));
+
+            }
         }
 
+        public List<ThingDef> ReturnSelectedList(SelectionType selectionType = SelectionType.none)
+        {
+            if (selectionType == SelectionType.none)
+            {
+                return null;
+            }
+            if (selectionType == SelectionType.head)
+            {
+                return apparelHeadsCache;
+            }
+            else if (selectionType == SelectionType.top)
+            {
+                return apparelTopsCache;
+            }
+            else if (selectionType == SelectionType.bottom)
+            {
+                return apparelBottomsCache;
+            }
+            else if (selectionType == SelectionType.utils)
+            {
+                return apparelUtilsCache;
+            }
+            else
+            {
+                return weaponsCache;
+            }
+        }
+
+        IEnumerable<ThingDef> CurrentSelectionWorn(SelectionType type)
+        {
+            return ReturnSelectedList(type).Where(x => selectedRequest.apparelRequests.Any(a => a.defName == x.defName));
+        }
 
 
         void SelectList(SelectionType selectionType = SelectionType.none)
         {
             scrollPosition1 = new Vector2();
             this.selectionType = selectionType;
-            if (selectionType == SelectionType.none)
-            {
-                return;
-            }
-            if (selectionType == SelectionType.head)
-            {
-                selectedList = apparelHeadsCache;
-            }
-            else if (selectionType == SelectionType.top)
-            {
-                selectedList = apparelTopsCache;
-            }
-            else if (selectionType == SelectionType.bottom)
-            {
-                selectedList = apparelBottomsCache;
-            }
-            else if (selectionType == SelectionType.utils)
-            {
-                selectedList = apparelUtilsCache;
-            }
-            else
-            {
-                selectedList = weaponsCache;
-            }
-
+            selectedList = ReturnSelectedList(selectionType);
         }
 
 
@@ -434,14 +467,16 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
         {
             if (apparel.apparel == null)
                 return false;
-            return apparel.apparel.bodyPartGroups.Any(b => b.defName == "Torso");
+            return apparel.apparel.bodyPartGroups.Any(b => b.defName == "Torso" || b.defName == "Hands" ||
+            b.defName == "Shoulders");
         }
 
         bool IsBottomGear(ThingDef apparel)
         {
             if (apparel.apparel == null)
                 return false;
-            return apparel.apparel.bodyPartGroups.Any(b => b.defName == "Legs") &&
+            return (apparel.apparel.bodyPartGroups.Any(b => b.defName == "Legs") ||
+                apparel.apparel.bodyPartGroups.Any(b => b.defName == "Feet")) &&
                 !apparel.apparel.bodyPartGroups.Any(b => b.defName == "Torso");
         }
 

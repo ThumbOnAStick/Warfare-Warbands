@@ -107,9 +107,21 @@ namespace WarfareAndWarbands
 
         public static HashSet<Faction> GetValidWarFactions()
         {
-            return Find.FactionManager.AllFactions.Where(f => IsValidWarFaction(f)).ToHashSet();
+            if (Find.FactionManager.AllFactions.Any(f => IsValidWarFaction(f)))
+                return Find.FactionManager.AllFactions.Where(f => IsValidWarFaction(f)).ToHashSet();
+            return new HashSet<Faction>();
+        }
+        public static HashSet<Faction> GetValidHostileWarFactions()
+        {
+            if (Find.FactionManager.AllFactions.Any(f => IsValidHostileWarFaction(f)))
+                return Find.FactionManager.AllFactions.Where(f => IsValidHostileWarFaction(f)).ToHashSet();
+            return new HashSet<Faction>();
         }
 
+        public static bool IsValidHostileWarFaction(Faction f)
+        {
+            return !f.IsPlayer && !f.defeated && !f.Hidden && f.HostileTo(Faction.OfPlayer);
+        }
         public static bool IsValidWarFaction(Faction f)
         {
             return !f.IsPlayer && !f.defeated && !f.Hidden;
@@ -133,25 +145,11 @@ namespace WarfareAndWarbands
 
         public static void SpawnWarbandTargetingBase(Faction f, GlobalTargetInfo info)
         {
-            List<SitePartDef> sitePartList = new List<SitePartDef>
-            {
-                DefDatabase<SitePartDef>.GetNamed("Outpost")
-            };
-            List<SitePartDefWithParams> sitePartDefsWithParams;
-            SiteMakerHelper.GenerateDefaultParams(0f, info.Tile, f, sitePartList, out sitePartDefsWithParams);
-            var warband = (Warband.Warband)WorldObjectMaker.MakeWorldObject(WAWDefof.WAW_Warband);
             TileFinder.TryFindNewSiteTile(out int warbandTile, 3, 7, false, TileFinderMode.Near, info.Tile);
-            warband.Tile = warbandTile;
-            warband.SetFaction(f);
-            warband.npcWarbandManager.SetTargetTile(info.Tile);
-            if (sitePartDefsWithParams != null)
-            {
-                foreach (SitePartDefWithParams sitePart in sitePartDefsWithParams)
-                {
-                    warband.AddPart(new SitePart(warband, sitePart.def, sitePart.parms));
-                }
-            }
-            Find.WorldObjects.Add(warband);
+            Warband.Warband generated = WarbandUtil.SpawnWarband(f, warbandTile);
+            generated.SetFaction(f);
+            generated.npcWarbandManager?.SetTargetTile(info.Tile);
+
         }
 
     }

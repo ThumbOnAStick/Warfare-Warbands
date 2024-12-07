@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using WarfareAndWarbands.CharacterCustomization;
+using WarfareAndWarbands.Warband.PlayerWarbandRaid;
 using WarfareAndWarbands.Warband.WarbandComponents;
 
 namespace WarfareAndWarbands.Warband.UI
@@ -32,12 +33,12 @@ namespace WarfareAndWarbands.Warband.UI
         public static Command OrderWarbandToAttackCommand(Warband band)
         {
             Command_Action command_Action = new Command_Action();
-            command_Action.defaultLabel = "WAW.OrderAttack".Translate() + $"(${(int)PlayerWarbandArrangement.GetCost(band.bandMembers)})";
+            command_Action.defaultLabel = "WAW.OrderAttack".Translate() + $"(${(int)PlayerWarbandArrangement.GetCostOriginal(band.bandMembers)})";
             command_Action.defaultDesc = "WAW.OrderAttack.Desc".Translate();
             command_Action.icon = TexCommand.Attack;
             command_Action.action = delegate ()
             {
-                band.playerWarbandManager.OrderPlayerWarbandToAttack();
+                band.playerWarbandManager?.OrderPlayerWarbandToAttack();
             };
             command_Action.Order = 3000f;
             return command_Action;
@@ -45,7 +46,7 @@ namespace WarfareAndWarbands.Warband.UI
         public static Command WithdrawWarbandItems(Warband band)
         {
             Command_Action command_Action = new Command_Action();
-            command_Action.Disabled = band.playerWarbandManager.lootManager.GetLootCount() < 1;
+            command_Action.Disabled = LootDisabled(band);
             command_Action.disabledReason = "WAW.EmptyStorage".Translate();
             command_Action.defaultLabel = "WAW.WarbandWithdraw".Translate();
             command_Action.defaultDesc = "WAW.WarbandWithdraw.Desc".Translate();
@@ -57,6 +58,11 @@ namespace WarfareAndWarbands.Warband.UI
             };
             command_Action.Order = 3000f;
             return command_Action;
+        }
+
+        static bool LootDisabled(Warband band)
+        {
+            return band.playerWarbandManager==null || band.playerWarbandManager.lootManager==null || band.playerWarbandManager.lootManager.GetLootCount() < 1;
         }
         public static Command ResetRaidCooldown(Warband band)
         {
@@ -136,7 +142,9 @@ namespace WarfareAndWarbands.Warband.UI
         {
             Command_Action command_Action = new Command_Action();
             command_Action.defaultLabel = "WAW.Retreat".Translate();
-            command_Action.defaultDesc = "WAW.Retreat.Desc".Translate();
+            command_Action.defaultDesc = CannotRetreat(comp.Mercenary)? "WAW.Surrounded.Desc".Translate() : "WAW.Retreat.Desc".Translate();
+            command_Action.disabledReason = "WAW.Surrounded".Translate();
+            command_Action.Disabled = CannotRetreat(comp.Mercenary);
             command_Action.icon = TexUI.RotLeftTex;
             command_Action.action = delegate ()
             {
@@ -145,6 +153,7 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.Order = 3000f;
             return command_Action;
         }
+
         public static Command PlaceLootChest(Warband warband)
         {
             Command_Action command_Action = new Command_Action
@@ -203,6 +212,14 @@ namespace WarfareAndWarbands.Warband.UI
             string label = GameComponent_Customization.Instance.customizationRequests.Any(x => x.defName == p.defName) ?
         p.label.Colorize(FactionDefOf.PlayerColony.DefaultColor) : p.label;
             return label;   
+        }
+
+        static bool CannotRetreat(Pawn p)
+        {
+            return 
+                p.MapHeld != null &&
+                p.MapHeld.GetComponent<MapComponent_WarbandRaidTracker>() !=null &&
+                !p.MapHeld.GetComponent<MapComponent_WarbandRaidTracker>().LtterSent();
         }
     }
 }

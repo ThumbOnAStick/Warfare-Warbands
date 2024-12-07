@@ -16,20 +16,13 @@ namespace WarfareAndWarbands.Warband.Mercenary
         public static List<Pawn> GenerateWarbandPawns(Warband warband)
         {
             List<Pawn> list = new List<Pawn>();
-            foreach (var ele in warband.bandMembers)
+            var members = warband.Faction == Faction.OfPlayer ? warband.playerWarbandManager.injuriesManager.GetActiveMembers(warband.bandMembers) : warband.bandMembers;
+            foreach (var ele in members)
             {
                 for (int i = 0; i < ele.Value; i++)
                 {
-                    try
-                    {
-                        GenerateWarbandPawnForPlayer(warband, ele.Key);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Message($"Error while trying to generate Player warband:{e.StackTrace}");
-                    }
                     Pawn pawn = warband.Faction == Faction.OfPlayer ? GenerateWarbandPawnForPlayer(warband, ele.Key) : GenerateWarbandPawnForNPC(warband, ele.Key);
-                    if (SetMercenaryComp(pawn, warband, ele.Key))
+                    if (SetMercenaryComp(pawn, warband, ele.Key, warband.Faction))
                         list.Add(pawn);
                 }
 
@@ -101,7 +94,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
         }
 
 
-        public static bool SetMercenaryComp(Pawn pawn, Warband warband, string pawnKindName)
+        public static bool SetMercenaryComp(Pawn pawn, Warband warband, string pawnKindName, Faction faction = null)
         {
             CompMercenary comp = pawn.TryGetComp<CompMercenary>();
             if (comp == null)
@@ -112,6 +105,12 @@ namespace WarfareAndWarbands.Warband.Mercenary
                 comp.ServesPlayerFaction = true;
             comp.SetWarband(warband);
             comp.SetServingFaction(warband.Faction);
+            comp.SetRetreat(false);
+            comp.ResetDuration();   
+            if(faction != null)
+            {
+                comp.SetServingFaction(faction);
+            }
             comp.SetPawnKindName(pawnKindName);
             return true;
         }

@@ -12,7 +12,7 @@ using WarfareAndWarbands.Warband;
 
 namespace WarfareAndWarbands.Warfare.UI
 {
-    internal class WAWUI
+    internal static class WAWUI
     {
         public static void DoWindowContents(Rect inRect, Window window, Map map)
         {
