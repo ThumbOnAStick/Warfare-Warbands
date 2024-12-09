@@ -2,8 +2,8 @@
 <LanguageData>
 	<!--Gameplay-->
 	<WAW.Welcome>warband warfare</WAW.Welcome>
-	<WAW.Welcome.Desc>Thank you for playing this mod, for more information please refer to workshop
-		page.</WAW.Welcome.Desc>
+	<WAW.Welcome.Desc>Thank you for playing this mod, for more information please refer to workshop page. 
+	\nIf you want to report bugs please goto the bug reproting thread in the workshop</WAW.Welcome.Desc>
 	<OpenFactionInformationTab>Open faction information tab</OpenFactionInformationTab>
 	<factionLosing>This faction is losing the war, sooner or later they will collpase.</factionLosing>
 	<factionStrikeToSurvive>This faction barely stands, they have suffered from continues military
@@ -20,7 +20,7 @@
 	<WAW.FarObject>we cannot reach that far, sir, ten tiles for the most.</WAW.FarObject>
 	<WAW.CantAfford>insufficient funds</WAW.CantAfford>
 	<WAW.EmptyWarband>There's nothing to withdraw.</WAW.EmptyWarband>
-	<WAW.emptyBand>No one in this warband is able to fight.</WAW.emptyBand>
+	<WAW.NoMembers>No one in this warband is able to fight.</WAW.NoMembers>
 	<WAW.WaitForCooldown>Sorry, we won't be avialable in next {0} days.</WAW.WaitForCooldown>
 	<WAW.WarbandLoss>This warband has permanently lost a member, recruit new from recruiting window.</WAW.WarbandLoss>
 	<WAW.ResettleFee>Cost to resettle: {0}</WAW.ResettleFee>
@@ -58,5 +58,11 @@
 	<WAW.LeaderSet>leader Set</WAW.LeaderSet>
 	<WAW.LeaderSet.Desc>{0} has become the leader of a warband, the warband will stay alive as long as {2} is alive, you can still send {1} back by dismissing the warband.</WAW.LeaderSet.Desc>
 	<WAW.WeakBand>There should be at least five members.</WAW.WeakBand>
-
+	<WAW.NoComms>There's no powered comms console in your colony.</WAW.NoComms>
+	<WAW.CaravanWarband>about: warband establishment</WAW.CaravanWarband>
+	<WAW.CaravanWarband.Desc>If you are never going to build a comms console, you will have to use a cravan to create a warband and make one colonist the leader of the warband, before doing that, make sure the caravan has enough silvers.</WAW.CaravanWarband.Desc>
+	<WAW.AboutAssignLeader>About: Assign Leader</WAW.AboutAssignLeader>
+	<WAW.AboutAssignLeader.Desc>You can assign a leader for this newly crated warband, to do this, you only need a caravan that can approach the warband site.</WAW.AboutAssignLeader.Desc>
+	<WAW.AboutQuickAttack>About: Raid Shortcut</WAW.AboutQuickAttack>
+	<WAW.AboutQuickAttack.Desc>You can access raid shortcut window through the main mod panel, it makes it easier to select from active warbands.</WAW.AboutQuickAttack.Desc>
 </LanguageData>

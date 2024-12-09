@@ -10,4 +10,8 @@
 	<WAW.ConfigWarband>confirm changes</WAW.ConfigWarband>
 	<WAW.PawnKindName>pawn kind name:</WAW.PawnKindName>
 	<WAW.NoCustomPawnKinds>There's no custom pawnkinds, please create new.</WAW.NoCustomPawnKinds>
+	<WAW.RenameWarband>Rename Warband</WAW.RenameWarband> 	
+	<WAW.QuickRaid>Raid Shortcut Window</WAW.QuickRaid>
+	<WAW.YouCanRename>Do you know you can rename warbands?</WAW.YouCanRename>
+	<WAW.ZeroFound>There's no active warband that can raid.</WAW.ZeroFound>
 </LanguageData>

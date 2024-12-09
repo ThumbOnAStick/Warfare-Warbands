@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using Verse;
 using Verse.Sound;
 using WarfareAndWarbands.CharacterCustomization;
@@ -18,15 +19,20 @@ namespace WarfareAndWarbands.Warband
     {
         static WarbandUtil()
         {
-            AllPlayerWarbandsCache = new HashSet<WorldObject>();
+            AllPlayerWarbandsCache = new HashSet<Warband>();
+            AllPlayerRecruitingWarbandsCache = new HashSet<WorldObject_WarbandRecruiting>();
+
             RefreshSoldierPawnKinds();
         }
 
-        public static HashSet<WorldObject> AllPlayerWarbandsCache;
+        public static HashSet<Warband> AllPlayerWarbandsCache;
+        public static HashSet<WorldObject_WarbandRecruiting> AllPlayerRecruitingWarbandsCache;
+
 
         public static void RefreshAllPlayerWarbands()
         {
             AllPlayerWarbandsCache = AllPlayerWarbands().ToHashSet();
+            AllPlayerRecruitingWarbandsCache = AllPlayerRecruitingWarbands().ToHashSet();
         }
 
         public static void RefreshSoldierPawnKinds()
@@ -48,20 +54,57 @@ namespace WarfareAndWarbands.Warband
             return AllPlayerWarbandsCount() < WAWSettings.maxPlayerWarband;
         }
 
-        public static IEnumerable<WorldObject> AllPlayerWarbands()
+        public static IEnumerable<Warband> AllPlayerWarbands()
         {
-            var predicate = new Func<WorldObject, bool>(x => (x as Warband != null || x as WorldObject_WarbandRecruiting != null)
+            var predicate = new Func<WorldObject, bool>(x => (x as Warband != null)
             && x.Faction == Faction.OfPlayer);
             if (Find.WorldObjects.AllWorldObjects.Any(predicate))
-                return Find.WorldObjects.AllWorldObjects.Where(predicate);
-            return new HashSet<WorldObject>();
+            {
+                HashSet<Warband> result = new HashSet<Warband>();
+                var list = Find.WorldObjects.AllWorldObjects.Where(predicate);
+                foreach(var ele in list)
+                {
+                    result.Add(ele as Warband);
+                }
+                return result;
+            }
+            return new HashSet<Warband>();
+        }
+
+        public static IEnumerable<WorldObject_WarbandRecruiting> AllPlayerRecruitingWarbands()
+        {
+            var predicate = new Func<WorldObject, bool>(x => (x as WorldObject_WarbandRecruiting != null)
+            && x.Faction == Faction.OfPlayer);
+            if (Find.WorldObjects.AllWorldObjects.Any(predicate))
+            {
+                HashSet<WorldObject_WarbandRecruiting> result = new HashSet<WorldObject_WarbandRecruiting>();
+                var list = Find.WorldObjects.AllWorldObjects.Where(predicate);
+                foreach (var ele in list)
+                {
+                    result.Add(ele as WorldObject_WarbandRecruiting);
+                }
+                return result;
+            }
+            return new HashSet<WorldObject_WarbandRecruiting>();
         }
 
 
+
+        public static IEnumerable<Warband> AllActivePlayerWarbands()
+        {
+            if(AllPlayerWarbandsCache == null)
+            {
+                RefreshAllPlayerWarbands();
+            }
+            var predicate = new Func<Warband, bool>(x => x.playerWarbandManager.cooldownManager.CanFireRaid());
+            if (AllPlayerWarbandsCache.Any(predicate))
+                return AllPlayerWarbandsCache.Where(predicate);
+            return new HashSet<Warband>();
+        }
+
         public static int AllPlayerWarbandsCount()
         {
-            return Find.WorldObjects.AllWorldObjects.Count(x => (x as Warband != null || x as WorldObject_WarbandRecruiting != null)
-            && x.Faction == Faction.OfPlayer);
+            return AllPlayerWarbandsCache.Count() + AllPlayerRecruitingWarbandsCache.Count();
         }
 
         public static List<PawnKindDef> SoldierPawnKinds()
@@ -107,6 +150,20 @@ namespace WarfareAndWarbands.Warband
             return warband;
         }
 
+        public static Warband SpawnWarband(Faction f, int tile, Color colorOverride)
+        {
+            var result = SpawnWarband(f, tile);
+            result?.playerWarbandManager?.colorOverride?.SetColorOverride(colorOverride);   
+            return result; 
+        }
+        public static Warband SpawnWarband(Faction f, int tile, Color colorOverride, Pawn leader)
+        {
+            var result = SpawnWarband(f, tile);
+            result?.playerWarbandManager?.colorOverride?.SetColorOverride(colorOverride);
+            result?.playerWarbandManager?.leader?.AssignLeader(leader);
+            return result;
+        }
+
         public static Warband SpawnWarband(Faction f, int tile)
         {
             List<SitePartDef> sitePartList;
@@ -144,6 +201,7 @@ namespace WarfareAndWarbands.Warband
                 }
             }
             Find.WorldObjects.Add(warband);
+            TryToSendLeaderLetter();
             return warband;
         }
 
@@ -207,6 +265,29 @@ namespace WarfareAndWarbands.Warband
             return caravan;
         }
 
+        public static void TryToSendLeaderLetter()
+        {
+            if (!GameComponent_WAW.Instance.EverAssignedLeader())
+            {
+                var label = "WAW.AboutAssignLeader".Translate();
+                var desc = "WAW.AboutAssignLeader.Desc".Translate();
+                Letter letter = LetterMaker.MakeLetter(label, desc, LetterDefOf.NeutralEvent);
+                Find.LetterStack.ReceiveLetter(letter);
+            }
+        }
+
+
+        public static void TryToSendQuickAttackLetter()
+        {
+            if (!GameComponent_WAW.Instance.EverUsedQuickRaid())
+            {
+                var label = "WAW.AboutQuickAttack".Translate();
+                var desc = "WAW.AboutQuickAttack.Desc".Translate();
+                Letter letter = LetterMaker.MakeLetter(label, desc, LetterDefOf.NeutralEvent);
+                Find.LetterStack.ReceiveLetter(letter);
+            }
+        }
+
         public static void ReArrangePlayerWarband(Warband playerWarband)
         {
             if (!playerWarband.playerWarbandManager.cooldownManager.CanFireRaid())
@@ -221,7 +302,7 @@ namespace WarfareAndWarbands.Warband
 
         }
 
-        public static bool TryToSpendSilver(Map currentMap, int cost)
+        public static bool TryToSpendSilverFromColony(Map currentMap, int cost)
         {
             if (cost <= 0)
             {

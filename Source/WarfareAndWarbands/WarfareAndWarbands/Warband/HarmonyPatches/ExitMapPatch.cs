@@ -26,7 +26,8 @@ namespace WarfareAndWarbands.Warband.HarmonyPatches
             if (comp != null && comp.ServesPlayerFaction == true)
             {
                 comp.ServesPlayerFaction = false;
-                __instance.SetFaction(Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband));
+                if (__instance.Faction != Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband))
+                    __instance.SetFaction(Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband));
                 __instance.DeSpawn();
             }
         }

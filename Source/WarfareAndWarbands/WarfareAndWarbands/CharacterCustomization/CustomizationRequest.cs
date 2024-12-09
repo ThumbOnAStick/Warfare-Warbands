@@ -47,8 +47,8 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         public void CustomizePawn(ref Pawn p)
         {
-            GenerateWeapon(ref p);
-            GenerateApparels(ref p);
+            GenerateWeaponFor(ref p);
+            GenerateApparelsFor(ref p);
             SetXenoForPawn(ref p);
         }
 
@@ -62,10 +62,7 @@ namespace WarfareAndWarbands.CharacterCustomization
         {
             return ModsConfig.IsActive("erdelf.HumanoidAlienRaces");
         }
-        bool CEActive()
-        {
-            return ModsConfig.IsActive("CETeam.CombatExtended");
-        }
+
         public int GetMarketValue()
         {
             int apparelValue = GetApperalValue();
@@ -94,17 +91,12 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         public int GetApperalValue()
         {
-            return apparelRequests.Sum(GetThingValue);
+            return (int)GenerateApparels().Sum(x => x.MarketValue);
         }
 
         public int GetWeaponValue()
         {
-            return weaponRequest == null ? 0 : (int)weaponRequest.BaseMarketValue;
-        }
-
-        public int GetThingValue(ThingDef def)
-        {
-            return (int)def.BaseMarketValue;
+            return weaponRequest == null ? 0 : (int)GenerateWeapon().MarketValue;
         }
 
         public SimpleCurve CombatPowerCurve()
@@ -121,25 +113,67 @@ namespace WarfareAndWarbands.CharacterCustomization
             return curve;
         }
 
-        public ThingWithComps GenerateWeapon(ref Pawn p)
+
+        public ThingWithComps GenerateWeapon()
         {
             if (this.weaponRequest == null)
             {
                 return null;
             }
-            ThingDef stuff = GetStuff(weaponRequest);
+            var stuff = GetStuff(weaponRequest);
             ThingWithComps weapon = (ThingWithComps)ThingMaker.MakeThing(weaponRequest, stuff);
             weapon.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
-            p.equipment?.DestroyAllEquipment();
-            p.equipment?.AddEquipment(weapon);         
             return weapon;
         }
+
+        public ThingWithComps GenerateWeaponFor(ref Pawn p)
+        {
+            var weapon = GenerateWeapon();
+            p.equipment?.DestroyAllEquipment();
+            p.equipment?.AddEquipment(weapon);
+            return weapon;
+        }
+
+        public List<ThingWithComps> GenerateApparelsFor(ref Pawn p)
+        {
+            List<ThingWithComps> result = new List<ThingWithComps>();
+            p.apparel?.DestroyAll();
+            foreach (ThingDef apparelRequest in apparelRequests)
+            {
+                ThingDef stuff = GetStuff(apparelRequest);
+                Apparel apparel = (Apparel)ThingMaker.MakeThing(apparelRequest, stuff);
+                apparel.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
+                p.apparel.Wear(apparel);
+                result.Add(apparel);
+            }
+
+            return result;
+        }
+        public List<ThingWithComps> GenerateApparels()
+        {
+            List<ThingWithComps> result = new List<ThingWithComps>();
+            foreach (ThingDef apparelRequest in apparelRequests)
+            {
+                ThingDef stuff = GetStuff(apparelRequest);
+                Apparel apparel = (Apparel)ThingMaker.MakeThing(apparelRequest, stuff);
+                apparel.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
+                result.Add(apparel);
+            }
+
+            return result;
+        }
+
+
 
         public ThingDef GetStuff(ThingDef def)
         {
             if (!def.MadeFromStuff)
             {
                 return null;
+            }
+            if (this.itemAndStuff == null)
+            {
+                this.itemAndStuff = new Dictionary<ThingDef, ThingDef>();
             }
             if (this.itemAndStuff.ContainsKey(def) && itemAndStuff[def] != null)
             {
@@ -161,21 +195,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             }
         }
 
-        public List<ThingWithComps> GenerateApparels(ref Pawn p)
-        {
-            List<ThingWithComps> result = new List<ThingWithComps>();
-            p.apparel?.DestroyAll();
-            foreach (ThingDef apparelRequest in apparelRequests)
-            {
-                ThingDef stuff = GetStuff(apparelRequest);
-                Apparel apparel = (Apparel)ThingMaker.MakeThing(apparelRequest, stuff);
-                apparel.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
-                p.apparel.Wear(apparel);
-                result.Add(apparel);
-            }
 
-            return result;
-        }
 
 
         public XenotypeDef TryGetXeno()

@@ -6,16 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using UnityEngine;
 
 namespace WarfareAndWarbands.Warband.WarbandRecruiting
 {
     internal static class WarbandRecruitingUtil
     {
 
-        public static bool SpawnRecruitingWarband(GlobalTargetInfo target)
+        public static bool SpawnRecruitingWarband(GlobalTargetInfo target, Pawn leader = null)
         {
-            return SpawnRecruitingWarband(target.Tile) != null;
+            var result = SpawnRecruitingWarband(target.Tile);
+            if (leader != null)
+                result?.AssignLeader(leader, leader.GetCaravan());
+            return result != null;
         }
+
         public static WorldObject_WarbandRecruiting SpawnRecruitingWarband(int tile)
         {
             if (!WarbandUtil.CanPlaceMoreWarbands())
@@ -33,9 +38,12 @@ namespace WarfareAndWarbands.Warband.WarbandRecruiting
             var warband = (WorldObject_WarbandRecruiting)WorldObjectMaker.MakeWorldObject(WAWDefof.WAW_WarbandRecruiting);
             warband.Tile = tile;
             warband.SetFaction(Faction.OfPlayer);
+            warband.SetColorOverride();
             Find.WorldObjects.Add(warband);
+            WarbandUtil.TryToSendLeaderLetter();
             return warband;
         }
+
 
         static bool EmptyWarbandArrangement()
         {

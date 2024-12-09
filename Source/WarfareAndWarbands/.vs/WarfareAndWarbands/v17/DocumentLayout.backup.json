@@ -3,156 +3,164 @@
   "WorkspaceRootPath": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\npcwarbandmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\npcwarbandmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\warfareandwarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\leader\\playerwarbandleaderutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\leader\\playerwarbandleaderutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandcooldownmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandcooldownmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandcoloroverride.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandcoloroverride.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandlootmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandlootmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandresettlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandresettlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\playerwarbandraid\\playerwarbandraidutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\playerwarbandraid\\playerwarbandraidutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\ui\\window_arrangewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\ui\\window_arrangewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\playerwarbandraid\\gamecomponent_playerwarbandraidmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\playerwarbandraid\\gamecomponent_playerwarbandraidmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\mercenary\\compmercenary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\mercenary\\compmercenary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\mercenary\\mercenaryutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\mercenary\\mercenaryutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\harmonypatches\\exitmappatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\harmonypatches\\exitmappatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\warfareandwarbands\\warfareandwarbands\\quickraid\\ui\\window_quickraid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\quickraid\\ui\\window_quickraid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\charactercustomization\\ui\\window_customization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\charactercustomization\\ui\\window_customization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\charactercustomization\\gamecomponent_customization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\charactercustomization\\gamecomponent_customization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warfare\\ui\\wawui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warfare\\ui\\wawui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\charactercustomization\\customizationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\charactercustomization\\customizationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\charactercustomization\\customizationutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\charactercustomization\\customizationutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\harmonypatches\\gethomefactionpatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\harmonypatches\\gethomefactionpatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\harmonypatches\\worldobjectgizmospatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\harmonypatches\\worldobjectgizmospatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\warfareandwarbands\\warfareandwarbands\\warband\\playerwarbandarrangement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\playerwarbandarrangement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\ui\\warbandui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\ui\\warbandui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\playerwarbandarrangement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\playerwarbandarrangement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\warfareandwarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\leader\\playerwarbandleader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\leader\\playerwarbandleader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\npcwarbandmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\npcwarbandmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warfare\\warfareutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warfare\\warfareutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\wawsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\wawsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\wawharmony.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\wawharmony.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\wawdefof.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\wawdefof.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\injuries\\playerwarbandrecoverygroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\injuries\\playerwarbandrecoverygroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandcoloroverride.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandcoloroverride.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\injuries\\playerwarbandinjuries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\injuries\\playerwarbandinjuries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandcooldownmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandcooldownmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\transportpodsarrivalaction_spawnwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\transportpodsarrivalaction_spawnwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandresettlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandresettlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\playerwarbandraid\\mapcomponent_warbandraidtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\playerwarbandraid\\mapcomponent_warbandraidtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandlootmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\playerwarbandlootmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\worldobjectcomp_playerwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\worldobjectcomp_playerwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\worldobjectcompproperties_playerwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\worldobjectcompproperties_playerwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\warfareandwarbands\\warfareandwarbands\\warband\\gamecomponent_warband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\gamecomponent_warband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandrecruiting\\warbandrecruitingutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandrecruiting\\warbandrecruitingutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandrecruiting\\debugaction_warbandrecruiting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandrecruiting\\debugaction_warbandrecruiting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\wawtex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandrecruiting\\warbandrecruitingutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandrecruiting\\warbandrecruitingutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\worldobjectcompproperties_playerwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\worldobjectcompproperties_playerwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\debugactionwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\debugactionwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\gamecomponent_warband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\gamecomponent_warband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\wawcaravan\\harmonypatches\\caravangizmospatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\wawcaravan\\harmonypatches\\caravangizmospatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\mercenary\\mercenaryutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\mercenary\\mercenaryutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\mercenary\\compmercenary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\mercenary\\compmercenary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\harmonypatches\\exitmappatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\harmonypatches\\exitmappatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\wawcaravan\\ui\\wawcaravanui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\wawcaravan\\ui\\wawcaravanui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\wawcaravan\\caravanwarbandutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\wawcaravan\\caravanwarbandutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\wawcaravan\\ui\\window_arrangewarband_caravan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\wawcaravan\\ui\\window_arrangewarband_caravan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warfare\\gamecomponent_waw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warfare\\gamecomponent_waw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\playerwarbandraid\\playerwarbandraidutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\playerwarbandraid\\playerwarbandraidutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\lootchest\\complootchest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\lootchest\\complootchest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\lootchest\\compproperties_lootchest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\lootchest\\compproperties_lootchest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\ui\\window_arrangewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\ui\\window_arrangewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\wawsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\wawsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandupdates\\droppodupgrade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandupdates\\droppodupgrade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\playerwarbandraid\\mapcomponent_warbandraidtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\playerwarbandraid\\mapcomponent_warbandraidtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\playerwarbandraid\\gamecomponent_playerwarbandraidmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\playerwarbandraid\\gamecomponent_playerwarbandraidmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\warfareandwarbands\\warfareandwarbands\\wawtex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\wawtex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\misc\\window_wawupdatelog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\misc\\window_wawupdatelog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\injuries\\playerwarbandrecoverygroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\injuries\\playerwarbandrecoverygroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\leader\\playerwarbandleaderutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\leader\\playerwarbandleaderutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\leader\\playerwarbandleader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\leader\\playerwarbandleader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\ui\\dialog_setcustomname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\ui\\dialog_setcustomname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\ui\\window_rearrangewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -163,23 +171,47 @@
       "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandrecruiting\\worldobject_warbandrecruiting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandupdates\\droppodupgrade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandupdates\\droppodupgrade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warfare\\warfareutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warfare\\warfareutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warfare\\gamecomponent_waw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warfare\\gamecomponent_waw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warfare\\ui\\window_waw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warfare\\ui\\window_waw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\warfareandwarbands\\warfareandwarbands\\misc\\window_wawupdatelog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\misc\\window_wawupdatelog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\worldobjectcomp_playerwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\worldobjectcomp_playerwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warfareandwarbandsmod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warfareandwarbandsmod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\warfareandwarbands\\warfareandwarbands\\charactercustomization\\compatibility\\har.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\wawdefof.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\wawdefof.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\transportpodsarrivalaction_spawnwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\transportpodsarrivalaction_spawnwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\wawharmony.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\wawharmony.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\harmonypatches\\gethomefactionpatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\harmonypatches\\gethomefactionpatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\harmonypatches\\worldobjectgizmospatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\harmonypatches\\worldobjectgizmospatch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\injuries\\playerwarbandinjuries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\warbandcomponents\\playerwarbandcomponents\\injuries\\playerwarbandinjuries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\charactercustomization\\compatibility\\har.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\charactercustomization\\compatibility\\har.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -187,28 +219,8 @@
       "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\charactercustomization\\compatibility\\ce.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\debugactionwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\debugactionwarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\lootchest\\complootchest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\lootchest\\complootchest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warfare\\ui\\window_waw_comm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warfare\\ui\\window_waw_comm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warband\\lootchest\\compproperties_lootchest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warband\\lootchest\\compproperties_lootchest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warfare\\ui\\wawui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warfare\\ui\\wawui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warfare\\ui\\window_waw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|solutionrelative:warfareandwarbands\\warfare\\ui\\window_waw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32BF4840-2346-48AC-B6C6-90C589EADAAE}|WarfareAndWarbands\\WarfareAndWarbands.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\warfareandwarbands\\warfare\\ui\\jobgiver_trygetinformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -230,7 +242,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -238,72 +250,111 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PlayerWarbandRaidUtil.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\PlayerWarbandRaidUtil.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\PlayerWarbandRaidUtil.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\PlayerWarbandRaidUtil.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\PlayerWarbandRaidUtil.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACIAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T12:04:14.377Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "PlayerWarbandResettleManager.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandResettleManager.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandResettleManager.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandResettleManager.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandResettleManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAANAAAAAAAAAA==",
+              "Title": "WarbandUI.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\WarbandUI.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\UI\\WarbandUI.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\WarbandUI.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\UI\\WarbandUI.cs",
+              "ViewState": "AgIAAEQBAAAAAAAAAAArwF4BAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T11:16:47.906Z",
+              "WhenOpened": "2024-11-21T06:18:19.498Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "PlayerWarbandLootManager.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandLootManager.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandLootManager.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandLootManager.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandLootManager.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAIBBwEEAAAAAAAAAAAAAAA==",
+              "Title": "PlayerWarbandArrangement.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandArrangement.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\PlayerWarbandArrangement.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandArrangement.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\PlayerWarbandArrangement.cs",
+              "ViewState": "AgIAAKcAAAAAAAAAAAArwLcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T10:39:38.89Z",
+              "WhenOpened": "2024-12-09T00:48:05.965Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PlayerWarbandLeaderUtil.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeaderUtil.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeaderUtil.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeaderUtil.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeaderUtil.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
+              "Title": "Window_QuickRaid.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\QuickRaid\\UI\\Window_QuickRaid.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\QuickRaid\\UI\\Window_QuickRaid.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\QuickRaid\\UI\\Window_QuickRaid.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\QuickRaid\\UI\\Window_QuickRaid.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAA5wE0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T10:10:34.088Z",
+              "WhenOpened": "2024-12-09T00:47:43.26Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "WAWUI.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\UI\\WAWUI.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warfare\\UI\\WAWUI.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\UI\\WAWUI.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warfare\\UI\\WAWUI.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAA/wEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T09:06:30.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Window_Customization.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\UI\\Window_Customization.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\CharacterCustomization\\UI\\Window_Customization.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\UI\\Window_Customization.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\CharacterCustomization\\UI\\Window_Customization.cs",
+              "ViewState": "AgIAAC0BAAAAAAAAAAA/wEABAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T08:18:30.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "WarbandUtil.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandUtil.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandUtil.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandUtil.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandUtil.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAArwJsAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T12:48:34.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "PlayerWarbandColorOverride.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandColorOverride.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandColorOverride.cs",
               "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandColorOverride.cs",
               "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandColorOverride.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAA1wBoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAUwBwAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-27T00:56:12.451Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "NPCWarbandManager.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\NPCWarbandManager.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\NPCWarbandManager.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\NPCWarbandManager.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\NPCWarbandManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T10:19:43.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "PlayerWarbandCooldownManager.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandCooldownManager.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandCooldownManager.cs",
@@ -316,358 +367,72 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
+              "Title": "PlayerWarbandResettleManager.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandResettleManager.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandResettleManager.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandResettleManager.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandResettleManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T11:16:47.906Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PlayerWarbandLootManager.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandLootManager.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandLootManager.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandLootManager.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\PlayerWarbandLootManager.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAIBBwEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T10:39:38.89Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "PlayerWarbandManager.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandManager.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandManager.cs",
               "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandManager.cs",
               "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandManager.cs",
-              "ViewState": "AgIAALcAAAAAAAAAAIBCwMgAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAKwAAAAAAAAAAAApwDQAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-26T08:40:14.854Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Window_ArrangeWarband.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\Window_ArrangeWarband.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\UI\\Window_ArrangeWarband.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\Window_ArrangeWarband.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\UI\\Window_ArrangeWarband.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAUwFkAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T12:13:13.11Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "GameComponent_PlayerWarbandRaidManager.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\GameComponent_PlayerWarbandRaidManager.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\GameComponent_PlayerWarbandRaidManager.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\GameComponent_PlayerWarbandRaidManager.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\GameComponent_PlayerWarbandRaidManager.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAAAEAAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T12:07:58.852Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CompMercenary.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Mercenary\\CompMercenary.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\Mercenary\\CompMercenary.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Mercenary\\CompMercenary.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\Mercenary\\CompMercenary.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAzwC4AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T08:04:40.689Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "MercenaryUtil.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Mercenary\\MercenaryUtil.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\Mercenary\\MercenaryUtil.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Mercenary\\MercenaryUtil.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\Mercenary\\MercenaryUtil.cs",
-              "ViewState": "AgIAAF8AAAAAAAAAAAAzwIIAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-26T01:49:14.336Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ExitMapPatch.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\ExitMapPatch.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\HarmonyPatches\\ExitMapPatch.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\ExitMapPatch.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\HarmonyPatches\\ExitMapPatch.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAADwvx0AAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T08:31:57.251Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "Window_Customization.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\UI\\Window_Customization.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\CharacterCustomization\\UI\\Window_Customization.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\UI\\Window_Customization.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\CharacterCustomization\\UI\\Window_Customization.cs",
-              "ViewState": "AgIAAE8BAAAAAAAAAAA1wGABAAANAAAAAAAAAA==",
+              "Title": "DebugAction_WarbandRecruiting.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\DebugAction_WarbandRecruiting.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\DebugAction_WarbandRecruiting.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\DebugAction_WarbandRecruiting.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\DebugAction_WarbandRecruiting.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAIBBwBgAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T08:18:30.931Z",
+              "WhenOpened": "2024-12-07T04:04:19.202Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "GameComponent_Customization.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\GameComponent_Customization.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\CharacterCustomization\\GameComponent_Customization.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\GameComponent_Customization.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\CharacterCustomization\\GameComponent_Customization.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAIAywFwAAAAvAAAAAAAAAA==",
+              "Title": "WarbandRecruitingUtil.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\WarbandRecruitingUtil.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\WarbandRecruitingUtil.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\WarbandRecruitingUtil.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\WarbandRecruitingUtil.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAA8AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T07:29:55.062Z",
+              "WhenOpened": "2024-12-07T02:16:31.043Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "CustomizationRequest.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\CustomizationRequest.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\CharacterCustomization\\CustomizationRequest.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\CustomizationRequest.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\CharacterCustomization\\CustomizationRequest.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAUwEAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T06:04:33.996Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "CustomizationUtil.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\CustomizationUtil.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\CharacterCustomization\\CustomizationUtil.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\CustomizationUtil.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\CharacterCustomization\\CustomizationUtil.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAACAAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T06:32:03.167Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "GetHomeFactionPatch.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\GetHomeFactionPatch.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\HarmonyPatches\\GetHomeFactionPatch.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\GetHomeFactionPatch.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\HarmonyPatches\\GetHomeFactionPatch.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAAB4AAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T08:10:52.507Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "WorldObjectGizmosPatch.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\WorldObjectGizmosPatch.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\HarmonyPatches\\WorldObjectGizmosPatch.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\WorldObjectGizmosPatch.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\HarmonyPatches\\WorldObjectGizmosPatch.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAUwBwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T06:09:27.012Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Warband.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Warband.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\Warband.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Warband.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\Warband.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAIBCwDAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T07:48:47.332Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "WarbandUI.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\WarbandUI.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\UI\\WarbandUI.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\WarbandUI.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\UI\\WarbandUI.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAUwFcAAABuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T06:18:19.498Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "PlayerWarbandArrangement.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandArrangement.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\PlayerWarbandArrangement.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandArrangement.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\PlayerWarbandArrangement.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAIBCwF4AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T13:50:06.221Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "PlayerWarbandLeader.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeader.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeader.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeader.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeader.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAUwG4AAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T01:56:21.244Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "NPCWarbandManager.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\NPCWarbandManager.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\NPCWarbandManager.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\NPCWarbandManager.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\NPCWarbandManager.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAzwGsAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T10:48:05.226Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "WarfareUtil.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\WarfareUtil.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warfare\\WarfareUtil.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\WarfareUtil.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warfare\\WarfareUtil.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAIBCwBcAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T11:48:26.468Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "WAWSettings.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWSettings.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\WAWSettings.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWSettings.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\WAWSettings.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAD8AAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T01:54:05.056Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "WAWHarmony.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWHarmony.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\WAWHarmony.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWHarmony.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\WAWHarmony.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABoAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T12:01:07.294Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "WAWDefof.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWDefof.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\WAWDefof.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWDefof.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\WAWDefof.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T07:38:25.213Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "WarbandUtil.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandUtil.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandUtil.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandUtil.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandUtil.cs",
-              "ViewState": "AgIAAK0AAAAAAAAAAAAUwMEAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T12:48:34.589Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "PlayerWarbandRecoveryGroup.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandRecoveryGroup.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandRecoveryGroup.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandRecoveryGroup.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandRecoveryGroup.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAIBCwFsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T01:45:01.736Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "PlayerWarbandInjuries.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandInjuries.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandInjuries.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandInjuries.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandInjuries.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAIBCwDgAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T00:45:18.828Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "TransportPodsArrivalAction_SpawnWarband.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\TransportPodsArrivalAction_SpawnWarband.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\TransportPodsArrivalAction_SpawnWarband.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\TransportPodsArrivalAction_SpawnWarband.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\TransportPodsArrivalAction_SpawnWarband.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAkwAsAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T10:21:45.009Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "MapComponent_WarbandRaidTracker.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\MapComponent_WarbandRaidTracker.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\MapComponent_WarbandRaidTracker.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\MapComponent_WarbandRaidTracker.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\MapComponent_WarbandRaidTracker.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAIBBwCMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T08:42:40.897Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "WorldObjectComp_PlayerWarband.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WorldObjectComp_PlayerWarband.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WorldObjectComp_PlayerWarband.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WorldObjectComp_PlayerWarband.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WorldObjectComp_PlayerWarband.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T06:17:22.509Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
               "Title": "WorldObjectCompProperties_PlayerWarband.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WorldObjectCompProperties_PlayerWarband.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WorldObjectCompProperties_PlayerWarband.cs",
@@ -680,124 +445,399 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 15,
+              "Title": "DebugActionWarband.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\DebugActionWarband.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\DebugActionWarband.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\DebugActionWarband.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\DebugActionWarband.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAIBBwCEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T10:58:37.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "GameComponent_Warband.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\GameComponent_Warband.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\GameComponent_Warband.cs",
               "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\GameComponent_Warband.cs",
               "RelativeToolTip": "WarfareAndWarbands\\Warband\\GameComponent_Warband.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-07T06:12:44.499Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "WarbandRecruitingUtil.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\WarbandRecruitingUtil.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\WarbandRecruitingUtil.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\WarbandRecruitingUtil.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\WarbandRecruitingUtil.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAxAAAAAAAAAA==",
+              "DocumentIndex": 17,
+              "Title": "CaravanGizmosPatch.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WAWCaravan\\HarmonyPatches\\CaravanGizmosPatch.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WAWCaravan\\HarmonyPatches\\CaravanGizmosPatch.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WAWCaravan\\HarmonyPatches\\CaravanGizmosPatch.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WAWCaravan\\HarmonyPatches\\CaravanGizmosPatch.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAIBBwBoAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T02:16:31.043Z",
+              "WhenOpened": "2024-12-08T00:31:16.383Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "DebugAction_WarbandRecruiting.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\DebugAction_WarbandRecruiting.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\DebugAction_WarbandRecruiting.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\DebugAction_WarbandRecruiting.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\DebugAction_WarbandRecruiting.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAIBBwBoAAAA4AAAAAAAAAA==",
+              "DocumentIndex": 18,
+              "Title": "MercenaryUtil.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Mercenary\\MercenaryUtil.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\Mercenary\\MercenaryUtil.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Mercenary\\MercenaryUtil.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\Mercenary\\MercenaryUtil.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAABDwG8AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T04:04:19.202Z",
+              "WhenOpened": "2024-11-26T01:49:14.336Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "WAWTex.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWTex.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\WAWTex.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWTex.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\WAWTex.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAlwBsAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 19,
+              "Title": "CompMercenary.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Mercenary\\CompMercenary.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\Mercenary\\CompMercenary.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Mercenary\\CompMercenary.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\Mercenary\\CompMercenary.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAApwJAAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T07:42:14.203Z",
+              "WhenOpened": "2024-11-21T08:04:40.689Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "Window_ReArrangeWarband.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\Window_ReArrangeWarband.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\UI\\Window_ReArrangeWarband.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\Window_ReArrangeWarband.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\UI\\Window_ReArrangeWarband.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAAAUwHwAAAANAAAAAAAAAA==",
+              "DocumentIndex": 20,
+              "Title": "ExitMapPatch.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\ExitMapPatch.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\HarmonyPatches\\ExitMapPatch.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\ExitMapPatch.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\HarmonyPatches\\ExitMapPatch.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAApwB4AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T08:47:08.534Z",
+              "WhenOpened": "2024-11-21T08:31:57.251Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "WorldObject_WarbandRecruiting.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\WorldObject_WarbandRecruiting.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\WorldObject_WarbandRecruiting.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\WorldObject_WarbandRecruiting.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\WorldObject_WarbandRecruiting.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAIBBwC8AAAAyAAAAAAAAAA==",
+              "DocumentIndex": 21,
+              "Title": "WAWCaravanUI.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WAWCaravan\\UI\\WAWCaravanUI.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WAWCaravan\\UI\\WAWCaravanUI.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WAWCaravan\\UI\\WAWCaravanUI.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WAWCaravan\\UI\\WAWCaravanUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T02:02:40.263Z",
+              "WhenOpened": "2024-12-08T05:30:45.005Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "DroppodUpgrade.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandUpdates\\DroppodUpgrade.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandUpdates\\DroppodUpgrade.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandUpdates\\DroppodUpgrade.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandUpdates\\DroppodUpgrade.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAzwDgAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 22,
+              "Title": "CaravanWarbandUtility.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WAWCaravan\\CaravanWarbandUtility.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WAWCaravan\\CaravanWarbandUtility.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WAWCaravan\\CaravanWarbandUtility.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WAWCaravan\\CaravanWarbandUtility.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAUwCAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T00:44:20.435Z",
+              "WhenOpened": "2024-12-08T00:32:45.958Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 23,
+              "Title": "Window_ArrangeWarband_Caravan.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WAWCaravan\\UI\\Window_ArrangeWarband_Caravan.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WAWCaravan\\UI\\Window_ArrangeWarband_Caravan.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WAWCaravan\\UI\\Window_ArrangeWarband_Caravan.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WAWCaravan\\UI\\Window_ArrangeWarband_Caravan.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAABCwEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T01:37:37.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
               "Title": "GameComponent_WAW.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\GameComponent_WAW.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\Warfare\\GameComponent_WAW.cs",
               "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\GameComponent_WAW.cs",
               "RelativeToolTip": "WarfareAndWarbands\\Warfare\\GameComponent_WAW.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAlwH8AAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAApwEwAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-04T11:07:06.623Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 26,
+              "Title": "CompLootChest.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\LootChest\\CompLootChest.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\LootChest\\CompLootChest.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\LootChest\\CompLootChest.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\LootChest\\CompLootChest.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-23T23:26:40.91Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "CompProperties_LootChest.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\LootChest\\CompProperties_LootChest.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\LootChest\\CompProperties_LootChest.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\LootChest\\CompProperties_LootChest.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\LootChest\\CompProperties_LootChest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-23T23:25:16.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "PlayerWarbandRaidUtil.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\PlayerWarbandRaidUtil.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\PlayerWarbandRaidUtil.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\PlayerWarbandRaidUtil.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\PlayerWarbandRaidUtil.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAIBBwCwAAABrAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T12:04:14.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Window_ArrangeWarband.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\Window_ArrangeWarband.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\UI\\Window_ArrangeWarband.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\Window_ArrangeWarband.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\UI\\Window_ArrangeWarband.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEIAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T12:13:13.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "WAWSettings.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWSettings.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\WAWSettings.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWSettings.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\WAWSettings.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAxwD8AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T01:54:05.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Warband.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Warband.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\Warband.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\Warband.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\Warband.cs",
+              "ViewState": "AgIAALcAAAAAAAAAAEBCwNIAAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T07:48:47.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "DroppodUpgrade.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandUpdates\\DroppodUpgrade.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandUpdates\\DroppodUpgrade.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandUpdates\\DroppodUpgrade.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandUpdates\\DroppodUpgrade.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAEBCwCcAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T00:44:20.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "MapComponent_WarbandRaidTracker.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\MapComponent_WarbandRaidTracker.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\MapComponent_WarbandRaidTracker.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\MapComponent_WarbandRaidTracker.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\MapComponent_WarbandRaidTracker.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAIBBwCMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T08:42:40.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "GameComponent_PlayerWarbandRaidManager.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\GameComponent_PlayerWarbandRaidManager.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\GameComponent_PlayerWarbandRaidManager.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\GameComponent_PlayerWarbandRaidManager.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\PlayerWarbandRaid\\GameComponent_PlayerWarbandRaidManager.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAIBBwDQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T12:07:58.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "WAWTex.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWTex.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\WAWTex.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWTex.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\WAWTex.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T15:22:16.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "PlayerWarbandLeader.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeader.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeader.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeader.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeader.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAIBBwHAAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T10:14:08.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
               "Title": "Window_WAWUpdateLog.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Misc\\Window_WAWUpdateLog.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\Misc\\Window_WAWUpdateLog.cs",
               "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Misc\\Window_WAWUpdateLog.cs",
               "RelativeToolTip": "WarfareAndWarbands\\Misc\\Window_WAWUpdateLog.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACcAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T01:14:44.748Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-05T01:14:44.748Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "PlayerWarbandRecoveryGroup.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandRecoveryGroup.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandRecoveryGroup.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandRecoveryGroup.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandRecoveryGroup.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T01:45:01.736Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "PlayerWarbandLeaderUtil.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeaderUtil.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeaderUtil.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeaderUtil.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Leader\\PlayerWarbandLeaderUtil.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-07T10:10:34.088Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Dialog_SetCustomName.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\Dialog_SetCustomName.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\UI\\Dialog_SetCustomName.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\Dialog_SetCustomName.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\UI\\Dialog_SetCustomName.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABwAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T12:48:06.654Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "Window_ReArrangeWarband.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\Window_ReArrangeWarband.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\UI\\Window_ReArrangeWarband.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\UI\\Window_ReArrangeWarband.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\UI\\Window_ReArrangeWarband.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAUwEoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-23T08:47:08.534Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "WorldObject_WarbandRecruiting.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\WorldObject_WarbandRecruiting.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\WorldObject_WarbandRecruiting.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandRecruiting\\WorldObject_WarbandRecruiting.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandRecruiting\\WorldObject_WarbandRecruiting.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAIBBwCkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-07T02:02:40.263Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "WarfareUtil.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\WarfareUtil.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warfare\\WarfareUtil.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\WarfareUtil.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warfare\\WarfareUtil.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAIBCwBcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T11:48:26.468Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 43,
+              "Title": "Window_WAW.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\UI\\Window_WAW.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warfare\\UI\\Window_WAW.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\UI\\Window_WAW.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warfare\\UI\\Window_WAW.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAlwDIAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T13:04:06.833Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "WorldObjectComp_PlayerWarband.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WorldObjectComp_PlayerWarband.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WorldObjectComp_PlayerWarband.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WorldObjectComp_PlayerWarband.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WorldObjectComp_PlayerWarband.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T06:17:22.509Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "WAWDefof.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWDefof.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\WAWDefof.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWDefof.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\WAWDefof.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T07:38:25.213Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
               "Title": "WarfareAndWarbandsMod.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WarfareAndWarbandsMod.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\WarfareAndWarbandsMod.cs",
@@ -805,12 +845,71 @@
               "RelativeToolTip": "WarfareAndWarbands\\WarfareAndWarbandsMod.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T11:00:25.844Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-04T11:00:25.844Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 47,
+              "Title": "TransportPodsArrivalAction_SpawnWarband.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\TransportPodsArrivalAction_SpawnWarband.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\TransportPodsArrivalAction_SpawnWarband.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\TransportPodsArrivalAction_SpawnWarband.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\TransportPodsArrivalAction_SpawnWarband.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAkwAsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T10:21:45.009Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "WAWHarmony.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWHarmony.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\WAWHarmony.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\WAWHarmony.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\WAWHarmony.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T12:01:07.294Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "GetHomeFactionPatch.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\GetHomeFactionPatch.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\HarmonyPatches\\GetHomeFactionPatch.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\GetHomeFactionPatch.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\HarmonyPatches\\GetHomeFactionPatch.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAAB4AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T08:10:52.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "WorldObjectGizmosPatch.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\WorldObjectGizmosPatch.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\HarmonyPatches\\WorldObjectGizmosPatch.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\HarmonyPatches\\WorldObjectGizmosPatch.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\HarmonyPatches\\WorldObjectGizmosPatch.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAUwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T06:09:27.012Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "PlayerWarbandInjuries.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandInjuries.cs",
+              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandInjuries.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandInjuries.cs",
+              "RelativeToolTip": "WarfareAndWarbands\\Warband\\WarbandComponents\\PlayerWarbandComponents\\Injuries\\PlayerWarbandInjuries.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAIBCwDgAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T00:45:18.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
               "Title": "HAR.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\Compatibility\\HAR.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\CharacterCustomization\\Compatibility\\HAR.cs",
@@ -818,12 +917,11 @@
               "RelativeToolTip": "WarfareAndWarbands\\CharacterCustomization\\Compatibility\\HAR.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAB4AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T13:38:22.35Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-03T13:38:22.35Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 53,
               "Title": "CE.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\CharacterCustomization\\Compatibility\\CE.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\CharacterCustomization\\Compatibility\\CE.cs",
@@ -834,36 +932,8 @@
               "WhenOpened": "2024-12-02T08:12:52.389Z"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "DebugActionWarband.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\DebugActionWarband.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\DebugActionWarband.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\DebugActionWarband.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\DebugActionWarband.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAIBBwGIAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T10:58:37.913Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "CompLootChest.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\LootChest\\CompLootChest.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\LootChest\\CompLootChest.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\LootChest\\CompLootChest.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\LootChest\\CompLootChest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T23:26:40.91Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 54,
               "Title": "Window_WAW_Comm.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\UI\\Window_WAW_Comm.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\Warfare\\UI\\Window_WAW_Comm.cs",
@@ -875,43 +945,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
-              "Title": "CompProperties_LootChest.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\LootChest\\CompProperties_LootChest.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warband\\LootChest\\CompProperties_LootChest.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warband\\LootChest\\CompProperties_LootChest.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warband\\LootChest\\CompProperties_LootChest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T23:25:16.456Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 50,
-              "Title": "WAWUI.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\UI\\WAWUI.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warfare\\UI\\WAWUI.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\UI\\WAWUI.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warfare\\UI\\WAWUI.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACsAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T09:06:30.308Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
-              "Title": "Window_WAW.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\UI\\Window_WAW.cs",
-              "RelativeDocumentMoniker": "WarfareAndWarbands\\Warfare\\UI\\Window_WAW.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\UI\\Window_WAW.cs",
-              "RelativeToolTip": "WarfareAndWarbands\\Warfare\\UI\\Window_WAW.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAADIAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T06:00:36.655Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 55,
               "Title": "JobGiver_TryGetInformation.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\UI\\JobGiver_TryGetInformation.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\Warfare\\UI\\JobGiver_TryGetInformation.cs",
@@ -923,7 +957,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 56,
               "Title": "CommsPatch.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\HarmonyPatches\\CommsPatch.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\Warfare\\HarmonyPatches\\CommsPatch.cs",
@@ -935,7 +969,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 57,
               "Title": "SettlemntDestroyedPatch.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WarfareAndWarbands\\WarfareAndWarbands\\Warfare\\HarmonyPatches\\SettlemntDestroyedPatch.cs",
               "RelativeDocumentMoniker": "WarfareAndWarbands\\Warfare\\HarmonyPatches\\SettlemntDestroyedPatch.cs",

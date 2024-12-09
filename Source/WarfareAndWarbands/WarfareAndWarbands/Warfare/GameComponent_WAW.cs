@@ -17,6 +17,8 @@ namespace WarfareAndWarbands
         Dictionary<Faction, int> factionsAndWarDurabilities = new Dictionary<Faction, int>();
         public static PlayerWarbandArrangement playerWarband;
         public static GameComponent_WAW Instance;
+        private bool everUsedQuickRaid = false;
+        private bool everAssignedWarbandLeader = false;
 
         public GameComponent_WAW(Game game)
         {
@@ -30,6 +32,8 @@ namespace WarfareAndWarbands
             Scribe_Collections.Look<Faction, int>(ref this.factionsAndWarDurabilities,
                 "factionsAndWarDurabilities", LookMode.Reference, LookMode.Value, ref factions, ref durabilitities);
             Scribe_Values.Look(ref lastTick, "lastTick");
+            Scribe_Values.Look(ref everAssignedWarbandLeader, "lastTick");
+            Scribe_Values.Look(ref everUsedQuickRaid, "lastTick");
             playerWarband.ExposeData();
         }
 
@@ -55,6 +59,25 @@ namespace WarfareAndWarbands
             }
         }
 
+        public bool EverUsedQuickRaid()
+        {
+            return this.everUsedQuickRaid;
+        }
+
+        public bool EverAssignedLeader()
+        {
+            return this.everAssignedWarbandLeader;
+        }
+
+        public void SetAlreadyUseQuickRaid()
+        {
+            this.everUsedQuickRaid = true;
+        }
+
+        public void SetAlreadyAssignedLeader()
+        {
+            this.everAssignedWarbandLeader = true;  
+        }
 
         public void AddDurability(Faction f, int value)
         {
@@ -134,8 +157,8 @@ namespace WarfareAndWarbands
             {
                 return;
             }
-            Window_WAWUpdateLog updateLog = new Window_WAWUpdateLog();
-            Find.WindowStack.Add(updateLog);
+            //Window_WAWUpdateLog updateLog = new Window_WAWUpdateLog();
+            //Find.WindowStack.Add(updateLog);
         }
 
         void GiveModLetter()

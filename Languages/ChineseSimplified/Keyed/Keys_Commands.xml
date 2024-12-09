@@ -27,4 +27,7 @@
   <WAW.TransferContent.Desc>将内容转移到战团</WAW.TransferContent.Desc>
   <WAW.ResettleWarband>重新安置战团</WAW.ResettleWarband>
   <WAW.ResettleWarband.Desc>将战团移动到另一个地块上，每个地块和每个人将花费 10 银。</WAW.ResettleWarband.Desc>
+  <WAW.CreateWarband>建立战团</WAW.CreateWarband>
+  <WAW.CreateWarband.Desc>在这个地块上建立一个战团，选择其中一个殖民者作为这个战团的领袖。</WAW.CreateWarband.Desc>
+  <WAW.LinkWarband>选择所属</WAW.LinkWarband>
 </LanguageData>

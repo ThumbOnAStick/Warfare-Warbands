@@ -72,6 +72,7 @@ namespace WarfareAndWarbands.CharacterCustomization
         }
         public override void DoWindowContents(Rect inRect)
         {
+            Text.Font = GameFont.Small;
             Rect exitButtonRect = new Rect(inRect.xMax - 30, 0, 30, 30);
             bool exit = Widgets.ButtonImage(exitButtonRect, TexButton.CloseXSmall);
             if (exit)

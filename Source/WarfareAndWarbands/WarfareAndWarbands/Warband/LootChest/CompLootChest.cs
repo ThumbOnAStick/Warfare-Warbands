@@ -21,6 +21,7 @@ namespace WarfareAndWarbands.Warband
         {
             if (this.CompTransporter.innerContainer.Count > 0)
                 yield return WarbandUI.TransferContent(this);
+            yield return WarbandUI.LinkWarband(this);
         }
         public void AssignWarband(Warband warband)
         {

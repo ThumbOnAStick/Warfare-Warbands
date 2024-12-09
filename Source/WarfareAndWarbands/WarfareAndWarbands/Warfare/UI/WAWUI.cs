@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using WarfareAndWarbands.CharacterCustomization;
+using WarfareAndWarbands.QuickRaid.UI;
 using WarfareAndWarbands.UI;
 using WarfareAndWarbands.Warband;
 
@@ -51,6 +52,17 @@ namespace WarfareAndWarbands.Warfare.UI
                 window.Close();
                 Find.WindowStack.Add(new Window_Customization());
             }
+
+
+            Rect quickRaidButtonRect = new Rect(arrangeWarbandWindowButtonRect.x + 50, 340, 100, 50);
+            bool quickRaidWindow = Widgets.ButtonText(quickRaidButtonRect, "WAW.QuickRaid".Translate());
+            if (quickRaidWindow)
+            {
+                window.Close();
+                Find.WindowStack.Add(new Window_QuickRaid());
+            }
+
+
 
         }
         private static Vector2 scrollPosition;

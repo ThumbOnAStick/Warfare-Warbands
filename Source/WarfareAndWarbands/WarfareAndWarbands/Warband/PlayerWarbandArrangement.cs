@@ -80,24 +80,43 @@ namespace WarfareAndWarbands.Warband
             return (int)GetCostOriginal(bandMembers) * WAWSettings.establishFeeMultiplier * 2;
         }
 
-        public void CreateWarbandWorldObject(Map currMap)
+        public bool ValidateCreation(Caravan caravan = null)
         {
-            this.currentMap = currMap;
+            if (caravan == null && !CommsConsoleUtility.PlayerHasPoweredCommsConsole())
+            {
+                Messages.Message("WAW.NoComms".Translate(), MessageTypeDefOf.RejectInput);
+                var label = "WAW.CaravanWarband".Translate();
+                var desc = "WAW.CaravanWarband.Desc".Translate();
+                Letter letter = LetterMaker.MakeLetter(label, desc, LetterDefOf.NeutralEvent);
+                Find.LetterStack.ReceiveLetter(letter);
+                return false;
+            }
             if (!bandMembers.Any(x => x.Value > 0))
             {
-                Messages.Message("WAW.emptyBand".Translate(), MessageTypeDefOf.RejectInput);
-                return;
+                Messages.Message("WAW.NoMembers".Translate(), MessageTypeDefOf.RejectInput);
+                return false;
             }
             if (bandMembers.Sum(x => x.Value) < 5)
             {
                 Messages.Message("WAW.WeakBand".Translate(), MessageTypeDefOf.RejectInput);
-                return;
+                return false;
             }
             if (!WarbandUtil.CanPlaceMoreWarbands())
             {
                 Messages.Message("WAW.WarbandLeak".Translate(WAWSettings.maxPlayerWarband), MessageTypeDefOf.RejectInput);
+                return false;
+            }
+            return true;
+        }
+
+
+        public void CreateWarbandWorldObject(Map currMap)
+        {
+            if (!ValidateCreation())
+            {
                 return;
             }
+            this.currentMap = currMap;
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
             Find.WorldSelector.ClearSelection();
             Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(this.CreateWarbandWorldObject), true, onUpdate: delegate
@@ -115,23 +134,24 @@ namespace WarfareAndWarbands.Warband
                 "WAW.Default".Translate(GetCostEstablishment()),
                 delegate
                 {
-                    if (!WarbandUtil.TryToSpendSilver(currentMap, GetCostEstablishment()))
+                    if (!WarbandUtil.TryToSpendSilverFromColony(currentMap, GetCostEstablishment()))
                     {
                         return;
                     }
-                    WarbandRecruitingUtil.SpawnRecruitingWarband(target);
-                    SoundDefOf.ExecuteTrade.PlayOneShot(SoundInfo.OnCamera());
+                    if (WarbandRecruitingUtil.SpawnRecruitingWarband(target))
+                        SoundDefOf.ExecuteTrade.PlayOneShot(SoundInfo.OnCamera());
 
                 });
             yield return new FloatMenuOption(
                 "WAW.Immediate".Translate(GetCostEstablishmentImmediate()),
             delegate
             {
-                if (!WarbandUtil.TryToSpendSilver(currentMap, GetCostEstablishmentImmediate()))
+                if (!WarbandUtil.TryToSpendSilverFromColony(currentMap, GetCostEstablishmentImmediate()))
                 {
                     return;
                 }
-                WarbandUtil.SpawnWarband(Faction.OfPlayer, target);
+                var warband = WarbandUtil.SpawnWarband(Faction.OfPlayer, target);
+                warband.playerWarbandManager.colorOverride.SetColorOverride();
                 SoundDefOf.ExecuteTrade.PlayOneShot(SoundInfo.OnCamera());
             });
         }
@@ -151,12 +171,13 @@ namespace WarfareAndWarbands.Warband
                 return;
             }
             int cost = GetCostExtra(playerWarbandSite.bandMembers);
-            if (!WarbandUtil.TryToSpendSilver(currentMap, cost))
+            if (!WarbandUtil.TryToSpendSilverFromColony(currentMap, cost))
             {
                 return;
             }
             SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
             playerWarbandSite.bandMembers = new Dictionary<string, int>(bandMembers);
+            playerWarbandSite.playerWarbandManager.colorOverride.SetColorOverride(this.colorOverride);
         }   
 
         private bool CreateWarbandWorldObject(GlobalTargetInfo target)
@@ -176,8 +197,6 @@ namespace WarfareAndWarbands.Warband
                 return false;
             }
             int cost = GetCostEstablishment();
-
-
             IEnumerable<FloatMenuOption> opts = SelectWarbandWorldObjectOptions(target);
             Find.WindowStack.Add(new FloatMenu(opts.ToList()));
             return true;

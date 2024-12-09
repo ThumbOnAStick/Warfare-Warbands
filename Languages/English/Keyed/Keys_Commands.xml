@@ -27,4 +27,8 @@
 	<WAW.TransferContent.Desc>transfer contents to warband</WAW.TransferContent.Desc>
 	<WAW.ResettleWarband>re-settle warband</WAW.ResettleWarband>
 	<WAW.ResettleWarband.Desc>Move warband On another tile, it will cost $10 per tile and person.</WAW.ResettleWarband.Desc>
+	<WAW.CreateWarband>Create Warband</WAW.CreateWarband>
+	<WAW.CreateWarband.Desc>Create a warband here on the tile, select one of your colonists as its leader.</WAW.CreateWarband.Desc>
+    <WAW.LinkWarband>Select its owner</WAW.LinkWarband>
+
 </LanguageData>	

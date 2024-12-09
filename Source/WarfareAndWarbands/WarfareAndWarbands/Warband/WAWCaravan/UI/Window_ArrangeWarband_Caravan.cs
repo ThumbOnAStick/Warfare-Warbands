@@ -1,4 +1,4 @@
-﻿using RimWorld;
+﻿using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,21 +7,22 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.Noise;
-using Verse.Sound;
-using WarfareAndWarbands.CharacterCustomization;
 using WarfareAndWarbands.Warband.UI;
+using static UnityEngine.GraphicsBuffer;
+using WarfareAndWarbands.Warband.WarbandRecruiting;
 
-namespace WarfareAndWarbands.Warband
+namespace WarfareAndWarbands.Warband.WAWCaravan.UI
 {
-    public class Window_ArrangeWarband : Window
+    internal class Window_ArrangeWarband_Caravan : Window
     {
         private Vector2 scrollPosition;
-        private Map map;
         private readonly float descriptionHeight = 100f;
         private readonly float descriptionWidth = 120f;
         private readonly float entryHeight = 20f;
         private readonly float entryWidth = 20f;
         private readonly int pawnKindsEachRow = 5;
+        Pawn leader;
+        Caravan caravan;
 
         public override Vector2 InitialSize
         {
@@ -30,11 +31,18 @@ namespace WarfareAndWarbands.Warband
                 return new Vector2(800f, 500f);
             }
         }
-        public Window_ArrangeWarband(Map map)
+
+        public Window_ArrangeWarband_Caravan()
         {
-            this.map = map;
-            WarbandUtil.RefreshSoldierPawnKinds();
+
         }
+
+        public Window_ArrangeWarband_Caravan(Pawn leader, Caravan caravan)
+        {
+            this.leader = leader;
+            this.caravan = caravan;
+        }
+
 
         public override void DoWindowContents(Rect inRect)
         {
@@ -64,11 +72,21 @@ namespace WarfareAndWarbands.Warband
             if (doRecruit)
             {
                 this.Close();
-                GameComponent_WAW.playerWarband.CreateWarbandWorldObject(map);
+                if (!GameComponent_WAW.playerWarband.ValidateCreation(caravan))
+                {
+                    return;
+                }
+                if (!CaravanWarbandUtility.TryToSpendSilverFromCaravan(caravan, GameComponent_WAW.playerWarband.GetCostEstablishment()))
+                {
+                    return;
+                }
+                WarbandRecruitingUtil.SpawnRecruitingWarband(this.caravan, leader);
 
             }
         }
 
-      
+
+
+
     }
 }

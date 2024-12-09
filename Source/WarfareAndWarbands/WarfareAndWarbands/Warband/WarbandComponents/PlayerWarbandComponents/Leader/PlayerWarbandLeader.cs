@@ -30,7 +30,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             return leader == null || leader.Dead || leader.Spawned;
         }
 
-        public void AssignLeader(Pawn p, Caravan caravan)
+        public void AssignLeader(Pawn p, Caravan caravan = null)
         {
             if(leader != null && !leader.Dead)
             {
@@ -43,6 +43,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             this.leader = p;
             caravan?.RemovePawn(p);
             SendLeaderSetMessage(p);
+            ResolvePawn(p);
             ResolveCaravan(caravan);
         }
 
@@ -57,6 +58,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
 
         void ResolveCaravan(Caravan caravan)
         {
+            if(caravan == null)
+            {
+                return;
+            }
             for (int i = 0; i < caravan.pawns.Count; i++)
             {
                 if (caravan.pawns[i].IsColonist)
@@ -105,7 +110,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
 
         public bool IsLeaderAvailable()
         {
-            return leader != null && !leader.Dead && leader.health.CanCrawlOrMove;
+            return leader != null && !leader.Dead;
         }
 
         public void ExposeData()

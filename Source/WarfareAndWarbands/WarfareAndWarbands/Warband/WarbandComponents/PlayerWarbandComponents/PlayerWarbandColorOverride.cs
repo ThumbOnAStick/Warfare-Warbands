@@ -18,6 +18,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
         public void ExposeData()
         {
             Scribe_Values.Look(ref colorOverride, "colorOverride", Color.white);
+            colorOverride.a = 1;
         }
 
         public Color GetColorOverride()
@@ -27,7 +28,14 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
 
         public void SetColorOverride(Color color)
         {
-            this.colorOverride = color; 
+            this.colorOverride = color;
+            colorOverride.a = 1;
+
+        }
+
+        public void SetColorOverride()
+        {
+            this.colorOverride = GameComponent_WAW.playerWarband.colorOverride;
         }
 
         private Color colorOverride;

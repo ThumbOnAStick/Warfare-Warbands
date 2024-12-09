@@ -50,6 +50,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public bool OrderPlayerWarbandToAttack(GlobalTargetInfo info)
         {
+            WarbandUtil.TryToSendQuickAttackLetter();
             Dictionary<string, int> activeMembers;
             if (this.injuriesManager != null)
                 activeMembers = this.injuriesManager.GetActiveMembers(warband.bandMembers);
@@ -58,7 +59,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             bool result;
             if (emptyWarband)
             {
-                Messages.Message("WAW.emptyBand".Translate(), MessageTypeDefOf.RejectInput, true);
+                Messages.Message("WAW.NoMembers".Translate(), MessageTypeDefOf.RejectInput, true);
                 result = false;
             }
 
@@ -91,7 +92,6 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                         }
                         else
                         {
-                            SoundDefOf.ExecuteTrade.PlayOneShotOnCamera(null);
                             MapParent mapParent = (MapParent)info.WorldObject;
                             this.targetMapP = mapParent;
                             WarbandUI.GetPlayerWarbandAttackOptions(this);
@@ -106,7 +106,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         bool CantAffordToAttack()
         {
             int cost = (int)PlayerWarbandArrangement.GetCostOriginal(this.warband.bandMembers);
-            bool cantAfford = !WarbandUtil.TryToSpendSilver(Find.AnyPlayerHomeMap, cost);
+            bool cantAfford = !WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, cost);
             if (cantAfford)
             {
                 Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent, true);
@@ -124,6 +124,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 {
                     if (!CantAffordToAttack())
                         return;
+                    SoundDefOf.ExecuteTrade.PlayOneShotOnCamera(null);
                     this.cooldownManager.SetLastRaidTick();
                     WarbandUtil.OrderPlayerWarbandToAttack(this.targetMapP, this.warband);
                 }, "GeneratingMapForNewEncounter", false, null, true, null);
@@ -138,6 +139,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             {
                 if (!CantAffordToAttack())
                     return;
+                SoundDefOf.ExecuteTrade.PlayOneShotOnCamera(null);
                 this.cooldownManager.SetLastRaidTick();
                 this.droppodUpgrade.LaunchWarbandInMap(this.targetMapP.Map);
             }

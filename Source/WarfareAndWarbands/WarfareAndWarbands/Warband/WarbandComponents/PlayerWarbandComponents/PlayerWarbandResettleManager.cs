@@ -22,7 +22,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             int memberCount = warband.GetMemberCount();
             int costPerPawn = (int)curve.Evaluate(memberCount);
             int cost = (int)distance * costPerPawn * memberCount;
-            if (!WarbandUtil.TryToSpendSilver(Find.AnyPlayerHomeMap, cost))
+            if (!WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, cost))
             {
                 Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent);
                 return false;

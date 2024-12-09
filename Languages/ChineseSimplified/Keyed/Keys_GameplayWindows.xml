@@ -10,4 +10,8 @@
 	<WAW.ConfigWarband>确认更改</WAW.ConfigWarband>
 	<WAW.PawnKindName>兵种名称</WAW.PawnKindName>
 	<WAW.NoCustomPawnKinds>没有自定义兵种，请新建。</WAW.NoCustomPawnKinds>
+	<WAW.RenameWarband>重命名战团</WAW.RenameWarband>
+	<WAW.QuickRaid>袭击快捷键窗口</WAW.QuickRaid>
+	<WAW.YouCanRename>你知道你可以重新命名战团吗？</WAW.YouCanRename>
+	<WAW.ZeroFound>没有可以用来行动的战团。</WAW.ZeroFound>
 </LanguageData>

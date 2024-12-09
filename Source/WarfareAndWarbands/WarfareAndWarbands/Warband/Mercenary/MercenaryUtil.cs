@@ -31,13 +31,15 @@ namespace WarfareAndWarbands.Warband.Mercenary
                         list.Add(pawn);
                 }
 
-                if(warband.Faction == Faction.OfPlayer &&
+                if (warband.Faction == Faction.OfPlayer &&
                     warband.playerWarbandManager.leader != null &&
                     warband.playerWarbandManager.leader.IsLeaderAvailable())
                 {
                     var leader = warband.playerWarbandManager.leader.Leader;
                     if (SetMercenaryComp(leader, warband, ele.Key, warband.Faction))
                         list.Add(leader);
+                    leader.health.hediffSet.hediffs.RemoveAll(x => x.PainFactor > 0);
+
                 }
 
             }
@@ -106,7 +108,8 @@ namespace WarfareAndWarbands.Warband.Mercenary
         {
             PawnGenerationRequest request = GetRequest(warband, kindefName);
             Pawn pawn = PawnGenerator.GeneratePawn(request);
-            pawn.SetFaction(warband.Faction);
+            if (pawn.Faction != warband.Faction)
+                pawn.SetFaction(warband.Faction);
             return pawn;
         }
 
@@ -118,7 +121,6 @@ namespace WarfareAndWarbands.Warband.Mercenary
             {
                 return false;
             }
-            pawn.health.Reset();
             comp.ResetAll();
             comp.ServesPlayerFaction = warband.Faction == Faction.OfPlayer;
             if (pawn.Faction != faction)

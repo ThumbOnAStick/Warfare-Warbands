@@ -17,6 +17,32 @@ namespace WarfareAndWarbands.Warband
 {
     public class Warband : Site
     {
+
+
+        public Dictionary<string, int> bandMembers;
+        public NPCWarbandManager npcWarbandManager;
+        public PlayerWarbandManager playerWarbandManager;
+        private List<string> stringBuffers;
+        private List<int> intBuffers;
+        private bool isSettling = false;
+        private string customName = "Warband";
+        public static readonly int playerAttackRange = 10;
+
+        public override Color ExpandingIconColor => this.Faction.Color;
+        public override string Label => this.customName != "Warband" ?
+            this.customName :
+            (this.def.label + "(" + this.Faction.Name + ")");
+
+        public Warband()
+        {
+            bandMembers = new Dictionary<string, int>();
+            npcWarbandManager = new NPCWarbandManager(this);
+            playerWarbandManager = new PlayerWarbandManager(this);
+        }
+
+
+
+
         public override void PostAdd()
         {
             base.PostAdd();
@@ -37,22 +63,19 @@ namespace WarfareAndWarbands.Warband
 
         }
 
-        public Warband()
-        {
-            bandMembers = new Dictionary<string, int>();
-            npcWarbandManager = new NPCWarbandManager(this);
-            playerWarbandManager = new PlayerWarbandManager(this);
-            
-        }
-
-        public override Color ExpandingIconColor => this.Faction.Color;
-
-        public override string Label => this.def.label + "(" + this.Faction.NameColored + ")";
-
-
         public void SetMembers(Dictionary<string, int> members)
         {
             this.bandMembers = new Dictionary<string, int>(members);
+        }
+
+        public void SetCustomName(string name)
+        {
+            this.customName = name;
+        }
+
+        public string GetCustomName()
+        {
+            return this.customName;
         }
 
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan)
@@ -111,6 +134,9 @@ namespace WarfareAndWarbands.Warband
         {
             if (this.playerWarbandManager.injuriesManager != null &&
                 !this.playerWarbandManager.injuriesManager.GetActiveMembers(bandMembers).Any(x => x.Value > 0))
+                return false;
+            if (this.playerWarbandManager.leader.Leader != null &&
+               this.playerWarbandManager.leader.Leader.Spawned)
                 return false;
             return true;
         }
@@ -215,6 +241,8 @@ namespace WarfareAndWarbands.Warband
             Scribe_Collections.Look<string, int>(ref this.bandMembers,
   "bandMembers", LookMode.Value, LookMode.Value, ref stringBuffers, ref intBuffers);
             Scribe_Values.Look(ref this.isSettling, "isSettling");
+            Scribe_Values.Look(ref this.customName, "customName", "Warband");
+
             npcWarbandManager?.ExposeData();
             playerWarbandManager?.ExposeData();
         }
@@ -354,12 +382,6 @@ namespace WarfareAndWarbands.Warband
         }
 
 
-        public Dictionary<string, int> bandMembers;
-        public NPCWarbandManager npcWarbandManager;
-        public PlayerWarbandManager playerWarbandManager;
-        public static readonly int playerAttackRange = 10;
-        private List<string> stringBuffers;
-        private List<int> intBuffers;
-        private bool isSettling = false;
+
     }
 }

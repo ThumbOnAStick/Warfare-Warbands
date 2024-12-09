@@ -2,7 +2,7 @@
 <LanguageData>
 	<!--Gameplay-->
 	<WAW.Welcome>战团战争</WAW.Welcome>
-	<WAW.Welcome.Desc>感谢游玩战团战争，更多信息在创意工坊界面可见</WAW.Welcome.Desc>
+	<WAW.Welcome.Desc>感谢游玩战团战争，更多信息在创意工坊界面可见。如果需要汇报bug，请在创意工坊的bug板块汇报。</WAW.Welcome.Desc>
 	<OpenFactionInformationTab>打开派系信息选项卡</OpenFactionInformationTab>
 	<factionLosing>这个派系正在输掉这场战争。</factionLosing>
 	<factionStrikeToSurvive>这个派系遭遇了很多困难。</factionStrikeToSurvive>
@@ -17,7 +17,7 @@
 	<WAW.FarObject>长官，我们只能攻击十格内的目标。</WAW.FarObject>
 	<WAW.CantAfford>资金不足</WAW.CantAfford>
 	<WAW.EmptyWarband>没有什么可以撤回的。</WAW.EmptyWarband>
-	<WAW.emptyBand>这支战团中没有人能够战斗。</WAW.emptyBand>
+	<WAW.NoMembers>这支战团中没有人能够战斗。</WAW.NoMembers>
 	<WAW.WaitForCooldown>抱歉，我们在接下来的 {0} 天内无法活动。</WAW.WaitForCooldown>
 	<WAW.WarbandLoss>该战团已永久失去一名成员，请从招募窗口招募新成员。</WAW.WarbandLoss>
 	<WAW.ResettleFee>重新安置费用：{0}</WAW.ResettleFee>
@@ -49,5 +49,12 @@
 	<WAW.LeaderSet>领袖被指定</WAW.LeaderSet>
 	<WAW.LeaderSet.Desc>{0} 成为了你的其中一个战团的新领袖，只要{1}活着这个战团就不会灭亡。如果你想把{1}送回来，你需要解散整个战团。</WAW.LeaderSet.Desc>
 	<WAW.WeakBand>需要至少五个成员。</WAW.WeakBand>
+	<WAW.NoComms>殖民地没有通电的通讯台</WAW.NoComms>
+	<WAW.CaravanWarband>关于：战团建立</WAW.CaravanWarband>
+	<WAW.CaravanWarband.Desc>如果你不打算建造通讯台，你可以通过远行队建立新的战团并让其中一个成员成为战团的领袖，请确保远行队拥有足够的资金。</WAW.CaravanWarband.Desc>
+	<WAW.AboutAssignLeader>关于：分配领袖</WAW.AboutAssignLeader>
+	<WAW.AboutAssignLeader.Desc>你可以为这个新建立的战团分配一个领袖，组建一个远行队并前往战团所在的地块，选择远行队的任意成员作为领袖。</WAW.AboutAssignLeader.Desc>
+	<WAW.AboutQuickAttack>关于：攻击快捷键</WAW.AboutQuickAttack>
+	<WAW.AboutQuickAttack.Desc>你可以通过主界面进入快捷攻击界面，这个界面可以让你轻易找到所有可用的战团。</WAW.AboutQuickAttack.Desc>
 
 </LanguageData>

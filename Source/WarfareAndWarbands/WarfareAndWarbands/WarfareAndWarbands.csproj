@@ -87,6 +87,10 @@
     <Compile Include="CharacterCustomization\CustomizationUtil.cs" />
     <Compile Include="CharacterCustomization\UI\Window_Customization.cs" />
     <Compile Include="CharacterCustomization\GameComponent_Customization.cs" />
+    <Compile Include="QuickRaid\UI\Window_QuickRaid.cs" />
+    <Compile Include="Warband\UI\Dialog_SetCustomName.cs" />
+    <Compile Include="Warband\WAWCaravan\CaravanWarbandUtility.cs" />
+    <Compile Include="Warband\WAWCaravan\HarmonyPatches\CaravanGizmosPatch.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\Leader\PlayerWarbandLeaderUtil.cs" />
     <Compile Include="Warband\WarbandRecruiting\DebugAction_WarbandRecruiting.cs" />
     <Compile Include="Warband\WarbandRecruiting\WorldObject_WarbandRecruiting.cs" />
@@ -120,6 +124,8 @@
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpdates\DroppodUpgrade.cs" />
     <Compile Include="Warband\WarbandRecruiting\WarbandRecruitingUtil.cs" />
     <Compile Include="Warband\WarbandUtil.cs" />
+    <Compile Include="Warband\WAWCaravan\UI\WAWCaravanUI.cs" />
+    <Compile Include="Warband\WAWCaravan\UI\Window_ArrangeWarband_Caravan.cs" />
     <Compile Include="Warband\WorldObjectCompProperties_PlayerWarband.cs" />
     <Compile Include="Warband\WorldObjectComp_PlayerWarband.cs" />
     <Compile Include="Warfare\GameComponent_WAW.cs" />

@@ -1,4 +1,5 @@
-﻿using RimWorld.Planet;
+﻿using RimWorld;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace WarfareAndWarbands.Warband
 {
     public class WorldObjectComp_PlayerWarband : WorldObjectComp
     {
+
+
         public override IEnumerable<Gizmo> GetGizmos()
         {
             if (this.parent.Faction.IsPlayer)
@@ -20,6 +23,7 @@ namespace WarfareAndWarbands.Warband
                 yield return WarbandUI.DismissWarband((Warband)this.parent);
                 yield return WarbandUI.WithdrawWarbandItems((Warband)this.parent);
                 yield return WarbandUI.ConfigureWarband((Warband)this.parent);
+                yield return WarbandUI.RenameWarband((Warband)this.parent);
 
                 if (DebugSettings.godMode)
                 {

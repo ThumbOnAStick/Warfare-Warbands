@@ -141,7 +141,8 @@ namespace WarfareAndWarbands.Warband
             {
                 Find.FactionManager.TryGetRandomNonColonyHumanlikeFaction(out faction, true);
             }
-            Mercenary.SetFaction(faction);
+            if (Mercenary.Faction != faction)
+                Mercenary.SetFaction(faction);
         }
 
         public void SetRetreat(bool retreated)

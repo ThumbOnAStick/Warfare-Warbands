@@ -23,6 +23,7 @@ namespace WarfareAndWarbands.HarmonyPatches
             GetHomeFactionPatch.PatchHarmony();
             ExitMapPatch.PatchHarmony();
             SettlemntDestroyedPatch.PatchHarmony();
+            CaravanGizmosPatch.PatchHarmony();
             WAWHarmony.harmony.PatchAll();
             Log.Message("WAW: patches successful");
         }

@@ -42,7 +42,7 @@ namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
                 {
                     target = orGenerateMap,
                     faction = f,
-                    points = Math.Max(StorytellerUtility.DefaultThreatPointsNow(Find.AnyPlayerHomeMap), 500),
+                    points = Math.Max(StorytellerUtility.DefaultThreatPointsNow(Find.AnyPlayerHomeMap), 250),
                     forced = true,
                     raidStrategy = RaidStrategyDefOf.ImmediateAttack,
                     canKidnap = false

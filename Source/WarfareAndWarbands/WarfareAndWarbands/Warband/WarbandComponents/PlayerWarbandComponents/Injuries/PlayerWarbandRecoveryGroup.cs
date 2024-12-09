@@ -25,7 +25,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
         private List<string> pawnKindNamesCache;
         private List<int> pawnNumberCache;
 
-        private static readonly int maxInjuredPawns = 5;
+        private static readonly int maxInjuredPawns = 3;
 
         public float GetRecoveriesDays()
         {
