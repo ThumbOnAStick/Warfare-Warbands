@@ -30,9 +30,6 @@
 	<WAW.CustomizeCharacter>character customization</WAW.CustomizeCharacter>
 	<WAW.DisplayEquipped>Display Equipped:</WAW.DisplayEquipped>
 	<WAW.AlienRace>Alien Race: {0}</WAW.AlienRace>
-	<WAW.ModsConflict>Need alien races mod</WAW.ModsConflict>
-	<WAW.ModsConflict.Desc>Warband Warfare mod requires Humanoid Alien Races(HAR) mod to run with
-		Combat Extended, otherwise there will be bugs.</WAW.ModsConflict.Desc>
 	<WAW.tooltip>Re-select equipped apparel to unequip it.</WAW.tooltip>
 	<WAW.tooltip1>Select another weapon to unequip current weapon.</WAW.tooltip1>
 	<WAW.Title>Warband Warfare Update Log</WAW.Title>
@@ -65,4 +62,6 @@
 	<WAW.AboutAssignLeader.Desc>You can assign a leader for this newly crated warband, to do this, you only need a caravan that can approach the warband site.</WAW.AboutAssignLeader.Desc>
 	<WAW.AboutQuickAttack>About: Raid Shortcut</WAW.AboutQuickAttack>
 	<WAW.AboutQuickAttack.Desc>You can access raid shortcut window through the main mod panel, it makes it easier to select from active warbands.</WAW.AboutQuickAttack.Desc>
+	<WAW.TabLeader>L.ship</WAW.TabLeader>
+	<WAW.LeadershipTitle>Leadership Attributes:</WAW.LeadershipTitle>
 </LanguageData>

@@ -14,6 +14,7 @@
     <expandMore>true</expandMore>
     <comps>
       <li Class="WarfareAndWarbands.Warband.WorldObjectCompProperties_PlayerWarband" />
+      <li Class="WAWLeadership.WorldObjectCompProperties_PlayerWarbandLeader"/>
     </comps>
   </WorldObjectDef>
 
@@ -28,8 +29,5 @@
     <expandingIconTexture>World/WorldObjects/Expanding/WarbandRecruiting</expandingIconTexture>
     <expandingIconPriority>100</expandingIconPriority>
     <expandMore>true</expandMore>
-    <!-- <comps>
-      <li Class="WarfareAndWarbands.Warband.WorldObjectCompProperties_PlayevrWarband" />
-    </comps> -->
   </WorldObjectDef>
   </Defs>

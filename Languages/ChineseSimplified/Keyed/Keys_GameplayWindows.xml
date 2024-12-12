@@ -14,4 +14,12 @@
 	<WAW.QuickRaid>袭击快捷键窗口</WAW.QuickRaid>
 	<WAW.YouCanRename>你知道你可以重新命名战团吗？</WAW.YouCanRename>
 	<WAW.ZeroFound>没有可以用来行动的战团。</WAW.ZeroFound>
+	<WAW.Raiding>指挥能力</WAW.Raiding>
+	<WAW.Diplomacy>谈判能力</WAW.Diplomacy>
+	<WAW.Recruiting>招募能力</WAW.Recruiting>
+	<WAW.Medic>医疗能力</WAW.Medic>
+	<WAW.Engineering>工程能力</WAW.Engineering>
+	<WAW.Economy>理财能力</WAW.Economy>
+	<WAW.AttributePoints>属性点： {0}</WAW.AttributePoints>
+
 </LanguageData>

@@ -7,4 +7,13 @@
 			</li>
 		</value>
 	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/ThingDef[thingClass="Pawn"]/comps</xpath>
+		<value>
+			<li Class="WAWLeadership.CompProperties_Leadership">
+			</li>
+		</value>
+	</Operation>
+
 </Patch>

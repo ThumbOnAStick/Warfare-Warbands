@@ -1,0 +1,4 @@
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\1.5\Assemblies\WAWLeadership.dll
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\Source\WAWLeadership\WAWLeadership\obj\Debug\WAWLeadership.csproj.AssemblyReference.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\Source\WAWLeadership\WAWLeadership\obj\Debug\WAWLeadership.csproj.CoreCompileInputs.cache
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\Source\WAWLeadership\WAWLeadership\obj\Debug\WAWLeadership.dll

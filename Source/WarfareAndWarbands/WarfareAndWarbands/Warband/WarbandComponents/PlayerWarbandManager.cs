@@ -103,17 +103,6 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             return result;
         }
 
-        bool CantAffordToAttack()
-        {
-            int cost = (int)PlayerWarbandArrangement.GetCostOriginal(this.warband.bandMembers);
-            bool cantAfford = !WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, cost);
-            if (cantAfford)
-            {
-                Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent, true);
-                return false;
-            }
-            return true;
-        }
 
         public void AttackLand()
         {
@@ -122,9 +111,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             {
                 LongEventHandler.QueueLongEvent(delegate ()
                 {
-                    if (!CantAffordToAttack())
+                    if (!WarbandUtil.CantAffordToAttack(warband))
                         return;
-                    SoundDefOf.ExecuteTrade.PlayOneShotOnCamera(null);
+                    GameComponent_WAW.Instance.OnRaid(this.leader.Leader);
                     this.cooldownManager.SetLastRaidTick();
                     WarbandUtil.OrderPlayerWarbandToAttack(this.targetMapP, this.warband);
                 }, "GeneratingMapForNewEncounter", false, null, true, null);
@@ -137,9 +126,6 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             bool flag = this.targetMapP != null && this.targetMapP.Map != null;
             if (flag)
             {
-                if (!CantAffordToAttack())
-                    return;
-                SoundDefOf.ExecuteTrade.PlayOneShotOnCamera(null);
                 this.cooldownManager.SetLastRaidTick();
                 this.droppodUpgrade.LaunchWarbandInMap(this.targetMapP.Map);
             }

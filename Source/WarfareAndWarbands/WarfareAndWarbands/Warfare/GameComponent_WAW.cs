@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RimWorld;
 using UnityEngine;
+using UnityEngine.Events;
 using Verse;
 using WarfareAndWarbands.Warband;
 
@@ -17,13 +18,20 @@ namespace WarfareAndWarbands
         Dictionary<Faction, int> factionsAndWarDurabilities = new Dictionary<Faction, int>();
         public static PlayerWarbandArrangement playerWarband;
         public static GameComponent_WAW Instance;
+        public UnityEvent onRaid;
+        public UnityEvent onRaided;
         private bool everUsedQuickRaid = false;
         private bool everAssignedWarbandLeader = false;
+        private Pawn raidLeaderCache;
+        private int lastTick = 0;
+
 
         public GameComponent_WAW(Game game)
         {
             GameComponent_WAW.Instance = this;
             playerWarband = new PlayerWarbandArrangement();
+            onRaid = new UnityEvent();
+            onRaided = new UnityEvent();
         }
 
         public override void ExposeData()
@@ -31,9 +39,9 @@ namespace WarfareAndWarbands
             base.ExposeData();
             Scribe_Collections.Look<Faction, int>(ref this.factionsAndWarDurabilities,
                 "factionsAndWarDurabilities", LookMode.Reference, LookMode.Value, ref factions, ref durabilitities);
-            Scribe_Values.Look(ref lastTick, "lastTick");
-            Scribe_Values.Look(ref everAssignedWarbandLeader, "lastTick");
-            Scribe_Values.Look(ref everUsedQuickRaid, "lastTick");
+            Scribe_Values.Look(ref lastTick, "lastTick", GenTicks.TicksGame);
+            Scribe_Values.Look(ref everAssignedWarbandLeader, "everAssignedWarbandLeader");
+            Scribe_Values.Look(ref everUsedQuickRaid, "everUsedQuickRaid");
             playerWarband.ExposeData();
         }
 
@@ -58,6 +66,7 @@ namespace WarfareAndWarbands
                 WarfareUtil.TryToDefeatFaction(f);
             }
         }
+
 
         public bool EverUsedQuickRaid()
         {
@@ -169,7 +178,6 @@ namespace WarfareAndWarbands
 
 
 
-        private int lastTick = 0;
 
         public override void GameComponentTick()
         {
@@ -196,5 +204,25 @@ namespace WarfareAndWarbands
             WarfareUtil.SpawnWarbandTargetingBase(pickedFaction, worldObject);
         }
 
+        public void OnRaid(Pawn raidLeader = null)
+        {
+            SetRaidLeaderCache(raidLeader);
+            this.onRaid.Invoke();
+        }
+
+        public void OnRaided(Pawn raidLeader = null)
+        {
+            SetRaidLeaderCache(raidLeader);
+            this.onRaided.Invoke();
+        }
+
+        public void SetRaidLeaderCache(Pawn raidLeaderCache)
+        {
+            this.raidLeaderCache = raidLeaderCache;
+        }
+        public Pawn GetRaidLeaderCache()
+        {
+            return this.raidLeaderCache;
+        }
     }
 }

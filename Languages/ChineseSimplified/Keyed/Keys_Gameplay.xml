@@ -56,5 +56,7 @@
 	<WAW.AboutAssignLeader.Desc>你可以为这个新建立的战团分配一个领袖，组建一个远行队并前往战团所在的地块，选择远行队的任意成员作为领袖。</WAW.AboutAssignLeader.Desc>
 	<WAW.AboutQuickAttack>关于：攻击快捷键</WAW.AboutQuickAttack>
 	<WAW.AboutQuickAttack.Desc>你可以通过主界面进入快捷攻击界面，这个界面可以让你轻易找到所有可用的战团。</WAW.AboutQuickAttack.Desc>
+	<WAW.TabLeader>领导力</WAW.TabLeader>
+	<WAW.LeadershipTitle>领导力属性：</WAW.LeadershipTitle>
 
 </LanguageData>

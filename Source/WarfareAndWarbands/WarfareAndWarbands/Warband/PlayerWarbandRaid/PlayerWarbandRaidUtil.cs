@@ -27,7 +27,8 @@ namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
             {
                 return;
             }
-     
+
+            GameComponent_WAW.Instance.OnRaided(playerWarband.playerWarbandManager.leader.Leader);     
             LongEventHandler.QueueLongEvent(delegate ()
             {
                 var label = "WAW.RaidPlayerWarband".Translate();

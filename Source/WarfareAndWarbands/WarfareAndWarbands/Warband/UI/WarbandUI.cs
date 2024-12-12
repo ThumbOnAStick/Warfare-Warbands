@@ -153,15 +153,17 @@ namespace WarfareAndWarbands.Warband.UI
 
         public static Command ConfigureWarband(Warband band)
         {
-            Command_Action command_Action = new Command_Action();
-            command_Action.defaultLabel = "WAW.Configure".Translate();
-            command_Action.defaultDesc = "WAW.Configure.Desc".Translate();
-            command_Action.icon = WAWTex.ReArrangeIcon;
-            command_Action.action = delegate ()
+            Command_Action command_Action = new Command_Action
             {
-                WarbandUtil.ReArrangePlayerWarband(band);
+                defaultLabel = "WAW.Configure".Translate(),
+                defaultDesc = "WAW.Configure.Desc".Translate(),
+                icon = WAWTex.ReArrangeIcon,
+                action = delegate ()
+                {
+                    WarbandUtil.ReArrangePlayerWarband(band);
+                },
+                Order = 3000f
             };
-            command_Action.Order = 3000f;
             return command_Action;
         }
 

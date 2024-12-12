@@ -10,7 +10,6 @@ using Verse;
 namespace WarfareAndWarbands
 {
     [StaticConstructorOnStartup]
-
     internal static class WAWTex
     {
         public static readonly Texture2D ModIcon = ContentFinder<Texture2D>.Get("UI/Icon/ModIcon", true);

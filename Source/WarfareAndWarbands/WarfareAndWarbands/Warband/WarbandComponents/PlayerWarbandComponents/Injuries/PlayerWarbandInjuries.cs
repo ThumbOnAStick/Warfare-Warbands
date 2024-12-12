@@ -62,6 +62,11 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
 
         }
 
+        public bool IsInjured()
+        {
+            return this.GetRecoveryDays() > 0;
+        }
+
         public float GetRecoveryDays()
         {
             float result = 0;

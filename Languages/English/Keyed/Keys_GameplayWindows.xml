@@ -14,4 +14,11 @@
 	<WAW.QuickRaid>Raid Shortcut Window</WAW.QuickRaid>
 	<WAW.YouCanRename>Do you know you can rename warbands?</WAW.YouCanRename>
 	<WAW.ZeroFound>There's no active warband that can raid.</WAW.ZeroFound>
+	<WAW.Raiding>Commanding</WAW.Raiding>
+	<WAW.Diplomacy>Diplomacy</WAW.Diplomacy>
+	<WAW.Recruiting>Recruiting</WAW.Recruiting>
+	<WAW.Medic>Medic</WAW.Medic>
+	<WAW.Engineering>Engineering</WAW.Engineering>
+	<WAW.Economy>Economy</WAW.Economy>
+	<WAW.AttributePoints>Attribute Points: {0}</WAW.AttributePoints>
 </LanguageData>

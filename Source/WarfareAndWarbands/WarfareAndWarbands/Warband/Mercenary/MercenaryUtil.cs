@@ -62,6 +62,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
             }
             Faction faction = kindDef.defaultFactionType != null ? Find.FactionManager.FirstFactionOfDef(kindDef.defaultFactionType) : warband.Faction;
             PawnGenerationRequest request = new PawnGenerationRequest(kindDef, faction, mustBeCapableOfViolence: true);
+            request.AllowedDevelopmentalStages = DevelopmentalStage.Adult;
             return request;
         }
 

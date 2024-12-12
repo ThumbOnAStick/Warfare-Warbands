@@ -30,4 +30,9 @@
   <WAW.CreateWarband>建立战团</WAW.CreateWarband>
   <WAW.CreateWarband.Desc>在这个地块上建立一个战团，选择其中一个殖民者作为这个战团的领袖。</WAW.CreateWarband.Desc>
   <WAW.LinkWarband>选择所属</WAW.LinkWarband>
+  <WAW.Interact>互动</WAW.Interact>
+  <WAW.Interact.Desc>利用战团领袖和世界物体互动。</WAW.Interact.Desc>
+	<WAW.InteractCoolDown>{0} 天内可用</WAW.InteractCoolDown>
+	<WAW.LeaderLevelUp>战团领袖 {0} 的领导力提升了</WAW.LeaderLevelUp>
+
 </LanguageData>

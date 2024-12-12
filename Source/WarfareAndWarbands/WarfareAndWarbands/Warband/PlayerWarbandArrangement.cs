@@ -42,6 +42,7 @@ namespace WarfareAndWarbands.Warband
                 }
 
             }
+            colorOverride = Color.white;
         }
 
         public static float GetCostOriginal(Dictionary<string, int> bandMembers)
@@ -165,7 +166,7 @@ namespace WarfareAndWarbands.Warband
             {
                 return;
             }
-            if(!bandMembers.Any(x => x.Value > 0))
+            if (!bandMembers.Any(x => x.Value > 0))
             {
                 Messages.Message("WAW.emptyBand".Translate(), MessageTypeDefOf.RejectInput);
                 return;
@@ -175,10 +176,11 @@ namespace WarfareAndWarbands.Warband
             {
                 return;
             }
-            SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
+            if (cost > 0)
+                SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
             playerWarbandSite.bandMembers = new Dictionary<string, int>(bandMembers);
             playerWarbandSite.playerWarbandManager.colorOverride.SetColorOverride(this.colorOverride);
-        }   
+        }
 
         private bool CreateWarbandWorldObject(GlobalTargetInfo target)
         {

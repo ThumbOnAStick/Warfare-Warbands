@@ -30,5 +30,8 @@
 	<WAW.CreateWarband>Create Warband</WAW.CreateWarband>
 	<WAW.CreateWarband.Desc>Create a warband here on the tile, select one of your colonists as its leader.</WAW.CreateWarband.Desc>
     <WAW.LinkWarband>Select its owner</WAW.LinkWarband>
-
+	<WAW.Interact>Interact</WAW.Interact>
+	<WAW.Interact.Desc>Interact with other worldobjects through warband leader.</WAW.Interact.Desc>
+	<WAW.InteractCoolDown>Avialable in: {0} days</WAW.InteractCoolDown>
+	<WAW.LeaderLevelUp>Your leader {0} has gained a leadership level!</WAW.LeaderLevelUp>
 </LanguageData>	

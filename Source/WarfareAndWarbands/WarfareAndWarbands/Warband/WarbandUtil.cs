@@ -49,6 +49,19 @@ namespace WarfareAndWarbands.Warband
             return SoldierPawnKindsCache.First(x => x.defName == defName).label;
         }
 
+        public static bool CantAffordToAttack(Warband warband)
+        {
+            int cost = (int)PlayerWarbandArrangement.GetCostOriginal(warband.bandMembers);
+            bool cantAfford = !WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, cost);
+            if (cantAfford)
+            {
+                Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent, true);
+                return false;
+            }
+            SoundDefOf.ExecuteTrade.PlayOneShotOnCamera(null);
+            return true;
+        }
+
         public static bool CanPlaceMoreWarbands()
         {
             return AllPlayerWarbandsCount() < WAWSettings.maxPlayerWarband;

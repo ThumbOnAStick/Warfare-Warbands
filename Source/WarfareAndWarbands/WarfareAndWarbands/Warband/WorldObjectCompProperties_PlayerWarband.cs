@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WarfareAndWarbands.Warband
 {
-    public class WorldObjectCompProperties_PlayerWarband:WorldObjectCompProperties
+    public class WorldObjectCompProperties_PlayerWarband : WorldObjectCompProperties
     {
         public WorldObjectCompProperties_PlayerWarband()
         {

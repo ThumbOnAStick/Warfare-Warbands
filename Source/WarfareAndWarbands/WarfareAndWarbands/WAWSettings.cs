@@ -44,7 +44,7 @@ namespace WarfareAndWarbands
                     .5f,
                     "WAW.raidPlayerWarbandChance.Desc".Translate(raidPlayerWarbandChance)
                     ); ;
-            warbandRaidCooldown = (float)(((int)(listing_Standard.SliderLabeled("WAW.warbandRaidCooldown".Translate(warbandRaidCooldown), warbandRaidCooldown, 1, 10, .5f, "WAW.warbandRaidCooldown.Desc".Translate()) * 100)) / 100f);
+            warbandRaidCooldown = (((int)(listing_Standard.SliderLabeled("WAW.warbandRaidCooldown".Translate(warbandRaidCooldown), warbandRaidCooldown, 1, 10, .5f, "WAW.warbandRaidCooldown.Desc".Translate()) * 100)) / 100f);
 
             listing_Standard.CheckboxLabeled("WAW.enableFactionDefeat".Translate(), ref enableFactionDefeat, "WAW.enableFactionDefeat.Desc".Translate()); ;
             listing_Standard.End();
@@ -57,10 +57,13 @@ namespace WarfareAndWarbands
         public static int eventFrequency = 5;
         public static int maxPlayerWarband = 10;
         public static int raidPlayerWarbandChance = 15;
-        public static float warbandRaidCooldown = 1.5f;
+        public static int playerRaidExp = 5;
+        public static int playerRaiddedExp = 5;
+        public static int playerQuestExp = 10;
         public static bool enableFactionDefeat = false;
         public static bool dropPodRaidRequiresUpgrade = false;
         public static bool everReadUpdateLog = false;
+        public static float warbandRaidCooldown = 1.5f;
         private static readonly float UpdateVersion = 1.11f;
     }
 }

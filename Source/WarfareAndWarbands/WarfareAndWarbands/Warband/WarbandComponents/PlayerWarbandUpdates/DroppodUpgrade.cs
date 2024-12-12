@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using Verse.Sound;
 using WarfareAndWarbands.Warband.Mercenary;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
@@ -37,6 +38,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
 
         public void LaunchWarband(LocalTargetInfo lInfo)
         {
+            if (!WarbandUtil.CantAffordToAttack(warband))
+                return;
+            GameComponent_WAW.Instance.OnRaid(warband.playerWarbandManager.leader.Leader);
             List<Pawn> list = MercenaryUtil.GenerateWarbandPawns(warband);
             List<ActiveDropPodInfo> pods = new List<ActiveDropPodInfo>();   
             foreach (Pawn p in list) 
@@ -47,6 +51,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
             }
             Arrived(pods, lInfo);
         }
+
+    
+
 
         static void GUIAction(LocalTargetInfo info)
         {

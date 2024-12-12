@@ -12,7 +12,7 @@ namespace WarfareAndWarbands.Warband
     internal static class CaravanWarbandUtility
     {
 
-        public static bool CanAford(this Caravan caravan, int cost)
+        public static bool CanAfford(this Caravan caravan, int cost)
         {
             int amount = 0;
             foreach (var t in caravan.Goods)
@@ -29,7 +29,7 @@ namespace WarfareAndWarbands.Warband
 
         public static bool TryToSpendSilverFromCaravan(Caravan caravan, int cost)
         {
-            if (!caravan.CanAford(cost))
+            if (!caravan.CanAfford(cost))
             {
                 Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent);
                 return false;
