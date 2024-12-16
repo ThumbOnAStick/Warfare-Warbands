@@ -11,6 +11,20 @@ namespace WarfareAndWarbands
 {
     public class WAWSettings : Verse.ModSettings
     {
+        public static int occupyChance = 20;
+        public static int establishFeeMultiplier = 2;
+        public static int eventFrequency = 5;
+        public static int maxPlayerWarband = 10;
+        public static int raidPlayerWarbandChance = 15;
+        public static int playerRaidExp = 5;
+        public static int playerRaiddedExp = 5;
+        public static int leaderUsedAbilityExp = 15;
+        public static bool enableFactionDefeat = false;
+        public static bool dropPodRaidRequiresUpgrade = false;
+        public static bool everReadUpdateLog = false;
+        public static float warbandRaidCooldown = 1.5f;
+        private static readonly float UpdateVersion = 1.11f;
+
 
         public override void ExposeData()
         {
@@ -23,7 +37,6 @@ namespace WarfareAndWarbands
             Scribe_Values.Look(ref enableFactionDefeat, "enableFactionDefeat", defaultValue: false);
             Scribe_Values.Look(ref everReadUpdateLog, $"everReadUpdateLog{UpdateVersion}", defaultValue: false);
             Scribe_Values.Look(ref warbandRaidCooldown, "warbandRaidCooldown", 1.5f);
-
 
         }
 
@@ -52,18 +65,6 @@ namespace WarfareAndWarbands
         }
 
 
-        public static int occupyChance = 20;
-        public static int establishFeeMultiplier = 2;
-        public static int eventFrequency = 5;
-        public static int maxPlayerWarband = 10;
-        public static int raidPlayerWarbandChance = 15;
-        public static int playerRaidExp = 5;
-        public static int playerRaiddedExp = 5;
-        public static int playerQuestExp = 10;
-        public static bool enableFactionDefeat = false;
-        public static bool dropPodRaidRequiresUpgrade = false;
-        public static bool everReadUpdateLog = false;
-        public static float warbandRaidCooldown = 1.5f;
-        private static readonly float UpdateVersion = 1.11f;
+
     }
 }

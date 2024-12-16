@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Verse;
 using System.Reflection;
 using UnityEngine;
+using static RimWorld.PsychicRitualRoleDef;
 
 namespace WarfareAndWarbands.CharacterCustomization
 {
@@ -39,6 +40,45 @@ namespace WarfareAndWarbands.CharacterCustomization
             AddSkills(defaultKindDef);
 
             return defaultKindDef;
+        }
+
+        public static string StyleStringFor(ThingDef thingDef, Dictionary<ThingDef, ThingStyleDef> dic)
+        {
+            if (!dic.ContainsKey(thingDef) || dic[thingDef] == null)
+            {
+                return "WAW.DefaultStyle".Translate();
+            }
+            return dic[thingDef].Category.label;
+        }
+
+        public static IEnumerable<ThingStyleDef> StylesFor(this ThingDef thingDef)
+        {
+            if (!thingDef.CanBeStyled())
+            {
+                yield break;
+            }
+            foreach (var cat in thingDef.RelevantStyleCategories)
+            {
+                if (cat.thingDefStyles.Any(x => x.ThingDef == thingDef))
+                    yield return cat.thingDefStyles.Find(x => x.ThingDef == thingDef).StyleDef;
+            }
+        }
+
+        public static ThingStyleDef GetStyle(CustomizationRequest request, ThingDef def)
+        {
+            Dictionary<string, string> dic = request.thingDefsAndStyles;
+            if (!dic.ContainsKey(def.defName))
+            {
+                return null;
+            }
+            return GetStyle(dic[def.defName]);
+        }
+
+        public static ThingStyleDef GetStyle(string weaponStyleDefName)
+        {
+            if(DefDatabase<ThingStyleDef>.AllDefs.Any(x => x.defName == weaponStyleDefName))
+                return DefDatabase<ThingStyleDef>.GetNamed(weaponStyleDefName, false);
+            return null;
         }
 
         public static void AddSkills(PawnKindDef defaultKindDef)

@@ -21,17 +21,21 @@ namespace WarfareAndWarbands.CharacterCustomization
         public string xenoTypeDefName;
         public string alienDefName;
         public List<ThingDef> apparelRequests;
+        public Dictionary<string, string> thingDefsAndStyles;
         public Dictionary<ThingDef, ThingDef> itemAndStuff;
         public ThingDef weaponRequest;
 
         private List<ThingDef> itemCache;
         private List<ThingDef> stuffCache;
+        private List<string> defNameCache;
+        private List<string> styleCache;
         private XenotypeDef xenoTypeCache;
 
         public CustomizationRequest()
         {
             apparelRequests = new List<ThingDef>();
-            itemAndStuff = new Dictionary<ThingDef, ThingDef>();    
+            itemAndStuff = new Dictionary<ThingDef, ThingDef>();
+            thingDefsAndStyles = new Dictionary<string, string>();
             if (ModsConfig.BiotechActive)
                 this.xenoTypeDefName = XenotypeDefOf.Baseliner.defName;
         }
@@ -42,7 +46,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             this.label = label;
             apparelRequests = new List<ThingDef>();
             itemAndStuff = new Dictionary<ThingDef, ThingDef>();
-
+            thingDefsAndStyles = new Dictionary<string, string>();
         }
 
         public void CustomizePawn(ref Pawn p)
@@ -123,7 +127,24 @@ namespace WarfareAndWarbands.CharacterCustomization
             var stuff = GetStuff(weaponRequest);
             ThingWithComps weapon = (ThingWithComps)ThingMaker.MakeThing(weaponRequest, stuff);
             weapon.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
+            TryToStyleEquipment(ref weapon);
             return weapon;
+        }
+
+        void TryToStyleEquipment(ref Apparel equipment)
+        {
+            if (ModsConfig.IdeologyActive)
+            {
+                equipment.StyleDef = CustomizationUtil.GetStyle(this, equipment.def);
+            }
+        }
+
+        void TryToStyleEquipment(ref ThingWithComps equipment)
+        {
+            if (ModsConfig.IdeologyActive)
+            {
+                equipment.StyleDef = CustomizationUtil.GetStyle(this, equipment.def);
+            }
         }
 
         public ThingWithComps GenerateWeaponFor(ref Pawn p)
@@ -143,6 +164,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                 ThingDef stuff = GetStuff(apparelRequest);
                 Apparel apparel = (Apparel)ThingMaker.MakeThing(apparelRequest, stuff);
                 apparel.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
+                TryToStyleEquipment(ref apparel);
                 p.apparel.Wear(apparel);
                 result.Add(apparel);
             }
@@ -155,11 +177,11 @@ namespace WarfareAndWarbands.CharacterCustomization
             foreach (ThingDef apparelRequest in apparelRequests)
             {
                 ThingDef stuff = GetStuff(apparelRequest);
-                Apparel apparel = (Apparel)ThingMaker.MakeThing(apparelRequest, stuff);
+                ThingWithComps apparel = (Apparel)ThingMaker.MakeThing(apparelRequest, stuff);
                 apparel.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
+                TryToStyleEquipment(ref apparel);
                 result.Add(apparel);
             }
-
             return result;
         }
 
@@ -258,8 +280,14 @@ namespace WarfareAndWarbands.CharacterCustomization
             Scribe_Values.Look(ref this.alienDefName, "alienDefName");
             Scribe_Collections.Look(ref this.apparelRequests, "apparelRequests", LookMode.Def);
             Scribe_Defs.Look(ref this.weaponRequest, "weaponRequest");
+            Scribe_Collections.Look<string, string>(ref this.thingDefsAndStyles,
+"thingDefsAndStyles", LookMode.Value, LookMode.Value, ref defNameCache, ref styleCache, false);
             Scribe_Collections.Look<ThingDef, ThingDef>(ref this.itemAndStuff,
-"bandMembers", LookMode.Def, LookMode.Def, ref itemCache, ref stuffCache, false);
+"itemAndStuff", LookMode.Def, LookMode.Def, ref itemCache, ref stuffCache, false);
+            if(thingDefsAndStyles == null)
+            {
+                thingDefsAndStyles = new Dictionary<string, string>();
+            }
         }
     }
 

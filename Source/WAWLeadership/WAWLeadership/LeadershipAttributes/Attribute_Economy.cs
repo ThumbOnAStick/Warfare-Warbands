@@ -20,5 +20,9 @@ namespace WAWLeadership.LeadershipAttributes
         {
             return SkillDefOf.Social;
         }
+        public override SkillDef BoostsSkill()
+        {
+            return null;
+        }
     }
 }

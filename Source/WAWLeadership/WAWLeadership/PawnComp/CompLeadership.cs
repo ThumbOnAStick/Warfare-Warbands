@@ -10,21 +10,22 @@ using WarfareAndWarbands;
 using WarfareAndWarbands.Warband;
 using WarfareAndWarbands.Warband.Mercenary;
 using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents.Leader;
+using WAWLeadership.LeadershipAttributes;
 using WAWLeadership.UI;
 
 namespace WAWLeadership
 {
     public class CompLeadership : ThingComp
     {
-
         private bool isWarbandLeader;
         private Leadership leadership;
+        private Warband warbandCache;
         public Leadership Leadership { get { return leadership; } }
-
         public CompLeadership()
         {
             GameComponent_WAW.Instance.onRaid.AddListener(AddExpForRaiding);
-            GameComponent_WAW.Instance.onRaided.AddListener(AddExpForRaiding);  
+            GameComponent_WAW.Instance.onRaided.AddListener(AddExpForDefending);
+            GameComponent_WAW.Instance.onLeaderAbilityUsed.AddListener(AddExpForUsingAbility);
         }
 
         public void AddExpForRaiding()
@@ -40,7 +41,16 @@ namespace WAWLeadership
         {
             if (Pawn == GameComponent_WAW.Instance.GetRaidLeaderCache())
             {
-                Log.Message($"EXP added to leader {Pawn.Name} for defending! ({WAWSettings.playerRaidExp} points)");
+                Log.Message($"EXP added to leader {Pawn.Name} for defending! ({WAWSettings.playerRaiddedExp} points)");
+                AddExpFor(WAWSettings.playerRaiddedExp);
+            }
+        }
+
+        public void AddExpForUsingAbility()
+        {
+            if (Pawn == GameComponent_WAW.Instance.GetRaidLeaderCache())
+            {
+                Log.Message($"EXP added to leader {Pawn.Name} for using ability! ({WAWSettings.leaderUsedAbilityExp} points)");
                 AddExpFor(WAWSettings.playerRaiddedExp);
             }
         }
@@ -55,7 +65,7 @@ namespace WAWLeadership
         {
             if (levelUp)
             {
-                Message m = new Message("WAW.LeaderLevelUp".Translate(), MessageTypeDefOf.PositiveEvent);
+                Message m = new Message("WAW.LeaderLevelUp".Translate(Pawn.NameShortColored), MessageTypeDefOf.PositiveEvent);
                 Messages.Message(m);
             }
         }
@@ -70,19 +80,43 @@ namespace WAWLeadership
             this.isWarbandLeader = isWarbandLeader;
         }
 
+        public void DistributePoint<T>() where T : LeadershipAttribute
+        {
+            this.leadership.AttributeSet.DistributePoint<T>(out bool distributed);
+            if (distributed)
+            {
+                SelfWarband()?.playerWarbandManager?.leader?.OnLeaderChanged();
+            }
+        }
+        public void DistributePoint(LeadershipAttribute attribute)
+        {
+            if (this.leadership.AttributeSet.TryToDistributePoint(ref attribute))
+            {
+                SelfWarband()?.playerWarbandManager?.leader?.OnLeaderChanged();
+            }
+        }
 
         public override void CompTickRare()
         {
             base.CompTickRare();
-            if (IsColonist())
+            SetIsWarbandLeader(PlayerWarbandLeaderUtil.IsLeader(this.parent as Pawn));
+            if (IsColonist() || isWarbandLeader)
             {
-                SetIsWarbandLeader(PlayerWarbandLeaderUtil.IsLeader(this.parent as Pawn, out Warband warband));
+                if (!parent.def.inspectorTabsResolved.Any(x => x as ITab_Leadership != null))
+                {
+                    ResolveLeaderTab();
+                }
+                if (leadership == null)
+                {
+                    leadership = new Leadership();
+                }
+                if (leadership.AttributeSet.AllAttributesEmpty())
+                {
+                    leadership.AssignRandomAttribute(this.parent as Pawn);
+                }
+                leadership?.Tick();
             }
 
-            if (leadership.AttributeSet.AllAttributesEmpty())
-            {
-                leadership.AssignRandomAttribute(this.parent as Pawn);
-            }
         }
 
         public Pawn Pawn => parent as Pawn;
@@ -93,6 +127,7 @@ namespace WAWLeadership
         }
 
 
+
         public override void CompTick()
         {
             base.CompTick();
@@ -100,11 +135,6 @@ namespace WAWLeadership
             {
                 leadership = new Leadership();
             }
-            if (!parent.def.inspectorTabsResolved.Any(x => x as ITab_Leadership != null))
-            {
-                ResolveLeaderTab();
-            }
-            leadership?.Tick();
         }
 
         public void InitAttributes()
@@ -146,11 +176,53 @@ namespace WAWLeadership
             }
         }
 
+        public float GetRecoveryMultiplier()
+        {
+            var medicSkill = (Attribute_Medic)leadership.AttributeSet.GetAttribute<Attribute_Medic>();
+            if (medicSkill == null)
+            {
+                return 1.0f;
+            }
+            return medicSkill.GetRecoveryMultiplier();
+        }
+
         public override void PostExposeData()
         {
             base.PostExposeData();
             Scribe_Values.Look(ref this.isWarbandLeader, "isWarbandLeader", false);
             Scribe_Deep.Look(ref this.leadership, "leadership");
         }
+
+        public Warband SelfWarband()
+        {
+            if (!this.GetIsWarbandLeader())
+            {
+                return null;
+            }
+            if (PlayerWarbandLeaderUtil.IsLeader(Pawn, out Warband warband))
+            {
+                if (warbandCache == null)
+                {
+                    warbandCache = warband;
+                    warbandCache.playerWarbandManager.leader.onLeaderChanged.AddListener(ApplyBonus);
+                }
+                return warband;
+            }
+            return null;
+        }
+
+
+        void ApplyBonus()
+        {
+            if (!Pawn.Dead)
+                leadership.AttributeSet.ApplySkillBonuses(warbandCache.playerWarbandManager.skillBonus);
+        }
+
+        public void OpenLeadershipWindow()
+        {
+            Window_Leadership leadershipWindow = new Window_Leadership(this);
+            Find.WindowStack.Add(leadershipWindow);
+        }
+
     }
 }

@@ -21,4 +21,6 @@
 	<WAW.Engineering>Engineering</WAW.Engineering>
 	<WAW.Economy>Economy</WAW.Economy>
 	<WAW.AttributePoints>Attribute Points: {0}</WAW.AttributePoints>
+	<WAW.CurrentLevel>level: {0}</WAW.CurrentLevel>
+	<WAW.DefaultStyle>Default Style</WAW.DefaultStyle>
 </LanguageData>

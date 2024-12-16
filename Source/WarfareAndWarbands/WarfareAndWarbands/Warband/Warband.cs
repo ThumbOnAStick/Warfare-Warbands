@@ -169,16 +169,11 @@ namespace WarfareAndWarbands.Warband
         public override void Tick()
         {
 
-        
+            base.Tick();
             npcWarbandManager?.Tick();
             playerWarbandManager?.Tick();
-
-            if (this.HasMap && this.ShouldRemoveMapNow(out bool flag))
-            {
-                Map map = this.Map;
-                Current.Game.DeinitAndRemoveMap(map, true);
-
-            }
+            RemoveMapCheck();
+            SiteCheck();
 
         }
 
@@ -189,10 +184,10 @@ namespace WarfareAndWarbands.Warband
             {
                 result = !GenHostility.AnyHostileActiveThreatToPlayer(this.Map, false, false) && result;
             }
-
             alsoRemoveWorldObject = this.Faction != Faction.OfPlayer;
             return result;
         }
+
 
         public void ResettleTo(int tile)
         {
@@ -247,7 +242,13 @@ namespace WarfareAndWarbands.Warband
             playerWarbandManager?.ExposeData();
         }
 
-
+        public override IEnumerable<FloatMenuOption> GetTransportPodsFloatMenuOptions(IEnumerable<IThingHolder> pods, CompLaunchable representative)
+        {
+            yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate ()
+            {
+                representative.TryLaunch(this.Tile, new TransportPodsArrivalAction_FormCaravan());
+            }, MenuOptionPriority.Default, null, null, 0f, null, null, true, 0);
+        }
 
         public void OrderPlayerWarbandToResettle()
         {
@@ -381,7 +382,40 @@ namespace WarfareAndWarbands.Warband
             playerWarbandManager?.WithdrawLootInSilver();
         }
 
+        void RemoveMapCheck()
+        {
+            if (this.HasMap && this.ShouldRemoveMapNow(out bool flag))
+            {
+                Map map = this.Map;
+                Current.Game.DeinitAndRemoveMap(map, true);
+            }
+        }
 
+        void SiteCheck()
+        {
+            if (this.Faction != Faction.OfPlayer)
+            {
+                return;
+            }
+            var predicate = new Predicate<SitePart>(x => x.def.defName == "Outpost" || x.def == SitePartDefOf.BanditCamp);
+            if (this.parts.Any(predicate))
+            {
+                this.parts.RemoveAll(predicate);
+                var sitePartList = new List<SitePartDef>
+                {
+                     WAWDefof.WAWEmptySite,
+                };
+                SiteMakerHelper.GenerateDefaultParams(0f, this.Tile, this.Faction, sitePartList, out List<SitePartDefWithParams> sitePartDefsWithParams);
+                if (sitePartDefsWithParams != null)
+                {
+                    foreach (SitePartDefWithParams sitePart in sitePartDefsWithParams)
+                    {
+                        this.AddPart(new SitePart(this, sitePart.def, sitePart.parms));
+                    }
+                }
+                Log.Message("Sites removed.");
+            }
+        }
 
     }
 }

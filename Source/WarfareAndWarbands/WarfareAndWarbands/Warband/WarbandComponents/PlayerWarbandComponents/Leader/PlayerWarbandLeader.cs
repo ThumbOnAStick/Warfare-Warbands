@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine.Events;
 using Verse;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
@@ -19,20 +20,27 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             }
             set
             {
-                leader = value; 
+                leader = value;
             }
         }
 
+        public UnityEvent onLeaderChanged;
         Pawn leader;
 
-        public bool IsValid()
+
+        public PlayerWarbandLeader()
         {
-            return leader == null || leader.Dead || leader.Spawned;
+            onLeaderChanged = new UnityEvent();
+        }
+
+        public void OnLeaderChanged()
+        {
+            this.onLeaderChanged.Invoke();
         }
 
         public void AssignLeader(Pawn p, Caravan caravan = null)
         {
-            if(leader != null && !leader.Dead)
+            if (leader != null && !leader.Dead)
             {
                 return;
             }
@@ -43,22 +51,13 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             this.leader = p;
             caravan?.RemovePawn(p);
             SendLeaderSetMessage(p);
-            ResolvePawn(p);
             ResolveCaravan(caravan);
-        }
-
-        void ResolvePawn(Pawn p)
-        {
-            p.holdingOwner?.Remove(p);
-            if (Find.WorldPawns.Contains(p))
-            {
-                Find.WorldPawns.RemovePawn(p);
-            }
+            OnLeaderChanged();
         }
 
         void ResolveCaravan(Caravan caravan)
         {
-            if(caravan == null)
+            if (caravan == null)
             {
                 return;
             }
@@ -81,7 +80,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
         }
 
 
-        public void ReturnLeader()
+        public void ReturnLeaderHome()
         {
             if (leader == null)
             {
@@ -117,6 +116,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
         {
             Scribe_References.Look(ref leader, "leader");
         }
+
+        public void GetChildHolders(List<IThingHolder> outChildren)
+        {
+            outChildren = new List<IThingHolder>() { leader };
+        }
+
 
     }
 }

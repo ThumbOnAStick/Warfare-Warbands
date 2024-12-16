@@ -7,5 +7,5 @@
     <WAW.Injuries>Injuries:</WAW.Injuries>
     <WAW.ActiveMembers>Active Members:</WAW.ActiveMembers>
 	<WAW.RemainingDays>remaining days: {0} days</WAW.RemainingDays>
-
+    <WAW.leaderRecoveryFactor>leader's medical ability factor: {0}%</WAW.leaderRecoveryFactor>
 </LanguageData>

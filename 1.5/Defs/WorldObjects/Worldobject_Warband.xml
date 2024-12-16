@@ -14,7 +14,7 @@
     <expandMore>true</expandMore>
     <comps>
       <li Class="WarfareAndWarbands.Warband.WorldObjectCompProperties_PlayerWarband" />
-      <li Class="WAWLeadership.WorldObjectCompProperties_PlayerWarbandLeader"/>
+      <li Class="WAWLeadership.WorldObjectComps.WorldObjectCompProperties_PlayerWarbandLeader"/>
     </comps>
   </WorldObjectDef>
 

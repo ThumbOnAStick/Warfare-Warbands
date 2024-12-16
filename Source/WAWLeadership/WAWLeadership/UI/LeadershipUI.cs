@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using WarfareAndWarbands.Warband;
+using WarfareAndWarbands.Warband.WarbandComponents;
+using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents.Leader;
 using WAWLeadership.LeadershipAttributes;
-using WAWLeadership.WarbandLeadership;
+using WAWLeadership.WorldObjectComps;
 
 namespace WAWLeadership.UI
 {
@@ -47,19 +50,19 @@ namespace WAWLeadership.UI
             }
         }
 
-        public static void DrawLeadershipAttributes(List<Vector2> points, AttributeSet attributeSet)
+        public static void DrawLeadershipAttributes(List<Vector2> points, AttributeSet attributeSet, CompLeadership comp)
         {
             Vector2 size = new Vector2(150, 30);
             for (int i = 0; i < points.Count; i++)
             {
                 Rect rect = new Rect(points[i], size);
-                TryToDrawLeadershipAttribute(rect, attributeSet, i);
+                TryToDrawLeadershipAttribute(rect, attributeSet, i, comp);
             }
 
         }
 
 
-        static void TryToDrawLeadershipAttribute(Rect rect, AttributeSet attributeSet, int index)
+        static void TryToDrawLeadershipAttribute(Rect rect, AttributeSet attributeSet, int index, CompLeadership comp)
         {
             if (TryGetAttributeAt(attributeSet.Attributes, index, out LeadershipAttribute attribute))
             {
@@ -69,18 +72,18 @@ namespace WAWLeadership.UI
                 float actualX = rect.x - centerOffset;
                 Rect actualRect = new Rect(new Vector2(actualX, rect.y), rect.size);
                 if (attributeSet.AttributePoints > 0)
-                    DrawAttributeButton(new Rect(rect.x, actualRect.y + 20, 20, 20), attribute, attributeSet);
+                    DrawAttributeButton(new Rect(rect.x, actualRect.y + 20, 20, 20), attribute, comp);
                 Widgets.Label(actualRect, label);
 
             }
         }
 
-        public static void DrawCurrentAttributes(List<Vector2> points, Vector2 center, HashSet<LeadershipAttribute> attributes)
+        public static void DrawCurrentAttributes(List<Vector2> points, Vector2 center, CompLeadership leader)
         {
             List<Vector2> actualPoints = new List<Vector2>();
             for (int i = 0; i < points.Count; i++)
             {
-                actualPoints.Add(GetAttributeDrawPoint(points[i], center, i, attributes));
+                actualPoints.Add(GetAttributeDrawPoint(points[i], center, i, leader.Leadership.AttributeSet.Attributes));
             }
             DrawClosedLines(actualPoints, Color.yellow, 5f);
         }
@@ -111,13 +114,18 @@ namespace WAWLeadership.UI
             return attribute != null;
         }
 
-        public static void DrawAttributeButton(Rect rect, LeadershipAttribute attribute, AttributeSet set)
+        public static void DrawAttributeButton(Rect rect, LeadershipAttribute attribute, CompLeadership comp)
         {
             bool doAdd = Widgets.ButtonImage(rect, TexButton.Plus);
             if (doAdd)
             {
-                set.DistributePoint(attribute);
+                comp.DistributePoint(attribute);
             }
+        }
+
+        public static void DrawLevel(Rect rect, LeadershipExp exp)
+        {
+            Widgets.Label(rect, $"WAW.CurrentLevel".Translate(exp.CurrLevel));
         }
 
         public static void DrawPoints(Rect rect, AttributeSet set)
@@ -130,17 +138,52 @@ namespace WAWLeadership.UI
             Widgets.FillableBarLabeled(rect, exp.ExpPercent(), 60, exp.ToString());
         }
 
-        public static Command Interact(Warband band, bool disabled, WorldObjectComp_PlayerWarbandLeader comp)
+        public static Command Interact(bool disabled, WorldObjectComp_PlayerWarbandLeader comp, Pawn leader)
+        {
+            Command_Action command_Action = new Command_Action
+            {
+                defaultLabel = "WAW.Interact".Translate(),
+                defaultDesc = "WAW.Interact.Desc".Translate(),
+                disabledReason = "WAW.InteractCoolDown".Translate(comp.GetRemainingDays()),
+                Disabled = disabled,
+                icon = LeadershipTex.Interact,
+                action = delegate ()
+                {
+                    LeadershipUtility.SetWarbandCache(comp.MyWarband);
+                    LeadershipUtility.SetLeaderCache(leader);
+                    LeadershipUtility.SetLeaderCompCache(comp); 
+                    Find.WorldSelector.ClearSelection();
+                    Find.WorldTargeter.BeginTargeting(
+                        new Func<GlobalTargetInfo, bool>(LeadershipUtility.SelectInteractionTarget), false, null, false, delegate
+                        {
+                            GenDraw.DrawWorldRadiusRing(comp.parent.Tile, PlayerWarbandManager.playerAttackRange);
+                        }, null, null);
+                },
+                Order = 3000f
+            };
+            return command_Action;
+        }
+
+        public static Command ResetLeaderAbilityCooldown(WorldObjectComp_PlayerWarbandLeader comp)
         {
             Command_Action command_Action = new Command_Action();
-            command_Action.defaultLabel = "WAW.Interact".Translate();
-            command_Action.defaultDesc = "WAW.Interact.Desc".Translate();
-            command_Action.disabledReason = "WAW.InteractCoolDown".Translate(comp.GetRemainingDays());
-            command_Action.Disabled = disabled;
-            command_Action.icon = LeadershipTex.Interact;
+            command_Action.defaultLabel = "Reset usage cooldown";
             command_Action.action = delegate ()
             {
-                comp.SetLastUsageTick();
+                comp.ResetLastUsedTick();
+            };
+            command_Action.Order = 3000f;
+            return command_Action;
+        }
+
+        public static Command GetLeaderInfo(WorldObjectComp_PlayerWarbandLeader comp)
+        {
+            Command_Action command_Action = new Command_Action();
+            command_Action.icon = TexButton.Info;
+            command_Action.defaultLabel = "WAW.LeaderInfo".Translate();
+            command_Action.action = delegate ()
+            {
+                comp.LeadershipInfo.OpenLeadershipWindow();
             };
             command_Action.Order = 3000f;
             return command_Action;

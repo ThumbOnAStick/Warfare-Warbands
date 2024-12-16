@@ -6,15 +6,13 @@
 	\nIf you want to report bugs please goto the bug reproting thread in the workshop</WAW.Welcome.Desc>
 	<OpenFactionInformationTab>Open faction information tab</OpenFactionInformationTab>
 	<factionLosing>This faction is losing the war, sooner or later they will collpase.</factionLosing>
-	<factionStrikeToSurvive>This faction barely stands, they have suffered from continues military
-		failures.</factionStrikeToSurvive>
+	<factionStrikeToSurvive>This faction barely stands, they have suffered from continues military failures.</factionStrikeToSurvive>
 	<factionWillingToFight>This faction suffered some losses, but they are willing to fight.</factionWillingToFight>
 	<factionHungerForWar>This faction beleives they are the winning side.</factionHungerForWar>
 	<ArrangeWarband>Arrange Warband</ArrangeWarband>
 	<soldierAmount>amount</soldierAmount>
 	<WAW.DefeatWarbandLetter.Label>hostile warband defeated</WAW.DefeatWarbandLetter.Label>
-	<WAW.DefeatWarbandLetter.Desc>We defeated a hostile warband! It's not a noticeable achievement,
-		but another malicious attempt of {0} has been stopped.</WAW.DefeatWarbandLetter.Desc>
+	<WAW.DefeatWarbandLetter.Desc>We defeated a hostile warband! It's not a noticeable achievement, but another malicious attempt of {0} has been stopped.</WAW.DefeatWarbandLetter.Desc>
 	<WAW.TargetingMapParent>Trying to occupy {0}.</WAW.TargetingMapParent>
 	<WAW.InvalidObject>we are not attacking this one, sorry.</WAW.InvalidObject>
 	<WAW.FarObject>we cannot reach that far, sir, ten tiles for the most.</WAW.FarObject>
@@ -64,4 +62,11 @@
 	<WAW.AboutQuickAttack.Desc>You can access raid shortcut window through the main mod panel, it makes it easier to select from active warbands.</WAW.AboutQuickAttack.Desc>
 	<WAW.TabLeader>L.ship</WAW.TabLeader>
 	<WAW.LeadershipTitle>Leadership Attributes:</WAW.LeadershipTitle>
+	<WAW.LeaderLevelUp>Your leader {0} has gained a leadership level!</WAW.LeaderLevelUp>
+	<WAW.CloseMapIn>Map will be force closed in: {0} hours</WAW.CloseMapIn>
+	<WAW.CloseMapIn.Desc>The map will soon be closed, Considering in some cases player warband map does not close due to mod conflits.</WAW.CloseMapIn.Desc>
+	<WAW.InsufficientAttribute>Leader's {0} skill mismatch required level {1}</WAW.InsufficientAttribute>
+	<WAW.GoodWillGained>Goodwill Gained</WAW.GoodWillGained> 
+	<WAW.GoodWillGained.Desc>Due to leader's ability, your relationship with {0} has improved by {1} points</WAW.GoodWillGained.Desc>
+	<WAW.WorksiteTradeComplete>Thanks to {0}'s trading ability, you gained all the loots from this working site.</WAW.WorksiteTradeComplete>
 </LanguageData>

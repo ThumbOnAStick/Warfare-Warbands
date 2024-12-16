@@ -31,6 +31,12 @@ namespace WarfareAndWarbands.QuickRaid.UI
             }
         }
 
+        public override void PostOpen()
+        {
+            base.PostOpen();
+            GameComponent_WAW.Instance.SetAlreadyUseQuickRaid();
+        }
+
         public override void DoWindowContents(Rect inRect)
         {
             Rect exitButtonRect = new Rect(430, 0, 30, 30);
@@ -71,7 +77,6 @@ namespace WarfareAndWarbands.QuickRaid.UI
 
                 if (selectWarband)
                 {
-                    GameComponent_WAW.Instance.SetAlreadyUseQuickRaid();
                     CameraJumper.TryJump(CameraJumper.GetWorldTarget(warband), CameraJumper.MovementMode.Pan);
                     Find.WorldSelector.Select(warband);
                     this.Close();

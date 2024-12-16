@@ -9,6 +9,7 @@ using System.Linq;
 using UnityEngine;
 using Verse;
 using WarfareAndWarbands.CharacterCustomization.Compatibility;
+using WarfareAndWarbands.CharacterCustomization.UI;
 using WarfareAndWarbands.Warband;
 
 namespace WarfareAndWarbands.CharacterCustomization
@@ -23,7 +24,7 @@ namespace WarfareAndWarbands.CharacterCustomization
         private List<ThingDef> apparelBottomsCache;
         private List<ThingDef> apparelUtilsCache;
         private List<ThingDef> weaponsCache;
-
+        private Dictionary<ThingDef, ThingStyleDef> thingsAndStyles;
 
         private CustomizationRequest selectedRequest;
         private Vector2 scrollPosition;
@@ -33,6 +34,7 @@ namespace WarfareAndWarbands.CharacterCustomization
         private string filterBuffer;
 
         private static readonly int boxSize = 50;
+        private static readonly int itemSpacing = ModsConfig.IdeologyActive ? 50 : 5;
         private static readonly int pawnkindSpacing = 5;
         private static readonly int pawnkindHeight = 50;
         private static readonly int pawnkindWidth = 150;
@@ -64,6 +66,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             weaponsCache = DefDatabase<ThingDef>.AllDefs.Where(x => x.IsWeapon && x.BaseMarketValue > 1).ToList();
             weaponsCache.SortBy(x => x.BaseMarketValue);
             selectedList = apparelHeadsCache;
+
         }
         protected override void SetInitialSizeAndPosition()
         {
@@ -86,11 +89,10 @@ namespace WarfareAndWarbands.CharacterCustomization
             {
                 DrawTextBox(inRect);
                 DrawSelectionPanel(inRect);
-                DrwaXenoType(inRect);
+                DrawXenoType(inRect);
                 DrawAlien(inRect);
             }
         }
-
 
         void DrawCutomizationRequests(Rect inRect)
         {
@@ -151,6 +153,31 @@ namespace WarfareAndWarbands.CharacterCustomization
             filterBuffer = "";
             selectedRequest = customizationRequest;
             textBuffer = customizationRequest.label;
+            // try to load stuff
+            if (ModsConfig.IdeologyActive)
+            {
+                this.thingsAndStyles = new Dictionary<ThingDef, ThingStyleDef>();
+                foreach (var item in selectedRequest.thingDefsAndStyles)
+                {
+                    ThingDef thingdef = null;
+                    if(DefDatabase<ThingDef>.AllDefs.Any(x => x.defName == item.Key))
+                    {
+                        thingdef = DefDatabase<ThingDef>.AllDefs.First(x => x.defName == item.Key);
+                    }
+                    if(thingdef == null)
+                    {
+                        continue;
+                    }
+
+                    ThingStyleDef styleDef = null;
+                    if (DefDatabase<ThingStyleDef>.AllDefs.Any(x => x.defName == item.Value))
+                    {
+                        styleDef = DefDatabase<ThingStyleDef>.AllDefs.First(x => x.defName == item.Value);
+                    }
+
+                    this.thingsAndStyles.Add(thingdef, styleDef);
+                }
+            }
         }
 
         void DrawTextBox(Rect inRect)
@@ -162,7 +189,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             selectedRequest.label = label;
         }
 
-        void DrwaXenoType(Rect inRect)
+        void DrawXenoType(Rect inRect)
         {
             if (!ModsConfig.BiotechActive)
             {
@@ -202,7 +229,6 @@ namespace WarfareAndWarbands.CharacterCustomization
                 yield return option;
             }
         }
-
         public IEnumerable<FloatMenuOption> StuffOptions(ThingDef equipment)
         {
             if (equipment == null || !equipment.MadeFromStuff)
@@ -298,7 +324,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             int itemHeight = 50;
             int optionHeight = 20;
             Rect outRect = new Rect(inRect.xMax - 200, 100, 150, 400);
-            Rect viewRect = new Rect(outRect.x, outRect.y, outRect.width, (itemHeight + pawnkindSpacing) * selectedList.Count);
+            Rect viewRect = new Rect(outRect.x, outRect.y, outRect.width, (itemHeight + itemSpacing) * selectedList.Count);
             Rect boxRect = new Rect(outRect.x - 10, outRect.y - 10, 170, 420);
             Rect optionRect = new Rect(boxRect.x, boxRect.yMax + optionHeight, 150, optionHeight);
             DrawSearchBar(boxRect);
@@ -319,7 +345,7 @@ namespace WarfareAndWarbands.CharacterCustomization
 
             foreach (var item in listToDisplay)
             {
-                Rect itemRect = new Rect(viewRect.x + 10, viewRect.y + selectedIndex * (itemHeight + pawnkindSpacing), itemHeight, itemHeight);
+                Rect itemRect = new Rect(viewRect.x + 10, viewRect.y + selectedIndex * (itemHeight + itemSpacing), itemHeight, itemHeight);
                 DrawSelectorItem(itemRect, item);
                 selectedIndex++;
             }
@@ -339,6 +365,7 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             string graphicPath = item.graphicData.texPath;
             var stuff = selectedRequest.GetStuff(item);
             Texture2D itemTex = Widgets.GetIconFor(item, stuff);
+            TryToDrawStyleIcon(ref itemTex, item); 
             if (Equipped(item))
             {
                 Widgets.DrawHighlight(rect);
@@ -353,6 +380,45 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             if (selectEquipment)
             {
                 TryMakeStuffOptions(item);
+            }
+            TryToDrawStyleButton(rect, item);
+        }
+
+        void TryToDrawStyleIcon(ref Texture2D itemTex, ThingDef item)
+        {
+            if (ModsConfig.IdeologyActive)
+            {
+                if (this.thingsAndStyles.ContainsKey(item))
+                {
+                    ThingStyleDef style = thingsAndStyles[item];
+                    if (style != null)
+                        itemTex = style.UIIcon;
+                }
+            }
+        }
+
+        void TryToDrawStyleButton(Rect rect, ThingDef item)
+        {
+            if (!ModsConfig.IdeologyActive)
+            {
+                return;
+            }
+            Rect styleButtonRect = new Rect(rect.x, rect.yMax + 5, rect.width, itemSpacing);
+            if (!Mouse.IsOver(styleButtonRect) && !Mouse.IsOver(rect) && !Equipped(item))
+            {
+                return;
+            }
+            bool changeStyle = Widgets.CustomButtonText(
+                ref styleButtonRect,
+                CustomizationUtil.StyleStringFor(item, thingsAndStyles),
+               bgColor: new Color(0, 0, 0, 0),
+               textColor: Color.white,
+               borderColor: new Color(0, 0, 0, 0),
+               unfilledBgColor: new Color(0, 0, 0, 0),
+               fillPercent: 0);
+            if (changeStyle)
+            {
+                CustomizationUI.GetStyleOptions(item, ref thingsAndStyles, item.StylesFor(), this);
             }
         }
 
@@ -389,7 +455,7 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
 
         void UpdatePawnKindDef()
         {
-            selectedRequest.UpdatePawnKindDef();
+            selectedRequest?.UpdatePawnKindDef();
         }
 
         void DrawEquipment(Rect rect, ThingDef equipment = null, SelectionType selectionType = SelectionType.none)
@@ -409,7 +475,6 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             {
                 Rect labelRect = new Rect(rect.xMax - 20, rect.yMax - 20, 25, 25);
                 Widgets.Label(labelRect, $"+{CurrentSelectionWorn(selectionType).Count()}".Colorize(Color.cyan));
-
             }
         }
 
@@ -438,7 +503,7 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             !selectedRequest.apparelRequests.Any(x => x.defName == equipment.defName);
         }
 
-        void MakeSelection(ThingDef equipment)
+        public void MakeSelection(ThingDef equipment)
         {
             if (selectionType != SelectionType.weapons)
             {
@@ -449,14 +514,36 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
                 else
                 {
                     selectedRequest.apparelRequests.Add(equipment);
+                    TryToChangeEquipmentStyle(equipment);
                 }
             }
             else
             {
                 selectedRequest.weaponRequest = equipment;
+                TryToChangeEquipmentStyle(equipment);
             }
             UpdatePawnKindDef();
+        }
 
+        public void TryToChangeEquipmentStyle(ThingDef equipment)
+        {
+            if (!ModsConfig.IdeologyActive)
+            {
+                return;
+            }
+            if (thingsAndStyles.ContainsKey(equipment))
+            {
+                var newName = thingsAndStyles.ContainsKey(equipment) &&
+                   thingsAndStyles[equipment] != null ? thingsAndStyles[equipment].defName : "None";
+                if (selectedRequest.thingDefsAndStyles.ContainsKey(equipment.defName))
+                {
+                    selectedRequest.thingDefsAndStyles[equipment.defName] = newName;
+                }
+                else
+                {
+                    selectedRequest.thingDefsAndStyles.Add(equipment.defName, newName);
+                }
+            }
         }
 
         public List<ThingDef> ReturnSelectedList(SelectionType selectionType = SelectionType.none)

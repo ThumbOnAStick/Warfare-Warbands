@@ -24,10 +24,11 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         public PlayerWarbandLootManager lootManager;
         public PlayerWarbandCooldownManager cooldownManager;
         public PlayerWarbandLeader leader;
+        public PlayerWarbandSkillBonus skillBonus;
 
         private readonly Warband warband;
+        public static readonly int playerAttackRange = 10;
 
-        private static readonly int playerAttackRange = 10;
         public PlayerWarbandManager(Warband warband)
         {
             this.warband = warband;
@@ -36,7 +37,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             this.lootManager = new PlayerWarbandLootManager();
             this.colorOverride = new PlayerWarbandColorOverride();
             this.injuriesManager = new PlayerWarbandInjuries();
-            leader = new PlayerWarbandLeader();
+            this.leader = new PlayerWarbandLeader();
+            this.skillBonus = new PlayerWarbandSkillBonus();
+            leader.onLeaderChanged.AddListener(skillBonus.ResetSkillBonus);
         }
 
         public void OrderPlayerWarbandToAttack()
@@ -167,6 +170,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             this.colorOverride?.ExposeData();
             this.injuriesManager?.ExposeData();
             this.leader?.ExposeData();
+            this.skillBonus?.ExposeData();
         }
 
         public string GetInspectString()
@@ -183,6 +187,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             {
                 outString += "\n" + "WAW.Injuries".Translate();
                 outString += "WAW.RecoverIn".Translate(injuriesManager.GetRecoveryDays().ToString("0.0"));
+                if (leader.IsLeaderAvailable())
+                {
+                    outString += $"\n({injuriesManager.LeaderFactorString()})";
+                }
                 foreach (var member in injuries)
                 {
                     if (member.Value > 0)

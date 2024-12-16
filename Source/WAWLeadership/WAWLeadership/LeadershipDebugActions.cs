@@ -9,6 +9,7 @@ using Verse.AI.Group;
 using Verse;
 using WarfareAndWarbands.Warband;
 using WarfareAndWarbands;
+using RimWorld.Planet;
 
 namespace WAWLeadership
 {
@@ -27,6 +28,14 @@ namespace WAWLeadership
             Messages.Message(message);
         }
 
+        [DebugAction("WAW", "Interact With WorldObject", actionType = DebugActionType.Action)]
+        public static void SpawnForFaction()
+        {
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
+            Find.WorldSelector.ClearSelection();
+            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(LeadershipUtility.SelectInteractionTarget), true);
+        }
 
+      
     }
 }

@@ -13,20 +13,39 @@ namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
         private int startTicks;
         private bool letterSent;
         private static readonly int startCounterTick = 3000;
+        private static readonly int forceQuitTicks = GenDate.TicksPerDay;
+
 
         public MapComponent_WarbandRaidTracker(Map map) : base(map)
         {
             this.startTicks = GenTicks.TicksGame;
-            this.map = map; 
+            this.map = map;
         }
 
         public override void MapComponentTick()
         {
             base.MapComponentTick();
-            if(ValidateMap())
+            if (ValidateMap())
             {
                 CheckSendLetter();
+                CheckShouldRemoveMap();
             }
+
+        }
+
+        public void CheckShouldRemoveMap()
+        {
+            if (GenTicks.TicksGame > this.startTicks + forceQuitTicks)
+            {
+                Current.Game.DeinitAndRemoveMap(map, true);
+            }
+        }
+
+        public string GetRemainingHours()
+        {
+            var remianingTicks = this.startTicks + forceQuitTicks - GenTicks.TicksGame;
+            int remianingHours = remianingTicks / GenDate.TicksPerHour;
+            return remianingHours.ToString();
         }
 
         public bool LtterSent()

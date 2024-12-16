@@ -7,5 +7,6 @@
     <WAW.Injuries>伤员：</WAW.Injuries>
     <WAW.ActiveMembers>可用战斗人员：</WAW.ActiveMembers>
 	<WAW.RemainingDays>{0} 天后完成训练</WAW.RemainingDays>
+    <WAW.leaderRecoveryFactor>领袖医疗技能偏移 {0}%</WAW.leaderRecoveryFactor>
 
 </LanguageData>

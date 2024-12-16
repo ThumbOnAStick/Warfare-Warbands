@@ -12,7 +12,7 @@ namespace WarfareAndWarbands.Warband
 {
     public class WorldObjectComp_PlayerWarband : WorldObjectComp
     {
-
+        public Warband MyWarband => (Warband)this.parent;
 
         public override IEnumerable<Gizmo> GetGizmos()
         {
@@ -33,12 +33,6 @@ namespace WarfareAndWarbands.Warband
             }
 
         }
-
-        public override void CompTick()
-        {
-            base.CompTick();
-        }
-
 
 
     }

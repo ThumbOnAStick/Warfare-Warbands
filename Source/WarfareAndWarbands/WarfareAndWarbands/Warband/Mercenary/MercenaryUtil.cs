@@ -23,6 +23,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
                 for (int i = 0; i < ele.Value; i++)
                 {
                     Pawn pawn = warband.Faction == Faction.OfPlayer ? GenerateWarbandPawnForPlayer(warband, ele.Key) : GenerateWarbandPawnForNPC(warband, ele.Key);
+                    
                     if (CEActive())
                     {
                         CE.GenerateAmmoFor(pawn);
@@ -33,18 +34,25 @@ namespace WarfareAndWarbands.Warband.Mercenary
 
                 if (warband.Faction == Faction.OfPlayer &&
                     warband.playerWarbandManager.leader != null &&
-                    warband.playerWarbandManager.leader.IsLeaderAvailable())
+                    warband.playerWarbandManager.leader.IsLeaderAvailable()&&
+                    !warband.playerWarbandManager.leader.Leader.Spawned)
                 {
                     var leader = warband.playerWarbandManager.leader.Leader;
                     if (SetMercenaryComp(leader, warband, ele.Key, warband.Faction))
                         list.Add(leader);
                     leader.health.hediffSet.hediffs.RemoveAll(x => x.PainFactor > 0);
-
+                    if (CEActive())
+                    {
+                        CE.GenerateAmmoFor(leader);
+                    }
                 }
 
             }
             return list;
         }
+
+
+
         static bool CEActive()
         {
             return ModsConfig.IsActive("CETeam.CombatExtended");
@@ -85,10 +93,31 @@ namespace WarfareAndWarbands.Warband.Mercenary
                         equipment.TryGetComp<CompBiocodable>().CodeFor(pawn);
                     }
                 }
-
+            TryToSetSkillFor(pawn, warband);
             pawn.apparel?.SetColor(warband.playerWarbandManager.colorOverride.GetColorOverride());
             pawn.apparel?.LockAll();
             return pawn;
+        }
+
+        static void TryToSetSkillFor(Pawn p, Warband warband)
+        {
+            if (!warband.HasLeader())
+            {
+                return;
+            }
+            var skillSet = warband.playerWarbandManager.skillBonus.DefsAndBonus;
+            if (skillSet.Count < 1)
+            {
+                return;
+            }
+            foreach (var ele in skillSet)
+            {
+                bool predicate(SkillRecord x) => x.def == ele.Key;
+                if (p.skills.skills.Any(predicate))
+                {
+                    p.skills.skills.Find(predicate).levelInt += ele.Value;
+                }
+            }
         }
 
         static void SetColor(this Pawn_ApparelTracker apparel, Color color)

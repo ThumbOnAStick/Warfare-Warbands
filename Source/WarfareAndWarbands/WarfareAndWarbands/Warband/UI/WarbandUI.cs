@@ -144,7 +144,7 @@ namespace WarfareAndWarbands.Warband.UI
             TaggedString text = "WAW.ConfirmDestroyWarBand".Translate();
             void confirmedAct()
             {
-                warband?.playerWarbandManager?.leader?.ReturnLeader(); 
+                warband?.playerWarbandManager?.leader?.ReturnLeaderHome(); 
                 warband?.Destroy();
             }
 
@@ -273,7 +273,7 @@ namespace WarfareAndWarbands.Warband.UI
 
         public static IEnumerable<FloatMenuOption> PlayerWarbandLeaderChoices(Warband warband, Caravan caravan)
         {
-            if (warband.Tile != caravan.Tile)
+            if (Find.WorldGrid.ApproxDistanceInTiles(warband.Tile, caravan.Tile) > 2)
             {
                 yield break;
             }
@@ -430,8 +430,6 @@ namespace WarfareAndWarbands.Warband.UI
                 window.Close();
             }
         }
-
-
 
         static void AssignLeader(Pawn pawn, Caravan caravan, Warband warband)
         {

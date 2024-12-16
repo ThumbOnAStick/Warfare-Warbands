@@ -19,5 +19,12 @@ namespace WAWLeadership.LeadershipAttributes
         {
             return SkillDefOf.Intellectual;
         }
+
+        public override SkillDef BoostsSkill()
+        {
+            return SkillDefOf.Construction;
+        }
+
+
     }
 }

@@ -11,10 +11,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
     public class PlayerWarbandInjuries : IExposable
     {
         private List<PlayerWarbandRecoveryGroup> recoveries;
+        private float recoverRateMultiplier;
 
         public PlayerWarbandInjuries()
         {
             recoveries = new List<PlayerWarbandRecoveryGroup>();
+            recoverRateMultiplier = 1;
         }
 
         public void InjurePawn(Pawn pawn)
@@ -67,12 +69,17 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             return this.GetRecoveryDays() > 0;
         }
 
+        public string LeaderFactorString()
+        {
+            return "WAW.leaderRecoveryFactor".Translate((recoverRateMultiplier * 100).ToString("0.0"));
+        }
+
         public float GetRecoveryDays()
         {
             float result = 0;
             foreach (var recovery in this.recoveries)
             {
-                result = Math.Max(result, recovery.GetRemainingDays());
+                result = Math.Max(result, recovery.GetRemainingDays(this.recoverRateMultiplier));
             }
             return result;  
         }
@@ -106,6 +113,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             return result;
         }
 
+        public void SetRecoverRateMultiplier(float value)
+        {
+            this.recoverRateMultiplier = value;
+        }
 
         public int GetActiveMemberCount(Dictionary<string, int> members)
         {
@@ -155,7 +166,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             for (int i = 0; i < recoveries.Count; i++)
             {
                 var recovery = recoveries.ElementAtOrDefault(i);
-                if (recovery.CanBeRemoved(ticksGame))
+                if (recovery.CanBeRemoved(ticksGame, this.recoverRateMultiplier))
                 {
                     recoveries.RemoveAt(i);
                 }

@@ -85,10 +85,13 @@
     <Compile Include="CharacterCustomization\Compatibility\HAR.cs" />
     <Compile Include="CharacterCustomization\CustomizationRequest.cs" />
     <Compile Include="CharacterCustomization\CustomizationUtil.cs" />
+    <Compile Include="CharacterCustomization\UI\CustomizationUI.cs" />
     <Compile Include="CharacterCustomization\UI\Window_Customization.cs" />
     <Compile Include="CharacterCustomization\GameComponent_Customization.cs" />
+    <Compile Include="Misc\Alert_ClosingPlayerWarbandMap.cs" />
     <Compile Include="QuickRaid\UI\Window_QuickRaid.cs" />
     <Compile Include="Warband\UI\Dialog_SetCustomName.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandSkillBonus.cs" />
     <Compile Include="Warband\WAWCaravan\CaravanWarbandUtility.cs" />
     <Compile Include="Warband\WAWCaravan\HarmonyPatches\CaravanGizmosPatch.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\Leader\PlayerWarbandLeaderUtil.cs" />

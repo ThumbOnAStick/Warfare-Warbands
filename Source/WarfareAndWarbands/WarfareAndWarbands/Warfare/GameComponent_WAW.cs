@@ -20,6 +20,7 @@ namespace WarfareAndWarbands
         public static GameComponent_WAW Instance;
         public UnityEvent onRaid;
         public UnityEvent onRaided;
+        public UnityEvent onLeaderAbilityUsed;
         private bool everUsedQuickRaid = false;
         private bool everAssignedWarbandLeader = false;
         private Pawn raidLeaderCache;
@@ -32,6 +33,7 @@ namespace WarfareAndWarbands
             playerWarband = new PlayerWarbandArrangement();
             onRaid = new UnityEvent();
             onRaided = new UnityEvent();
+            onLeaderAbilityUsed = new UnityEvent();
         }
 
         public override void ExposeData()
@@ -145,7 +147,6 @@ namespace WarfareAndWarbands
         {
             base.LoadedGame();
             LoadAllFactions();
-            OpenUpdateLog();
             WarbandUtil.RefreshAllPlayerWarbands();
 
         }
@@ -156,18 +157,8 @@ namespace WarfareAndWarbands
             base.StartedNewGame();
             LoadAllFactions();
             GiveModLetter();
-            OpenUpdateLog();
             WarbandUtil.RefreshAllPlayerWarbands();
 
-        }
-        private void OpenUpdateLog()
-        {
-            if (WAWSettings.everReadUpdateLog)
-            {
-                return;
-            }
-            //Window_WAWUpdateLog updateLog = new Window_WAWUpdateLog();
-            //Find.WindowStack.Add(updateLog);
         }
 
         void GiveModLetter()
@@ -175,9 +166,6 @@ namespace WarfareAndWarbands
             Letter modLoadded = LetterMaker.MakeLetter("WAW.Welcome".Translate(), "WAW.Welcome.Desc".Translate(), LetterDefOf.NeutralEvent);
             Find.LetterStack.ReceiveLetter(modLoadded);
         }
-
-
-
 
         public override void GameComponentTick()
         {
@@ -215,6 +203,13 @@ namespace WarfareAndWarbands
             SetRaidLeaderCache(raidLeader);
             this.onRaided.Invoke();
         }
+
+        public void OnLeaderAbilityUsed(Pawn raidLeader = null)
+        {
+            SetRaidLeaderCache(raidLeader);
+            this.onLeaderAbilityUsed.Invoke();
+        }
+
 
         public void SetRaidLeaderCache(Pawn raidLeaderCache)
         {

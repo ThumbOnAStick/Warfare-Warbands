@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents;
 
 namespace WAWLeadership.LeadershipAttributes
 {
@@ -24,7 +25,6 @@ namespace WAWLeadership.LeadershipAttributes
 
         public void Tick()
         {
-            // attribute set check
             if (attributes.Count < 6)
             {
                 InitAttributes();
@@ -36,9 +36,25 @@ namespace WAWLeadership.LeadershipAttributes
             attributePoints++;
         }
 
-        public void GainPoints(int levelUpAmount)
+        public SimpleCurve PointsCurve()
         {
-            attributePoints += levelUpAmount;
+            return new SimpleCurve
+            {
+                { 1, 1 },
+                { 3, 1 },
+                { 4, 2 },
+                { 8, 2 },
+                { 9, 3 }
+            };
+        }
+
+        public void GainPoints(int levelUpAmount, int oldLevel)
+        {
+            for (int i = 0; i < levelUpAmount; i++)
+            {
+                int point = (int)PointsCurve().Evaluate(oldLevel + i);
+                attributePoints += point;
+            }
         }
 
         public bool AllAttributesEmpty()
@@ -71,7 +87,7 @@ namespace WAWLeadership.LeadershipAttributes
         {
             attributes = new HashSet<LeadershipAttribute>
             {
-                new Attribute_Raiding(),
+                new Attribute_Commanding(),
                 new Attribute_Medic(),
                 new Attribute_Recruiting(),
                 new Attribute_Engineering(),
@@ -89,31 +105,60 @@ namespace WAWLeadership.LeadershipAttributes
                 {
                     return attribute;
                 }
+
             }
             return null;
         }
 
-        public void DistributePoint<T>() where T : LeadershipAttribute
+        public void DistributePoint<T>(out bool distributed) where T : LeadershipAttribute
         {
-            if (this.attributePoints > 0)
+            distributed = false;    
+            if (this.attributePoints < 1)
+            {
+                return;
+            }
+            var attribute = GetAttribute<T>();
+            if(attribute == null)
+            {
+                return;
+            }
+            attribute.TryToIncrementLevel(out distributed);
+            if (distributed)
             {
                 attributePoints--;
             }
-            else
-            {
-                return;
-            }
-
-            GetAttribute<T>()?.TryToIncrementLevel();
         }
-        public void DistributePoint(LeadershipAttribute attribute)
+
+
+        public bool TryToDistributePoint(ref LeadershipAttribute attribute)
         {
             if (!attributes.Contains(attribute))
             {
-                return;
+                return false;
             }
-            attributePoints--;
-            attribute?.TryToIncrementLevel();
+            DistributePoint(ref attribute, out bool succeed);
+            return succeed;
+        }
+
+        void DistributePoint(ref LeadershipAttribute attribute, out bool succeed)
+        {
+            succeed = false;
+            if (attribute != null)
+            {
+                attribute.TryToIncrementLevel(out succeed);
+                if (succeed)
+                {
+                    attributePoints--;
+                }
+            }
+        }
+
+        public void ApplySkillBonuses(PlayerWarbandSkillBonus skillBonus)
+        {
+            foreach (var attribute in attributes)
+            {
+                skillBonus.TryToAddNewBonus(attribute.BoostsSkill(), attribute.SkillBonus());
+            }
         }
 
         public void ExposeData()

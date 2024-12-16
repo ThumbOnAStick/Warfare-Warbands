@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WAWLeadership.WarbandLeadership;
 
-namespace WAWLeadership
+namespace WAWLeadership.WorldObjectComps
 {
     public class WorldObjectCompProperties_PlayerWarbandLeader : WorldObjectCompProperties
     {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using WarfareAndWarbands.Warband.UI;
+using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents.Leader;
 using static System.Collections.Specialized.BitVector32;
 
 namespace WarfareAndWarbands.Warband
@@ -110,6 +111,7 @@ namespace WarfareAndWarbands.Warband
             return returnString;
         }
 
+
         public override void Notify_Killed(Map prevMap, DamageInfo? dinfo = null)
         {
             base.Notify_Killed(prevMap, dinfo);
@@ -118,6 +120,10 @@ namespace WarfareAndWarbands.Warband
                 TryNotifyPlayerPawnKilled();
                 string targetName = pawnKindName;
                 this.warband?.TryToRemovePawn(targetName);
+            }
+            if (PlayerWarbandLeaderUtil.IsLeader(Mercenary))
+            {
+                warband?.playerWarbandManager?.leader?.OnLeaderChanged();
             }
         }
 
@@ -143,6 +149,7 @@ namespace WarfareAndWarbands.Warband
             }
             if (Mercenary.Faction != faction)
                 Mercenary.SetFaction(faction);
+
         }
 
         public void SetRetreat(bool retreated)
@@ -213,6 +220,7 @@ namespace WarfareAndWarbands.Warband
                     LastServeTick = Find.TickManager.TicksGame;
                     Retreat();
                 }
+
             }
         }
 

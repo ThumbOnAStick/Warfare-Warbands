@@ -33,6 +33,5 @@
   <WAW.Interact>互动</WAW.Interact>
   <WAW.Interact.Desc>利用战团领袖和世界物体互动。</WAW.Interact.Desc>
 	<WAW.InteractCoolDown>{0} 天内可用</WAW.InteractCoolDown>
-	<WAW.LeaderLevelUp>战团领袖 {0} 的领导力提升了</WAW.LeaderLevelUp>
-
+	<WAW.LeaderInfo>领袖信息</WAW.LeaderInfo>
 </LanguageData>

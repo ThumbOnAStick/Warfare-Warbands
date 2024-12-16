@@ -15,7 +15,11 @@ namespace WarfareAndWarbands.CharacterCustomization.Compatibility
         public static void GenerateAmmoFor(Pawn p)
         {
             var modExtension = p.kindDef.GetModExtension<LoadoutPropertiesExtension>();
-            modExtension?.GenerateLoadoutFor(p, 1);
+            if (modExtension != null)
+            {
+                modExtension.minAmmoCount = 300;
+                modExtension.GenerateLoadoutFor(p, 1);
+            }
         }
 
     }

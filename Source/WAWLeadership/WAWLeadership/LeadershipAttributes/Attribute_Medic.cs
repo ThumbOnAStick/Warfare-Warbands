@@ -19,5 +19,22 @@ namespace WAWLeadership.LeadershipAttributes
         {
             return SkillDefOf.Medicine;
         }
+
+        public float GetRecoveryMultiplier()
+        {
+            return RecoveryCurve().Evaluate(this.level);
+        }
+
+        public SimpleCurve RecoveryCurve()
+        {
+            return new SimpleCurve
+            {
+                {0, 1.0f },
+                { 1, .9f },
+                { 2, .75f },
+                { 3, .5f },
+            };
+        }
+
     }
 }

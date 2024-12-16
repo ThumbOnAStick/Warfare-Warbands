@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -30,5 +31,26 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents.L
             return false;
         }
 
+        public static bool IsLeader(this Pawn pawn)
+        {
+            if (pawn.HostileTo(Faction.OfPlayer))
+            {
+                return false;
+            }
+            foreach (var ele in WarbandUtil.AllPlayerWarbandsCache)
+            {
+                if (ele as Warband == null)
+                {
+                    continue;
+                }
+                var playerWarband = ele as Warband;
+                if (playerWarband.playerWarbandManager.leader != null &&
+                   playerWarband.playerWarbandManager.leader.Leader == pawn)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

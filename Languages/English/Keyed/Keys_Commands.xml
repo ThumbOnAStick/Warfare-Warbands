@@ -2,7 +2,8 @@
 <LanguageData>
 	<!-- Warband Commands -->
 	<WAW.OrderAttack>order attack</WAW.OrderAttack>
-	<WAW.OrderAttack.Desc>Order warband to attack hostile settlemnt, or another warband, or other world objects.</WAW.OrderAttack.Desc>
+	<WAW.OrderAttack.Desc>Order warband to attack hostile settlemnt, or another warband, or other
+		world objects.</WAW.OrderAttack.Desc>
 	<WAW.EmptyStorage>The storage is empty</WAW.EmptyStorage>
 	<WAW.WarbandWithdraw>withdraw loot</WAW.WarbandWithdraw>
 	<WAW.WarbandWithdraw.Desc>Return all loots with drop pods</WAW.WarbandWithdraw.Desc>
@@ -29,9 +30,9 @@
 	<WAW.ResettleWarband.Desc>Move warband On another tile, it will cost $10 per tile and person.</WAW.ResettleWarband.Desc>
 	<WAW.CreateWarband>Create Warband</WAW.CreateWarband>
 	<WAW.CreateWarband.Desc>Create a warband here on the tile, select one of your colonists as its leader.</WAW.CreateWarband.Desc>
-    <WAW.LinkWarband>Select its owner</WAW.LinkWarband>
+	<WAW.LinkWarband>Select its owner</WAW.LinkWarband>
 	<WAW.Interact>Interact</WAW.Interact>
 	<WAW.Interact.Desc>Interact with other worldobjects through warband leader.</WAW.Interact.Desc>
 	<WAW.InteractCoolDown>Avialable in: {0} days</WAW.InteractCoolDown>
-	<WAW.LeaderLevelUp>Your leader {0} has gained a leadership level!</WAW.LeaderLevelUp>
+	<WAW.LeaderInfo>Leader Info</WAW.LeaderInfo>
 </LanguageData>	

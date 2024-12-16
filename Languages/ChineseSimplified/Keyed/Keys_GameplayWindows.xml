@@ -21,5 +21,6 @@
 	<WAW.Engineering>工程能力</WAW.Engineering>
 	<WAW.Economy>理财能力</WAW.Economy>
 	<WAW.AttributePoints>属性点： {0}</WAW.AttributePoints>
-
+  	<WAW.CurrentLevel>领导力等级：{0}</WAW.CurrentLevel>
+	<WAW.DefaultStyle>默认风格</WAW.DefaultStyle>
 </LanguageData>

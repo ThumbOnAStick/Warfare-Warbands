@@ -32,6 +32,8 @@ namespace WAWLeadership.LeadershipAttributes
 
         }
 
+
+
         public override string ToString()
         {
             return $"{this.currExp}/{this.ExpNeededForNextLevel()}";
@@ -69,7 +71,7 @@ namespace WAWLeadership.LeadershipAttributes
 
         public void LevelUP(int leak, out int levelUpAmount)
         {
-            levelUpAmount = 0;
+            levelUpAmount = 1;
             currLevel++;
             currExp = leak;
             while (ShouldLevelUpNow(out int extraLeak) && currLevel < 10)

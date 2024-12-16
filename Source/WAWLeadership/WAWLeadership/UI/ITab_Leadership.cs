@@ -56,16 +56,19 @@ namespace WAWLeadership.UI
 
             // Draw Attribute Panel
             Rect otherHalf = new Rect(new Vector2(portraitRect.xMax + 100, 100), new Vector2(this.size.x / 2, this.size.y));
+            Rect levelLabelRect = new Rect(otherHalf.x + 50, 330, 200, 30);
             Rect pointsRect = new Rect(otherHalf.x + 50, 350, 200, 50);
             Rect barRect = new Rect(otherHalf.x, 375, 200, 30);
+
 
             var attributeSet = leader.Leadership.AttributeSet;
             var attributes = leader.Leadership.AttributeSet.Attributes;
             var exp = leader.Leadership.Exp;
             LeadershipUI.DrawHexagon(otherHalf, 100, out List<Vector2> points, out Vector2 center);
-            LeadershipUI.DrawLeadershipAttributes(points, attributeSet);
-            LeadershipUI.DrawCurrentAttributes(points, center, attributes);
+            LeadershipUI.DrawLeadershipAttributes(points, attributeSet, leader);
+            LeadershipUI.DrawCurrentAttributes(points, center, leader);
             LeadershipUI.DrawPoints(pointsRect, attributeSet);
+            LeadershipUI.DrawLevel(levelLabelRect, exp);
             LeadershipUI.DrawExpBar(barRect, exp);
 
 

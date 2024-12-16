@@ -28,18 +28,18 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
 
         private static readonly int maxInjuredPawns = 3;
 
-        public float GetRecoveriesDays()
+        public float GetRecoveriesDays(float multiplier)
         {
-            return GetInjuriesCount() * 1.5f;
+            return GetInjuriesCount() * 1.5f * multiplier; 
         }
-        public int GetRecoveriesTick()
+        public int GetRecoveriesTick(float multiplier)
         {
-            return (int)GetRecoveriesDays() * 60000;
+            return (int)GetRecoveriesDays(multiplier) * 60000;
         }
 
-        public float GetRemainingDays()
+        public float GetRemainingDays(float multiplier)
         {
-            return GenDate.TicksToDays(this.startTick + this.GetRecoveriesTick() - GenTicks.TicksGame);
+            return GenDate.TicksToDays(this.startTick + this.GetRecoveriesTick(multiplier) - GenTicks.TicksGame);
         }
 
         public void InjurePawn(string kindName)
@@ -69,9 +69,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             return GetInjuriesCount() >= maxInjuredPawns;
         }
 
-        public bool CanBeRemoved(int ticksGame)
+        public bool CanBeRemoved(int ticksGame, float multiplier)
         {
-            return ticksGame - this.startTick > this.GetRecoveriesTick() ||
+            return ticksGame - this.startTick > this.GetRecoveriesTick(multiplier) ||
                 this.injuries.Count < 1 ||
                 !this.injuries.Any(x => x.Value > 0);
         }

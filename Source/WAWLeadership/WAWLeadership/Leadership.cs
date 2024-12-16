@@ -26,26 +26,29 @@ namespace WAWLeadership
             atrributeSet.AssignRandomAttribute(pawn);
         }
 
-        public void DistributePoint<T>() where T : LeadershipAttribute
+        public void DistributePoint<T>(out bool distributed) where T : LeadershipAttribute
         {
-            atrributeSet?.DistributePoint<T>();
+            distributed = false;
+            atrributeSet?.DistributePoint<T>(out distributed);
         }
 
         public void AddExp(int amount, out bool levelUp)
         {
+            int oldLevel = this.exp.CurrLevel;
             exp.AddExp(amount, out levelUp, out int levelUpAmount);
             if (levelUp)
             {
-                atrributeSet?.GainPoints(levelUpAmount);
+                atrributeSet?.GainPoints(levelUpAmount, oldLevel);
             }
         }
 
         public void AddExp(int amount)
         {
+            int oldLevel = this.exp.CurrLevel;
             exp.AddExp(amount, out bool levelUp, out int levelUpAmount);
             if (levelUp)
             {
-                atrributeSet?.GainPoints(levelUpAmount);
+                atrributeSet?.GainPoints(levelUpAmount, oldLevel);
             }
         }
 
