@@ -25,6 +25,11 @@ namespace WAWLeadership.LeadershipAttributes
             return SkillDefOf.Construction;
         }
 
+        public override List<SkillDef> BoostsSkillExtra()
+        {
+            return new List<SkillDef> { SkillDefOf.Mining, SkillDefOf.Plants };
+        }
+
 
     }
 }

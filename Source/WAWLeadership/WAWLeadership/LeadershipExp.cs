@@ -26,8 +26,8 @@ namespace WAWLeadership.LeadershipAttributes
             {
                 { 1, 10 },
                 { 2, 30 },
-                { 5, 100 },
-                { 10, 500 }
+                { 5, 65 },
+                { 10, 350 }
             };
 
         }

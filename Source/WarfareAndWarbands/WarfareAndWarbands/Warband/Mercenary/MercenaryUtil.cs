@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity.Jobs.LowLevel.Unsafe;
 using UnityEngine;
 using Verse;
 using WarfareAndWarbands.CharacterCustomization;
@@ -96,6 +97,14 @@ namespace WarfareAndWarbands.Warband.Mercenary
             TryToSetSkillFor(pawn, warband);
             pawn.apparel?.SetColor(warband.playerWarbandManager.colorOverride.GetColorOverride());
             pawn.apparel?.LockAll();
+            for (int i = 0; i < 24; i++)
+            {
+                pawn.timetable.SetAssignment(i, TimeAssignmentDefOf.Anything);
+            }
+            if (!pawn.WorkTagIsDisabled(WorkTags.Violent))
+            {
+                pawn.playerSettings.hostilityResponse = HostilityResponseMode.Attack;
+            }
             return pawn;
         }
 

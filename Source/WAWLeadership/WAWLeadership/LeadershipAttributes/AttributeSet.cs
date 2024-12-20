@@ -158,7 +158,20 @@ namespace WAWLeadership.LeadershipAttributes
             foreach (var attribute in attributes)
             {
                 skillBonus.TryToAddNewBonus(attribute.BoostsSkill(), attribute.SkillBonus());
+                if(attribute.BoostsSkillExtra().Count() > 0)
+                {
+                    foreach(var skill in attribute.BoostsSkillExtra())
+                    {
+                        skillBonus.TryToAddNewBonus(skill, attribute.SkillBonus());
+                    }
+                }
             }
+        }
+
+        public float GetLootMultiplier()
+        {
+            var ability = (Attribute_Economy)GetAttribute<Attribute_Economy>();
+            return ability.GetLootValueMultiplier();
         }
 
         public void ExposeData()

@@ -76,6 +76,12 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         public void DeleteRequest(CustomizationRequest request)
         {
+            if(WarbandUtil.AllPlayerWarbandsCache.Any(x => x.bandMembers.Any(r => r.Key == request.defName))||
+            WarbandUtil.AllPlayerRecruitingWarbandsCache.Any(x => x.BandMembers.Any(r => r.Key == request.defName)))
+            {
+                Messages.Message("WAW.CantDelete".Translate(), MessageTypeDefOf.RejectInput);
+                return;
+            }
             if (generatedKindDefs.Any(x => x.defName == request.defName))
             {
                 generatedKindDefs.RemoveAll(x => x.defName == request.defName);

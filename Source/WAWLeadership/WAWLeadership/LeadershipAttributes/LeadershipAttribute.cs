@@ -56,6 +56,11 @@ namespace WAWLeadership
             return BonusFromSkill();
         }
 
+        public virtual List<SkillDef> BoostsSkillExtra()
+        {
+            return new List<SkillDef>();
+        }
+
         public void ExposeData()
         {
             Scribe_Values.Look(ref level, "level", 0);
@@ -75,6 +80,28 @@ namespace WAWLeadership
                 { 2, 4},
                 { 3, 7},
             };
+        }
+
+        public virtual string GetBuffs()
+        {
+            var skillBonus = this.SkillBonusCurve().Evaluate(this.level);
+            if (this.level < 1)
+            {
+                return "";
+            }
+            string outString = "";
+
+            if (this.BoostsSkill() != null)
+            {
+                var skillList = new List<SkillDef>() { this.BoostsSkill() };
+                skillList.AddRange(this.BoostsSkillExtra());
+                foreach (var skill in skillList)
+                {
+                    outString += "\n" + "WAW.AddSkillToSoldier".Translate(skillBonus, skill.label);
+                }
+
+            }
+            return outString;
         }
     }
 }

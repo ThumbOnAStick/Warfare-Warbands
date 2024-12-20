@@ -96,6 +96,8 @@ namespace WAWLeadership
             }
         }
 
+
+
         public override void CompTickRare()
         {
             base.CompTickRare();
@@ -205,10 +207,17 @@ namespace WAWLeadership
                 {
                     warbandCache = warband;
                     warbandCache.playerWarbandManager.leader.onLeaderChanged.AddListener(ApplyBonus);
+                    warbandCache.playerWarbandManager.leader.onLeaderChanged.AddListener(SetLootMultiplier);
                 }
                 return warband;
             }
             return null;
+        }
+
+        public override void CompTickLong()
+        {
+            base.CompTickLong();
+            SetLootMultiplier();
         }
 
 
@@ -216,6 +225,39 @@ namespace WAWLeadership
         {
             if (!Pawn.Dead)
                 leadership.AttributeSet.ApplySkillBonuses(warbandCache.playerWarbandManager.skillBonus);
+        }
+
+        void SetLootMultiplier()
+        {
+            if (!Pawn.Dead)
+                warbandCache.playerWarbandManager.lootManager.SetLootMultiplier(GetLootMultiplier());
+        }
+
+        public float GetLootMultiplier()
+        {
+            return this.leadership.AttributeSet.GetLootMultiplier();
+        }
+
+        public int CountBuffsRows(string buffs)
+        {
+            int count = 1;
+            for (int i = 0; i < buffs.Length; i++)
+            {
+                if (buffs[i] == '\n')
+                    count++;
+            }
+            return count;
+        }
+
+        public string GetBuffs()
+        {
+            var outString = "Buffs:";
+            if (leadership.AttributeSet != null && leadership.AttributeSet.Attributes.Count > 0)
+                foreach (var attribute in this.leadership.AttributeSet.Attributes)
+                {
+                    outString += attribute.GetBuffs();
+                }
+            return outString;
         }
 
         public void OpenLeadershipWindow()

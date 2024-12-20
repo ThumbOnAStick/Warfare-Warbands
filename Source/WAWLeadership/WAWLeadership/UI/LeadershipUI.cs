@@ -135,17 +135,31 @@ namespace WAWLeadership.UI
 
         public static void DrawExpBar(Rect rect, LeadershipExp exp)
         {
+            if (Mouse.IsOver(rect))
+            {
+                TooltipHandler.TipRegion(rect, "WAW.ExplainExp".Translate());
+            }
             Widgets.FillableBarLabeled(rect, exp.ExpPercent(), 60, exp.ToString());
         }
 
-        public static Command Interact(bool disabled, WorldObjectComp_PlayerWarbandLeader comp, Pawn leader)
+        public static void DrawBuffs(Rect rect, CompLeadership leadership, ref Vector2 scrollPosition)
+        {
+            string buffs = leadership.GetBuffs();
+            int rows = leadership.CountBuffsRows(buffs);
+            Rect viewRect = new Rect(rect.x, rect.y, rect.width, rows * 25);
+            Widgets.BeginScrollView(rect, ref scrollPosition, viewRect);
+            Widgets.Label(viewRect, buffs);
+            Widgets.EndScrollView();
+        }
+
+        public static Command Interact(bool disabled, bool hasLeader, WorldObjectComp_PlayerWarbandLeader comp, Pawn leader)
         {
             Command_Action command_Action = new Command_Action
             {
                 defaultLabel = "WAW.Interact".Translate(),
                 defaultDesc = "WAW.Interact.Desc".Translate(),
-                disabledReason = "WAW.InteractCoolDown".Translate(comp.GetRemainingDays()),
-                Disabled = disabled,
+                disabledReason = hasLeader?"WAW.InteractCoolDown".Translate(comp.GetRemainingDays()): "WAW.NoLeaderFound".Translate(),
+                Disabled = disabled || !hasLeader,
                 icon = LeadershipTex.Interact,
                 action = delegate ()
                 {

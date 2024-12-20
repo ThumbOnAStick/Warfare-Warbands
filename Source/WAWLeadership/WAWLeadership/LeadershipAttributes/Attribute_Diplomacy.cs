@@ -19,5 +19,21 @@ namespace WAWLeadership.LeadershipAttributes
         {
             return SkillDefOf.Social;
         }
+
+
+        public override string GetBuffs()
+        {
+            if (this.level < 1)
+            {
+                return "";
+            }
+            var result = base.GetBuffs();
+            if (this.level >= 2)
+                result += "\n" + "WAW.InteractWithSettlement".Translate();
+            if (this.level >= 3)
+                result += "\n" + "WAW.InteractWithPeaceTalks".Translate();
+
+            return result;
+        }
     }
 }

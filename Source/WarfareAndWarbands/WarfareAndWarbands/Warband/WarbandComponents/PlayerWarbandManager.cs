@@ -18,7 +18,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
 
         public MapParent targetMapP;
-        public DroppodUpgrade droppodUpgrade;
+        public PlayerWarbandDropRaid droppodUpgrade;
         public PlayerWarbandColorOverride colorOverride;
         public PlayerWarbandInjuries injuriesManager;
         public PlayerWarbandLootManager lootManager;
@@ -28,11 +28,13 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         private readonly Warband warband;
         public static readonly int playerAttackRange = 10;
+        public static readonly int mortarRaidAttackRange = 5;
+        public static readonly int mortarFireRange = 5;
 
         public PlayerWarbandManager(Warband warband)
         {
             this.warband = warband;
-            this.droppodUpgrade = new DroppodUpgrade(warband);
+            this.droppodUpgrade = new PlayerWarbandDropRaid(warband);
             this.cooldownManager = new PlayerWarbandCooldownManager();
             this.lootManager = new PlayerWarbandLootManager();
             this.colorOverride = new PlayerWarbandColorOverride();
@@ -40,6 +42,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             this.leader = new PlayerWarbandLeader();
             this.skillBonus = new PlayerWarbandSkillBonus();
             leader.onLeaderChanged.AddListener(skillBonus.ResetSkillBonus);
+            leader.onLeaderChanged.AddListener(lootManager.ResetLootMultiplier);
+
         }
 
         public void OrderPlayerWarbandToAttack()
@@ -53,7 +57,6 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public bool OrderPlayerWarbandToAttack(GlobalTargetInfo info)
         {
-            WarbandUtil.TryToSendQuickAttackLetter();
             Dictionary<string, int> activeMembers;
             if (this.injuriesManager != null)
                 activeMembers = this.injuriesManager.GetActiveMembers(warband.bandMembers);

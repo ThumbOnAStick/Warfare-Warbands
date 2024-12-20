@@ -14,10 +14,11 @@ namespace WAWLeadership.UI
     public class ITab_Leadership : ITab
     {
         private CompLeadership leader;
+        private Vector2 scrollPosition;
 
         public ITab_Leadership()
         {
-            this.size = new Vector2(630f, 430f);
+            this.size = new Vector2(630f, 600f);
             this.labelKey = "WAW.TabLeader";
             this.tutorTag = "Leader";
         }
@@ -50,19 +51,18 @@ namespace WAWLeadership.UI
 
             // Draw Pawn Portrait
             GUI.color = Color.white;
-            Rect portraitRect = new Rect(Vector2.zero, new Vector2(this.size.x / 2, this.size.y));
+            Rect portraitRect = new Rect(Vector2.zero, new Vector2(this.size.x / 2, 400));
             Widgets.ThingIcon(portraitRect, this.SelPawn, 1f, null, false);
             Widgets.Label(portraitRect, "WAW.LeadershipTitle".Translate());
-
             // Draw Attribute Panel
             Rect otherHalf = new Rect(new Vector2(portraitRect.xMax + 100, 100), new Vector2(this.size.x / 2, this.size.y));
-            Rect levelLabelRect = new Rect(otherHalf.x + 50, 330, 200, 30);
-            Rect pointsRect = new Rect(otherHalf.x + 50, 350, 200, 50);
-            Rect barRect = new Rect(otherHalf.x, 375, 200, 30);
+            Rect levelLabelRect = new Rect(portraitRect.xMax + 50, 400, 200, 30);
+            Rect pointsRect = new Rect(levelLabelRect.x, levelLabelRect.yMax, 200, 50);
+            Rect barRect = new Rect(portraitRect.xMax, pointsRect.yMax, 200, 30);
+            Rect buffsRect = new Rect(portraitRect.x, 400, portraitRect.width, 600 - 400);
 
 
             var attributeSet = leader.Leadership.AttributeSet;
-            var attributes = leader.Leadership.AttributeSet.Attributes;
             var exp = leader.Leadership.Exp;
             LeadershipUI.DrawHexagon(otherHalf, 100, out List<Vector2> points, out Vector2 center);
             LeadershipUI.DrawLeadershipAttributes(points, attributeSet, leader);
@@ -70,6 +70,7 @@ namespace WAWLeadership.UI
             LeadershipUI.DrawPoints(pointsRect, attributeSet);
             LeadershipUI.DrawLevel(levelLabelRect, exp);
             LeadershipUI.DrawExpBar(barRect, exp);
+            LeadershipUI.DrawBuffs(buffsRect, leader, ref scrollPosition);
 
 
         }

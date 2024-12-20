@@ -16,6 +16,7 @@ namespace WarfareAndWarbands.Warband
     public class WorldObject_WarbandRecruiting : WorldObject
     {
         public override string Label => "WAW.WarbandRecruiting".Translate();
+        public Dictionary<string, int> BandMembers => bandMembers;
         private Dictionary<string, int> bandMembers;
         private List<string> pawnkindCache;
         private List<int> memberCountCache;

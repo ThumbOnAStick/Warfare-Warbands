@@ -33,7 +33,14 @@ namespace WarfareAndWarbands.Warband
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
             Find.WorldSelector.ClearSelection();
             Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(SpawnForFaction), true);
-            
+        }
+
+        [DebugAction("WAW", "Spawn Warband For Player", actionType = DebugActionType.Action)]
+        public static void SpawnForPlayer()
+        {
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
+            Find.WorldSelector.ClearSelection();
+            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(SpawnForPlayer), true);
         }
 
         [DebugAction("WAW", "Spawn Warband Targeting", actionType = DebugActionType.Action)]
@@ -60,12 +67,12 @@ namespace WarfareAndWarbands.Warband
             {
                 return false;
             }
-            IEnumerable<FloatMenuOption> opts = RaidPlayerOptions(info, info.WorldObject as Warband);
+            IEnumerable<FloatMenuOption> opts = RaidPlayerOptions(info.WorldObject as Warband);
             Find.WindowStack.Add(new FloatMenu(opts.ToList()));
             return true;
         }
 
-        private static IEnumerable<FloatMenuOption> RaidPlayerOptions(GlobalTargetInfo info, Warband playerWarband)
+        private static IEnumerable<FloatMenuOption> RaidPlayerOptions(Warband playerWarband)
         {
             HashSet<Faction> valids = WarfareUtil.GetValidWarFactions().Where(x => x.HostileTo(Faction.OfPlayer)).ToHashSet();
             foreach (Faction f in valids)
@@ -74,7 +81,16 @@ namespace WarfareAndWarbands.Warband
             }
         }
 
-
+        static bool SpawnForPlayer(GlobalTargetInfo info)
+        {
+            if (info.WorldObject != null)
+            {
+                return false;
+            }
+            Warband playerWarband = WarbandUtil.SpawnWarband(Faction.OfPirates, info);
+            playerWarband.SetFaction(Faction.OfPlayer); 
+            return true;
+        }
 
         static bool SpawnForFaction(GlobalTargetInfo info)
         {
@@ -86,6 +102,7 @@ namespace WarfareAndWarbands.Warband
             Find.WindowStack.Add(new FloatMenu(opts.ToList()));
             return true;
         }
+
         static bool SpawnForFactionTargetingBase(GlobalTargetInfo info)
         {
             if (info.WorldObject == null)
@@ -104,6 +121,7 @@ namespace WarfareAndWarbands.Warband
                 yield return new FloatMenuOption($"faction: {f.Name}", delegate { WarbandUtil.SpawnWarband(f, info); });
             }
         }
+
 
         static IEnumerable<FloatMenuOption> SpawnWarbandTargetingBaseOptions(GlobalTargetInfo info)
         {

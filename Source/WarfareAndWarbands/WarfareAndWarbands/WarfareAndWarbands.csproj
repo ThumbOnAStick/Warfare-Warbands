@@ -124,7 +124,7 @@
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\Injuries\PlayerWarbandRecoveryGroup.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandResettleManager.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandManager.cs" />
-    <Compile Include="Warband\WarbandComponents\PlayerWarbandUpdates\DroppodUpgrade.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandDropRaid.cs" />
     <Compile Include="Warband\WarbandRecruiting\WarbandRecruitingUtil.cs" />
     <Compile Include="Warband\WarbandUtil.cs" />
     <Compile Include="Warband\WAWCaravan\UI\WAWCaravanUI.cs" />
@@ -148,6 +148,7 @@
     <Compile Include="Misc\Window_WAWUpdateLog.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Warband\WarbandComponents\PlayerWarbandUpdates\" />
     <Folder Include="Warfare\Events\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

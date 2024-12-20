@@ -111,9 +111,18 @@ namespace WarfareAndWarbands.Warband.UI
 
         public static IEnumerable<FloatMenuOption> PlayerWarbandAttackOptions(PlayerWarbandManager attackManager)
         {
-            yield return new FloatMenuOption("WAW.LandAttack".Translate(), delegate { attackManager.AttackLand(); });
+
+            yield return new FloatMenuOption("WAW.LandAttack".Translate(), delegate
+            {
+                attackManager.AttackLand();
+                WarbandUtil.TryToSendQuickAttackLetter();
+            });
             if (attackManager.targetMapP.HasMap)
-                yield return new FloatMenuOption("WAW.PodAttack".Translate(), delegate { attackManager.AttackDropPod(); });
+                yield return new FloatMenuOption("WAW.PodAttack".Translate(), delegate
+                {
+                    attackManager.AttackDropPod();
+                    WarbandUtil.TryToSendQuickAttackLetter();
+                });
 
         }
 
@@ -144,7 +153,7 @@ namespace WarfareAndWarbands.Warband.UI
             TaggedString text = "WAW.ConfirmDestroyWarBand".Translate();
             void confirmedAct()
             {
-                warband?.playerWarbandManager?.leader?.ReturnLeaderHome(); 
+                warband?.playerWarbandManager?.leader?.ReturnLeaderHome();
                 warband?.Destroy();
             }
 
@@ -175,7 +184,7 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.action = delegate ()
             {
                 Dialog_SetCustomName window = new Dialog_SetCustomName(band);
-                Find.WindowStack.Add(window);       
+                Find.WindowStack.Add(window);
             };
             command_Action.Order = 3000f;
             return command_Action;
@@ -238,7 +247,7 @@ namespace WarfareAndWarbands.Warband.UI
                 action = delegate ()
                 {
                     var warband = lootComp.warband;
-                    if(warband == null)
+                    if (warband == null)
                     {
                         return;
                     }
@@ -366,7 +375,7 @@ namespace WarfareAndWarbands.Warband.UI
             float entryHeight
             )
         {
-        
+
             var techLeve = "WAW.TechLevel".Translate((int)GameComponent_WAW.playerWarband.techLevel);
             int techWidth = 80;
             Rect techRect = new Rect(380 - techWidth / 2, colorSelectorRect.y + colorsHeight, techWidth, 50);

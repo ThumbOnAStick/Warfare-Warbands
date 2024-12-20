@@ -2,7 +2,7 @@
 <LanguageData>
 	<!--Gameplay-->
 	<WAW.Welcome>战团战争</WAW.Welcome>
-	<WAW.Welcome.Desc>感谢游玩战团战争，更多信息在创意工坊界面可见。如果需要汇报bug，请在创意工坊的bug板块汇报。</WAW.Welcome.Desc>
+	<!-- <WAW.Welcome.Desc>感谢游玩战团战争，更多信息在创意工坊界面可见。如果需要汇报bug，请在创意工坊的bug板块汇报。</WAW.Welcome.Desc>
 	<OpenFactionInformationTab>打开派系信息选项卡</OpenFactionInformationTab>
 	<factionLosing>这个派系正在输掉这场战争。</factionLosing>
 	<factionStrikeToSurvive>这个派系遭遇了很多困难。</factionStrikeToSurvive>
@@ -64,5 +64,9 @@
 	<WAW.InsufficientAttribute>领导者的{0}等级不足{1}</WAW.InsufficientAttribute>
 	<WAW.GoodWillGained>获得好感</WAW.GoodWillGained>
 	<WAW.GoodWillGained.Desc>通过战团领袖的能力，你和{0}的关系提升了{1}点。</WAW.GoodWillGained.Desc>
+	<WAW.WorksiteTradeComplete>由于{0}的理财能力，你获得了工作站的所有物品。</WAW.WorksiteTradeComplete>
+	<WAW.LootValue>你可以获得相当于战利品{0}%价值的白银，这个数字取决于领导者的理财能力。</WAW.LootValue>
+	<WAW.LeaderKilled>战团领袖死亡</WAW.LeaderKilled>
+	<WAW.CantDelete>不能删除正在被使用的兵种。</WAW.CantDelete> -->
 
 </LanguageData>

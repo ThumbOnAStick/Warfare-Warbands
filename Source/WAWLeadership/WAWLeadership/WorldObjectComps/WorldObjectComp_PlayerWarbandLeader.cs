@@ -30,14 +30,19 @@ namespace WAWLeadership.WorldObjectComps
         {
             if (this.isvalidCache)
             {
-                bool disabled = GenTicks.TicksGame < lastUsageTick + coolDownTicks;
                 if (leadershipInfo != null)
                     yield return LeadershipUI.GetLeaderInfo(this);
-                yield return LeadershipUI.Interact(disabled, this, MyWarband.playerWarbandManager.leader.Leader);
                 if (DebugSettings.godMode)
                 {
                     yield return LeadershipUI.ResetLeaderAbilityCooldown(this);
                 }
+            }
+
+            if(MyWarband.Faction == Faction.OfPlayer)
+            {
+                bool disabled = GenTicks.TicksGame < lastUsageTick + coolDownTicks;
+                yield return LeadershipUI.Interact(disabled, isvalidCache, this, MyWarband.playerWarbandManager.leader.Leader);
+
             }
         }
 

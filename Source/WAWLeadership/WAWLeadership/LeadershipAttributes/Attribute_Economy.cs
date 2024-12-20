@@ -24,5 +24,32 @@ namespace WAWLeadership.LeadershipAttributes
         {
             return null;
         }
+
+        public float GetLootValueMultiplier()
+        {
+            return LootValueCurve().Evaluate(this.level);
+        }
+
+        static SimpleCurve LootValueCurve()
+        {
+            return new SimpleCurve
+            {
+                { 0, 0.3f},
+                { 1, 0.4f},
+                { 2, 0.7f},
+                { 3, 1},
+            };
+        }
+
+        public override string GetBuffs()
+        {
+            if (this.level < 1)
+            {
+                return "";
+            }
+            var result = base.GetBuffs();
+            result += "\n" + "WAW.LootValueBuff".Translate(this.GetLootValueMultiplier() * 100);
+            return result;  
+        }
     }
 }

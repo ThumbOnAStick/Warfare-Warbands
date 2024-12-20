@@ -11,9 +11,9 @@ using WarfareAndWarbands.Warband.Mercenary;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
 {
-    public class DroppodUpgrade : IExposable
+    public class PlayerWarbandDropRaid : IExposable
     {
-        public DroppodUpgrade(Warband warband) 
+        public PlayerWarbandDropRaid(Warband warband) 
         {
             activated = false;
             this.warband = warband;

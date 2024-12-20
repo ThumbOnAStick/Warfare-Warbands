@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using WarfareAndWarbands.Warband.UI;
 
 namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
 {
@@ -41,7 +42,12 @@ namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
 
         void TryRaidAll(IEnumerable<WorldObject> warbands)
         {
-            foreach(var warband in warbands)
+            int rnd = new IntRange(1, 100).RandomInRange;
+            if (rnd < WAWSettings.raidPlayerWarbandChance)
+            {
+                return;
+            }
+            foreach (var warband in warbands)
             {
                 if(TryRaid(warband))
                 {
@@ -53,6 +59,10 @@ namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
         bool TryRaid(WorldObject worldObject)
         {
             if (!(worldObject is Warband warband))
+            {
+                return false;
+            }
+            if (!warband.playerWarbandManager.cooldownManager.CanFireRaid())
             {
                 return false;
             }

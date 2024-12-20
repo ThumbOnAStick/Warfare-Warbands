@@ -21,6 +21,14 @@
 	<WAW.Engineering>工程能力</WAW.Engineering>
 	<WAW.Economy>理财能力</WAW.Economy>
 	<WAW.AttributePoints>属性点： {0}</WAW.AttributePoints>
-  	<WAW.CurrentLevel>领导力等级：{0}</WAW.CurrentLevel>
+	<WAW.CurrentLevel>领导力等级：{0}</WAW.CurrentLevel>
 	<WAW.DefaultStyle>默认风格</WAW.DefaultStyle>
+	<WAW.AddSkillToSoldier>给所有士兵的{1}添加{0}技能点</WAW.AddSkillToSoldier>
+	<WAW.RecoveryRate>士兵痊愈所需的时间减少{0}%。</WAW.RecoveryRate>
+	<WAW.NotImplemented>招募能力还在开发中</WAW.NotImplemented>
+	<WAW.LootValueBuff>战利品的白银返还：{0}%</WAW.LootValueBuff>
+	<WAW.InteractWithSettlement>能够和据点互动</WAW.InteractWithSettlement>
+	<WAW.InteractWithPeaceTalks>能够和和平谈判互动</WAW.InteractWithPeaceTalks>
+	<WAW.ExplainExp>通过攻击、防守或使用战团的“互动”键增长殖民者的经验</WAW.ExplainExp>
+	<WAW.NoLeaderFound>没有领袖</WAW.NoLeaderFound>
 </LanguageData>

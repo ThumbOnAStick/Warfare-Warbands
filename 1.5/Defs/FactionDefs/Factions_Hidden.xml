@@ -2,8 +2,8 @@
 <Defs>
 
   <FactionDef ParentName="FactionBase" Abstract="True" Name="WarbandBase">
-    <pawnSingular>ancient</pawnSingular>
-    <pawnsPlural>ancients</pawnsPlural>
+    <pawnSingular>mercenary</pawnSingular>
+    <pawnsPlural>mercenaries</pawnsPlural>
     <categoryTag>Player Warband</categoryTag>
     <requiredCountAtGameStart>1</requiredCountAtGameStart>
     <maxConfigurableAtWorldCreation>1</maxConfigurableAtWorldCreation>
@@ -20,7 +20,7 @@
       </li>
     </backstoryFilters>
     <hidden>true</hidden>
-    <rescueesCanJoin>true</rescueesCanJoin>
+    <rescueesCanJoin>false</rescueesCanJoin>
     <autoFlee>false</autoFlee>
     <apparelStuffFilter>
       <thingDefs>

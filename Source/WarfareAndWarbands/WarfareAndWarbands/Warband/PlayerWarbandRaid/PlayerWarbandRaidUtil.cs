@@ -15,6 +15,7 @@ namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
     {
         public static void RaidPlayer(Faction f, Warband playerWarband)
         {
+
             if (f == null)
             {
                 f = Faction.OfMechanoids;

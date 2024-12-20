@@ -142,22 +142,47 @@ namespace WarfareAndWarbands
                 }
             }
         }
+        
+        Faction PlayerWarband()
+        {
+            return Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband);
+        }
+
+        void TryToSetRelation()
+        {
+            var playerWarband = PlayerWarband();
+            foreach(var faction in Find.FactionManager.AllFactions)
+            {
+                if(faction == playerWarband)
+                {
+                    return;
+                }
+                FactionRelation r = new FactionRelation
+                {
+                    other = playerWarband,
+                    kind = FactionRelationKind.Neutral
+                };
+                faction.SetRelation(r);
+            }
+        }
+        
 
         public override void LoadedGame()
         {
             base.LoadedGame();
             LoadAllFactions();
             WarbandUtil.RefreshAllPlayerWarbands();
-
+            TryToSetRelation();
         }
 
 
         public override void StartedNewGame()
         {
             base.StartedNewGame();
-            LoadAllFactions();
             GiveModLetter();
+            LoadAllFactions();
             WarbandUtil.RefreshAllPlayerWarbands();
+            TryToSetRelation();
 
         }
 

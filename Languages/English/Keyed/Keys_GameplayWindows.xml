@@ -23,4 +23,12 @@
 	<WAW.AttributePoints>Attribute Points: {0}</WAW.AttributePoints>
 	<WAW.CurrentLevel>level: {0}</WAW.CurrentLevel>
 	<WAW.DefaultStyle>Default Style</WAW.DefaultStyle>
+	<WAW.AddSkillToSoldier>Add {0} points of {1} skill to all soldiers.</WAW.AddSkillToSoldier>
+	<WAW.RecoveryRate>Soldiers require {0}% less days to recover from injuries.</WAW.RecoveryRate>
+	<WAW.NotImplemented>Recruiting skill is not yet implemented.</WAW.NotImplemented>
+	<WAW.LootValueBuff>Silvers returned will be {0}% of loots' value.</WAW.LootValueBuff>
+	<WAW.InteractWithSettlement>Can interact with settlements</WAW.InteractWithSettlement>
+	<WAW.InteractWithPeaceTalks>Can interact with peace talks</WAW.InteractWithPeaceTalks>
+	<WAW.ExplainExp>Exp can be gained by raiding, defending and using "Interact" button of the warband.</WAW.ExplainExp>
+	<WAW.NoLeaderFound>Leader not installed.</WAW.NoLeaderFound>
 </LanguageData>

@@ -36,5 +36,16 @@ namespace WAWLeadership.LeadershipAttributes
             };
         }
 
+        public override string GetBuffs()
+        {
+            if (this.level < 1)
+            {
+                return "";
+            }
+            var outString = base.GetBuffs();
+            outString += "\n" + "WAW.RecoveryRate".Translate((1f - this.RecoveryCurve().Evaluate(level)) * 100);
+            return outString;
+        }
+
     }
 }

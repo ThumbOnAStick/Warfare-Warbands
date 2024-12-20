@@ -11,8 +11,9 @@ namespace WAWLeadership.UI
     public class Window_Leadership:Window
     {
         private readonly CompLeadership leader;
+        private Vector2 scrollPosition;
 
-        public override Vector2 InitialSize => new Vector2(630f, 430f);
+        public override Vector2 InitialSize => new Vector2(630f, 600f);
 
         public Window_Leadership(CompLeadership leader)
         {
@@ -37,15 +38,15 @@ namespace WAWLeadership.UI
 
             // Draw Pawn Portrait
             GUI.color = Color.white;
-            Rect portraitRect = new Rect(Vector2.zero, new Vector2(this.InitialSize.x / 2, this.InitialSize.y));
+            Rect portraitRect = new Rect(Vector2.zero, new Vector2(InitialSize.x / 2, 400));
             Widgets.ThingIcon(portraitRect, leader.Pawn, 1f, null, false);
             Widgets.Label(portraitRect, "WAW.LeadershipTitle".Translate());
-
             // Draw Attribute Panel
-            Rect otherHalf = new Rect(new Vector2(portraitRect.xMax + 100, 100), new Vector2(this.InitialSize.x / 2, this.InitialSize.y));
-            Rect levelLabelRect = new Rect(otherHalf.x + 50, 330, 200, 30);
-            Rect pointsRect = new Rect(otherHalf.x + 50, 350, 200, 50);
-            Rect barRect = new Rect(otherHalf.x, 375, 200, 30);
+            Rect otherHalf = new Rect(new Vector2(portraitRect.xMax + 100, 100), new Vector2(InitialSize.x / 2, InitialSize.y));
+            Rect levelLabelRect = new Rect(portraitRect.xMax + 50, 400, 200, 30);
+            Rect pointsRect = new Rect(levelLabelRect.x, levelLabelRect.yMax, 200, 50);
+            Rect barRect = new Rect(portraitRect.xMax, pointsRect.yMax, 200, 30);
+            Rect buffsRect = new Rect(portraitRect.x, 400, portraitRect.width, 600 - 400);
 
 
             var attributeSet = leader.Leadership.AttributeSet;
@@ -56,6 +57,7 @@ namespace WAWLeadership.UI
             LeadershipUI.DrawPoints(pointsRect, attributeSet);
             LeadershipUI.DrawLevel(levelLabelRect, exp);
             LeadershipUI.DrawExpBar(barRect, exp);
+            LeadershipUI.DrawBuffs(buffsRect, leader, ref scrollPosition);
         }
     }
 }

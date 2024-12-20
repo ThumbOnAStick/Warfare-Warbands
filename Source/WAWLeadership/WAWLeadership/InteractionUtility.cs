@@ -64,25 +64,11 @@ namespace WAWLeadership
             if ((o as Site) != null)
             {
                 var site = (Site)o;
-                DoInteractWithWorkingSite(ref usedSkill, leader, site);
+                if(ValidateLeader<Attribute_Economy>(leader, 2))
+                    DoInteractWithWorkingSite(ref usedSkill, leader, site);
             }
         }
-
-        static void DoInteractWithWorkingSite(ref bool usedSkill, Pawn leader, Site site)
-        {
-            if (usedSkill)
-            {
-                return;
-            }
-            bool predicateWorkingSite(SitePart x) => x.def.defName.Contains("WorkSite_");
-            if (site.parts.Any(predicateWorkingSite))
-            {
-                DropAtHome(MakeDropPodInfo(GetLoots(predicateWorkingSite, site)));
-                site.Destroy();
-                SendCompleteTradingMessage(leader);
-                usedSkill = true;
-            }
-        }
+   
 
         static List<Thing> GetLoots(Predicate<SitePart> predicate, Site site)
         {
@@ -184,23 +170,20 @@ namespace WAWLeadership
 
 
         #region WorkingSite
-        static void TryToInteractWithWorkingSites(WorldObject o, ref bool usedSkill, Pawn leader)
+        static void DoInteractWithWorkingSite(ref bool usedSkill, Pawn leader, Site site)
         {
-            usedSkill = ValidateLeader<Attribute_Diplomacy>(leader, 2) && !o.Faction.def.PermanentlyHostileTo(FactionDefOf.PlayerColony);
             if (usedSkill)
             {
-                InteractWithWorkingSite(o);
-                GameComponent_WAW.Instance.OnLeaderAbilityUsed(leader);
+                return;
             }
-        }
-
-        static void InteractWithWorkingSite(WorldObject o)
-        {
-            FactionRelationKind playerRelationKind = o.Faction.PlayerRelationKind;
-            int goodWill = DiplomacyTuning.Goodwill_MemberExitedMapHealthy;
-            Faction.OfPlayer.TryAffectGoodwillWith(o.Faction, goodWill, canSendMessage: false);
-            TaggedString ltterText = "WAW.GoodWillGained.Desc".Translate(o.Faction.NameColored, goodWill);
-            Find.LetterStack.ReceiveLetter("WAW.GoodWillGained".Translate(), ltterText, LetterDefOf.PositiveEvent);
+            bool predicateWorkingSite(SitePart x) => x.def.defName.Contains("WorkSite_");
+            if (site.parts.Any(predicateWorkingSite))
+            {
+                DropAtHome(MakeDropPodInfo(GetLoots(predicateWorkingSite, site)));
+                site.Destroy();
+                SendCompleteTradingMessage(leader);
+                usedSkill = true;
+            }
         }
         #endregion
 

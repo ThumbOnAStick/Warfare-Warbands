@@ -68,5 +68,8 @@
 	<WAW.InsufficientAttribute>Leader's {0} skill mismatch required level {1}</WAW.InsufficientAttribute>
 	<WAW.GoodWillGained>Goodwill Gained</WAW.GoodWillGained> 
 	<WAW.GoodWillGained.Desc>Due to leader's ability, your relationship with {0} has improved by {1} points</WAW.GoodWillGained.Desc>
-	<WAW.WorksiteTradeComplete>Thanks to {0}'s trading ability, you gained all the loots from this working site.</WAW.WorksiteTradeComplete>
-</LanguageData>
+	<WAW.WorksiteTradeComplete>Thanks to {0}'s economy ability, you gained all the loots from this working site.</WAW.WorksiteTradeComplete>
+	<WAW.LootValue>The silvers you can get are worth {0}% of the loots' value, this number is decided by leader's economy ability.</WAW.LootValue>
+	<WAW.LeaderKilled>Your warband has lost their leader.</WAW.LeaderKilled>
+	<WAW.CantDelete>Can't delete a pawn kind that is already in use.</WAW.CantDelete>
+</LanguageData>	

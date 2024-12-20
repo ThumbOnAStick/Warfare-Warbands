@@ -306,7 +306,7 @@ namespace WarfareAndWarbands.Warband
             if (!playerWarband.playerWarbandManager.cooldownManager.CanFireRaid())
             {
                 string label = "WAW.CannotConfigureWarband".Translate(
-                    playerWarband.playerWarbandManager.cooldownManager.GetRemainingDays());
+                    playerWarband.playerWarbandManager.cooldownManager.GetRemainingDays().ToString("0.0"));
                 Messages.Message(label, MessageTypeDefOf.RejectInput);
                 return;
             }

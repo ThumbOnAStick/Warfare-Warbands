@@ -2,8 +2,7 @@
 <LanguageData>
 	<!-- Warband Commands -->
 	<WAW.OrderAttack>order attack</WAW.OrderAttack>
-	<WAW.OrderAttack.Desc>Order warband to attack hostile settlemnt, or another warband, or other
-		world objects.</WAW.OrderAttack.Desc>
+	<WAW.OrderAttack.Desc>Order warband to attack hostile settlemnt, or another warband, or other world objects.</WAW.OrderAttack.Desc>
 	<WAW.EmptyStorage>The storage is empty</WAW.EmptyStorage>
 	<WAW.WarbandWithdraw>withdraw loot</WAW.WarbandWithdraw>
 	<WAW.WarbandWithdraw.Desc>Return all loots with drop pods</WAW.WarbandWithdraw.Desc>

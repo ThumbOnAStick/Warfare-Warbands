@@ -24,5 +24,11 @@ namespace WAWLeadership.LeadershipAttributes
         {
             return SkillDefOf.Shooting;
         }
+
+        public override List<SkillDef> BoostsSkillExtra()
+        {
+            return new List<SkillDef> { SkillDefOf.Melee};
+        }
+
     }
 }

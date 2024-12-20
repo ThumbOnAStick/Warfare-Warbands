@@ -29,6 +29,7 @@ namespace WarfareAndWarbands.Warband
             for (int i = 0; i < GameComponent_WAW.playerWarband.bandMembers.Count; i++)
             {
                 var ele = GameComponent_WAW.playerWarband.bandMembers.ElementAt(i);
+                GameComponent_WAW.playerWarband.bandMembers[ele.Key] = 0;
                 if (warband.bandMembers.ContainsKey(ele.Key))
                 {
                     GameComponent_WAW.playerWarband.bandMembers[ele.Key] = warband.bandMembers[ele.Key];

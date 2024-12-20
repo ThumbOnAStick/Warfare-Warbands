@@ -24,5 +24,15 @@ namespace WAWLeadership.LeadershipAttributes
         {
             return null;
         }
+
+        public override string GetToopTips()
+        {
+            return "WAW.NotImplemented".Translate();
+        }
+
+        public override string GetBuffs()
+        {
+            return "";
+        }
     }
 }

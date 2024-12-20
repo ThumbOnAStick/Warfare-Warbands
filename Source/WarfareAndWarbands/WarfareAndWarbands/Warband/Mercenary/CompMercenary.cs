@@ -24,6 +24,7 @@ namespace WarfareAndWarbands.Warband
     {
         bool servesPlayerFaction = false;
         bool retreated = false;
+        private bool isLeaderCache;
         Faction servingFaction;
         int lastServeTick = 0;
         string pawnKindName;
@@ -91,6 +92,12 @@ namespace WarfareAndWarbands.Warband
             warband = null;
         }
 
+        public override void PostSpawnSetup(bool respawningAfterLoad)
+        {
+            base.PostSpawnSetup(respawningAfterLoad);
+            this.isLeaderCache = PlayerWarbandLeaderUtil.IsLeader(Mercenary);
+        }
+
         public override void Notify_Downed()
         {
             base.Notify_Downed();
@@ -117,13 +124,17 @@ namespace WarfareAndWarbands.Warband
             base.Notify_Killed(prevMap, dinfo);
             if (HasServingFaction() && Mercenary.MapHeld != null)
             {
-                TryNotifyPlayerPawnKilled();
                 string targetName = pawnKindName;
                 this.warband?.TryToRemovePawn(targetName);
-            }
-            if (PlayerWarbandLeaderUtil.IsLeader(Mercenary))
-            {
-                warband?.playerWarbandManager?.leader?.OnLeaderChanged();
+                if (isLeaderCache)
+                {
+                    TryNotifyPlayerLeaderKilled();
+                    warband?.playerWarbandManager?.leader?.OnLeaderChanged();
+                }
+                else
+                {
+                    TryNotifyPlayerPawnKilled();
+                }
             }
         }
 
@@ -134,6 +145,15 @@ namespace WarfareAndWarbands.Warband
                 Messages.Message("WAW.WarbandLoss".Translate(), MessageTypeDefOf.NegativeEvent);
             }
         }
+
+        void TryNotifyPlayerLeaderKilled()
+        {
+            if (servesPlayerFaction)
+            {
+                Messages.Message("WAW.LeaderKilled".Translate(), MessageTypeDefOf.PawnDeath);
+            }
+        }
+
 
         public void Retreat()
         {
@@ -232,7 +252,6 @@ namespace WarfareAndWarbands.Warband
             Scribe_Values.Look(ref retreated, "retreated", false);
             Scribe_Values.Look(ref lastServeTick, "lastServeTick", 0);
             Scribe_Values.Look(ref pawnKindName, "pawnKindName", "none");
-
             Scribe_References.Look(ref warband, "warband");
             Scribe_References.Look(ref servingFaction, "servingFaction");
 

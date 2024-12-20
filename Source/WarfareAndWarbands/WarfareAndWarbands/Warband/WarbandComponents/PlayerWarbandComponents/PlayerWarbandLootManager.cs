@@ -11,9 +11,13 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 {
     public class PlayerWarbandLootManager: IExposable
     {
+        private List<Thing> storage;
+        private float lootValueMultiplier;
+
         public PlayerWarbandLootManager()
         {
             this.storage = new List<Thing>();
+            lootValueMultiplier = 0.3f;
         }
 
         public void StoreAll(IEnumerable<Thing> things)
@@ -49,7 +53,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             LaunchItemsToHome(activeDropPodInfo);
         }
 
-      
+
 
         public void WithdrawLootInSilver()
         {
@@ -60,19 +64,19 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 Messages.Message(m);
                 return;
             }
-            Log.Message("Try to withdraw");
             ActiveDropPodInfo activeDropPodInfo = new ActiveDropPodInfo();
             List<Thing> silvers = GetLootValueInSilver();
             activeDropPodInfo.innerContainer.TryAddRangeOrTransfer(silvers, true, false);
             activeDropPodInfo.spawnWipeMode = new WipeMode?(WipeMode.Vanish);
             storage?.Clear();
+            Messages.Message("WAW.LootValue".Translate(this.lootValueMultiplier * 100), MessageTypeDefOf.NeutralEvent);
             LaunchItemsToHome(activeDropPodInfo);
 
         }
 
         public List<Thing> GetLootValueInSilver()
         {
-            float value = GetLootValue();
+            float value = GetLootValue() * this.lootValueMultiplier;
             int stackCount = ThingDefOf.Silver.stackLimit;
             List<Thing> silvers = new List<Thing>();
             while (value > 1)
@@ -111,18 +115,39 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             }
             Current.Game.CurrentMap = playerMap;
             var cell = CellFinder.StandableCellNear(playerMap.Center, playerMap, 50);
-            if(cell == IntVec3.Invalid)
+            if (cell == IntVec3.Invalid)
             {
                 cell = DropCellFinder.RandomDropSpot(playerMap);
             }
             CameraJumper.TryJump(cell, playerMap);
             DropPodUtility.MakeDropPodAt(cell, playerMap, activeDropPodInfo);
         }
+
+        public float GetLootMultiplier()
+        {
+            return this.lootValueMultiplier;  
+        }
+
+        public void SetLootMultiplier(float value)
+        {
+            this.lootValueMultiplier = value;
+        }
+
+        public void ResetLootMultiplier()
+        {
+            this.lootValueMultiplier = .3f;
+        }
+
+
         public void ExposeData()
         {
             Scribe_Collections.Look(ref storage, "storage", LookMode.Reference);
+            Scribe_Values.Look(ref lootValueMultiplier, "lootValueMultiplier", 0.3f);
+            if(lootValueMultiplier < 0.3f)
+            {
+                lootValueMultiplier = .3f;
+            }
         }
 
-        private List<Thing> storage;
     }
 }
