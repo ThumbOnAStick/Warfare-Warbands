@@ -17,8 +17,6 @@ namespace WarfareAndWarbands.Warband
 {
     public class Warband : Site
     {
-
-
         public Dictionary<string, int> bandMembers;
         public NPCWarbandManager npcWarbandManager;
         public PlayerWarbandManager playerWarbandManager;
@@ -274,6 +272,8 @@ namespace WarfareAndWarbands.Warband
                 TryDestroyWarband();
             }
         }
+
+     
 
         void TryRemoveInjuries(string kindName)
         {

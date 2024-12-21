@@ -151,7 +151,8 @@ namespace WarfareAndWarbands.CharacterCustomization
         {
             var weapon = GenerateWeapon();
             p.equipment?.DestroyAllEquipment();
-            p.equipment?.AddEquipment(weapon);
+            if (weapon != null)
+                p.equipment?.AddEquipment(weapon);
             return weapon;
         }
 

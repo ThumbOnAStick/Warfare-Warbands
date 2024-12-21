@@ -31,4 +31,7 @@
 	<WAW.InteractWithPeaceTalks>能够和和平谈判互动</WAW.InteractWithPeaceTalks>
 	<WAW.ExplainExp>通过攻击、防守或使用战团的“互动”键增长殖民者的经验</WAW.ExplainExp>
 	<WAW.NoLeaderFound>没有领袖</WAW.NoLeaderFound>
+	<WAW.RespawnChance>当士兵死亡时有{0}%的概率不会造成战团减员。</WAW.RespawnChance>
+	<WAW.RecruitCost>招募新士兵少花费{0}%的白银。</WAW.RecruitCost>
+
 </LanguageData>

@@ -31,4 +31,6 @@
 	<WAW.InteractWithPeaceTalks>Can interact with peace talks</WAW.InteractWithPeaceTalks>
 	<WAW.ExplainExp>Exp can be gained by raiding, defending and using "Interact" button of the warband.</WAW.ExplainExp>
 	<WAW.NoLeaderFound>Leader not installed.</WAW.NoLeaderFound>
+	<WAW.RespawnChance>Soldiers have a {0}% chance to be not counted as dead when they are killed.</WAW.RespawnChance>
+	<WAW.RecruitCost>Recruiting new soldiers costs {0}% less silvers.</WAW.RecruitCost>
 </LanguageData>

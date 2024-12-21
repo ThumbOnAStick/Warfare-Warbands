@@ -56,19 +56,19 @@ namespace WarfareAndWarbands.Warband
             return cost;
         }
 
-        public int GetCostExtra(Dictionary<string, int> bandMembers)
+        public int GetCostExtra(Dictionary<string, int> bandMembers, float multiplier)
         {
-            return (int)Math.Max(GetCostNormal() - GetCostNormal(bandMembers), 0);
+            return (int)Math.Max(GetCostNormal() - GetCostNormal(bandMembers) * multiplier, 0);
         }
 
         public float GetCostNormal(Dictionary<string, int> bandMembers)
         {
-            return (int)GetCostOriginal(bandMembers) * WAWSettings.establishFeeMultiplier * .75f;
+            return (int)GetCostOriginal(bandMembers) * WAWSettings.establishFeeMultiplier;
         }
 
         public float GetCostNormal()
         {
-            return (int)GetCostOriginal(bandMembers) * WAWSettings.establishFeeMultiplier * .75f;
+            return (int)GetCostOriginal(bandMembers) * WAWSettings.establishFeeMultiplier;
         }
 
         public int GetCostEstablishment()
@@ -171,7 +171,7 @@ namespace WarfareAndWarbands.Warband
                 Messages.Message("WAW.emptyBand".Translate(), MessageTypeDefOf.RejectInput);
                 return;
             }
-            int cost = GetCostExtra(playerWarbandSite.bandMembers);
+            int cost = GetCostExtra(playerWarbandSite.bandMembers, playerWarbandSite.playerWarbandManager.NewRecruitCostMultiplier);
             if (!WarbandUtil.TryToSpendSilverFromColony(currentMap, cost))
             {
                 return;

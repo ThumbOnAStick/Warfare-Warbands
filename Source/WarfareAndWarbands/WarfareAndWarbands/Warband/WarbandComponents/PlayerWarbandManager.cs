@@ -25,6 +25,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         public PlayerWarbandCooldownManager cooldownManager;
         public PlayerWarbandLeader leader;
         public PlayerWarbandSkillBonus skillBonus;
+        public float RespawnChance => respawnChance;
+        public float NewRecruitCostMultiplier => newRecruitCostMultiplier;
+        private float respawnChance;
+        private float newRecruitCostMultiplier;
 
         private readonly Warband warband;
         public static readonly int playerAttackRange = 10;
@@ -43,6 +47,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             this.skillBonus = new PlayerWarbandSkillBonus();
             leader.onLeaderChanged.AddListener(skillBonus.ResetSkillBonus);
             leader.onLeaderChanged.AddListener(lootManager.ResetLootMultiplier);
+            leader.onLeaderChanged.AddListener(ResetNewRecruitCostMultiplier);
+            leader.onLeaderChanged.AddListener(ResetRespawnChance);
 
         }
 
@@ -167,14 +173,6 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             return PlayerWarbandResettleManager.OrderPlayerWarbandToResettle(info, warband);
         }
 
-        public void ExposeData()
-        {
-            this.lootManager?.ExposeData();
-            this.colorOverride?.ExposeData();
-            this.injuriesManager?.ExposeData();
-            this.leader?.ExposeData();
-            this.skillBonus?.ExposeData();
-        }
 
         public string GetInspectString()
         {
@@ -245,6 +243,37 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             return warband.GetMemberCount() < 1 && !warband.HasLeader();
         }
 
+        public void SetRespawnChance(float value)
+        {
+            respawnChance = value;  
+        }
+
+        public void SetNewRecruitCostMultiplier(float value)
+        {
+            newRecruitCostMultiplier = value;
+        }
+
+        void ResetRespawnChance()
+        {
+            SetRespawnChance(0);
+        }
+
+        void ResetNewRecruitCostMultiplier()
+        {
+            SetNewRecruitCostMultiplier(1);
+        }
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref respawnChance, "respawnChance", 0);
+            Scribe_Values.Look(ref newRecruitCostMultiplier, "newRecruitCostMultiplier", 1);
+
+            this.lootManager?.ExposeData();
+            this.colorOverride?.ExposeData();
+            this.injuriesManager?.ExposeData();
+            this.leader?.ExposeData();
+            this.skillBonus?.ExposeData();
+        }
 
     }
 }

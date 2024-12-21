@@ -58,8 +58,8 @@ namespace WarfareAndWarbands.Warband
 
             WarbandUI.DrawColorPanel(inRect, out colorsHeight, out Rect colorSelectorRect, this.warband);
 
-            WarbandUI.DrawPawnSelection(inRect, colorSelectorRect,ref scrollPosition, pawnKindsEachRow, colorsHeight, descriptionHeight, descriptionWidth, entryWidth, entryHeight);
-            
+            WarbandUI.DrawPawnSelection(inRect, colorSelectorRect, ref scrollPosition, pawnKindsEachRow, colorsHeight, descriptionHeight, descriptionWidth, entryWidth, entryHeight);
+
             WarbandUI.DrawResetButton();
 
             DrawRecruitButton();
@@ -71,7 +71,8 @@ namespace WarfareAndWarbands.Warband
         void DrawExtraCost(Rect colorSelectorRect)
         {
             Rect costRect = new Rect(30, colorSelectorRect.y + colorsHeight, 200, 50);
-            Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostExtra(warband.bandMembers).ToString()));
+            string costLabel = "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostExtra(warband.bandMembers, warband.playerWarbandManager.NewRecruitCostMultiplier).ToString());
+            Widgets.Label(costRect, costLabel + $"(-{(1 - warband.playerWarbandManager.NewRecruitCostMultiplier) * 100}%)");
 
         }
 

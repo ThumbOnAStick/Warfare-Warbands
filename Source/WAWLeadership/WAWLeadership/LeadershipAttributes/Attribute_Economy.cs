@@ -41,6 +41,16 @@ namespace WAWLeadership.LeadershipAttributes
             };
         }
 
+        public override List<string> GetBuffsList()
+        {
+            List<string> outList = base.GetBuffsList();
+            if (this.level >= 1)
+            {
+                outList.Add("WAW.LootValueBuff".Translate(this.GetLootValueMultiplier() * 100));
+            }
+            return outList;
+        }
+
         public override string GetBuffs()
         {
             if (this.level < 1)

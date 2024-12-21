@@ -52,10 +52,16 @@ namespace WAWLeadership.WorldObjectComps
             if (Valid())
             {
                 leadershipInfo = MyWarband.playerWarbandManager.leader.Leader.TryGetComp<CompLeadership>();
-                if (leadershipInfo != null)
-                    MyWarband.playerWarbandManager.injuriesManager.SetRecoverRateMultiplier(leadershipInfo.GetRecoveryMultiplier());
+                leadershipInfo.SetWarbandCache(MyWarband);
+                leadershipInfo.SetLootMultiplier();
+                leadershipInfo.SetKillBonus();
+                leadershipInfo.GetRecoveryMultiplier();
+                leadershipInfo.SetRecruitCostMultiplier();
+                leadershipInfo.SetRespawnChance();
             }
         }
+
+
 
         bool Valid()
         {

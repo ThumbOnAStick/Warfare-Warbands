@@ -82,6 +82,28 @@ namespace WAWLeadership
             };
         }
 
+        public virtual List<string> GetBuffsList()
+        {
+            var skillBonus = this.SkillBonusCurve().Evaluate(this.level);
+            if (this.level < 1)
+            {
+                return new List<string>();
+            }
+            List<string> outList = new List<string>();
+
+            if (this.BoostsSkill() != null)
+            {
+                var skillList = new List<SkillDef>() { this.BoostsSkill() };
+                skillList.AddRange(this.BoostsSkillExtra());
+                foreach (var skill in skillList)
+                {
+                    outList.Add("WAW.AddSkillToSoldier".Translate(skillBonus, skill.label));
+                }
+
+            }
+            return outList;
+        }
+
         public virtual string GetBuffs()
         {
             var skillBonus = this.SkillBonusCurve().Evaluate(this.level);

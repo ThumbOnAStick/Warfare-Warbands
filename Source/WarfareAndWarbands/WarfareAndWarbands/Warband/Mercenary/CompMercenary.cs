@@ -124,8 +124,6 @@ namespace WarfareAndWarbands.Warband
             base.Notify_Killed(prevMap, dinfo);
             if (HasServingFaction() && Mercenary.MapHeld != null)
             {
-                string targetName = pawnKindName;
-                this.warband?.TryToRemovePawn(targetName);
                 if (isLeaderCache)
                 {
                     TryNotifyPlayerLeaderKilled();
@@ -133,16 +131,43 @@ namespace WarfareAndWarbands.Warband
                 }
                 else
                 {
-                    TryNotifyPlayerPawnKilled();
+                    TryKillPlayerMercenary(out bool survived);
+                    TryNotifyPlayerPawnKilled(survived);
                 }
             }
         }
 
-        void TryNotifyPlayerPawnKilled()
+        void TryKillPlayerMercenary(out bool survived)
+        {
+            survived = false;
+            if (warband != null)
+            {
+                float chance = warband.playerWarbandManager.RespawnChance;
+                float rnd = new FloatRange(0f, 1f).RandomInRange;
+                if (chance > rnd)
+                {
+                    survived = true;
+                }
+                else
+                {
+                    this.warband.TryToRemovePawn(pawnKindName);
+                }
+            }
+        }
+
+
+        void TryNotifyPlayerPawnKilled(bool survived = false)
         {
             if (servesPlayerFaction)
             {
-                Messages.Message("WAW.WarbandLoss".Translate(), MessageTypeDefOf.NegativeEvent);
+                if (!survived)
+                {
+                    Messages.Message("WAW.WarbandLoss".Translate(), MessageTypeDefOf.NegativeEvent);
+                }
+                else if (warband.playerWarbandManager.leader.IsLeaderAvailable())
+                {
+                    Messages.Message("WAW.WarbandLossFailed".Translate(warband.playerWarbandManager.leader.Leader.NameShortColored), MessageTypeDefOf.PositiveEvent);
+                }
             }
         }
 
@@ -240,7 +265,6 @@ namespace WarfareAndWarbands.Warband
                     LastServeTick = Find.TickManager.TicksGame;
                     Retreat();
                 }
-
             }
         }
 

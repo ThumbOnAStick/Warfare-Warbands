@@ -96,6 +96,10 @@ namespace WAWLeadership
             }
         }
 
+        public void SetWarbandCache(Warband warband)
+        {
+            this.warbandCache = warband;
+        }
 
 
         public override void CompTickRare()
@@ -188,12 +192,27 @@ namespace WAWLeadership
             return medicSkill.GetRecoveryMultiplier();
         }
 
-        public override void PostExposeData()
+        public float GetRespawnChance()
         {
-            base.PostExposeData();
-            Scribe_Values.Look(ref this.isWarbandLeader, "isWarbandLeader", false);
-            Scribe_Deep.Look(ref this.leadership, "leadership");
+            var recruitSkill = (Attribute_Recruiting)leadership.AttributeSet.GetAttribute<Attribute_Recruiting>();
+            if (recruitSkill == null)
+            {
+                return 0f;
+            }
+            return recruitSkill.GetRespawnChance();
         }
+
+        public float GetRecruitCostMultiplier()
+        {
+            var recruitSkill = (Attribute_Recruiting)leadership.AttributeSet.GetAttribute<Attribute_Recruiting>();
+            if (recruitSkill == null)
+            {
+                return 1.0f;
+            }
+            return recruitSkill.GetCostMultiplier();
+        }
+
+
 
         public Warband SelfWarband()
         {
@@ -206,31 +225,48 @@ namespace WAWLeadership
                 if (warbandCache == null)
                 {
                     warbandCache = warband;
-                    warbandCache.playerWarbandManager.leader.onLeaderChanged.AddListener(ApplyBonus);
+                    warbandCache.playerWarbandManager.leader.onLeaderChanged.AddListener(SetKillBonus);
                     warbandCache.playerWarbandManager.leader.onLeaderChanged.AddListener(SetLootMultiplier);
+                    warbandCache.playerWarbandManager.leader.onLeaderChanged.AddListener(SetRecoveryMultiplier);
+                    warbandCache.playerWarbandManager.leader.onLeaderChanged.AddListener(SetRecruitCostMultiplier);
+                    warbandCache.playerWarbandManager.leader.onLeaderChanged.AddListener(SetRespawnChance);
+
                 }
                 return warband;
             }
             return null;
         }
 
-        public override void CompTickLong()
-        {
-            base.CompTickLong();
-            SetLootMultiplier();
-        }
+ 
 
-
-        void ApplyBonus()
+        public void SetKillBonus()
         {
             if (!Pawn.Dead)
                 leadership.AttributeSet.ApplySkillBonuses(warbandCache.playerWarbandManager.skillBonus);
         }
 
-        void SetLootMultiplier()
+        public void SetLootMultiplier()
         {
             if (!Pawn.Dead)
                 warbandCache.playerWarbandManager.lootManager.SetLootMultiplier(GetLootMultiplier());
+        }
+            
+        public void SetRecoveryMultiplier()
+        {
+            if (!Pawn.Dead)
+                warbandCache.playerWarbandManager.injuriesManager.SetRecoverRateMultiplier(GetRecoveryMultiplier());
+        }
+
+        public void SetRecruitCostMultiplier()
+        {
+            if (!Pawn.Dead)
+                warbandCache.playerWarbandManager.SetNewRecruitCostMultiplier(GetRecruitCostMultiplier());
+        }
+
+        public void SetRespawnChance()
+        {
+            if (!Pawn.Dead)
+                warbandCache.playerWarbandManager.SetRespawnChance(GetRespawnChance());
         }
 
         public float GetLootMultiplier()
@@ -249,6 +285,18 @@ namespace WAWLeadership
             return count;
         }
 
+        public List<string> GetBuffsList()
+        {
+            var outList = new List<string>();
+            if (leadership.AttributeSet != null && leadership.AttributeSet.Attributes.Count > 0)
+                foreach (var attribute in this.leadership.AttributeSet.Attributes)
+                {
+                    outList.AddRange(attribute.GetBuffsList()) ;
+                }
+            return outList;
+        }
+
+
         public string GetBuffs()
         {
             var outString = "Buffs:";
@@ -266,5 +314,11 @@ namespace WAWLeadership
             Find.WindowStack.Add(leadershipWindow);
         }
 
+        public override void PostExposeData()
+        {
+            base.PostExposeData();
+            Scribe_Values.Look(ref this.isWarbandLeader, "isWarbandLeader", false);
+            Scribe_Deep.Look(ref this.leadership, "leadership");
+        }
     }
 }

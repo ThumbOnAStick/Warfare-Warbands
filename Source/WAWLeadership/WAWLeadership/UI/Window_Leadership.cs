@@ -13,7 +13,7 @@ namespace WAWLeadership.UI
         private readonly CompLeadership leader;
         private Vector2 scrollPosition;
 
-        public override Vector2 InitialSize => new Vector2(630f, 600f);
+        public override Vector2 InitialSize => new Vector2(630f, 630f);
 
         public Window_Leadership(CompLeadership leader)
         {
@@ -45,15 +45,14 @@ namespace WAWLeadership.UI
             Rect otherHalf = new Rect(new Vector2(portraitRect.xMax + 100, 100), new Vector2(InitialSize.x / 2, InitialSize.y));
             Rect levelLabelRect = new Rect(portraitRect.xMax + 50, 400, 200, 30);
             Rect pointsRect = new Rect(levelLabelRect.x, levelLabelRect.yMax, 200, 50);
-            Rect barRect = new Rect(portraitRect.xMax, pointsRect.yMax, 200, 30);
+            Rect barRect = new Rect(levelLabelRect.x, pointsRect.yMax, 200, 30);
             Rect buffsRect = new Rect(portraitRect.x, 400, portraitRect.width, 600 - 400);
-
 
             var attributeSet = leader.Leadership.AttributeSet;
             var exp = leader.Leadership.Exp;
             LeadershipUI.DrawHexagon(otherHalf, 100, out List<Vector2> points, out Vector2 center);
-            LeadershipUI.DrawLeadershipAttributes(points, attributeSet, leader);
             LeadershipUI.DrawCurrentAttributes(points, center, leader);
+            LeadershipUI.DrawLeadershipAttributes(points, attributeSet, leader);
             LeadershipUI.DrawPoints(pointsRect, attributeSet);
             LeadershipUI.DrawLevel(levelLabelRect, exp);
             LeadershipUI.DrawExpBar(barRect, exp);

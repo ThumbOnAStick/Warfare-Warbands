@@ -20,6 +20,15 @@ namespace WAWLeadership.LeadershipAttributes
             return SkillDefOf.Social;
         }
 
+        public override List<string> GetBuffsList()
+        {
+            List<string> outList = base.GetBuffsList();
+            if (this.level >= 2)
+                outList.Add("WAW.InteractWithSettlement".Translate());
+            if (this.level >= 3)
+                outList.Add("WAW.InteractWithPeaceTalks".Translate());
+            return outList;
+        }
 
         public override string GetBuffs()
         {

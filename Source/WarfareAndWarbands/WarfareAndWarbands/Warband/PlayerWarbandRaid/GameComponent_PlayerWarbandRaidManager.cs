@@ -43,7 +43,7 @@ namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
         void TryRaidAll(IEnumerable<WorldObject> warbands)
         {
             int rnd = new IntRange(1, 100).RandomInRange;
-            if (rnd < WAWSettings.raidPlayerWarbandChance)
+            if (rnd >= WAWSettings.raidPlayerWarbandChance)
             {
                 return;
             }

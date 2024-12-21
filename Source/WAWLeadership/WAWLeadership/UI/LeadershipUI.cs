@@ -38,7 +38,7 @@ namespace WAWLeadership.UI
             DrawClosedLines(points, color:Color.white);
         }
 
-        static void DrawClosedLines(List<Vector2> points, Color color, float width = 2)
+        static void DrawClosedLines(List<Vector2> points, Color color, float width = 2 )
         {
             Vector2 point1 = points.ElementAt(0);
             Vector2 point2 = points.ElementAt(1);
@@ -49,6 +49,8 @@ namespace WAWLeadership.UI
                 point2 = points.Count > i + 1 ? points.ElementAt(i + 1) : points.ElementAt(0);
             }
         }
+
+     
 
         public static void DrawLeadershipAttributes(List<Vector2> points, AttributeSet attributeSet, CompLeadership comp)
         {
@@ -85,8 +87,76 @@ namespace WAWLeadership.UI
             {
                 actualPoints.Add(GetAttributeDrawPoint(points[i], center, i, leader.Leadership.AttributeSet.Attributes));
             }
-            DrawClosedLines(actualPoints, Color.yellow, 5f);
+
+            DrawTriangles(actualPoints, Color.yellow, center, 5f);
+            DrawClosedLines(actualPoints, Color.yellow, 1f);
         }
+
+        static void DrawTriangles(List<Vector2> points, Color color, Vector2 center, float width = 2)
+        {
+            Vector2 point1 = points.ElementAt(0);
+            Vector2 point2 = points.ElementAt(1);
+            for (int i = 0; i < points.Count + 1; i++)
+            {
+                FillTriangle(center, point1, point2);
+                point1 = point2;
+                point2 = points.Count > i + 1 ? points.ElementAt(i + 1) : points.ElementAt(0);
+            }
+        }
+
+        static void FillTriangle(Vector2 center, Vector2 point1, Vector2 point2)
+        {
+            List<Pair<Vector2, Vector2>> edges = new List<Pair<Vector2, Vector2>>()
+            {
+                new Pair<Vector2, Vector2>(point1, point2),
+                new Pair<Vector2, Vector2>(point2, center),
+                new Pair<Vector2, Vector2>(center, point1)
+            };
+
+            float xMax = edges.Max(e => e.First.x);
+            float xMin = edges.Min(e => e.First.x);
+
+            for (float i = xMin; i < xMax; i += .5f)
+            {
+                float high = -999;
+                float low = 999;
+                foreach (Pair<Vector2, Vector2> edge in edges)
+                {
+                    float edgeXMin = Math.Min(edge.First.x, edge.Second.x);
+                    float edgeXMax = Math.Max(edge.First.x, edge.Second.x);
+                    float highCurrent = Math.Max(edge.First.y, edge.Second.y);
+                    float lowCurrent = Math.Min(edge.First.y, edge.Second.y);
+                    float width = edge.First.x - edge.Second.x;
+                    if (i < edgeXMin || i > edgeXMax)
+                    {
+                        continue;
+                    }
+                    if (width == 0)
+                    {
+                        if (i == edge.First.x)
+                        {
+                            high = highCurrent;
+                            low = lowCurrent;
+                        }
+                        continue;
+                    }
+                    float slope = (edge.First.y - edge.Second.y) / width;
+                    float hight = edge.First.y - slope * edge.First.x;
+                    float yImagine = slope * i + hight;
+                    if (yImagine >= lowCurrent && yImagine <= highCurrent)
+                    {
+                        high = high < yImagine ? yImagine : high;
+                        low = low > yImagine ? yImagine : low;
+                    }
+                }
+                if (high != -999 && low != 999)
+                    Widgets.DrawLine(new Vector2(i, low), new Vector2(i, high + 3), new Color(.8f, .8f, .2f), 2);
+
+
+            }
+
+        }
+
 
         public static Vector2 GetAttributeDrawPoint(Vector2 point, Vector2 center, int index, HashSet<LeadershipAttribute> attributes)
         {
@@ -139,17 +209,34 @@ namespace WAWLeadership.UI
             {
                 TooltipHandler.TipRegion(rect, "WAW.ExplainExp".Translate());
             }
+           
             Widgets.FillableBarLabeled(rect, exp.ExpPercent(), 60, exp.ToString());
         }
 
         public static void DrawBuffs(Rect rect, CompLeadership leadership, ref Vector2 scrollPosition)
         {
-            string buffs = leadership.GetBuffs();
-            int rows = leadership.CountBuffsRows(buffs);
-            Rect viewRect = new Rect(rect.x, rect.y, rect.width, rows * 25);
+            var buffs = leadership.GetBuffsList();
+            int rows = buffs.Count;
+            int rowHeight = 50;
+            Rect viewRect = new Rect(rect.x, rect.y, rect.width - 50, rows * rowHeight + 5);
             Widgets.BeginScrollView(rect, ref scrollPosition, viewRect);
-            Widgets.Label(viewRect, buffs);
+            float height = rect.y + 5;
+            bool drawSelected = false;
+            foreach ( var buff in buffs )
+            {
+                Rect buffRect = new Rect(rect.x, height, rect.width, rowHeight);
+                Rect heghLightRect = new Rect(rect.x, height - 10, rect.width, rowHeight);
+
+                Widgets.Label(buffRect, buff);
+                height += rowHeight;
+                if (drawSelected)
+                {
+                    Widgets.DrawHighlight(heghLightRect);
+                }
+                drawSelected = !drawSelected;
+            }
             Widgets.EndScrollView();
+            Widgets.DrawBox(rect);
         }
 
         public static Command Interact(bool disabled, bool hasLeader, WorldObjectComp_PlayerWarbandLeader comp, Pawn leader)
