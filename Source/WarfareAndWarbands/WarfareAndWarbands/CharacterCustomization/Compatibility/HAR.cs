@@ -22,19 +22,7 @@ namespace WarfareAndWarbands.CharacterCustomization.Compatibility
             return null;
         }
 
-        public static Type ByName(string name)
-        {
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies().Reverse())
-            {
-                var tt = assembly.GetType(name);
-                if (tt != null)
-                {
-                    return tt;
-                }
-            }
-
-            return null;
-        }
+        
 
         internal static void SetAlienRace(this PawnKindDef kindDef, CustomizationRequest request)
         {
@@ -91,6 +79,7 @@ namespace WarfareAndWarbands.CharacterCustomization.Compatibility
         internal static void SetAlienRace(CustomizationRequest request, ThingDef alien)
         {
             request.SetAlienRace(alien.defName);
+            request.UpdatePawnKindDef();
         }
 
     }

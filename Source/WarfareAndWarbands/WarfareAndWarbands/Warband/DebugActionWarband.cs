@@ -1,4 +1,5 @@
-﻿using LudeonTK;
+﻿using AlienRace;
+using LudeonTK;
 using RimWorld;
 using RimWorld.Planet;
 using System;
@@ -61,6 +62,21 @@ namespace WarfareAndWarbands.Warband
 
         }
 
+        [DebugAction("WAW", "Spawn Vehicle Caravan", actionType = DebugActionType.Action)]
+        public static void GenerateVehicleCaravan()
+        {
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
+            Find.WorldSelector.ClearSelection();
+            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(SpawnVehicleCaravan), true);
+
+        }
+
+        static bool SpawnVehicleCaravan(GlobalTargetInfo info)
+        {
+            Compatibility_Vehicle.Vehicle.DebugGenerateVehicleCaravan(info.Tile);
+            return true;
+        }
+
         static bool RaidPlayerWarband(GlobalTargetInfo info)
         {
             if (info.WorldObject == null || !info.WorldObject.IsPlayerWarband())
@@ -87,9 +103,39 @@ namespace WarfareAndWarbands.Warband
             {
                 return false;
             }
-            Warband playerWarband = WarbandUtil.SpawnWarband(Faction.OfPirates, info);
-            playerWarband.SetFaction(Faction.OfPlayer); 
+            Find.WindowStack.Add(new FloatMenu(SpawnForPlayerOptions(info).ToList()));
             return true;
+        }
+
+        public static IEnumerable<FloatMenuOption> SpawnForPlayerOptions(GlobalTargetInfo info)
+        {
+            yield return new FloatMenuOption("default", delegate 
+            {
+                Warband playerWarband = WarbandUtil.SpawnWarband(Faction.OfPirates, info);
+                playerWarband.SetFaction(Faction.OfPlayer);
+            });
+
+            yield return new FloatMenuOption("outpost upgrade", delegate 
+            {
+                Warband playerWarband = WarbandUtil.SpawnWarband(Faction.OfPirates, info);
+                playerWarband.SetFaction(Faction.OfPlayer);
+                playerWarband.playerWarbandManager.upgradeHolder.GainOutpostUpgrade();
+            });
+
+
+            yield return new FloatMenuOption("elite upgrade", delegate
+            {
+                Warband playerWarband = WarbandUtil.SpawnWarband(Faction.OfPirates, info);
+                playerWarband.SetFaction(Faction.OfPlayer);
+                playerWarband.playerWarbandManager.upgradeHolder.GainEliteUpgrade();
+            });
+
+            yield return new FloatMenuOption("vehicle upgrade", delegate
+            {
+                Warband playerWarband = WarbandUtil.SpawnWarband(Faction.OfPirates, info);
+                playerWarband.SetFaction(Faction.OfPlayer);
+                playerWarband.playerWarbandManager.upgradeHolder.GainVehilceUpgrade();
+            });
         }
 
         static bool SpawnForFaction(GlobalTargetInfo info)

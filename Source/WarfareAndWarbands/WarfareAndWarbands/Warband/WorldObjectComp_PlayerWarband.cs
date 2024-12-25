@@ -18,17 +18,24 @@ namespace WarfareAndWarbands.Warband
         {
             if (this.parent.Faction.IsPlayer)
             {
-                yield return WarbandUI.MoveWarbandCommand((Warband)this.parent);
-                yield return WarbandUI.OrderWarbandToAttackCommand((Warband)this.parent);
-                yield return WarbandUI.DismissWarband((Warband)this.parent);
-                yield return WarbandUI.WithdrawWarbandItems((Warband)this.parent);
-                yield return WarbandUI.ConfigureWarband((Warband)this.parent);
-                yield return WarbandUI.RenameWarband((Warband)this.parent);
-
+                if (MyWarband.playerWarbandManager.upgradeHolder.CanMove)
+                    yield return WarbandUI.MoveWarbandCommand(MyWarband);
+                if (MyWarband.playerWarbandManager.upgradeHolder.CanAttack)
+                    yield return WarbandUI.OrderWarbandToAttackCommand(MyWarband);
+                yield return WarbandUI.DismissWarband(MyWarband);
+                yield return WarbandUI.WithdrawWarbandItems(MyWarband);
+                yield return WarbandUI.ConfigureWarband(MyWarband);
+                yield return WarbandUI.RenameWarband(MyWarband);
+                if (MyWarband.playerWarbandManager.upgradeHolder.HasUpgrade)
+                {
+                    foreach(var gizmo in MyWarband.playerWarbandManager.upgradeHolder.SelectedUpgrade.GetGizmosExtra())
+                    {
+                        yield return gizmo;
+                    }
+                }
                 if (DebugSettings.godMode)
                 {
-                    yield return WarbandUI.ResetRaidCooldown((Warband)this.parent);
-
+                    yield return WarbandUI.ResetRaidCooldown(MyWarband);
                 }
             }
 

@@ -26,20 +26,33 @@ namespace WarfareAndWarbands.Warband
         private string customName = "Warband";
         public static readonly int playerAttackRange = 10;
 
-        public override Color ExpandingIconColor => this.Faction.Color;
-        public override string Label => this.customName != "Warband" ?
-            this.customName :
-            (this.def.label + "(" + this.Faction.Name + ")");
-
+     
         public Warband()
         {
             bandMembers = new Dictionary<string, int>();
             npcWarbandManager = new NPCWarbandManager(this);
             playerWarbandManager = new PlayerWarbandManager(this);
         }
+        public override Color ExpandingIconColor => this.Faction.Color;
+        public override string Label => 
+            this.customName != "Warband" ?
+            this.customName :
+            (this.def.label + "(" + this.Faction.Name + ")");
 
-
-
+        public override Texture2D ExpandingIcon
+        {
+            get
+            {
+                if (this.playerWarbandManager == null || !this.playerWarbandManager.upgradeHolder.HasUpgrade)
+                {
+                    return WAWTex.WarbandTex;
+                }
+                else
+                {
+                    return this.playerWarbandManager.upgradeHolder.TextureOverride();
+                }
+            }
+        }
 
         public override void PostAdd()
         {
@@ -226,25 +239,22 @@ namespace WarfareAndWarbands.Warband
             }
         }
 
-        public override Texture2D ExpandingIcon => this.def.ExpandingIconTexture;
+      
 
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Collections.Look<string, int>(ref this.bandMembers,
-  "bandMembers", LookMode.Value, LookMode.Value, ref stringBuffers, ref intBuffers);
-            Scribe_Values.Look(ref this.isSettling, "isSettling");
-            Scribe_Values.Look(ref this.customName, "customName", "Warband");
-
-            npcWarbandManager?.ExposeData();
-            playerWarbandManager?.ExposeData();
-        }
 
         public override IEnumerable<FloatMenuOption> GetTransportPodsFloatMenuOptions(IEnumerable<IThingHolder> pods, CompLaunchable representative)
         {
             yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate ()
             {
                 representative.TryLaunch(this.Tile, new TransportPodsArrivalAction_FormCaravan());
+            }, MenuOptionPriority.Default, null, null, 0f, null, null, true, 0);
+        }
+
+        public override IEnumerable<FloatMenuOption> GetShuttleFloatMenuOptions(IEnumerable<IThingHolder> pods, Action<int, TransportPodsArrivalAction> launchAction)
+        {
+            yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate ()
+            {
+                launchAction(this.Tile, new TransportPodsArrivalAction_FormCaravan());
             }, MenuOptionPriority.Default, null, null, 0f, null, null, true, 0);
         }
 
@@ -321,10 +331,6 @@ namespace WarfareAndWarbands.Warband
             playerWarbandManager?.ResetRaidTick();
         }
 
-        public override void Draw()
-        {
-            base.Draw();
-        }
 
         public int GetResettleCost(GlobalTargetInfo targetInfo)
         {
@@ -416,6 +422,19 @@ namespace WarfareAndWarbands.Warband
                 Log.Message("Sites removed.");
             }
         }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Collections.Look<string, int>(ref this.bandMembers,
+  "bandMembers", LookMode.Value, LookMode.Value, ref stringBuffers, ref intBuffers);
+            Scribe_Values.Look(ref this.isSettling, "isSettling");
+            Scribe_Values.Look(ref this.customName, "customName", "Warband");
+
+            npcWarbandManager?.ExposeData();
+            playerWarbandManager?.ExposeData();
+        }
+
 
     }
 }

@@ -58,7 +58,7 @@ namespace WarfareAndWarbands.Warband
 
         public int GetCostExtra(Dictionary<string, int> bandMembers, float multiplier)
         {
-            return (int)Math.Max(GetCostNormal() - GetCostNormal(bandMembers) * multiplier, 0);
+            return (int)Math.Max(GetCostNormal() * multiplier - GetCostNormal(bandMembers) * multiplier, 0);
         }
 
         public float GetCostNormal(Dictionary<string, int> bandMembers)

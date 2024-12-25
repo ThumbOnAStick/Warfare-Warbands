@@ -35,6 +35,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
 
                 if (warband.Faction == Faction.OfPlayer &&
                     warband.playerWarbandManager.leader != null &&
+                    warband.playerWarbandManager.leader.spawnLeader&&
                     warband.playerWarbandManager.leader.IsLeaderAvailable()&&
                     !warband.playerWarbandManager.leader.Leader.Spawned)
                 {
@@ -42,6 +43,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
                     if (SetMercenaryComp(leader, warband, ele.Key, warband.Faction))
                         list.Add(leader);
                     leader.health.hediffSet.hediffs.RemoveAll(x => x.PainFactor > 0);
+                    leader.needs.SetInitialLevels();
                     if (CEActive())
                     {
                         CE.GenerateAmmoFor(leader);
@@ -92,11 +94,20 @@ namespace WarfareAndWarbands.Warband.Mercenary
                     if (equipment.def.IsWeapon && equipment.TryGetComp<CompBiocodable>() != null)
                     {
                         equipment.TryGetComp<CompBiocodable>().CodeFor(pawn);
+                        equipment.TryGetComp<CompQuality>()?.SetQuality(warband.playerWarbandManager.upgradeHolder.GearQuality, ArtGenerationContext.Outsider);
                     }
                 }
             TryToSetSkillFor(pawn, warband);
-            pawn.apparel?.SetColor(warband.playerWarbandManager.colorOverride.GetColorOverride());
-            pawn.apparel?.LockAll();
+            if (pawn.apparel != null)
+            {
+                foreach(var apparel in pawn.apparel.WornApparel)
+                {
+                    apparel.TryGetComp<CompQuality>()?.SetQuality(warband.playerWarbandManager.upgradeHolder.GearQuality, ArtGenerationContext.Outsider);
+                }
+                pawn.apparel.SetColor(warband.playerWarbandManager.colorOverride.GetColorOverride());
+                pawn.apparel.LockAll();
+            }
+
             for (int i = 0; i < 24; i++)
             {
                 pawn.timetable.SetAssignment(i, TimeAssignmentDefOf.Anything);

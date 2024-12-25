@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using Verse.Noise;
 using WarfareAndWarbands.Warband.UI;
 using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents.Leader;
 using static System.Collections.Specialized.BitVector32;
@@ -29,6 +30,10 @@ namespace WarfareAndWarbands.Warband
         int lastServeTick = 0;
         string pawnKindName;
         Warband warband;
+        private int ServeDuration =>
+            this.warband.playerWarbandManager.upgradeHolder.HasUpgrade?
+            warband.playerWarbandManager.upgradeHolder.SelectedUpgrade.MaintainDays * GenDate.TicksPerDay : 60000;
+
         public CompProperties_Mercenary Props
         {
             get
@@ -77,7 +82,10 @@ namespace WarfareAndWarbands.Warband
                 if (!Find.CurrentMap.listerThings.AllThings.Any(x => x.def == WAWDefof.WAW_LootChest))
                     yield return WarbandUI.PlaceLootChest(this.warband);
                 if (!Mercenary.Downed && !retreated)
+                {
                     yield return WarbandUI.RetreatPawn(this);
+                    yield return WarbandUI.RecruitPawn(this);
+                }
             }
             
         }
@@ -107,7 +115,7 @@ namespace WarfareAndWarbands.Warband
         }
         public string RemainingDays()
         {
-            return GenDate.TicksToDays(lastServeTick + serveDuration - Find.TickManager.TicksGame).ToString("0.0");
+            return GenDate.TicksToDays(lastServeTick + ServeDuration - Find.TickManager.TicksGame).ToString("0.0");
         }
 
         public override string CompInspectStringExtra()
@@ -197,6 +205,22 @@ namespace WarfareAndWarbands.Warband
 
         }
 
+        public void TryToPromote()
+        {
+            if (WarbandUtil.TryToSpendSilverFromColony(Find.CurrentMap, (int)parent.MarketValue))
+            {
+                this.ResetAll();
+                if (ModsConfig.IdeologyActive)
+                {
+                    var pIdeo = Faction.OfPlayer.ideos.PrimaryIdeo;
+                    if (pIdeo != null)
+                        Mercenary.ideo?.SetIdeo(pIdeo);
+                }
+                Mercenary.SetFaction(Faction.OfPlayer);
+                Messages.Message("WAW.PromotionSuccess".Translate(Mercenary.NameShortColored), MessageTypeDefOf.PositiveEvent);
+            }
+        }
+
         public void SetRetreat(bool retreated)
         {
             this.retreated = retreated;
@@ -260,7 +284,7 @@ namespace WarfareAndWarbands.Warband
             base.CompTick();
             if (this.servesPlayerFaction)
             {
-                if (Find.TickManager.TicksGame - LastServeTick > serveDuration)
+                if (Find.TickManager.TicksGame - LastServeTick > ServeDuration)
                 {
                     LastServeTick = Find.TickManager.TicksGame;
                     Retreat();
@@ -282,7 +306,6 @@ namespace WarfareAndWarbands.Warband
 
         }
 
-        readonly int serveDuration = 60000;
 
     }
 }

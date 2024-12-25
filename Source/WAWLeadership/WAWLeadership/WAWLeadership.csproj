@@ -102,6 +102,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\LeadershipUI.cs" />
     <Compile Include="UI\Window_Leadership.cs" />
+    <Compile Include="UI\Window_UpgradeWarband.cs" />
     <Compile Include="WorldObjectComps\WorldObjectCompProperties_PlayerWarbandLeader.cs" />
     <Compile Include="WorldObjectComps\WorldObjectComp_PlayerWarbandLeader.cs" />
   </ItemGroup>

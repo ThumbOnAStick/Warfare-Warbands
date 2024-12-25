@@ -16,5 +16,4 @@
 	<WAW.warbandRaidCooldown.Desc>How many days before next player raid</WAW.warbandRaidCooldown.Desc>
 	<WAW.raidPlayerWarbandChance>player warband raidded chance: {0}%</WAW.raidPlayerWarbandChance>
 	<WAW.raidPlayerWarbandChance.Desc>the chance of player warband being raidded every five days is {0}%.</WAW.raidPlayerWarbandChance.Desc>
-
 </LanguageData>

@@ -5,12 +5,18 @@ using RimWorld;
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Remoting;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Verse;
+using Verse.Noise;
 using WarfareAndWarbands.CharacterCustomization.Compatibility;
 using WarfareAndWarbands.CharacterCustomization.UI;
 using WarfareAndWarbands.Warband;
+using WarfareAndWarbands.Warfare.UI.Test;
 
 namespace WarfareAndWarbands.CharacterCustomization
 {
@@ -24,21 +30,21 @@ namespace WarfareAndWarbands.CharacterCustomization
         private List<ThingDef> apparelBottomsCache;
         private List<ThingDef> apparelUtilsCache;
         private List<ThingDef> weaponsCache;
+        private Dictionary<DraggableButton, CustomizationRequest> draggables;
         private Dictionary<ThingDef, ThingStyleDef> thingsAndStyles;
-
         private CustomizationRequest selectedRequest;
         private Vector2 scrollPosition;
         private Vector2 scrollPosition1;
         private bool displayEquipped;
         private string textBuffer;
         private string filterBuffer;
-
         private static readonly int boxSize = 50;
         private static readonly int itemSpacing = ModsConfig.IdeologyActive ? 50 : 5;
         private static readonly int pawnkindSpacing = 5;
         private static readonly int pawnkindHeight = 50;
         private static readonly int pawnkindWidth = 150;
-
+        private Rect requestViewRect;
+        private Rect requestOutRect;
 
         public override Vector2 InitialSize
         {
@@ -49,30 +55,11 @@ namespace WarfareAndWarbands.CharacterCustomization
         }
         public Window_Customization()
         {
-            selectedList = new List<ThingDef>();
-            var requests = GameComponent_Customization.Instance.customizationRequests;
-            if (requests.Count > 0)
-            {
-                SelectNextRequest(requests.First());
-            }
-            apparelHeadsCache = DefDatabase<ThingDef>.AllDefs.Where(x => IsHeadGear(x)).ToList();
-            apparelHeadsCache.SortBy(x => x.BaseMarketValue);
-            apparelTopsCache = DefDatabase<ThingDef>.AllDefs.Where(x => IsTopGear(x)).ToList();
-            apparelTopsCache.SortBy(x => x.BaseMarketValue);
-            apparelBottomsCache = DefDatabase<ThingDef>.AllDefs.Where(x => IsBottomGear(x)).ToList();
-            apparelBottomsCache.SortBy(x => x.BaseMarketValue);
-            apparelUtilsCache = DefDatabase<ThingDef>.AllDefs.Where(x => IsUtility(x)).ToList();
-            apparelUtilsCache.SortBy(x => x.BaseMarketValue);
-            weaponsCache = DefDatabase<ThingDef>.AllDefs.Where(x => x.IsWeapon && x.BaseMarketValue > 1).ToList();
-            weaponsCache.SortBy(x => x.BaseMarketValue);
-            selectedList = apparelHeadsCache;
-
+            InitializeRequests();
+            InitializeEquipments();
+            RefreshDraggables();
         }
-        protected override void SetInitialSizeAndPosition()
-        {
-            base.SetInitialSizeAndPosition();
 
-        }
         public override void DoWindowContents(Rect inRect)
         {
             Text.Font = GameFont.Small;
@@ -87,6 +74,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             var requests = GameComponent_Customization.Instance.customizationRequests;
             if (requests.Count >= 1 && selectedRequest != null)
             {
+                DrawPawnCost(inRect);
                 DrawTextBox(inRect);
                 DrawSelectionPanel(inRect);
                 DrawXenoType(inRect);
@@ -94,41 +82,122 @@ namespace WarfareAndWarbands.CharacterCustomization
             }
         }
 
+        void InitializeRequests()
+        {
+            selectedList = new List<ThingDef>();
+            var requests = GameComponent_Customization.Instance.customizationRequests;
+            if (requests.Count > 0)
+            {
+                SelectNextRequest(requests.First());
+            }
+        }
+
+        void InitializeEquipments()
+        {
+            apparelHeadsCache = DefDatabase<ThingDef>.AllDefs.Where(x => IsHeadGear(x)).ToList();
+            apparelHeadsCache.SortBy(x => x.BaseMarketValue);
+            apparelTopsCache = DefDatabase<ThingDef>.AllDefs.Where(x => IsTopGear(x)).ToList();
+            apparelTopsCache.SortBy(x => x.BaseMarketValue);
+            apparelBottomsCache = DefDatabase<ThingDef>.AllDefs.Where(x => IsBottomGear(x)).ToList();
+            apparelBottomsCache.SortBy(x => x.BaseMarketValue);
+            apparelUtilsCache = DefDatabase<ThingDef>.AllDefs.Where(x => IsUtility(x)).ToList();
+            apparelUtilsCache.SortBy(x => x.BaseMarketValue);
+            weaponsCache = DefDatabase<ThingDef>.AllDefs.Where(x => x.IsWeapon && x.BaseMarketValue > 1).ToList();
+            weaponsCache.SortBy(x => x.BaseMarketValue);
+            selectedList = apparelHeadsCache;
+        }
+
+        void RefreshDraggables()
+        {
+            this.draggables = new Dictionary<DraggableButton, CustomizationRequest>();
+            var requests = GameComponent_Customization.Instance.customizationRequests;
+            requestOutRect = new Rect(50, 100, pawnkindWidth, 400);
+            requestViewRect = new Rect(requestOutRect.x, requestOutRect.y, requestOutRect.width - 10, (pawnkindHeight + pawnkindSpacing) * requests.Count + 5);
+            int requestIndex = 0;
+            Rect buttonRect = new Rect(requestViewRect.x, requestViewRect.y, requestViewRect.width - 10, pawnkindHeight);
+            if (GameComponent_Customization.Instance.customizationRequests.Count < 1)
+            {
+                return;
+            }
+            foreach (var request in requests)
+            {
+                void SelectRequest() => SelectNextRequest(request);
+                void OnSwapped(DraggableButton other) => this.OnSwapped(request, other);
+                bool IsSelected() => this.selectedRequest == request;
+                draggables.Add(new DraggableButton(request.label, buttonRect, SelectRequest, OnSwapped, IsSelected), request);
+                requestIndex++;
+                buttonRect.y += pawnkindHeight + pawnkindSpacing;
+            }
+
+        }
+
+        void OnSwapped(CustomizationRequest request, DraggableButton other)
+        {
+            if (draggables.ContainsKey(other) && draggables[other] != null)
+            {
+                CustomizationRequest otherRequest = draggables[other];
+                var requests = GameComponent_Customization.Instance.customizationRequests;
+                var idx1 = requests.IndexOf(request);
+                var idx2 = requests.IndexOf(otherRequest);
+                var order = new List<int>();
+                for (int i = 0; i < requests.Count; i++)
+                {
+                    if (i == idx1)
+                    {
+                        order.Add(idx2);
+                    }
+                    else if (i == idx2)
+                    {
+                        order.Add(idx1);
+                    }
+                    else
+                    {
+                        order.Add(i);
+                    }
+                }
+                GameComponent_Customization.Instance.customizationRequests = order.Select(i => requests[i]).ToList();
+
+
+            }
+        }
+
+
+        protected override void SetInitialSizeAndPosition()
+        {
+            base.SetInitialSizeAndPosition();
+
+        }
+    
+
+        void DrawPawnCost(Rect inRect)
+        {
+            Rect boxRect = new Rect(inRect.x + 250, 475, 200, 50);
+            Widgets.Label(boxRect, "WAW.Cost".Translate(selectedRequest.CombatPowerCache));
+        }
+
         void DrawCutomizationRequests(Rect inRect)
         {
+
+            Rect boxRect = new Rect(requestOutRect.x - 10, requestOutRect.y - 10, 170, 420);
+            Rect newRequestRect = new Rect(boxRect.xMax, boxRect.y, 30, 30);
+            Rect deleteRequestRect = new Rect(boxRect.xMax, newRequestRect.yMax + 10, 30, 30);
             var requests = GameComponent_Customization.Instance.customizationRequests;
             if (requests.Count < 1)
             {
                 Rect noPawnKindsFoundRect = new Rect(30, 20, 200, 100);
                 Widgets.Label(noPawnKindsFoundRect, "WAW.NoCustomPawnKinds".Translate());
             }
-
-            Rect outRect = new Rect(50, 100, 150, 400);
-            Rect viewRect = new Rect(outRect.x, outRect.y, outRect.width, (pawnkindHeight + pawnkindSpacing) * requests.Count + 5);
-            Rect boxRect = new Rect(outRect.x - 10, outRect.y - 10, 170, 420);
-            Rect newRequestRect = new Rect(boxRect.xMax, boxRect.y, 30, 30);
-            Rect deleteRequestRect = new Rect(boxRect.xMax, newRequestRect.yMax + 10, 30, 30);
-
-            Widgets.DrawBox(boxRect, 1);
-            Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect);
-            int requestIndex = 0;
-            foreach (var request in requests)
+            else
             {
-                Rect buttonRect = new Rect(viewRect.x, viewRect.y - 5 + requestIndex * (pawnkindHeight + pawnkindSpacing), pawnkindWidth, pawnkindHeight);
-                Rect requestRect = new Rect(viewRect.x + 10, viewRect.y + 5 + requestIndex * (pawnkindHeight + pawnkindSpacing), pawnkindWidth, pawnkindHeight);
-                bool selectTargetRequest = Widgets.ButtonImage(buttonRect, TexUI.FastFillTex, new Color() { a = 0 });
-                string requestAndItsPrice = request.label + $"\n({request.GetCombatPower()})";
-                Widgets.DrawBox(buttonRect);
-                Widgets.Label(requestRect, requestAndItsPrice);
-                requestIndex++;
-                if (selectTargetRequest)
-                {
-                    SelectNextRequest(request);
-                }
-                if (selectedRequest == request)
-                {
-                    Widgets.DrawHighlight(buttonRect);
-                }
+                Widgets.DrawBox(boxRect, 1);
+            }
+
+            Widgets.BeginScrollView(requestOutRect, ref scrollPosition, requestViewRect);
+            bool dragged = false;
+            for (int i = 0; i < draggables.Count; i++)
+            {
+                var button = draggables.ElementAt(i).Key;
+                dragged = button.Update(dragged, draggables.Keys.ToList());
             }
             Widgets.EndScrollView();
             bool createNewRequest = Widgets.ButtonImage(newRequestRect, TexButton.NewFile);
@@ -137,7 +206,8 @@ namespace WarfareAndWarbands.CharacterCustomization
                 string pawnKindName = Guid.NewGuid().ToString();
                 string pawnKindLabel = "NewCustom";
                 var customizationRequest = new CustomizationRequest(pawnKindName, pawnKindLabel);
-                GameComponent_Customization.Instance.AddPawnKindDefFromRequest(pawnKindName, pawnKindLabel, customizationRequest);
+                GameComponent_Customization.Instance.AddRequest(pawnKindName, pawnKindLabel, customizationRequest);
+                RefreshDraggables();
                 SelectNextRequest(customizationRequest);
             }
 
@@ -145,6 +215,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             if (deleteRequest && selectedRequest != null)
             {
                 GameComponent_Customization.Instance.DeleteRequest(selectedRequest);
+                RefreshDraggables();
             }
         }
 
@@ -153,30 +224,38 @@ namespace WarfareAndWarbands.CharacterCustomization
             filterBuffer = "";
             selectedRequest = customizationRequest;
             textBuffer = customizationRequest.label;
-            // try to load stuff
+
+            // try to load styles
             if (ModsConfig.IdeologyActive)
             {
-                this.thingsAndStyles = new Dictionary<ThingDef, ThingStyleDef>();
-                foreach (var item in selectedRequest.thingDefsAndStyles)
+                LoadStyles();
+            }
+
+            UpdatePawnKindDef();
+        }
+
+        void LoadStyles()
+        {
+            this.thingsAndStyles = new Dictionary<ThingDef, ThingStyleDef>();
+            foreach (var item in selectedRequest.thingDefsAndStyles)
+            {
+                ThingDef thingdef = null;
+                if (DefDatabase<ThingDef>.AllDefs.Any(x => x.defName == item.Key))
                 {
-                    ThingDef thingdef = null;
-                    if(DefDatabase<ThingDef>.AllDefs.Any(x => x.defName == item.Key))
-                    {
-                        thingdef = DefDatabase<ThingDef>.AllDefs.First(x => x.defName == item.Key);
-                    }
-                    if(thingdef == null)
-                    {
-                        continue;
-                    }
-
-                    ThingStyleDef styleDef = null;
-                    if (DefDatabase<ThingStyleDef>.AllDefs.Any(x => x.defName == item.Value))
-                    {
-                        styleDef = DefDatabase<ThingStyleDef>.AllDefs.First(x => x.defName == item.Value);
-                    }
-
-                    this.thingsAndStyles.Add(thingdef, styleDef);
+                    thingdef = DefDatabase<ThingDef>.AllDefs.First(x => x.defName == item.Key);
                 }
+                if (thingdef == null)
+                {
+                    continue;
+                }
+
+                ThingStyleDef styleDef = null;
+                if (DefDatabase<ThingStyleDef>.AllDefs.Any(x => x.defName == item.Value))
+                {
+                    styleDef = DefDatabase<ThingStyleDef>.AllDefs.First(x => x.defName == item.Value);
+                }
+
+                this.thingsAndStyles.Add(thingdef, styleDef);
             }
         }
 
@@ -186,7 +265,11 @@ namespace WarfareAndWarbands.CharacterCustomization
             Rect boxRect = new Rect(inRect.x + 200, 400, boxWidth, 50);
             string label = Widgets.TextEntryLabeled(boxRect, "WAW.PawnKindName".Translate(), textBuffer);
             textBuffer = label;
-            selectedRequest.label = label;
+            if (label != selectedRequest.label)
+            {
+                selectedRequest.label = label;
+                RefreshDraggables();
+            }
         }
 
         void DrawXenoType(Rect inRect)
@@ -210,7 +293,6 @@ namespace WarfareAndWarbands.CharacterCustomization
                 Rect buttonRect = new Rect(inRect.x + 450, 500, 100, 50);
                 HAR.DrwaAlienButton(buttonRect, selectedRequest);
             }
-            UpdatePawnKindDef();
         }
 
 
@@ -307,17 +389,20 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         }
 
-
         void DrawSearchBar(Rect selectionPanelBar)
         {
             int boxHeight = 30;
             int boxWidth = (int)selectionPanelBar.width - boxHeight;
             Rect searchBoxRect = new Rect(selectionPanelBar.x, selectionPanelBar.yMin - boxHeight, boxHeight, boxHeight);
             Rect boxRect = new Rect(searchBoxRect.xMax + 5, selectionPanelBar.yMin - boxHeight, boxWidth, boxHeight);
-            filterBuffer = Widgets.TextField(boxRect, filterBuffer);
+            var newBuffer = Widgets.TextField(boxRect, filterBuffer);
+            if(newBuffer != filterBuffer)
+            {
+                scrollPosition1 = new Vector2();
+            }
+            filterBuffer = newBuffer;
             Widgets.ButtonImage(searchBoxRect, TexButton.Search);
         }
-
 
         void DrawSelectionPanel(Rect inRect)
         {
@@ -585,6 +670,7 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             scrollPosition1 = new Vector2();
             this.selectionType = selectionType;
             selectedList = ReturnSelectedList(selectionType);
+            filterBuffer = "";
         }
 
 

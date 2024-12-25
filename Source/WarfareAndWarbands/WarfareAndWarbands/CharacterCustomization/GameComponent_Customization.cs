@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Verse;
 using WarfareAndWarbands.HarmonyPatches;
 using WarfareAndWarbands.Warband;
+using WarfareAndWarbands.Warfare.UI.Test;
 using static System.Collections.Specialized.BitVector32;
 
 namespace WarfareAndWarbands.CharacterCustomization
@@ -17,6 +18,8 @@ namespace WarfareAndWarbands.CharacterCustomization
         public static GameComponent_Customization Instance;
         public List<CustomizationRequest> customizationRequests;
         public List<PawnKindDef> generatedKindDefs;
+
+
 
         public GameComponent_Customization(Game game)
         {
@@ -46,38 +49,34 @@ namespace WarfareAndWarbands.CharacterCustomization
             WarbandUtil.RefreshSoldierPawnKinds();
         }
 
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Collections.Look(ref customizationRequests, "customizationRequests", LookMode.Deep);
 
 
-        }
 
-
-        public void AddPawnKindDefFromRequest(string defName, string label, CustomizationRequest request)
+        public void AddRequest(string defName, string label, CustomizationRequest request)
         {
             request.defName = defName;  
             request.label = label;  
             var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request);
-            AddPawnKindDef(defaultKindDef, request);
+            AddRequest(defaultKindDef, request);
         }
 
-        public void AddPawnKindDef(PawnKindDef def, CustomizationRequest request)
+      
+
+        public void AddRequest(PawnKindDef def, CustomizationRequest request)
         {
             if (!customizationRequests.Any(x => x.defName == def.defName))
             {
                 customizationRequests.Add(request);
                 generatedKindDefs.Add(def);
+                WarbandUtil.RefreshSoldierPawnKinds();
+                GameComponent_WAW.playerWarband.Refresh();
             }
-            WarbandUtil.RefreshSoldierPawnKinds();
-            GameComponent_WAW.playerWarband.Refresh();
         }
 
         public void DeleteRequest(CustomizationRequest request)
         {
-            if(WarbandUtil.AllPlayerWarbandsCache.Any(x => x.bandMembers.Any(r => r.Key == request.defName))||
-            WarbandUtil.AllPlayerRecruitingWarbandsCache.Any(x => x.BandMembers.Any(r => r.Key == request.defName)))
+            if (WarbandUtil.AllPlayerWarbandsCache.Any(x => x.bandMembers.Any(r => r.Key == request.defName && r.Value > 0)) ||
+            WarbandUtil.AllPlayerRecruitingWarbandsCache.Any(x => x.BandMembers.Any(r => r.Key == request.defName && r.Value > 0)))
             {
                 Messages.Message("WAW.CantDelete".Translate(), MessageTypeDefOf.RejectInput);
                 return;
@@ -89,13 +88,17 @@ namespace WarfareAndWarbands.CharacterCustomization
             customizationRequests.RemoveAll(x => x.defName == request.defName);
             WarbandUtil.RefreshSoldierPawnKinds();
             GameComponent_WAW.playerWarband.Refresh();
+
         }
 
         public void DeletePawnKindDef(PawnKindDef def)
         {
             if (generatedKindDefs.Contains(def))
+            {
                 generatedKindDefs.Remove(def);
+            }
             customizationRequests.RemoveAll(x => x.defName == def.defName);
+
             WarbandUtil.RefreshSoldierPawnKinds();
             GameComponent_WAW.playerWarband.Refresh();
         }
@@ -116,6 +119,10 @@ namespace WarfareAndWarbands.CharacterCustomization
         }
 
 
-
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Collections.Look(ref customizationRequests, "customizationRequests", LookMode.Deep);
+        }
     }
 }

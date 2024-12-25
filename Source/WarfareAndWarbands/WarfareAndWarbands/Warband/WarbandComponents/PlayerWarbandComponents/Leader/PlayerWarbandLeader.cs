@@ -25,7 +25,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
         }
 
         public UnityEvent onLeaderChanged;
-        Pawn leader;
+        private Pawn leader;
+        public bool spawnLeader;
 
 
         public PlayerWarbandLeader()
@@ -115,11 +116,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
         public void ExposeData()
         {
             Scribe_References.Look(ref leader, "leader");
-        }
+            Scribe_Values.Look(ref spawnLeader, "spawnLeader", true);
 
-        public void GetChildHolders(List<IThingHolder> outChildren)
-        {
-            outChildren = new List<IThingHolder>() { leader };
         }
 
 

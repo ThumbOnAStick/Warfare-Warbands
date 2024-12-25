@@ -16,6 +16,11 @@ namespace WarfareAndWarbands.Warband
             GameComponent_Warband.Instance = this;
         }
 
+        public override void StartedNewGame()
+        {
+            base.StartedNewGame();
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();

@@ -59,7 +59,8 @@ namespace WarfareAndWarbands.Warband.UI
         public static Command OrderWarbandToAttackCommand(Warband band)
         {
             Command_Action command_Action = new Command_Action();
-            command_Action.defaultLabel = "WAW.OrderAttack".Translate() + $"(${(int)PlayerWarbandArrangement.GetCostOriginal(band.bandMembers)})";
+            string costString = band.playerWarbandManager.upgradeHolder.CostsSilver ? $"(${(int)PlayerWarbandArrangement.GetCostOriginal(band.bandMembers)})" : "";
+            command_Action.defaultLabel = "WAW.OrderAttack".Translate() + costString;
             command_Action.defaultDesc = "WAW.OrderAttack.Desc".Translate();
             command_Action.icon = TexCommand.Attack;
             command_Action.action = delegate ()
@@ -117,7 +118,7 @@ namespace WarfareAndWarbands.Warband.UI
                 attackManager.AttackLand();
                 WarbandUtil.TryToSendQuickAttackLetter();
             });
-            if (attackManager.targetMapP.HasMap)
+            if (attackManager.targetMapP.HasMap && attackManager.upgradeHolder.CanDroppod)
                 yield return new FloatMenuOption("WAW.PodAttack".Translate(), delegate
                 {
                     attackManager.AttackDropPod();
@@ -207,6 +208,20 @@ namespace WarfareAndWarbands.Warband.UI
             return command_Action;
         }
 
+        public static Command RecruitPawn(CompMercenary comp)
+        {
+            Command_Action command_Action = new Command_Action();
+            command_Action.defaultLabel = "WAW.PromoteSoldier".Translate(comp.parent.MarketValue);
+            command_Action.defaultDesc = "WAW.PromoteSoldier.Desc".Translate(comp.Mercenary.NameShortColored);
+            command_Action.icon = WAWTex.PromoteSoldier;
+            command_Action.action = delegate ()
+            {
+                comp.TryToPromote();
+            };
+            command_Action.Order = 3000f;
+            return command_Action;
+        }
+
         public static Command PlaceLootChest(Warband warband)
         {
             Command_Action command_Action = new Command_Action
@@ -222,6 +237,9 @@ namespace WarfareAndWarbands.Warband.UI
             };
             return command_Action;
         }
+
+
+        //Loot chest
         public static Command TransferContent(CompLootChest lootComp)
         {
             Command_Action command_Action = new Command_Action
@@ -251,6 +269,7 @@ namespace WarfareAndWarbands.Warband.UI
                     {
                         return;
                     }
+                    Find.WorldSelector.ClearSelection();
                     CameraJumper.TryJump(CameraJumper.GetWorldTarget(warband), CameraJumper.MovementMode.Pan);
                     Find.WorldSelector.Select(warband);
                 },

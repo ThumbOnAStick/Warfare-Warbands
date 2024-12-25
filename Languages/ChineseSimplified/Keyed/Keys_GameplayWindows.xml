@@ -33,5 +33,8 @@
 	<WAW.NoLeaderFound>没有领袖</WAW.NoLeaderFound>
 	<WAW.RespawnChance>当士兵死亡时有{0}%的概率不会造成战团减员。</WAW.RespawnChance>
 	<WAW.RecruitCost>招募新士兵少花费{0}%的白银。</WAW.RecruitCost>
+	<WAW.SpawnLeaderOption>团长参加战斗：</WAW.SpawnLeaderOption>
+	<WAW.QualityOverride>士兵所有装备的品质重置为{0}；</WAW.QualityOverride>
+	<WAW.BuyVehicle>买入 {0}</WAW.BuyVehicle>
 
 </LanguageData>

@@ -38,7 +38,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
 
         public void LaunchWarband(LocalTargetInfo lInfo)
         {
-            if (!WarbandUtil.CantAffordToAttack(warband))
+            if (warband.playerWarbandManager.upgradeHolder.CostsSilver && !WarbandUtil.CantAffordToAttack(warband))
                 return;
             GameComponent_WAW.Instance.OnRaid(warband.playerWarbandManager.leader.Leader);
             List<Pawn> list = MercenaryUtil.GenerateWarbandPawns(warband);
@@ -49,7 +49,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
                 podInfo.innerContainer.TryAddOrTransfer(p);
                 pods.Add(podInfo);
             }
-            Arrived(pods, lInfo);
+            this.warband.playerWarbandManager.cooldownManager.SetLastRaidTick();
+            Arrived(pods, lInfo, list);
         }
 
     
@@ -60,8 +61,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
 
         }
 
-        public void Arrived(List<ActiveDropPodInfo> pods, LocalTargetInfo info)
+        public void Arrived(List<ActiveDropPodInfo> pods, LocalTargetInfo info, List<Pawn> pawns)
         {
+            warband.playerWarbandManager.upgradeHolder.SelectedUpgrade?.OnArrived(pawns);
             Thing lookTarget = TransportPodsArrivalActionUtility.GetLookTarget(pods);
             TaggedString label = "LetterLabelCaravanEnteredEnemyBase".Translate();
             TaggedString text = "LetterTransportPodsLandedInEnemyBase".Translate(mapCached.Parent.Label).CapitalizeFirst();

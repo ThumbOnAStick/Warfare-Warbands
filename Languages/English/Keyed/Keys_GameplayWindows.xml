@@ -33,4 +33,7 @@
 	<WAW.NoLeaderFound>Leader not installed.</WAW.NoLeaderFound>
 	<WAW.RespawnChance>Soldiers have a {0}% chance to be not counted as dead when they are killed.</WAW.RespawnChance>
 	<WAW.RecruitCost>Recruiting new soldiers costs {0}% less silvers.</WAW.RecruitCost>
+	<WAW.SpawnLeaderOption>Spawn leader into battle filed:</WAW.SpawnLeaderOption>
+	<WAW.QualityOverride>All gears' quality would {0};</WAW.QualityOverride>
+	<WAW.BuyVehicle>Purchase {0}</WAW.BuyVehicle>
 </LanguageData>

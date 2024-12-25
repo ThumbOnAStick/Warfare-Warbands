@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Verse;
 using WarfareAndWarbands.Warband;
+using WarfareAndWarbands.Warfare.UI;
 
 namespace WarfareAndWarbands
 {
@@ -171,7 +172,7 @@ namespace WarfareAndWarbands
         {
             base.LoadedGame();
             LoadAllFactions();
-            WarbandUtil.RefreshAllPlayerWarbands();
+            RefreshPlayerWarbands();
             TryToSetRelation();
         }
 
@@ -181,8 +182,13 @@ namespace WarfareAndWarbands
             base.StartedNewGame();
             GiveModLetter();
             LoadAllFactions();
-            WarbandUtil.RefreshAllPlayerWarbands();
+            RefreshPlayerWarbands();
             TryToSetRelation();
+        }
+
+        void RefreshPlayerWarbands()
+        {
+            WarbandUtil.RefreshAllPlayerWarbands();
 
         }
 

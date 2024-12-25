@@ -20,11 +20,12 @@ namespace WarfareAndWarbands.CharacterCustomization
         public string label;
         public string xenoTypeDefName;
         public string alienDefName;
+        public int CombatPowerCache => combatPowerCache;
         public List<ThingDef> apparelRequests;
         public Dictionary<string, string> thingDefsAndStyles;
         public Dictionary<ThingDef, ThingDef> itemAndStuff;
         public ThingDef weaponRequest;
-
+        private int combatPowerCache = 0;
         private List<ThingDef> itemCache;
         private List<ThingDef> stuffCache;
         private List<string> defNameCache;
@@ -59,7 +60,6 @@ namespace WarfareAndWarbands.CharacterCustomization
         public int GetCombatPower()
         {
             return (int)CombatPowerCurve().Evaluate((GetMarketValue() * 0.1f));
-
         }
 
         bool HARActive()
@@ -84,7 +84,8 @@ namespace WarfareAndWarbands.CharacterCustomization
             if (GameComponent_Customization.Instance.generatedKindDefs.Any(x => x.defName == defName))
             {
                 PawnKindDef targetDef = GameComponent_Customization.Instance.generatedKindDefs.First(x => x.defName == defName);
-                targetDef.combatPower = GetCombatPower();
+                combatPowerCache = GetCombatPower();
+                targetDef.combatPower = combatPowerCache;
                 targetDef.label = label;
                 if (HARActive())
                 {

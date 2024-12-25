@@ -11,6 +11,7 @@ using Verse.Sound;
 using WarfareAndWarbands.CharacterCustomization;
 using WarfareAndWarbands.Warband.Mercenary;
 using WarfareAndWarbands.Warband.UI;
+using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -55,7 +56,6 @@ namespace WarfareAndWarbands.Warband
             bool cantAfford = !WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, cost);
             if (cantAfford)
             {
-                Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent, true);
                 return false;
             }
             SoundDefOf.ExecuteTrade.PlayOneShotOnCamera(null);
@@ -263,18 +263,24 @@ namespace WarfareAndWarbands.Warband
 
         public static void OrderPlayerWarbandToAttack(MapParent mapP, Warband warband)
         {
-
             Caravan caravan = SpawnWarbandCaravan(mapP.Tile, warband);
             Map orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(mapP.Tile, null);
             CaravanEnterMapUtility.Enter(caravan, orGenerateMap, CaravanEnterMode.Edge, CaravanDropInventoryMode.DoNotDrop, draftColonists: true);
-
         }
 
 
         private static Caravan SpawnWarbandCaravan(int tileId, Warband warband)
         {
-            List<Pawn> list = MercenaryUtil.GenerateWarbandPawns(warband); 
-            Caravan caravan = CaravanMaker.MakeCaravan(list, Faction.OfPlayer, tileId, true);
+            List<Pawn> list = MercenaryUtil.GenerateWarbandPawns(warband);
+            bool isVehicle =
+                ModsConfig.IsActive("SmashPhil.VehicleFramework") &&
+                warband.playerWarbandManager.upgradeHolder.HasUpgrade &&
+                warband.playerWarbandManager.upgradeHolder.SelectedUpgrade is Upgrade_Vehicle;
+            var upgrade = warband.playerWarbandManager.upgradeHolder.GetUpgrade<Upgrade_Vehicle>();
+            Caravan caravan =
+                isVehicle ? Compatibility_Vehicle.Vehicle.GenerateVehicleCaravan(tileId, list, upgrade.Vehicles) :
+                CaravanMaker.MakeCaravan(list, Faction.OfPlayer, tileId, true);
+            warband.playerWarbandManager.upgradeHolder.SelectedUpgrade?.OnArrived(list);
             return caravan;
         }
 

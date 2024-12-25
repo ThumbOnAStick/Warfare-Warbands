@@ -22,10 +22,14 @@ namespace WarfareAndWarbands
         public static readonly Texture2D WarbandWithdrawTex = ContentFinder<Texture2D>.Get("UI/Commands/WarbandWithdraw");
         public static readonly Texture2D HeadTex = ContentFinder<Texture2D>.Get("Things/Pawn/HumanLike/Heads/Male/Male_Average_Normal_south");
         public static readonly Texture2D BodyTex = ContentFinder<Texture2D>.Get("Things/Pawn/HumanLike/Bodies/Naked_Male_south");
-        public static readonly Texture2D Screenshot = ContentFinder<Texture2D>.Get("Misc/ScreenShot");
         public static readonly Texture2D CreateWarbandTex = ContentFinder<Texture2D>.Get("UI/Commands/CreateWarband");
         public static readonly Texture2D WarbandWorldObjectTex = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/Warband");
-
+        public static readonly Texture2D PromoteSoldier = ContentFinder<Texture2D>.Get("UI/Commands/Promote");
+        public static readonly Texture2D WarbandTex = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/Warband");
+        public static readonly Texture2D WarbandOutpost = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/WarbandOutpost");
+        public static readonly Texture2D WarbandEliteTex = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/WarbandElite");
+        public static readonly Texture2D WarbandVehicleTex = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/BridgeCombatTeam");
+        public static readonly Texture2D PurchaseVehicleTex = ContentFinder<Texture2D>.Get("UI/Commands/PurchaseVehicle");
 
 
     }

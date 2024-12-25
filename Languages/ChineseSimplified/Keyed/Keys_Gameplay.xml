@@ -69,4 +69,8 @@
 	<WAW.LeaderKilled>战团领袖死亡</WAW.LeaderKilled>
 	<WAW.CantDelete>不能删除正在被使用的兵种。</WAW.CantDelete>
 	<WAW.WarbandLossFailed>由于{0}的招募能力，死亡的单位被快速补充了。</WAW.WarbandLossFailed>
+	<WAW.TransportedToWarband>全部战利品已被传送至战团。</WAW.TransportedToWarband>
+	<WAW.PromoteSoldier>升职(${0})</WAW.PromoteSoldier>
+	<WAW.PromoteSoldier.Desc>把{0}“升职”为殖民者</WAW.PromoteSoldier.Desc>
+	<WAW.PromotionSuccess>{0}加入了你的殖民地。</WAW.PromotionSuccess>
 </LanguageData>

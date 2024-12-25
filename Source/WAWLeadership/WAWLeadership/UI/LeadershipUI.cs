@@ -239,6 +239,14 @@ namespace WAWLeadership.UI
             Widgets.DrawBox(rect);
         }
 
+        public static void DrawToggleSpawnLeader(Rect rect, ref Warband warband)
+        {
+            Widgets.CheckboxLabeled(
+                rect, 
+                "WAW.SpawnLeaderOption".Translate(), 
+                ref warband.playerWarbandManager.leader.spawnLeader);
+        }
+
         public static Command Interact(bool disabled, bool hasLeader, WorldObjectComp_PlayerWarbandLeader comp, Pawn leader)
         {
             Command_Action command_Action = new Command_Action
@@ -284,7 +292,7 @@ namespace WAWLeadership.UI
             command_Action.defaultLabel = "WAW.LeaderInfo".Translate();
             command_Action.action = delegate ()
             {
-                comp.LeadershipInfo.OpenLeadershipWindow();
+                comp.LeadershipInfo.OpenLeadershipWindow(comp.MyWarband);
             };
             command_Action.Order = 3000f;
             return command_Action;

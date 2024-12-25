@@ -10,6 +10,8 @@ using WarfareAndWarbands.Warband.UI;
 using WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates;
 using Verse.Sound;
 using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents;
+using UnityEngine;
+using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents
 {
@@ -18,13 +20,14 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
 
         public MapParent targetMapP;
-        public PlayerWarbandDropRaid droppodUpgrade;
+        public PlayerWarbandDropRaid dropPodRaider;
         public PlayerWarbandColorOverride colorOverride;
         public PlayerWarbandInjuries injuriesManager;
         public PlayerWarbandLootManager lootManager;
         public PlayerWarbandCooldownManager cooldownManager;
         public PlayerWarbandLeader leader;
         public PlayerWarbandSkillBonus skillBonus;
+        public PlayerWarbandUpgradeHolder upgradeHolder;
         public float RespawnChance => respawnChance;
         public float NewRecruitCostMultiplier => newRecruitCostMultiplier;
         private float respawnChance;
@@ -38,13 +41,14 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         public PlayerWarbandManager(Warband warband)
         {
             this.warband = warband;
-            this.droppodUpgrade = new PlayerWarbandDropRaid(warband);
+            this.dropPodRaider = new PlayerWarbandDropRaid(warband);
             this.cooldownManager = new PlayerWarbandCooldownManager();
             this.lootManager = new PlayerWarbandLootManager();
             this.colorOverride = new PlayerWarbandColorOverride();
             this.injuriesManager = new PlayerWarbandInjuries();
             this.leader = new PlayerWarbandLeader();
             this.skillBonus = new PlayerWarbandSkillBonus();
+            upgradeHolder = new PlayerWarbandUpgradeHolder();
             leader.onLeaderChanged.AddListener(skillBonus.ResetSkillBonus);
             leader.onLeaderChanged.AddListener(lootManager.ResetLootMultiplier);
             leader.onLeaderChanged.AddListener(ResetNewRecruitCostMultiplier);
@@ -123,7 +127,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             {
                 LongEventHandler.QueueLongEvent(delegate ()
                 {
-                    if (!WarbandUtil.CantAffordToAttack(warband))
+                    if (upgradeHolder.CostsSilver && !WarbandUtil.CantAffordToAttack(warband))
                         return;
                     GameComponent_WAW.Instance.OnRaid(this.leader.Leader);
                     this.cooldownManager.SetLastRaidTick();
@@ -138,8 +142,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             bool flag = this.targetMapP != null && this.targetMapP.Map != null;
             if (flag)
             {
-                this.cooldownManager.SetLastRaidTick();
-                this.droppodUpgrade.LaunchWarbandInMap(this.targetMapP.Map);
+                this.dropPodRaider.LaunchWarbandInMap(this.targetMapP.Map);
             }
         }
 
@@ -263,12 +266,25 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             SetNewRecruitCostMultiplier(1);
         }
 
+        public Texture2D TextureOverride()
+        {
+            return upgradeHolder.TextureOverride();
+        }
+
         public void ExposeData()
         {
             Scribe_Values.Look(ref respawnChance, "respawnChance", 0);
             Scribe_Values.Look(ref newRecruitCostMultiplier, "newRecruitCostMultiplier", 1);
-
-            this.lootManager?.ExposeData();
+            Scribe_Deep.Look(ref upgradeHolder, "upgradeHolder");
+            Scribe_Deep.Look(ref lootManager, "lootManager");
+            if(lootManager == null)
+            {
+                lootManager = new PlayerWarbandLootManager();
+            }
+            if(upgradeHolder == null)
+            {
+                upgradeHolder = new PlayerWarbandUpgradeHolder();
+            }
             this.colorOverride?.ExposeData();
             this.injuriesManager?.ExposeData();
             this.leader?.ExposeData();

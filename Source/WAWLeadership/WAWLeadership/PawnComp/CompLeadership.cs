@@ -308,9 +308,9 @@ namespace WAWLeadership
             return outString;
         }
 
-        public void OpenLeadershipWindow()
+        public void OpenLeadershipWindow(Warband warband)
         {
-            Window_Leadership leadershipWindow = new Window_Leadership(this);
+            Window_Leadership leadershipWindow = new Window_Leadership(this, warband);
             Find.WindowStack.Add(leadershipWindow);
         }
 

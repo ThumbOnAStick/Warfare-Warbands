@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2009463077\1.4\Assemblies\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="AlienRace">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\839005762\Assemblies\AlienRace.dll</HintPath>
       <Private>False</Private>
@@ -41,10 +45,6 @@
     </Reference>
     <Reference Include="CombatExtended">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2890901044\Assemblies\CombatExtended.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="HarmonyLib">
-      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2873415404\1.5\Lunar\Components\HarmonyLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -67,6 +67,14 @@
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
@@ -77,6 +85,10 @@
     </Reference>
     <Reference Include="UnityEngine.UIModule">
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Vehicles">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\3014915404\1.5\Assemblies\Vehicles.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -90,8 +102,15 @@
     <Compile Include="CharacterCustomization\GameComponent_Customization.cs" />
     <Compile Include="Misc\Alert_ClosingPlayerWarbandMap.cs" />
     <Compile Include="QuickRaid\UI\Window_QuickRaid.cs" />
+    <Compile Include="Warband\Compatibility_Vehicle\Vehicle.cs" />
+    <Compile Include="Warband\Compatibility_Vehicle\VehicleSelectionPanel.cs" />
     <Compile Include="Warband\UI\Dialog_SetCustomName.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandSkillBonus.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\PlayerWarbandUpgrade.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\PlayerWarbandUpgradeHolder.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Elite.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Outpost.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Vehicle.cs" />
     <Compile Include="Warband\WAWCaravan\CaravanWarbandUtility.cs" />
     <Compile Include="Warband\WAWCaravan\HarmonyPatches\CaravanGizmosPatch.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\Leader\PlayerWarbandLeaderUtil.cs" />
@@ -133,7 +152,9 @@
     <Compile Include="Warband\WorldObjectComp_PlayerWarband.cs" />
     <Compile Include="Warfare\GameComponent_WAW.cs" />
     <Compile Include="Warfare\HarmonyPatches\SettlemntDestroyedPatch.cs" />
+    <Compile Include="Warfare\UI\Test\DraggableButton.cs" />
     <Compile Include="Warfare\UI\WAWUI.cs" />
+    <Compile Include="Warfare\UI\Test\Window_Span.cs" />
     <Compile Include="Warfare\UI\Window_WAW_Comm.cs" />
     <Compile Include="WAWHarmony.cs" />
     <Compile Include="Warfare\HarmonyPatches\CommsPatch.cs" />
@@ -148,7 +169,6 @@
     <Compile Include="Misc\Window_WAWUpdateLog.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Warband\WarbandComponents\PlayerWarbandUpdates\" />
     <Folder Include="Warfare\Events\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

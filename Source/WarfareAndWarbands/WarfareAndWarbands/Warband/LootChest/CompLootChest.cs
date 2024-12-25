@@ -16,16 +16,25 @@ namespace WarfareAndWarbands.Warband
         public Warband warband;
         public CompProperties_LootChest Props => (CompProperties_LootChest)this.props;
         public CompTransporter CompTransporter => this.parent.TryGetComp<CompTransporter>();
-
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
             if (this.CompTransporter.innerContainer.Count > 0)
                 yield return WarbandUI.TransferContent(this);
             yield return WarbandUI.LinkWarband(this);
         }
+
         public void AssignWarband(Warband warband)
         {
             this.warband = warband;
+        }
+        public override void CompTick()
+        {
+            base.CompTick();
+            var t = CompTransporter;
+            if (t != null && !t.AnythingLeftToLoad)
+            {
+                TransferToWarband();
+            }
         }
         public void TransferToWarband()
         {
@@ -41,6 +50,7 @@ namespace WarfareAndWarbands.Warband
             warband?.StoreAll(CompTransporter.innerContainer.ToList());
             CompTransporter.innerContainer.Clear();
             CompTransporter.CancelLoad();
+            Messages.Message("WAW.TransportedToWarband".Translate(), MessageTypeDefOf.PositiveEvent);
         }
 
         public override void PostExposeData()

@@ -73,5 +73,5 @@
 	<WAW.LeaderKilled>Your warband has lost their leader.</WAW.LeaderKilled>
 	<WAW.CantDelete>Can't delete a pawn kind that is already in use.</WAW.CantDelete>
 	<WAW.WarbandLossFailed>Due to {0}'s recruiting ability, the lost unit is soon replaced.</WAW.WarbandLossFailed>
-
+	<WAW.TransportedToWarband>All loots have been transfered to warband.</WAW.TransportedToWarband>
 </LanguageData>	

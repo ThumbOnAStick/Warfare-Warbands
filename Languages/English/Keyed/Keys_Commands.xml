@@ -34,4 +34,7 @@
 	<WAW.Interact.Desc>Interact with other worldobjects through warband leader.</WAW.Interact.Desc>
 	<WAW.InteractCoolDown>Avialable in: {0} days</WAW.InteractCoolDown>
 	<WAW.LeaderInfo>Leader Info</WAW.LeaderInfo>
+	<WAW.PromoteSoldier>promote(${0})</WAW.PromoteSoldier>
+	<WAW.PromoteSoldier.Desc>"Promote" {0} to be one of your colonists.</WAW.PromoteSoldier.Desc>
+	<WAW.PromotionSuccess>{0} has joined your colony.</WAW.PromotionSuccess>
 </LanguageData>	

@@ -6,6 +6,7 @@ using WarfareAndWarbands.Warfare.HarmonyPatches;
 using RimWorld;
 using WarfareAndWarbands.CharacterCustomization;
 using System.Collections.Generic;
+
 namespace WarfareAndWarbands.HarmonyPatches
 {
     [StaticConstructorOnStartup]
