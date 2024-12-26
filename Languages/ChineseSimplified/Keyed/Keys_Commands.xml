@@ -34,4 +34,7 @@
   <WAW.Interact.Desc>利用战团领袖和世界物体互动。</WAW.Interact.Desc>
 	<WAW.InteractCoolDown>{0} 天内可用</WAW.InteractCoolDown>
 	<WAW.LeaderInfo>领袖信息</WAW.LeaderInfo>
+	<WAW.RecycleVehicle>回收载具</WAW.RecycleVehicle>
+	<WAW.RecycleVehicle.Desc>车队的载具在每次出击后都会清零，这个操作可以将载具储存到战团。</WAW.RecycleVehicle.Desc>
+	<WAW.PurchaseVehicles>购买载具</WAW.PurchaseVehicles>
 </LanguageData>

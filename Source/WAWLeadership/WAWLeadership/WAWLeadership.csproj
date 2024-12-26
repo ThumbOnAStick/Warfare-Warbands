@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponent_Leadership.cs" />
     <Compile Include="PawnComp\CompLeadership.cs" />
     <Compile Include="PawnComp\CompProperties_Leadership.cs" />
     <Compile Include="InteractionUtility.cs" />

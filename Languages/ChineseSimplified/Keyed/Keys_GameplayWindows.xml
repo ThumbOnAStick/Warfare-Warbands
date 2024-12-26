@@ -36,5 +36,19 @@
 	<WAW.SpawnLeaderOption>团长参加战斗：</WAW.SpawnLeaderOption>
 	<WAW.QualityOverride>士兵所有装备的品质重置为{0}；</WAW.QualityOverride>
 	<WAW.BuyVehicle>买入 {0}</WAW.BuyVehicle>
+	<WAW.OutpostLabel>哨站</WAW.OutpostLabel>
+	<WAW.VehicleLabel>车队</WAW.VehicleLabel>
+	<WAW.EliteLabel>精英</WAW.EliteLabel>
+    <WAW.CantDroppod>不能使用空投舱</WAW.CantDroppod>
+	<WAW.CantAttack>不能攻击</WAW.CantAttack>
+	<WAW.CantMove>不能移动</WAW.CantMove>
+	<WAW.ServesDays>士兵能够服务{0}天</WAW.ServesDays>
+	<WAW.CanPurcahseVehicle>能购买地面载具</WAW.CanPurcahseVehicle>
+	<WAW.SelectUpgrade>选择升级项</WAW.SelectUpgrade>
+	<WAW.ModNotLoaded>这个升级项需要 {0} mod</WAW.ModNotLoaded>
+	<WAW.RequireSkill>至少需要团长的{0}技能达到{1}级</WAW.RequireSkill>
+	<WAW.AlreadyUpgraded>升级已被装备</WAW.AlreadyUpgraded>
+	<WAW.IsFree>免服务费</WAW.IsFree>
+	<WAW.Upgrade>升级战团</WAW.Upgrade>
 
 </LanguageData>

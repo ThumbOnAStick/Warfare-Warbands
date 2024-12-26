@@ -37,4 +37,7 @@
 	<WAW.PromoteSoldier>promote(${0})</WAW.PromoteSoldier>
 	<WAW.PromoteSoldier.Desc>"Promote" {0} to be one of your colonists.</WAW.PromoteSoldier.Desc>
 	<WAW.PromotionSuccess>{0} has joined your colony.</WAW.PromotionSuccess>
+	<WAW.RecycleVehicle>Recycle Vehicle</WAW.RecycleVehicle>
+	<WAW.RecycleVehicle.Desc>A bridge combat team clears all its vehicles everytime it raids, this command stores a vechile back to warband.</WAW.RecycleVehicle.Desc>
+	<WAW.PurchaseVehicles>Purchase Vehicles</WAW.PurchaseVehicles>
 </LanguageData>	

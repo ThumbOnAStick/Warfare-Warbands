@@ -21,7 +21,16 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
 
         public virtual int MaintainDays => 1;
 
+        public virtual int UpgradeCost => 1;
+
+        public virtual string Label => "";
+
+        public virtual string ModRequired => ""; 
+
+        public virtual TaggedString CostLabel => ($"${this.UpgradeCost}").Colorize(new Color(.8f,.8f, .2f));
+
         public virtual RimWorld.QualityCategory GearQuality => RimWorld.QualityCategory.Normal;
+
 
         public PlayerWarbandUpgrade()
         {
@@ -38,22 +47,50 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
             return null;
         }
 
-        public virtual void ExposeData()
-        {
-
-        }
+   
 
         public virtual void OnArrived(List<Pawn> pawns)
         {
 
         }
 
-        public virtual string GetDescription()
+        public bool RequiredModLoaded()
         {
-            string outString = "";
+            return ModRequired == "" || ModsConfig.IsActive(ModRequired);
+        }
+
+        public virtual TaggedString GetInspectString()
+        {
+            TaggedString outString = "";
             if (GearQuality != RimWorld.QualityCategory.Normal)
-                outString += "\n" + "WAW.QualityOverride".Translate(GearQuality.GetLabel());
+                outString += "WAW.QualityOverride".Translate(GearQuality.GetLabel()).Colorize(new Color(1f, 1f, 0.6f)) + "\n";
+            if(MaintainDays > 1)
+                outString += "WAW.ServesDays".Translate(MaintainDays) + "\n";
+            if (!CostsSilver)
+                outString += "WAW.IsFree".Translate() + "\n";
+            if (!CanDroppod)
+                outString += "WAW.CantDroppod".Translate().ToString().Colorize(Color.red) + "\n";
+            if (!CanAttack)
+                outString += "WAW.CantAttack".Translate().ToString().Colorize(Color.red) + "\n";
+            if (!CanMove)
+                outString += "WAW.CantMove".Translate().ToString().Colorize(Color.red) + "\n";
+
             return outString;
+        }
+
+        public virtual void OnUpgraded()
+        {
+
+        }
+
+        public virtual bool CanAttackCurrent()
+        {
+            return true;
+        }
+
+        public virtual void ExposeData()
+        {
+
         }
     }
 }

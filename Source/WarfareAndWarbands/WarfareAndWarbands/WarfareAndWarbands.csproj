@@ -104,6 +104,8 @@
     <Compile Include="QuickRaid\UI\Window_QuickRaid.cs" />
     <Compile Include="Warband\Compatibility_Vehicle\Vehicle.cs" />
     <Compile Include="Warband\Compatibility_Vehicle\VehicleSelectionPanel.cs" />
+    <Compile Include="Warband\HarmonyPatches\WorldPawnPatch.cs" />
+    <Compile Include="Warband\Mercenary\JobGiver_RecycleVehicle.cs" />
     <Compile Include="Warband\UI\Dialog_SetCustomName.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandSkillBonus.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\PlayerWarbandUpgrade.cs" />

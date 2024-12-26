@@ -15,6 +15,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         public bool CanAttack => !HasUpgrade || SelectedUpgrade.CanAttack;
         public bool CanMove => !HasUpgrade || SelectedUpgrade.CanMove;
         public bool CanDroppod => !HasUpgrade || SelectedUpgrade.CanDroppod;
+        public bool CanAttackCurrent => !HasUpgrade || SelectedUpgrade.CanAttackCurrent();
         public bool HasUpgrade => SelectedUpgrade != null;
         public QualityCategory GearQuality => HasUpgrade? selectedUpgrade.GearQuality : QualityCategory.Normal;
 
@@ -52,6 +53,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         public void SetUpgrade(PlayerWarbandUpgrade upgrade)
         {
             selectedUpgrade = upgrade;
+            selectedUpgrade.OnUpgraded();
         }
 
         public Texture2D TextureOverride()

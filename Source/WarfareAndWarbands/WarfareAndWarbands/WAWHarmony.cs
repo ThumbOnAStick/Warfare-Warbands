@@ -25,6 +25,7 @@ namespace WarfareAndWarbands.HarmonyPatches
             ExitMapPatch.PatchHarmony();
             SettlemntDestroyedPatch.PatchHarmony();
             CaravanGizmosPatch.PatchHarmony();
+            WorldPawnPatch.PatchHarmony();
             WAWHarmony.harmony.PatchAll();
             Log.Message("WAW: patches successful");
         }

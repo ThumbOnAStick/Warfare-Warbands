@@ -10,7 +10,7 @@ using Verse.Sound;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
 {
-    internal class Upgrade_Elite : PlayerWarbandUpgrade
+    public class Upgrade_Elite : PlayerWarbandUpgrade
     {
   
         public Upgrade_Elite()
@@ -21,6 +21,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         public override int MaintainDays => 3;
         public override bool CostsSilver => false;
         public override bool CanMove => true;
+        public override int UpgradeCost => 10000;
+        public override string Label => "WAW.EliteLabel".Translate();
 
         public override QualityCategory GearQuality => QualityCategory.Masterwork;
 
@@ -37,6 +39,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
                 SoundDefOf.MechClusterDefeated.PlayOneShotOnCamera();
             }
         }
+
 
 
 

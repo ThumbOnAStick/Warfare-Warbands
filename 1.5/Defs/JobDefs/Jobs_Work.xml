@@ -6,4 +6,11 @@
     <reportString>using comms console.</reportString>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
   </JobDef>
+
+   <JobDef>
+    <defName>WAWRecycleVehicle</defName>
+    <driverClass>WarfareAndWarbands.Warband.Mercenary.JobDriver_RecycleVehicle</driverClass>
+    <reportString>recycling vehicle.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
 </Defs>

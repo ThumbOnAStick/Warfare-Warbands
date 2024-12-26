@@ -10,14 +10,28 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 {
     public class PlayerWarbandCooldownManager : IExposable
     {
-        public PlayerWarbandCooldownManager() 
+        public int lastRaidTick;
+
+        public PlayerWarbandCooldownManager()
         {
             ResetRaidTick();
+            _minCooldownDays = 0;
         }
+
+        public int TickGame => Find.TickManager.TicksGame;
+
+        private int _minCooldownDays;
+
+        private int RaidCoolDownTicks => (int)(Math.Max(_minCooldownDays + .5f, WAWSettings.warbandRaidCooldown) * 60000);
 
         public void ExposeData()
         {
             Scribe_Values.Look(ref lastRaidTick, "lastRaidTick", 0);
+        }
+
+        public void SetMinCooldownDays(int minCooldownDays)
+        {
+            _minCooldownDays = minCooldownDays;
         }
 
         public void ResetRaidTick()
@@ -46,11 +60,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             return GenDate.TicksToDays(GetRemainingTicks());
         }
 
-        public int lastRaidTick;
 
-        public int TickGame => Find.TickManager.TicksGame;
-
-        private int RaidCoolDownTicks => (int)WAWSettings.warbandRaidCooldown * 60000;
 
     }
 }

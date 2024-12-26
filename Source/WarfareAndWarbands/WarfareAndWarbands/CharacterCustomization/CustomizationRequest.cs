@@ -54,7 +54,7 @@ namespace WarfareAndWarbands.CharacterCustomization
         {
             GenerateWeaponFor(ref p);
             GenerateApparelsFor(ref p);
-            SetXenoForPawn(ref p);
+            SetXenoForPawn(ref p);    
         }
 
         public int GetCombatPower()

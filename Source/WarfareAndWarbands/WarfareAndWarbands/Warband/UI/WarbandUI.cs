@@ -7,8 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 using Verse.Noise;
 using WarfareAndWarbands.CharacterCustomization;
+using WarfareAndWarbands.Warband.Compatibility_Vehicle;
 using WarfareAndWarbands.Warband.PlayerWarbandRaid;
 using WarfareAndWarbands.Warband.WarbandComponents;
 using WarfareAndWarbands.Warband.WAWCaravan.UI;
@@ -65,7 +67,8 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.icon = TexCommand.Attack;
             command_Action.action = delegate ()
             {
-                band.playerWarbandManager?.OrderPlayerWarbandToAttack();
+                if (band.playerWarbandManager.upgradeHolder.CanAttackCurrent)
+                    band.playerWarbandManager.OrderPlayerWarbandToAttack();
             };
             command_Action.Order = 3000f;
             return command_Action;
@@ -217,6 +220,20 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.action = delegate ()
             {
                 comp.TryToPromote();
+            };
+            command_Action.Order = 3000f;
+            return command_Action;
+        }
+
+        public static Command RecycleVehicle(CompMercenary comp)
+        {
+            Command_Action command_Action = new Command_Action();
+            command_Action.defaultLabel = "WAW.RecycleVehicle".Translate();
+            command_Action.defaultDesc = "WAW.RecycleVehicle.Desc".Translate();
+            command_Action.icon = WAWTex.PurchaseVehicleTex;
+            command_Action.action = delegate ()
+            {
+                Vehicle.RecycleVehicleTargetor(comp.Mercenary);
             };
             command_Action.Order = 3000f;
             return command_Action;

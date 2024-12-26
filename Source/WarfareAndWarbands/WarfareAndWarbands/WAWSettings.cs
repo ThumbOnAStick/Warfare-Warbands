@@ -22,6 +22,7 @@ namespace WarfareAndWarbands
         public static bool enableFactionDefeat = false;
         public static bool dropPodRaidRequiresUpgrade = false;
         public static bool everReadUpdateLog = false;
+        public static bool upgradeRequiresLeader= true;
         public static float warbandRaidCooldown = 1.5f;
         private static readonly float UpdateVersion = 1.11f;
 
@@ -37,6 +38,7 @@ namespace WarfareAndWarbands
             Scribe_Values.Look(ref enableFactionDefeat, "enableFactionDefeat", defaultValue: false);
             Scribe_Values.Look(ref everReadUpdateLog, $"everReadUpdateLog{UpdateVersion}", defaultValue: false);
             Scribe_Values.Look(ref warbandRaidCooldown, "warbandRaidCooldown", 1.5f);
+            Scribe_Values.Look(ref upgradeRequiresLeader, "upgradeRequiresLeader", true);
 
         }
 
@@ -57,8 +59,8 @@ namespace WarfareAndWarbands
                     .5f,
                     "WAW.raidPlayerWarbandChance.Desc".Translate(raidPlayerWarbandChance)
                     ); ;
-            warbandRaidCooldown = (((int)(listing_Standard.SliderLabeled("WAW.warbandRaidCooldown".Translate(warbandRaidCooldown), warbandRaidCooldown, 1, 10, .5f, "WAW.warbandRaidCooldown.Desc".Translate()) * 100)) / 100f);
-
+            warbandRaidCooldown = listing_Standard.SliderLabeled("WAW.warbandRaidCooldown".Translate(warbandRaidCooldown.ToString("0.0")), warbandRaidCooldown, 1, 10, .5f, "WAW.warbandRaidCooldown.Desc".Translate());
+            listing_Standard.CheckboxLabeled("WAW.upgradeRequiresLeader".Translate(), ref upgradeRequiresLeader, "WAW.upgradeRequiresLeader.Desc".Translate()); ;
             listing_Standard.CheckboxLabeled("WAW.enableFactionDefeat".Translate(), ref enableFactionDefeat, "WAW.enableFactionDefeat.Desc".Translate()); ;
             listing_Standard.End();
             this.Write();

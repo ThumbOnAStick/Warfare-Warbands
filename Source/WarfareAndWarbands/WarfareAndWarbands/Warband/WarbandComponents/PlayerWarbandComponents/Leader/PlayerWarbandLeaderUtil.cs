@@ -33,10 +33,6 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents.L
 
         public static bool IsLeader(this Pawn pawn)
         {
-            if (pawn.HostileTo(Faction.OfPlayer))
-            {
-                return false;
-            }
             foreach (var ele in WarbandUtil.AllPlayerWarbandsCache)
             {
                 if (ele as Warband == null)

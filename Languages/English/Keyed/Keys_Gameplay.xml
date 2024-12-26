@@ -74,4 +74,8 @@
 	<WAW.CantDelete>Can't delete a pawn kind that is already in use.</WAW.CantDelete>
 	<WAW.WarbandLossFailed>Due to {0}'s recruiting ability, the lost unit is soon replaced.</WAW.WarbandLossFailed>
 	<WAW.TransportedToWarband>All loots have been transfered to warband.</WAW.TransportedToWarband>
+	<WAW.NoVehicle>There's no vehicles in storage, plase pruchase more using "purchase vehicles" command.</WAW.NoVehicle>
+    <WAW.AboutBridgeCombatTeam>About: Bridge Combat Team</WAW.AboutBridgeCombatTeam>
+    <WAW.AboutBridgeCombatTeam.Desc>Bridge combat teams use ground vehicles, so it cannot launch any droppod raid, also, you'll need to purchase vehicles before an attack can be launched.\nA recycle command is added to bridge combat team crews, this command returns sent vehicles back to storage.</WAW.AboutBridgeCombatTeam.Desc>
+
 </LanguageData>	

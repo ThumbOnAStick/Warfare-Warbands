@@ -12,6 +12,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
     {
         public override bool CostsSilver => false;
         public override bool CanMove => false;
+        public override int UpgradeCost => 5000;
+        public override string Label => "WAW.OutpostLabel".Translate();
 
         public override Texture2D TextureOverride()
         {

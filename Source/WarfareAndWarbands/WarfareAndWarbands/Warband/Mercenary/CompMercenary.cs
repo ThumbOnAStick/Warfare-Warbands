@@ -9,6 +9,7 @@ using Verse;
 using Verse.Noise;
 using WarfareAndWarbands.Warband.UI;
 using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents.Leader;
+using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades;
 using static System.Collections.Specialized.BitVector32;
 
 namespace WarfareAndWarbands.Warband
@@ -85,6 +86,12 @@ namespace WarfareAndWarbands.Warband
                 {
                     yield return WarbandUI.RetreatPawn(this);
                     yield return WarbandUI.RecruitPawn(this);
+                    if(warband != null &&
+                       warband.playerWarbandManager.upgradeHolder.HasUpgrade &&
+                       warband.playerWarbandManager.upgradeHolder.SelectedUpgrade is Upgrade_Vehicle)
+                    {
+                        yield return WarbandUI.RecycleVehicle(this);
+                    }
                 }
             }
             
@@ -105,6 +112,7 @@ namespace WarfareAndWarbands.Warband
             base.PostSpawnSetup(respawningAfterLoad);
             this.isLeaderCache = PlayerWarbandLeaderUtil.IsLeader(Mercenary);
         }
+
 
         public override void Notify_Downed()
         {

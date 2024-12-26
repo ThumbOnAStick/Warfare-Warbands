@@ -64,7 +64,6 @@ namespace WAWLeadership
             if ((o as Site) != null)
             {
                 var site = (Site)o;
-                if(ValidateLeader<Attribute_Economy>(leader, 2))
                     DoInteractWithWorkingSite(ref usedSkill, leader, site);
             }
         }
@@ -177,7 +176,7 @@ namespace WAWLeadership
                 return;
             }
             bool predicateWorkingSite(SitePart x) => x.def.defName.Contains("WorkSite_");
-            if (site.parts.Any(predicateWorkingSite))
+            if (site.parts.Any(predicateWorkingSite) && ValidateLeader<Attribute_Economy>(leader, 2))
             {
                 DropAtHome(MakeDropPodInfo(GetLoots(predicateWorkingSite, site)));
                 site.Destroy();

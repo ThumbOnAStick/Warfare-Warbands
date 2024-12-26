@@ -10,7 +10,7 @@ namespace WarfareAndWarbands.CharacterCustomization.Compatibility
 {
     internal static class HAR
     {
-        private static ThingDef GetAlienRace(this CustomizationRequest request)
+        public static ThingDef GetAlienRace(this CustomizationRequest request)
         {
             var allAliens = GenDefDatabase.GetAllDefsInDatabaseForDef(typeof(ThingDef_AlienRace));
             foreach (var thing in allAliens)

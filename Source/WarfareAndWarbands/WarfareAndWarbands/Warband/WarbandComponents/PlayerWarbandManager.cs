@@ -53,7 +53,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             leader.onLeaderChanged.AddListener(lootManager.ResetLootMultiplier);
             leader.onLeaderChanged.AddListener(ResetNewRecruitCostMultiplier);
             leader.onLeaderChanged.AddListener(ResetRespawnChance);
-
+            newRecruitCostMultiplier = 1;
         }
 
         public void OrderPlayerWarbandToAttack()
@@ -220,11 +220,15 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         internal bool CanFireRaid()
         {
+            if (upgradeHolder.HasUpgrade)
+                cooldownManager.SetMinCooldownDays(upgradeHolder.SelectedUpgrade.MaintainDays);
             return this.cooldownManager.CanFireRaid();
         }
 
         internal float GetRemainingDays()
         {
+            if (upgradeHolder.HasUpgrade)
+                cooldownManager.SetMinCooldownDays(upgradeHolder.SelectedUpgrade.MaintainDays);
             return this.cooldownManager.GetRemainingDays();
         }
 
@@ -277,13 +281,18 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             Scribe_Values.Look(ref newRecruitCostMultiplier, "newRecruitCostMultiplier", 1);
             Scribe_Deep.Look(ref upgradeHolder, "upgradeHolder");
             Scribe_Deep.Look(ref lootManager, "lootManager");
-            if(lootManager == null)
+            Scribe_Deep.Look(ref cooldownManager, "cooldownManager");
+            if (lootManager == null)
             {
                 lootManager = new PlayerWarbandLootManager();
             }
             if(upgradeHolder == null)
             {
                 upgradeHolder = new PlayerWarbandUpgradeHolder();
+            }
+            if(cooldownManager == null)
+            {
+                cooldownManager = new PlayerWarbandCooldownManager();
             }
             this.colorOverride?.ExposeData();
             this.injuriesManager?.ExposeData();

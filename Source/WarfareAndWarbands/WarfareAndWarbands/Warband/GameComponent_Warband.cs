@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using WarfareAndWarbands.Warband.Compatibility_Vehicle;
 
 namespace WarfareAndWarbands.Warband
 {

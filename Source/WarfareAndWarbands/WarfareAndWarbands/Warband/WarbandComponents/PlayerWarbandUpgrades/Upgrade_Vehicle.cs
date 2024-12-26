@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +21,15 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         {
             _vehicles = new Dictionary<string, int>();
         }
+        public override string Label => "WAW.VehicleLabel".Translate();
 
         public Dictionary<string, int> Vehicles => _vehicles;
 
+        public override int UpgradeCost => 10000;
+
         public override bool CanDroppod => false;
 
+        public override string ModRequired => "SmashPhil.VehicleFramework";
 
         public void OnSquadSent()
         {
@@ -49,7 +54,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
             {
                 Order = 3000,
                 icon = WAWTex.PurchaseVehicleTex,
-                defaultLabel = "purchase vehicles",
+                defaultLabel = "WAW.PurchaseVehicles".Translate(),
                 action = delegate { Find.WindowStack.Add(new VehicleSelectionPanel(this)); }
             };
         }
@@ -63,6 +68,31 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         {
             base.OnArrived(pawns);
             OnSquadSent();
+        }
+
+        public override TaggedString GetInspectString()
+        {
+            var result = "WAW.CanPurcahseVehicle".Translate().Colorize(Color.cyan);
+            result += "\n" + base.GetInspectString();
+            return result;
+        }
+
+        public override void OnUpgraded()
+        {
+            base.OnUpgraded();
+            Find.LetterStack.ReceiveLetter("WAW.AboutBridgeCombatTeam".Translate(), "WAW.AboutBridgeCombatTeam.Desc".Translate(), LetterDefOf.NeutralEvent);
+        }
+
+        public override bool CanAttackCurrent()
+        {
+            bool anyUsable = Vehicles.Any(x => x.Value > 0);
+            if (anyUsable)
+                return true;
+            else
+            {
+                Messages.Message("WAW.NoVehicle".Translate(), MessageTypeDefOf.RejectInput);
+                return false;
+            }
         }
 
         public override void ExposeData()

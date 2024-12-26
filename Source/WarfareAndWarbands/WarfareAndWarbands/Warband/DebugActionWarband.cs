@@ -107,17 +107,23 @@ namespace WarfareAndWarbands.Warband
             return true;
         }
 
+        static Warband GenerateRandomPlayerWarband(GlobalTargetInfo info)
+        {
+            return WarbandUtil.SpawnWarband(Find.FactionManager.AllFactions.First(x => !x.Hidden && !x.HostileTo(Faction.OfPlayer) && x != Faction.OfPlayer), info);
+
+        }
+
         public static IEnumerable<FloatMenuOption> SpawnForPlayerOptions(GlobalTargetInfo info)
         {
             yield return new FloatMenuOption("default", delegate 
             {
-                Warband playerWarband = WarbandUtil.SpawnWarband(Faction.OfPirates, info);
+                var playerWarband = GenerateRandomPlayerWarband(info);
                 playerWarband.SetFaction(Faction.OfPlayer);
             });
 
             yield return new FloatMenuOption("outpost upgrade", delegate 
             {
-                Warband playerWarband = WarbandUtil.SpawnWarband(Faction.OfPirates, info);
+                var playerWarband = GenerateRandomPlayerWarband(info);
                 playerWarband.SetFaction(Faction.OfPlayer);
                 playerWarband.playerWarbandManager.upgradeHolder.GainOutpostUpgrade();
             });
@@ -125,14 +131,14 @@ namespace WarfareAndWarbands.Warband
 
             yield return new FloatMenuOption("elite upgrade", delegate
             {
-                Warband playerWarband = WarbandUtil.SpawnWarband(Faction.OfPirates, info);
+                var playerWarband = GenerateRandomPlayerWarband(info);
                 playerWarband.SetFaction(Faction.OfPlayer);
                 playerWarband.playerWarbandManager.upgradeHolder.GainEliteUpgrade();
             });
 
             yield return new FloatMenuOption("vehicle upgrade", delegate
             {
-                Warband playerWarband = WarbandUtil.SpawnWarband(Faction.OfPirates, info);
+                var playerWarband = GenerateRandomPlayerWarband(info);
                 playerWarband.SetFaction(Faction.OfPlayer);
                 playerWarband.playerWarbandManager.upgradeHolder.GainVehilceUpgrade();
             });

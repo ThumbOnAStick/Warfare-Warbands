@@ -42,6 +42,7 @@ namespace WAWLeadership.WorldObjectComps
             {
                 bool disabled = GenTicks.TicksGame < lastUsageTick + coolDownTicks;
                 yield return LeadershipUI.Interact(disabled, isvalidCache, this, MyWarband.playerWarbandManager.leader.Leader);
+                yield return LeadershipUI.Upgrade(isvalidCache, MyWarband);
 
             }
         }

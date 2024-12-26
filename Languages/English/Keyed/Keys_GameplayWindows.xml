@@ -34,6 +34,21 @@
 	<WAW.RespawnChance>Soldiers have a {0}% chance to be not counted as dead when they are killed.</WAW.RespawnChance>
 	<WAW.RecruitCost>Recruiting new soldiers costs {0}% less silvers.</WAW.RecruitCost>
 	<WAW.SpawnLeaderOption>Spawn leader into battle filed:</WAW.SpawnLeaderOption>
-	<WAW.QualityOverride>All gears' quality would {0};</WAW.QualityOverride>
+	<WAW.QualityOverride>All gears' quality would be {0};</WAW.QualityOverride>
 	<WAW.BuyVehicle>Purchase {0}</WAW.BuyVehicle>
+	<WAW.OutpostLabel>Outpost</WAW.OutpostLabel>
+	<WAW.VehicleLabel>Brigade Combat Team</WAW.VehicleLabel>
+	<WAW.EliteLabel>Elite</WAW.EliteLabel>
+	<WAW.CantDroppod>Can't do droppod raid</WAW.CantDroppod>
+	<WAW.CantAttack>Cannot launch any attack</WAW.CantAttack>
+	<WAW.CantMove>Cannot move from one place to another</WAW.CantMove>
+	<WAW.ServesDays>Soldiers serve {0} days</WAW.ServesDays>
+	<WAW.CanPurcahseVehicle>Can purchase ground vehicles</WAW.CanPurcahseVehicle>
+	<WAW.SelectUpgrade>Select Upgrade</WAW.SelectUpgrade>
+	<WAW.ModNotLoaded>Mod {0} is required for this option</WAW.ModNotLoaded>
+	<WAW.RequireSkill>Require at least {1} level of leader's {0} skill</WAW.RequireSkill>
+	<WAW.AlreadyUpgraded>Upgrade is already installed</WAW.AlreadyUpgraded>
+	<WAW.IsFree>No service fee</WAW.IsFree>
+	<WAW.Upgrade>Upgrade Warband</WAW.Upgrade>
+
 </LanguageData>

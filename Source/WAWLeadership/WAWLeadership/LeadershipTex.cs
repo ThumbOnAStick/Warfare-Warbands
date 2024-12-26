@@ -12,6 +12,7 @@ namespace WAWLeadership
     internal class LeadershipTex
     {
         public static readonly Texture2D Interact = ContentFinder<Texture2D>.Get("Things/Mote/SpeechSymbols/Chitchat");
+        public static readonly Texture2D UpgradeWarbandTex = ContentFinder<Texture2D>.Get("UI/Commands/UpgradeWarband");
 
 
     }

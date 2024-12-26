@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using WarfareAndWarbands;
 using WarfareAndWarbands.Warband;
 using WarfareAndWarbands.Warband.WarbandComponents;
 using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents.Leader;
@@ -273,6 +274,22 @@ namespace WAWLeadership.UI
             return command_Action;
         }
 
+        public static Command Upgrade( bool hasLeader, Warband warband)
+        {
+            Command_Action command_Action = new Command_Action
+            {
+                defaultLabel = "WAW.Upgrade".Translate(),
+                disabledReason = "WAW.NoLeaderFound".Translate(),
+                Disabled = !hasLeader && WAWSettings.upgradeRequiresLeader,
+                icon = LeadershipTex.UpgradeWarbandTex,
+                action = delegate ()
+                {
+                    Find.WindowStack.Add(new Window_UpgradeWarband(warband.playerWarbandManager.upgradeHolder, warband.playerWarbandManager.leader));
+                },
+                Order = 3000f
+            };
+            return command_Action;
+        }
         public static Command ResetLeaderAbilityCooldown(WorldObjectComp_PlayerWarbandLeader comp)
         {
             Command_Action command_Action = new Command_Action();

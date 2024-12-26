@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vehicles;
 using Verse;
+using Verse.AI;
 using static UnityEngine.GraphicsBuffer;
 
 namespace WarfareAndWarbands.Warband.Compatibility_Vehicle
@@ -57,21 +58,17 @@ namespace WarfareAndWarbands.Warband.Compatibility_Vehicle
                     vehicle.CompFueledTravel.Refuel(vehicle.CompFueledTravel.FuelCapacity);
                     if (vehicle.CompVehicleTurrets != null)
                     {
-                        vehicle.CompVehicleTurrets.FillMagazineCapacity();
                         var turrets = vehicle.CompVehicleTurrets.turrets;
                         foreach (var t in turrets)
                         {
-                            if (t.HasAmmo)
+                            ThingDef thingDef = t.turretDef.ammunition.AllowedThingDefs.FirstOrDefault<ThingDef>();
+                            for (int j = 0; j < 5; j++)
                             {
-                                ThingDef thingDef = t.turretDef.ammunition.AllowedThingDefs.FirstOrDefault<ThingDef>();
-                                for (int j = 0; j < 5; j++)
-                                {
-                                    var fullStackOfAmmo = ThingMaker.MakeThing(thingDef);
-                                    fullStackOfAmmo.stackCount = thingDef.stackLimit;
-                                    float statValue = vehicle.GetStatValue(VehicleStatDefOf.CargoCapacity);
-                                    if (MassUtility.GearAndInventoryMass(vehicle) + fullStackOfAmmo.def.BaseMass * fullStackOfAmmo.stackCount < statValue)
-                                        vehicle.inventory.TryAddAndUnforbid(fullStackOfAmmo);
-                                }
+                                var fullStackOfAmmo = ThingMaker.MakeThing(thingDef);
+                                fullStackOfAmmo.stackCount = thingDef.stackLimit;
+                                float statValue = vehicle.GetStatValue(VehicleStatDefOf.CargoCapacity);
+                                if (MassUtility.GearAndInventoryMass(vehicle) + fullStackOfAmmo.def.BaseMass * fullStackOfAmmo.stackCount < statValue)
+                                    vehicle.inventory.TryAddAndUnforbid(fullStackOfAmmo);
                             }
                         }
 
@@ -149,5 +146,22 @@ namespace WarfareAndWarbands.Warband.Compatibility_Vehicle
                 }
             }
         }
+
+        public static void RecycleVehicleTargetor(Pawn caster)
+        {
+            Find.Targeter.BeginTargeting(
+                new TargetingParameters() { validator = x => x.Thing is VehiclePawn },
+                delegate (LocalTargetInfo target)
+                {
+                    TryToRecycleVehicle(caster, target.Thing);
+                });
+        }
+
+        public static void TryToRecycleVehicle(Pawn pawn, Thing vehicle)
+        {
+            Job job = new Job(WAWDefof.WAWRecycleVehicle, vehicle);
+            pawn.jobs.TryTakeOrderedJob(job, new JobTag?(JobTag.Misc), false);
+        }
+
     }
 }

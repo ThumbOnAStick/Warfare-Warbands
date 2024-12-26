@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using WarfareAndWarbands.CharacterCustomization.Compatibility;
 using WarfareAndWarbands.HarmonyPatches;
 using WarfareAndWarbands.Warband;
 using WarfareAndWarbands.Warfare.UI.Test;
@@ -44,12 +45,20 @@ namespace WarfareAndWarbands.CharacterCustomization
             foreach (var request in customizationRequests)
             {
                 var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request);
+                if (HARActive())
+                {
+                    defaultKindDef.race = request.GetAlienRace();
+                }
                 generatedKindDefs.Add(defaultKindDef);
             }
             WarbandUtil.RefreshSoldierPawnKinds();
         }
 
 
+        bool HARActive()
+        {
+            return ModsConfig.IsActive("erdelf.HumanoidAlienRaces");
+        }
 
 
         public void AddRequest(string defName, string label, CustomizationRequest request)
