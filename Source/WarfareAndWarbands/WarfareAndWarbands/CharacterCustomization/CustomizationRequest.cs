@@ -20,7 +20,6 @@ namespace WarfareAndWarbands.CharacterCustomization
         public string label;
         public string xenoTypeDefName;
         public string alienDefName;
-        public int CombatPowerCache => combatPowerCache;
         public List<ThingDef> apparelRequests;
         public Dictionary<string, string> thingDefsAndStyles;
         public Dictionary<ThingDef, ThingDef> itemAndStuff;
@@ -49,6 +48,21 @@ namespace WarfareAndWarbands.CharacterCustomization
             itemAndStuff = new Dictionary<ThingDef, ThingDef>();
             thingDefsAndStyles = new Dictionary<string, string>();
         }
+
+        public CustomizationRequest(CustomizationRequest other)
+        {
+            this.defName = Guid.NewGuid().ToString(); 
+            this.label = other.label;
+            this.xenoTypeDefName = other.xenoTypeDefName;
+            this.alienDefName = other.alienDefName;
+            this.apparelRequests = new List<ThingDef>(other.apparelRequests);
+            this.thingDefsAndStyles = new Dictionary<string, string>(other.thingDefsAndStyles);
+            this.itemAndStuff = new Dictionary<ThingDef, ThingDef>(other.itemAndStuff);
+            this.weaponRequest = other.weaponRequest;
+
+        }
+
+        public int CombatPowerCache => combatPowerCache;
 
         public void CustomizePawn(ref Pawn p)
         {

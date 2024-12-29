@@ -23,7 +23,8 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         }
 
-        public static PawnKindDef GenerateDefaultKindDef(CustomizationRequest customizationRequest)
+        public static PawnKindDef GenerateDefaultKindDef(CustomizationRequest customizationRequest,
+            FactionDef faction = null)
         {
             var defaultKindDef = new PawnKindDef
             {
@@ -32,7 +33,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                 label = customizationRequest.label,
                 isFighter = true,
                 race = ThingDefOf.Human,
-                defaultFactionType = FactionDefOf.OutlanderCivil,
+                defaultFactionType = faction,
                 modExtensions = PawnKindDefOf.Pirate.modExtensions,
                 allowOldAgeInjuries = false,
                 maxGenerationAge = 30,

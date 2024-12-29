@@ -9,7 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using Verse.AI.Group;
+using WarfareAndWarbands.CharacterCustomization;
+using WarfareAndWarbands.Warband.Compatibility_VPE;
 using WarfareAndWarbands.Warband.PlayerWarbandRaid;
+using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades.Psycaster;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -26,6 +29,18 @@ namespace WarfareAndWarbands.Warband
             GenSpawn.Spawn(mercenary, Verse.UI.MouseCell(), Find.CurrentMap, WipeMode.Vanish);
             Lord lord = LordMaker.MakeNewLord(mercenary.Faction, new LordJob_DefendPoint(Verse.UI.MouseCell()), Find.CurrentMap, null);
             lord.AddPawn(mercenary);
+        }
+
+        [DebugAction("WAW", "Spawn imperial skipmaster", false, false, false, false, 0, false, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        public static void DoDropHeavyItemsJob()
+        {
+            if (GameComponent_Customization.Instance.customizationRequests.Count < 1)
+            {
+                return;
+            }
+            PsycasterInfo info = new PsycasterInfo(GameComponent_Customization.Instance.customizationRequests.First(), "VPE_Skipmaster");
+            var caster = info.CreatePsycaster();
+            GenSpawn.Spawn(caster, Verse.UI.MouseCell(), Find.CurrentMap, WipeMode.Vanish);
         }
 
         [DebugAction("WAW", "Spawn Warband", actionType = DebugActionType.Action)]

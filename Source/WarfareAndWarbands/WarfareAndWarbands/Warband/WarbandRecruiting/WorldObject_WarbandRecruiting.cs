@@ -137,7 +137,7 @@ namespace WarfareAndWarbands.Warband
 
         public int GetWaitTicks()
         {
-            return (int)this.waitDays * GenDate.TicksPerDay;
+            return (int)(this.waitDays * GenDate.TicksPerDay * WAWSettings.warbandRecruitTimeMultiplier);
         }
 
         public int GetRemainingTicks()

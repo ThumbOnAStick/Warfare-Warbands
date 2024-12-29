@@ -18,4 +18,7 @@
 	<WAW.raidPlayerWarbandChance.Desc>the chance of player warband being raidded every five days is {0}%.</WAW.raidPlayerWarbandChance.Desc>
 	<WAW.upgradeRequiresLeader>upgrades require leader</WAW.upgradeRequiresLeader>
 	<WAW.upgradeRequiresLeader.Desc>Leaders are required if you want to upgrade warbands.</WAW.upgradeRequiresLeader.Desc>
+	<WAW.warbandRecruitTimeMultiplier>Recruit Time Multiplier: {0}</WAW.warbandRecruitTimeMultiplier>
+	<WAW.SelectOnePath>Please select at least one path.</WAW.SelectOnePath>
+
 </LanguageData>

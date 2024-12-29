@@ -77,6 +77,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
             return request;
         }
 
+
         static Pawn GenerateWarbandPawnForPlayer(Warband warband, string kindDefName)
         {
 
@@ -121,6 +122,10 @@ namespace WarfareAndWarbands.Warband.Mercenary
 
         static void TryToSetSkillFor(Pawn p, Warband warband)
         {
+            if(warband == null)
+            {
+                return;
+            }
             if (!warband.HasLeader())
             {
                 return;
@@ -158,6 +163,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
         {
             PawnGenerationRequest request = GetRequest(warband, kindefName);
             Pawn pawn = PawnGenerator.GeneratePawn(request);
+
             if (pawn.Faction != warband.Faction)
                 pawn.SetFaction(warband.Faction);
             return pawn;

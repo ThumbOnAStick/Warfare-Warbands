@@ -18,4 +18,7 @@
   <WAW.raidPlayerWarbandChance.Desc>玩家战团在每五天遭遇袭击事件的概率是{0}%.</WAW.raidPlayerWarbandChance.Desc>
   <WAW.upgradeRequiresLeader>升级需要团长</WAW.upgradeRequiresLeader>
 	<WAW.upgradeRequiresLeader.Desc>如果你想升级战团，你需要确保战团拥有团长。</WAW.upgradeRequiresLeader.Desc>
+	<WAW.warbandRecruitTimeMultiplier>招募时间倍率： {0}</WAW.warbandRecruitTimeMultiplier>
+
+
 </LanguageData>

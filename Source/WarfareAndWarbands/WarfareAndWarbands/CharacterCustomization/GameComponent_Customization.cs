@@ -65,11 +65,14 @@ namespace WarfareAndWarbands.CharacterCustomization
         {
             request.defName = defName;  
             request.label = label;  
+            AddRequest(request);
+        }
+
+        public void AddRequest(CustomizationRequest request)
+        {
             var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request);
             AddRequest(defaultKindDef, request);
         }
-
-      
 
         public void AddRequest(PawnKindDef def, CustomizationRequest request)
         {

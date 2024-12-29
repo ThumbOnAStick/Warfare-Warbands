@@ -50,5 +50,7 @@
 	<WAW.AlreadyUpgraded>Upgrade is already installed</WAW.AlreadyUpgraded>
 	<WAW.IsFree>No service fee</WAW.IsFree>
 	<WAW.Upgrade>Upgrade Warband</WAW.Upgrade>
-
+	<WAW.SelectOneRequest>Please select at least one customization request.</WAW.SelectOneRequest>
+	<WAW.CastersOverflow>There can be at most 3 psycasters.</WAW.CastersOverflow>
+	<WAW.RecruitCaster>Recruit Psycaster</WAW.RecruitCaster>
 </LanguageData>

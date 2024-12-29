@@ -1,5 +1,4 @@
-﻿using CombatExtended.HarmonyCE;
-using RimWorld;
+﻿using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;

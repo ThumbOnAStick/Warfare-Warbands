@@ -1,6 +1,5 @@
 ﻿
 
-using CombatExtended;
 using RimWorld;
 using RimWorld.Planet;
 using System;
@@ -37,7 +36,8 @@ namespace WarfareAndWarbands.CharacterCustomization
         private Vector2 scrollPosition1;
         private bool displayEquipped;
         private string textBuffer;
-        private string filterBuffer;
+        private string filterStream;
+        private List<string> filterBuffer;
         private static readonly int boxSize = 50;
         private static readonly int itemSpacing = ModsConfig.IdeologyActive ? 50 : 5;
         private static readonly int pawnkindSpacing = 5;
@@ -180,7 +180,9 @@ namespace WarfareAndWarbands.CharacterCustomization
 
             Rect boxRect = new Rect(requestOutRect.x - 10, requestOutRect.y - 10, 170, 420);
             Rect newRequestRect = new Rect(boxRect.xMax, boxRect.y, 30, 30);
-            Rect deleteRequestRect = new Rect(boxRect.xMax, newRequestRect.yMax + 10, 30, 30);
+            Rect cloneRequestRect = selectedRequest != null ? new Rect(boxRect.xMax, newRequestRect.yMax + 10, 30, 30) : newRequestRect;
+            Rect deleteRequestRect = new Rect(boxRect.xMax, cloneRequestRect.yMax + 10, 30, 30);
+
             var requests = GameComponent_Customization.Instance.customizationRequests;
             if (requests.Count < 1)
             {
@@ -211,6 +213,19 @@ namespace WarfareAndWarbands.CharacterCustomization
                 SelectNextRequest(customizationRequest);
             }
 
+            if (selectedRequest != null)
+            {
+                bool cloneRequest = Widgets.ButtonImage(cloneRequestRect, TexButton.Copy);
+                if (cloneRequest)
+                {
+                    var customizationRequest = new CustomizationRequest(selectedRequest);
+                    GameComponent_Customization.Instance.AddRequest(customizationRequest);
+                    RefreshDraggables();
+                    SelectNextRequest(customizationRequest);
+                }
+
+            }
+
             bool deleteRequest = Widgets.ButtonImage(deleteRequestRect, TexButton.Delete);
             if (deleteRequest && selectedRequest != null)
             {
@@ -219,9 +234,12 @@ namespace WarfareAndWarbands.CharacterCustomization
             }
         }
 
+    
+
         void SelectNextRequest(CustomizationRequest customizationRequest)
         {
-            filterBuffer = "";
+            filterBuffer = new List<string>();
+            filterStream = "";
             selectedRequest = customizationRequest;
             textBuffer = customizationRequest.label;
 
@@ -395,12 +413,14 @@ namespace WarfareAndWarbands.CharacterCustomization
             int boxWidth = (int)selectionPanelBar.width - boxHeight;
             Rect searchBoxRect = new Rect(selectionPanelBar.x, selectionPanelBar.yMin - boxHeight, boxHeight, boxHeight);
             Rect boxRect = new Rect(searchBoxRect.xMax + 5, selectionPanelBar.yMin - boxHeight, boxWidth, boxHeight);
-            var newBuffer = Widgets.TextField(boxRect, filterBuffer);
-            if(newBuffer != filterBuffer)
+            var newStream = Widgets.TextField(boxRect, filterStream);
+            if(newStream != filterStream)
             {
                 scrollPosition1 = new Vector2();
             }
-            filterBuffer = newBuffer;
+            filterStream = newStream;
+            char space = ' ';
+            filterBuffer = newStream == "" ? new List<string>() : newStream.Split(space).ToList();
             Widgets.ButtonImage(searchBoxRect, TexButton.Search);
         }
 
@@ -423,9 +443,9 @@ namespace WarfareAndWarbands.CharacterCustomization
                 scrollPosition1 = new Vector2();
                 listToDisplay = AllEquippedItems(selectedList);
             }
-            if (filterBuffer != "")
+            if (filterBuffer.Count > 0)
             {
-                listToDisplay = listToDisplay.Where(x => x.label.Contains(filterBuffer)).ToList();
+                listToDisplay = listToDisplay.Where(x => ContainsAll(x.label)).ToList();
             }
 
             foreach (var item in listToDisplay)
@@ -436,6 +456,18 @@ namespace WarfareAndWarbands.CharacterCustomization
             }
 
             Widgets.EndScrollView();
+        }
+
+        bool ContainsAll(string target)
+        {
+            foreach (var buffer in filterBuffer)
+            {
+                if (!target.Contains(buffer))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         List<ThingDef> AllEquippedItems(List<ThingDef> selectedList)
@@ -670,7 +702,8 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             scrollPosition1 = new Vector2();
             this.selectionType = selectionType;
             selectedList = ReturnSelectedList(selectionType);
-            filterBuffer = "";
+            filterStream = "";
+            filterBuffer = new List<string>();
         }
 
 

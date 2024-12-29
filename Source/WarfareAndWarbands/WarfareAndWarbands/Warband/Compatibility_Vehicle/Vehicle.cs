@@ -155,6 +155,7 @@ namespace WarfareAndWarbands.Warband.Compatibility_Vehicle
                 {
                     TryToRecycleVehicle(caster, target.Thing);
                 });
+            
         }
 
         public static void TryToRecycleVehicle(Pawn pawn, Thing vehicle)

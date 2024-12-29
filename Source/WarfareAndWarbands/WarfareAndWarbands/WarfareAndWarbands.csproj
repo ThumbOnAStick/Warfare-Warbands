@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WarfareAndWarbands</RootNamespace>
     <AssemblyName>WarfareAndWarbands</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -87,8 +88,16 @@
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.UIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="VanillaPsycastsExpanded">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2842502659\1.5\Assemblies\VanillaPsycastsExpanded.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Vehicles">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\3014915404\1.5\Assemblies\Vehicles.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VFECore">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2023507013\1.5\Assemblies\VFECore.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -104,14 +113,18 @@
     <Compile Include="QuickRaid\UI\Window_QuickRaid.cs" />
     <Compile Include="Warband\Compatibility_Vehicle\Vehicle.cs" />
     <Compile Include="Warband\Compatibility_Vehicle\VehicleSelectionPanel.cs" />
+    <Compile Include="Warband\Compatibility_VPE\VPE.cs" />
+    <Compile Include="Warband\Compatibility_VPE\Window_VPEWarband.cs" />
     <Compile Include="Warband\HarmonyPatches\WorldPawnPatch.cs" />
     <Compile Include="Warband\Mercenary\JobGiver_RecycleVehicle.cs" />
     <Compile Include="Warband\UI\Dialog_SetCustomName.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandSkillBonus.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\PlayerWarbandUpgrade.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\PlayerWarbandUpgradeHolder.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Psycaster\PsycasterInfo.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Elite.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Outpost.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Psycaster\Upgrade_Psycaster.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Vehicle.cs" />
     <Compile Include="Warband\WAWCaravan\CaravanWarbandUtility.cs" />
     <Compile Include="Warband\WAWCaravan\HarmonyPatches\CaravanGizmosPatch.cs" />

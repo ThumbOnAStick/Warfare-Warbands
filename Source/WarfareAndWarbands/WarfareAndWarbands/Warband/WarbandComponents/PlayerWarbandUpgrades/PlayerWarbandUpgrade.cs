@@ -47,7 +47,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
             return null;
         }
 
-   
+        public virtual IEnumerable<Pawn> ExtraPawns()
+        {
+            yield break;
+        }
 
         public virtual void OnArrived(List<Pawn> pawns)
         {

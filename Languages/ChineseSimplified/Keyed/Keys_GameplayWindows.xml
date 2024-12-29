@@ -50,5 +50,7 @@
 	<WAW.AlreadyUpgraded>升级已被装备</WAW.AlreadyUpgraded>
 	<WAW.IsFree>免服务费</WAW.IsFree>
 	<WAW.Upgrade>升级战团</WAW.Upgrade>
-
+	<WAW.SelectOnePath>请选择其中一项灵能职业。</WAW.SelectOnePath>
+	<WAW.SelectOneRequest>请选择至少一个自定义兵种。</WAW.SelectOneRequest>
+	<WAW.RecruitCaster>招募灵能使</WAW.RecruitCaster>
 </LanguageData>

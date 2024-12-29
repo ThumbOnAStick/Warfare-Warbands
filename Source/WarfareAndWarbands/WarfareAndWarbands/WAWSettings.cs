@@ -24,6 +24,8 @@ namespace WarfareAndWarbands
         public static bool everReadUpdateLog = false;
         public static bool upgradeRequiresLeader= true;
         public static float warbandRaidCooldown = 1.5f;
+        public static float warbandRecruitTimeMultiplier = 1f;
+
         private static readonly float UpdateVersion = 1.11f;
 
 
@@ -38,6 +40,7 @@ namespace WarfareAndWarbands
             Scribe_Values.Look(ref enableFactionDefeat, "enableFactionDefeat", defaultValue: false);
             Scribe_Values.Look(ref everReadUpdateLog, $"everReadUpdateLog{UpdateVersion}", defaultValue: false);
             Scribe_Values.Look(ref warbandRaidCooldown, "warbandRaidCooldown", 1.5f);
+            Scribe_Values.Look(ref warbandRecruitTimeMultiplier, "warbandRecruitTimeMultiplier", 1f);
             Scribe_Values.Look(ref upgradeRequiresLeader, "upgradeRequiresLeader", true);
 
         }
@@ -60,8 +63,9 @@ namespace WarfareAndWarbands
                     "WAW.raidPlayerWarbandChance.Desc".Translate(raidPlayerWarbandChance)
                     ); ;
             warbandRaidCooldown = listing_Standard.SliderLabeled("WAW.warbandRaidCooldown".Translate(warbandRaidCooldown.ToString("0.0")), warbandRaidCooldown, 1, 10, .5f, "WAW.warbandRaidCooldown.Desc".Translate());
+            warbandRecruitTimeMultiplier = listing_Standard.SliderLabeled("WAW.warbandRecruitTimeMultiplier".Translate(warbandRecruitTimeMultiplier.ToString("0.0")), warbandRecruitTimeMultiplier, .5f, 5f, .5f);
             listing_Standard.CheckboxLabeled("WAW.upgradeRequiresLeader".Translate(), ref upgradeRequiresLeader, "WAW.upgradeRequiresLeader.Desc".Translate()); ;
-            listing_Standard.CheckboxLabeled("WAW.enableFactionDefeat".Translate(), ref enableFactionDefeat, "WAW.enableFactionDefeat.Desc".Translate()); ;
+            listing_Standard.CheckboxLabeled("WAW.enableFactionDefeat".Translate(), ref enableFactionDefeat, "WAW.enableFactionDefeat.Desc".Translate()); 
             listing_Standard.End();
             this.Write();
         }

@@ -10,7 +10,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 {
     public class PlayerWarbandCooldownManager : IExposable
     {
-        public int lastRaidTick;
+        private int _lastRaidTick;
+        private int _minCooldownDays;
 
         public PlayerWarbandCooldownManager()
         {
@@ -18,15 +19,18 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             _minCooldownDays = 0;
         }
 
+        public int LastRaidTick => _lastRaidTick;
+
         public int TickGame => Find.TickManager.TicksGame;
 
-        private int _minCooldownDays;
 
         private int RaidCoolDownTicks => (int)(Math.Max(_minCooldownDays + .5f, WAWSettings.warbandRaidCooldown) * 60000);
 
         public void ExposeData()
         {
-            Scribe_Values.Look(ref lastRaidTick, "lastRaidTick", 0);
+            Scribe_Values.Look(ref _lastRaidTick, "lastRaidTick", 0);
+            Scribe_Values.Look(ref _minCooldownDays, "minCooldownDays", 0);
+
         }
 
         public void SetMinCooldownDays(int minCooldownDays)
@@ -36,23 +40,23 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public void ResetRaidTick()
         {
-            lastRaidTick = -RaidCoolDownTicks;
+            _lastRaidTick = -RaidCoolDownTicks;
         }
 
 
         public void SetLastRaidTick()
         {
-            lastRaidTick = TickGame;
+            _lastRaidTick = TickGame;
         }
 
         public bool CanFireRaid()
         {
-            return TickGame - lastRaidTick > RaidCoolDownTicks;
+            return TickGame - _lastRaidTick > RaidCoolDownTicks;
         }
 
         public int GetRemainingTicks()
         {
-            return Math.Max(0, lastRaidTick + RaidCoolDownTicks - TickGame);
+            return Math.Max(0, _lastRaidTick + RaidCoolDownTicks - TickGame);
         }
 
         public float GetRemainingDays()

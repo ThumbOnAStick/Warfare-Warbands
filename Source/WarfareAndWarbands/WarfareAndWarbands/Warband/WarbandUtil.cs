@@ -22,7 +22,6 @@ namespace WarfareAndWarbands.Warband
         {
             AllPlayerWarbandsCache = new HashSet<Warband>();
             AllPlayerRecruitingWarbandsCache = new HashSet<WorldObject_WarbandRecruiting>();
-
             RefreshSoldierPawnKinds();
         }
 
@@ -323,6 +322,10 @@ namespace WarfareAndWarbands.Warband
 
         public static bool TryToSpendSilverFromColony(Map currentMap, int cost)
         {
+            if(currentMap == null)
+            {
+                currentMap = Find.AnyPlayerHomeMap;
+            }
             if (cost <= 0)
             {
                 return true;

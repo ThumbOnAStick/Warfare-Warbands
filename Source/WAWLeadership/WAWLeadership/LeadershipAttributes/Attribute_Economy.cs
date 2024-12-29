@@ -36,8 +36,8 @@ namespace WAWLeadership.LeadershipAttributes
             {
                 { 0, 0.3f},
                 { 1, 0.4f},
-                { 2, 0.7f},
-                { 3, 1},
+                { 2, 0.45f},
+                { 3, 0.55f},
             };
         }
 
