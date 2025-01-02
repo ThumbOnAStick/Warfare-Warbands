@@ -12,8 +12,10 @@ namespace WarfareAndWarbands.Warfare.UI.Test
     public class DraggableButton
     {
         public Rect IdleRect => this.idleRect;
-        private bool dragging;
-        private int mouseOverFrameCounter;
+        private bool _beingDragged;
+        private int _mouseDraggingFrameCounter;
+        private int _mouseOverFrameCounter;
+
         private Vector2 mouseOffset;
         private Rect idleRect;
         private Texture2D buttonTexture;
@@ -25,24 +27,24 @@ namespace WarfareAndWarbands.Warfare.UI.Test
 
         public DraggableButton()
         {
-            dragging = false;
-            mouseOverFrameCounter = 0;
+            _beingDragged = false;
+            _mouseDraggingFrameCounter = 0;
             idleRect = new Rect();
         }
 
         public DraggableButton(Texture2D buttonTexture, Rect idleRect, Action act = null, Func<bool> shouldHighlight = null)
         {
-            dragging = false;
-            mouseOverFrameCounter = 0;
+            _beingDragged = false;
+            _mouseDraggingFrameCounter = 0;
             this.buttonTexture = buttonTexture;
             this.idleRect = idleRect;
             this.action = act;
             this.shouldHighlight = shouldHighlight;
         }
-        public DraggableButton(string text, Rect idleRect, Action action = null,Action<DraggableButton> onSwapped = null, Func<bool> shouldHighlight = null)
+        public DraggableButton(string text, Rect idleRect, Action action = null, Action<DraggableButton> onSwapped = null, Func<bool> shouldHighlight = null)
         {
-            dragging = false;
-            mouseOverFrameCounter = 0;
+            _beingDragged = false;
+            _mouseDraggingFrameCounter = 0;
             this.idleRect = idleRect;
             this.text = text;
             this.action = action;
@@ -52,8 +54,8 @@ namespace WarfareAndWarbands.Warfare.UI.Test
 
         public DraggableButton(string text, bool drawBox, Rect idleRect, Action act = null, Func<bool> shouldHighlight = null)
         {
-            dragging = false;
-            mouseOverFrameCounter = 0;
+            _beingDragged = false;
+            _mouseDraggingFrameCounter = 0;
             this.idleRect = idleRect;
             this.text = text;
             this.drawBox = drawBox;
@@ -63,26 +65,26 @@ namespace WarfareAndWarbands.Warfare.UI.Test
         }
 
 
-        public bool Update(bool dragged, List<DraggableButton> buttons)
+        public bool Update(bool otherDragged, List<DraggableButton> buttons)
         {
-            DrawIdle();
-            if (dragged)
+            DrawIdle(otherDragged);
+            if (otherDragged)
             {
                 return false;
             }
             ValidateDrag();
             DrawWhileDragging();
-            if (this.dragging)
+            if (this._beingDragged)
             {
                 TryToReplaceOthers(buttons);
             }
-            return dragging;
+            return _beingDragged;
         }
 
-        void DrawIdle()
+        void DrawIdle(bool otherDragged)
         {
-            if (mouseOverFrameCounter < 10)
-                Draw(idleRect);
+            if (_mouseDraggingFrameCounter < 10)
+                Draw(idleRect, otherDragged);
             DrawHighlight();
 
         }
@@ -95,15 +97,25 @@ namespace WarfareAndWarbands.Warfare.UI.Test
         }
         void ValidateDrag()
         {
-            if (Input.GetMouseButtonDown(0) && Mouse.IsOver(idleRect))
+            if (Mouse.IsOver(idleRect))
             {
-                dragging = true;
+                if (_mouseOverFrameCounter < 30)
+                    _mouseOverFrameCounter++;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    _beingDragged = true;
+                }
             }
-            else if (Input.GetMouseButtonUp(0))
+            else
+            {
+                _mouseOverFrameCounter = 0;
+            }
+            if (Input.GetMouseButtonUp(0))
             {
                 TryToDoAction();
-                dragging = false;
-                mouseOverFrameCounter = 0;
+                _beingDragged = false;
+                _mouseDraggingFrameCounter = 0;
+
             }
         }
         void TryToDoAction()
@@ -114,7 +126,7 @@ namespace WarfareAndWarbands.Warfare.UI.Test
 
         void DrawWhileDragging()
         {
-            if (dragging)
+            if (_beingDragged)
             {
                 IncrementMouseOverFrame();
                 TryDrawDragged();
@@ -125,12 +137,21 @@ namespace WarfareAndWarbands.Warfare.UI.Test
         {
             if (Mouse.IsOver(idleRect))
             {
-                mouseOverFrameCounter++;
+                _mouseDraggingFrameCounter++;
             }
         }
 
-        void Draw(Rect inRect)
+        void Draw(Rect inRect, bool otherDragged)
         {
+            if (drawBox)
+            {
+                Widgets.DrawBox(inRect);
+            }
+            if (Mouse.IsOver(idleRect) && !_beingDragged && !otherDragged && _mouseOverFrameCounter > 20)
+            {
+                Widgets.Label(new Rect(inRect.position + Vector2.one * 5, inRect.size), "WAW.DRAG".Translate());
+                return;
+            }
             if (this.buttonTexture != null)
             {
                 Widgets.DrawTextureFitted(inRect, this.buttonTexture, 1f);
@@ -139,17 +160,14 @@ namespace WarfareAndWarbands.Warfare.UI.Test
             {
                 Widgets.Label(new Rect(inRect.position + Vector2.one * 5, inRect.size), this.text);
             }
-            if (drawBox)
-            {
-                Widgets.DrawBox(inRect);
-            }
+
         }
 
         void TryDrawDragged()
         {
-            if (mouseOverFrameCounter > 10)
+            if (_mouseDraggingFrameCounter > 10)
             {
-                Draw(GetMouseRect());
+                Draw(GetMouseRect(), otherDragged: false);
             }
             else
             {

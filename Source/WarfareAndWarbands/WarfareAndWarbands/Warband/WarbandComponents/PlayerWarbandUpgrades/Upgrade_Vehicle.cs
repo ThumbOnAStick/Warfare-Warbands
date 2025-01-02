@@ -22,7 +22,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
             _vehicles = new Dictionary<string, int>();
         }
         public override string Label => "WAW.VehicleLabel".Translate();
-
+        public override string Lore => "WAW.VehicleLore".Translate();
         public Dictionary<string, int> Vehicles => _vehicles;
 
         public override int UpgradeCost => 10000;

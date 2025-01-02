@@ -3,6 +3,7 @@ using RimWorld;
 
 using Verse;
 using Verse.Sound;
+using System;
 
 
 namespace WarfareAndWarbands.Warband.WarbandComponents
@@ -16,8 +17,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 Messages.Message("WAW.InvalidObject".Translate(), MessageTypeDefOf.NegativeEvent);
                 return false;
             }
-
-            float distance = Find.WorldGrid.ApproxDistanceInTiles(info.Tile, warband.Tile);
+            float distance = Math.Max(Find.WorldGrid.ApproxDistanceInTiles(info.Tile, warband.Tile), 1.5f);
             var curve = WarbandUtil.ResettleCurve();
             int memberCount = warband.GetMemberCount();
             int costPerPawn = (int)curve.Evaluate(memberCount);

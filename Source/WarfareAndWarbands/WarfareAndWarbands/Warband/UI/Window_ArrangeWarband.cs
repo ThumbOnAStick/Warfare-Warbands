@@ -10,18 +10,20 @@ using Verse.Noise;
 using Verse.Sound;
 using WarfareAndWarbands.CharacterCustomization;
 using WarfareAndWarbands.Warband.UI;
+using WarfareAndWarbands.Warband.UI.WarbandConfigureSteps;
 
 namespace WarfareAndWarbands.Warband
 {
     public class Window_ArrangeWarband : Window
     {
         private Vector2 scrollPosition;
-        private Map map;
+        private readonly Map map;
         private readonly float descriptionHeight = 100f;
         private readonly float descriptionWidth = 120f;
         private readonly float entryHeight = 20f;
         private readonly float entryWidth = 20f;
-        private readonly int pawnKindsEachRow = 5;
+        private readonly int pawnKindsEachRow = 6;
+        private int step = 0;
 
         public override Vector2 InitialSize
         {
@@ -39,28 +41,34 @@ namespace WarfareAndWarbands.Warband
         public override void DoWindowContents(Rect inRect)
         {
             WarbandUI.DrawExitButton(this, inRect);
-
-            WarbandUI.DrawColorPanel(inRect, out float colorsHeight, out Rect colorSelectorRect, null);
-
-            WarbandUI.DrawPawnSelection(inRect, colorSelectorRect, ref scrollPosition, pawnKindsEachRow, colorsHeight, descriptionHeight, descriptionWidth, entryWidth, entryHeight);
-
-            WarbandUI.DrawResetButton();
-
-            DrawCost(colorSelectorRect, colorsHeight);
-            DrawRecruitButton();
+            if (step <= 0)
+            {
+                StepOne.Draw(inRect);
+            }
+            else if (step == 1)
+            {
+                StepTwo.Draw(inRect);
+            }
+            else
+            {
+                StepThree.Draw(inRect, ref scrollPosition, pawnKindsEachRow, descriptionHeight, descriptionWidth, entryWidth, entryHeight);
+                DrawCost(inRect);
+                DrawRecruitButton(inRect);
+            }
+            WarbandUI.DrawNextStepButton(inRect, ref step);
 
         }
 
-        void DrawCost(Rect colorSelectorRect, float colorsHeight)
+        void DrawCost(Rect inRect)
         {
 
-            Rect costRect = new Rect(30, colorSelectorRect.y + colorsHeight, 200, 50);
+            Rect costRect = new Rect(30, inRect.y, 200, 50);
             Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostEstablishment().ToString()));
         }
 
-        void DrawRecruitButton()
+        void DrawRecruitButton(Rect inRect)
         {
-            bool doRecruit = Widgets.ButtonText(new Rect(330 + 50 - 100, 400, 200, 50), "WAW.RecruitWarband".Translate());
+            bool doRecruit = Widgets.ButtonText(new Rect(inRect.x + inRect.width / 2 - 100, 350, 200, 50), "WAW.RecruitWarband".Translate());
             if (doRecruit)
             {
                 this.Close();

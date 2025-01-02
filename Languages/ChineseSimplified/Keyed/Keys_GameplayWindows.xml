@@ -53,4 +53,17 @@
 	<WAW.SelectOnePath>请选择其中一项灵能职业。</WAW.SelectOnePath>
 	<WAW.SelectOneRequest>请选择至少一个自定义兵种。</WAW.SelectOneRequest>
 	<WAW.RecruitCaster>招募灵能使</WAW.RecruitCaster>
+	<WAW.EltexCost>灵质价格： {0}</WAW.EltexCost>
+	<WAW.PsyCasterLabel>灵能部队</WAW.PsyCasterLabel>
+	<WAW.RecruitPsycasters>招募灵能使</WAW.RecruitPsycasters>
+	<WAW.RecruitPsycasters.Desc>从破碎帝国招募灵能使，他们的每次出勤都会消耗灵质。</WAW.RecruitPsycasters.Desc>
+	<WAW.EltexTip>点击三个槽位中的一个以取消选中。</WAW.EltexTip>
+	<WAW.AlreadySelectedPaths>已选{0}个职业</WAW.AlreadySelectedPaths>
+	<WAW.RequireRelation>需要{0}的{1}好感度。</WAW.RequireRelation>
+	<WAW.DRAG>拖拽以移动</WAW.DRAG>
+	<WAW.NextStep>下一步</WAW.NextStep>
+	<WAW.FactionOverride>决定战团的派系类型，这会覆盖士兵的文化和外星种族。</WAW.FactionOverride>
+	<WAW.InsufficientPsycaster>无灵能使，请从“招募灵能使”面板中选择。</WAW.InsufficientPsycaster>
+	<WAW.PleaseSelectUpgrade>请选择一项升级。</WAW.PleaseSelectUpgrade>
+
 </LanguageData>

@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AlienRace;
+using RimWorld;
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
@@ -67,8 +68,7 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.icon = TexCommand.Attack;
             command_Action.action = delegate ()
             {
-                if (band.playerWarbandManager.upgradeHolder.CanAttackCurrent)
-                    band.playerWarbandManager.OrderPlayerWarbandToAttack();
+                band.playerWarbandManager.OrderPlayerWarbandToAttack();
             };
             command_Action.Order = 3000f;
             return command_Action;
@@ -377,15 +377,15 @@ namespace WarfareAndWarbands.Warband.UI
             return option;
         }
 
-        public static void DrawColorPanel(Rect inRect, out float colorsHeight, out Rect colorSelectorRect, Warband warband = null)
+        public static void DrawColorPanel(Rect inRect, Warband warband = null)
         {
-            Rect colorLabelRect = new Rect(inRect.x, inRect.y, 100, 50);
-            Rect colorBoxRect = new Rect(inRect.x + 130, inRect.y, 22, 22);
-            colorSelectorRect = new Rect(inRect.x, inRect.y + 30, inRect.width, 50);
+            Rect colorLabelRect = new Rect(inRect.x, inRect.y + 100, 100, 50);
+            Rect colorBoxRect = new Rect(inRect.x + 130, colorLabelRect.y, 22, 22);
+            Rect colorSelectorRect = new Rect(inRect.x, colorLabelRect.y + 30, inRect.width, 50);
             Widgets.Label(colorLabelRect, "WAW.ColorOverride".Translate());
             Color color = warband == null ? GameComponent_WAW.playerWarband.colorOverride : warband.playerWarbandManager.colorOverride.GetColorOverride();
             Widgets.ColorBox(colorBoxRect, ref color, color);
-            bool selectColor = Widgets.ColorSelector(colorSelectorRect, ref color, AllApprealColors, out colorsHeight, null, 22, 2, null);
+            bool selectColor = Widgets.ColorSelector(colorSelectorRect, ref color, AllApprealColors, out float colorsHeight, null, 22, 2, null);
             if (selectColor)
             {
                 TrySetColorOverride(warband, color);
@@ -401,30 +401,29 @@ namespace WarfareAndWarbands.Warband.UI
 
         public static void DrawPawnSelection(
             Rect inRect,
-            Rect colorSelectorRect,
             ref Vector2 scrollPosition,
             int pawnKindsEachRow,
-            float colorsHeight,
             float descriptionHeight,
             float descriptionWidth,
             float entryWidth,
-            float entryHeight
+            float entryHeight,
+            Warband warband = null
             )
         {
 
             var techLeve = "WAW.TechLevel".Translate((int)GameComponent_WAW.playerWarband.techLevel);
             int techWidth = 80;
-            Rect techRect = new Rect(380 - techWidth / 2, colorSelectorRect.y + colorsHeight, techWidth, 50);
-            Rect techRectMinus = new Rect(techRect.x - entryWidth, colorSelectorRect.y + colorsHeight, entryWidth, entryHeight);
-            Rect techRectAddon = new Rect(techRect.xMax + entryWidth, colorSelectorRect.y + colorsHeight, entryWidth, entryHeight);
+            Rect techRect = TopCenterRectFor(inRect, new Vector2(techWidth, 50));
+            Rect techRectMinus = new Rect(techRect.x - entryWidth, techRect.y, entryWidth, entryHeight);
+            Rect techRectAddon = new Rect(techRect.xMax + entryWidth, techRect.y, entryWidth, entryHeight);
             bool decreaseTech = Widgets.ButtonImage(techRectMinus, TexUI.ArrowTexLeft);
             Widgets.Label(techRect, techLeve);
             bool addTech = Widgets.ButtonImage(techRectAddon, TexUI.ArrowTexRight);
             if (addTech && GameComponent_WAW.playerWarband.techLevel < TechLevel.Archotech) { GameComponent_WAW.playerWarband.techLevel++; }
             if (decreaseTech && GameComponent_WAW.playerWarband.techLevel > TechLevel.Undefined) { GameComponent_WAW.playerWarband.techLevel -= 1; }
             var allCombatPawns = WarbandUtil.SoldierPawnKindsWithTechLevel(GameComponent_WAW.playerWarband.techLevel);
-            Rect outRect = new Rect(inRect.x, colorSelectorRect.yMax + 50f, inRect.width, 200f);
-            Rect viewRect = new Rect(inRect.x, outRect.y, inRect.width - 30f, (float)((allCombatPawns.Count() / pawnKindsEachRow + 1) * (descriptionHeight + 10)));
+            Rect outRect =  CenterRectFor(inRect, new Vector2(inRect.width, 200f));
+            Rect viewRect = new Rect(outRect.x, outRect.y, inRect.width - 30f, (float)((allCombatPawns.Count() / pawnKindsEachRow + 1) * (descriptionHeight+ entryHeight + 10)));
             Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect);
             float depth = outRect.y;
             int pawnKindsStacked = 0;
@@ -438,16 +437,32 @@ namespace WarfareAndWarbands.Warband.UI
                 if (pawnKindsStacked > pawnKindsEachRow)
                 {
                     pawnKindsStacked = 1;
-                    depth += descriptionHeight + 10;
+                    depth += descriptionHeight + 30;
                 }
                 float distance = 30 + 110 * (pawnKindsStacked - 1);
-                Widgets.Label(new Rect(distance, depth, descriptionWidth, descriptionHeight), WarbandUI.PawnKindLabel(p) + "(" + p.combatPower + ")");
+                Rect boxRect = new Rect(distance, depth, descriptionWidth - 30, descriptionHeight + entryHeight);
+                Widgets.Label(new Rect(boxRect.position, new Vector2(descriptionWidth, descriptionHeight)), WarbandUI.PawnKindLabel(p) + "(" + p.combatPower + ")");
                 var amount = GameComponent_WAW.playerWarband.bandMembers[p.defName];
-                bool minus = Widgets.ButtonImage(new Rect(distance, depth + 30, entryWidth, entryHeight), TexUI.ArrowTexLeft);
-                Widgets.Label(new Rect(distance + entryWidth, depth + 30, entryWidth, entryHeight), amount.ToString());
-                bool add = Widgets.ButtonImage(new Rect(distance + entryWidth * 2, depth + 30, entryWidth, entryHeight), TexUI.ArrowTexRight);
+                Rect labelRect = CenterRectFor(boxRect, new Vector2(entryWidth, entryHeight));
+                Widgets.Label(labelRect, amount.ToString());
+                bool minus = Widgets.ButtonImage(new Rect(labelRect.x - entryWidth * 2, labelRect.y, entryWidth, entryHeight), TexUI.ArrowTexLeft);
+                bool add = Widgets.ButtonImage(new Rect(labelRect.xMax, labelRect.y, entryWidth, entryHeight), TexUI.ArrowTexRight);
                 if (minus && GameComponent_WAW.playerWarband.bandMembers[p.defName] > 0) { GameComponent_WAW.playerWarband.bandMembers[p.defName]--; }
                 if (add) { GameComponent_WAW.playerWarband.bandMembers[p.defName]++; }
+                bool contains = warband == null ?
+                    GameComponent_WAW.playerWarband.bandMembers.ContainsKey(p.defName) && GameComponent_WAW.playerWarband.bandMembers[p.defName] > 0 :
+                    warband.bandMembers.ContainsKey(p.defName) && warband.bandMembers[p.defName] > 0;
+                if (contains)
+                {
+                    Widgets.DrawBox(boxRect);
+                }
+                if (p.defaultFactionType != null)
+                {
+                    GUI.color = p.defaultFactionType.DefaultColor;
+                    Widgets.DrawTextureFitted(CenterRectFor(boxRect, new Vector2(30, 30), Vector2.up * 30), p.defaultFactionType.FactionIcon, 1f);
+                    GUI.color = Color.white;
+
+                }
             }
 
             Widgets.EndScrollView();
@@ -455,7 +470,7 @@ namespace WarfareAndWarbands.Warband.UI
 
         public static void DrawResetButton()
         {
-            bool doReset = Widgets.ButtonText(new Rect(330, 350, 100, 20), "WAW.ResetWarband".Translate());
+            bool doReset = Widgets.ButtonText(new Rect(330, 325, 100, 20), "WAW.ResetWarband".Translate());
             if (doReset)
             {
                 for (int i = 0; i < GameComponent_WAW.playerWarband.bandMembers.Count; i++)
@@ -476,6 +491,41 @@ namespace WarfareAndWarbands.Warband.UI
             }
         }
 
+        public static Rect TopCenterRectFor(Rect inRect, Vector2 selfSize)
+        {
+            return new Rect(TopCenterPositionFor(inRect, selfSize), selfSize);
+        }
+
+        public static Rect CenterRectFor(Rect inRect, Vector2 selfSize, Vector2 offset)
+        {
+            return new Rect(CenterPositionFor(inRect, selfSize) + offset, selfSize);
+        }
+
+        public static Rect CenterRectFor(Rect inRect, Vector2 selfSize)
+        {
+            return new Rect(CenterPositionFor(inRect, selfSize), selfSize);
+        }
+
+        static Vector2 CenterPositionFor(Rect inRect, Vector2 selfSize)
+        {
+            return new Vector2(inRect.center.x - selfSize.x / 2, inRect.center.y - selfSize.y / 2);
+        }
+        static Vector2 TopCenterPositionFor(Rect inRect, Vector2 selfSize)
+        {
+            return new Vector2(inRect.center.x - selfSize.x / 2, 0);
+        }
+        public static void DrawNextStepButton(Rect inRect, ref int step)
+        {
+            if(step >= 2)
+            {
+                return;
+            }
+            Rect nextStepButtonRect = new Rect(inRect.x + inRect.width/ 2 - 100, 400, 200, 50);
+            if(Widgets.ButtonText(nextStepButtonRect, "WAW.NextStep".Translate()))
+            {
+                step++;
+            }
+        }
         static void AssignLeader(Pawn pawn, Caravan caravan, Warband warband)
         {
             warband.playerWarbandManager?.leader?.AssignLeader(pawn, caravan);
@@ -501,6 +551,40 @@ namespace WarfareAndWarbands.Warband.UI
                 !p.MapHeld.GetComponent<MapComponent_WarbandRaidTracker>().LtterSent();
         }
 
+        public static void FillSlots(Rect slotRect,IEnumerable<Texture> textures)
+        {
+            float heightRate = slotRect.height / slotRect.width;
+            int count = textures.Count();
+            int splits = 0;
+            if (count > 1)
+                for (int j = 1; j < 5; j++)
+                {
+                    if (count <= Math.Pow(4, j))
+                    {
+                        splits = j;
+                        break;
+                    }
+                }
+
+            int denominator = splits + 1;
+            float edge = slotRect.width / denominator;
+            for (int i = 0; i < denominator; i++)
+            {
+                for (int j = 0; j < denominator; j++)
+                {
+                    int index = i + j * denominator;
+                    if (count < index + 1)
+                    {
+                        continue;
+                    }
+                    Widgets.DrawTextureFitted(new Rect(
+                        slotRect.x + i * edge,
+                        slotRect.y + j * edge * heightRate,
+                        edge,
+                        edge * heightRate), textures.ElementAt(index), 1f);
+                }
+            }
+        }
 
 
     }

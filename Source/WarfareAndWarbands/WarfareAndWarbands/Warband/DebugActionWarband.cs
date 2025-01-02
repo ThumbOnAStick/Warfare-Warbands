@@ -38,7 +38,7 @@ namespace WarfareAndWarbands.Warband
             {
                 return;
             }
-            PsycasterInfo info = new PsycasterInfo(GameComponent_Customization.Instance.customizationRequests.First(), "VPE_Skipmaster");
+            PsycasterInfo info = new PsycasterInfo(GameComponent_Customization.Instance.customizationRequests.First(), new List<string> { "VPE_Skipmaster" });
             var caster = info.CreatePsycaster();
             GenSpawn.Spawn(caster, Verse.UI.MouseCell(), Find.CurrentMap, WipeMode.Vanish);
         }
@@ -156,6 +156,13 @@ namespace WarfareAndWarbands.Warband
                 var playerWarband = GenerateRandomPlayerWarband(info);
                 playerWarband.SetFaction(Faction.OfPlayer);
                 playerWarband.playerWarbandManager.upgradeHolder.GainVehilceUpgrade();
+            });
+
+            yield return new FloatMenuOption("psycaster upgrade", delegate
+            {
+                var playerWarband = GenerateRandomPlayerWarband(info);
+                playerWarband.SetFaction(Faction.OfPlayer);
+                playerWarband.playerWarbandManager.upgradeHolder.GainPsycasterUpgrade();
             });
         }
 

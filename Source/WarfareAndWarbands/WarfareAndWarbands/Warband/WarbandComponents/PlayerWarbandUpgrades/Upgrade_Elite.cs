@@ -23,6 +23,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         public override bool CanMove => true;
         public override int UpgradeCost => 10000;
         public override string Label => "WAW.EliteLabel".Translate();
+        public override string Lore => "WAW.EliteLore".Translate();
 
         public override QualityCategory GearQuality => QualityCategory.Masterwork;
 

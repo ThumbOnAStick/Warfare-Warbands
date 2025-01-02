@@ -118,6 +118,9 @@
     <Compile Include="Warband\HarmonyPatches\WorldPawnPatch.cs" />
     <Compile Include="Warband\Mercenary\JobGiver_RecycleVehicle.cs" />
     <Compile Include="Warband\UI\Dialog_SetCustomName.cs" />
+    <Compile Include="Warband\UI\WarbandConfigureSteps\StepOne.cs" />
+    <Compile Include="Warband\UI\WarbandConfigureSteps\StepThree.cs" />
+    <Compile Include="Warband\UI\WarbandConfigureSteps\StepTwo.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandSkillBonus.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\PlayerWarbandUpgrade.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\PlayerWarbandUpgradeHolder.cs" />

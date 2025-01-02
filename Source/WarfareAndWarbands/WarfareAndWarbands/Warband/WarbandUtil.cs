@@ -213,7 +213,8 @@ namespace WarfareAndWarbands.Warband
                 }
             }
             Find.WorldObjects.Add(warband);
-            TryToSendLeaderLetter();
+            if (warband.Faction == Faction.OfPlayer)
+                TryToSendLeaderLetter();
             return warband;
         }
 
@@ -370,7 +371,7 @@ namespace WarfareAndWarbands.Warband
             }
             return true;
         }
-
+    
         public static Settlement AddNewHome(int tile, Faction faction, WorldObjectDef targetDef)
         {
             Settlement settlement;

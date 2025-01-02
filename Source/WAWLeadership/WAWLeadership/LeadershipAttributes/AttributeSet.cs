@@ -171,6 +171,10 @@ namespace WAWLeadership.LeadershipAttributes
         public float GetLootMultiplier()
         {
             var ability = (Attribute_Economy)GetAttribute<Attribute_Economy>();
+            if(ability == null)
+            {
+                return 0.3f;
+            }
             return ability.GetLootValueMultiplier();
         }
 

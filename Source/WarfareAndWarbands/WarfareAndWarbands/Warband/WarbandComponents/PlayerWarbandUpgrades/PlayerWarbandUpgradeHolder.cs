@@ -45,6 +45,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
             SetUpgrade(outpost);
         }
 
+        public void GainPsycasterUpgrade()
+        {
+            Upgrade_Psycaster psy = new Upgrade_Psycaster();
+            SetUpgrade(psy);
+        }
+
         public T GetUpgrade<T>() where T: PlayerWarbandUpgrade
         {
             return this.selectedUpgrade as T;

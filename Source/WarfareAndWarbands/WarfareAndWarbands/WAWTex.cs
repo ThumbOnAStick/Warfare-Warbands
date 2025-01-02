@@ -28,7 +28,8 @@ namespace WarfareAndWarbands
         public static readonly Texture2D WarbandTex = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/Warband");
         public static readonly Texture2D WarbandOutpost = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/WarbandOutpost");
         public static readonly Texture2D WarbandEliteTex = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/WarbandElite");
-        public static readonly Texture2D WarbandVehicleTex = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/BridgeCombatTeam");
+        public static readonly Texture2D WarbandVehicleTex = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/BrigadeCombatTeam");
+        public static readonly Texture2D WarbandPsycasterTex = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/Psycasters");
         public static readonly Texture2D PurchaseVehicleTex = ContentFinder<Texture2D>.Get("UI/Commands/PurchaseVehicle");
 
 

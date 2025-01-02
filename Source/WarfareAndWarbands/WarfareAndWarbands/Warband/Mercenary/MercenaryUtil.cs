@@ -42,7 +42,8 @@ namespace WarfareAndWarbands.Warband.Mercenary
                     var leader = warband.playerWarbandManager.leader.Leader;
                     if (SetMercenaryComp(leader, warband, ele.Key, warband.Faction))
                         list.Add(leader);
-                    leader.health.hediffSet.hediffs.RemoveAll(x => x.PainFactor > 0);
+                    leader.health.hediffSet.hediffs.RemoveAll(x => x.def.tendable && x.def.isBad);
+                    leader.health.hediffSet.hediffs.ForEach(x => leader.health.Notify_HediffChanged(x));
                     leader.needs.SetInitialLevels();
                     if (CEActive())
                     {
@@ -50,6 +51,10 @@ namespace WarfareAndWarbands.Warband.Mercenary
                     }
                 }
 
+            }
+            if (warband.playerWarbandManager.upgradeHolder.HasUpgrade)
+            {
+                list.AddRange(warband.playerWarbandManager.upgradeHolder.SelectedUpgrade.ExtraPawns(warband));
             }
             return list;
         }
@@ -72,8 +77,19 @@ namespace WarfareAndWarbands.Warband.Mercenary
                 kindDef = WarbandUtil.SoldierPawnKindsCache.First(x => x.defName == kindDefName);
             }
             Faction faction = kindDef.defaultFactionType != null ? Find.FactionManager.FirstFactionOfDef(kindDef.defaultFactionType) : warband.Faction;
-            PawnGenerationRequest request = new PawnGenerationRequest(kindDef, faction, mustBeCapableOfViolence: true);
-            request.AllowedDevelopmentalStages = DevelopmentalStage.Adult;
+            if (warband.PawnKindFactionType != null)
+            {
+                var f = Find.FactionManager.FirstFactionOfDef(warband.PawnKindFactionType);
+                if (f != null)
+                {
+                    faction = f;
+                    Log.Message("faction type set for generation request");
+                }
+            }
+            PawnGenerationRequest request = new PawnGenerationRequest(kindDef, faction, mustBeCapableOfViolence: true)
+            {
+                AllowedDevelopmentalStages = DevelopmentalStage.Adult,
+            };
             return request;
         }
 

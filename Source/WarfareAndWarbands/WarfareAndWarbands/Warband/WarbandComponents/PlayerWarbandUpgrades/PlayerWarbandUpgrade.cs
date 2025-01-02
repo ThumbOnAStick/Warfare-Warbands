@@ -25,7 +25,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
 
         public virtual string Label => "";
 
-        public virtual string ModRequired => ""; 
+        public virtual string ModRequired => "";
+
+        public virtual string Lore => "";
 
         public virtual TaggedString CostLabel => ($"${this.UpgradeCost}").Colorize(new Color(.8f,.8f, .2f));
 
@@ -47,7 +49,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
             return null;
         }
 
-        public virtual IEnumerable<Pawn> ExtraPawns()
+        public virtual IEnumerable<Pawn> ExtraPawns(Warband warband)
         {
             yield break;
         }
@@ -56,7 +58,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         {
 
         }
-
+        public virtual bool RequiresRelation(out Faction faction, out int relation)
+        {
+            faction = null;
+            relation = 0;
+            return false;
+        }
         public bool RequiredModLoaded()
         {
             return ModRequired == "" || ModsConfig.IsActive(ModRequired);
@@ -85,6 +92,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         {
 
         }
+
 
         public virtual bool CanAttackCurrent()
         {

@@ -23,10 +23,15 @@ namespace WAWLeadership.UI
         private readonly int _labelHight = 30;
         private readonly int _unavailableLabelHight = 100;
         private readonly int _buttonWidth = 200;
+        private readonly int _buttonHeight = 50;
+        private readonly int _groupHeight = 250;
+        private readonly int _loreWidth= 500;
+        private readonly int _lorehight = 100;
         private readonly int _margin = 10;
         private PlayerWarbandUpgradeHolder _upgradeHolder;
         private PlayerWarbandLeader _targetLeader;
-
+        private PlayerWarbandUpgrade _selectedUpgrade;
+        private Vector2 _scrollPosition;
         public Window_UpgradeWarband()
         {
             _upgradeHolder = new PlayerWarbandUpgradeHolder();
@@ -51,43 +56,72 @@ namespace WAWLeadership.UI
             {
                 new Upgrade_Outpost(),
                 new Upgrade_Elite(),
-                new Upgrade_Vehicle()
-            };
+                new Upgrade_Vehicle(),
+                new Upgrade_Psycaster()
 
+            };
+            float distance = _buttonWidth / 2 - _elemenetWidth / 2;
+            Rect outRect = new Rect(inRect.position, new Vector2(InitialSize.x, _groupHeight));
+            Rect viewRect = new Rect(inRect.position, new Vector2((_buttonWidth + _margin + distance) * upgrades.Count, _groupHeight));
+            Widgets.BeginScrollView(outRect, ref _scrollPosition, viewRect);
             for (int i = 0; i < upgrades.Count; i++)
             {
                 var upgrade = upgrades[i];
-                float distance = _buttonWidth / 2 - _elemenetWidth / 2;
                 Rect upgradeRect = new Rect(10 + i * (_buttonWidth + _margin) + distance, 10, _elemenetWidth, _elemenetHight);
                 Rect upgradeLabelRect = new Rect(upgradeRect.x, upgradeRect.yMax + _margin, _buttonWidth, _labelHight);
                 Rect upgradeCostLabelRect = new Rect(upgradeRect.x, upgradeLabelRect.yMax + _margin, _elemenetWidth, _labelHight);
-                Rect upgradeButtonRect = new Rect(upgradeRect.x - distance, upgradeCostLabelRect.yMax + _margin, _buttonWidth, _labelHight);
                 Rect cannotSelectRect = new Rect(upgradeRect.x, upgradeCostLabelRect.yMax + _margin, _buttonWidth, _unavailableLabelHight);
-
-
+                Rect boxRect = new Rect(upgradeRect.x, upgradeRect.y, _buttonWidth, _labelHight + _elemenetHight + Margin + _unavailableLabelHight);
                 Widgets.DrawTextureFitted(upgradeRect, upgrade.TextureOverride(), 1f);
                 Widgets.Label(upgradeLabelRect, upgrade.Label);
                 Widgets.Label(upgradeCostLabelRect, upgrade.CostLabel);
-                if(Mouse.IsOver(upgradeButtonRect))
+
+                if (_selectedUpgrade != null && _selectedUpgrade.Label == upgrade.Label)
                 {
-                    TooltipHandler.TipRegion(upgradeButtonRect, upgrade.GetInspectString());
+                    Widgets.DrawBox(boxRect);
                 }
+
+                if (Widgets.ButtonInvisible(boxRect))
+                {
+                    _selectedUpgrade = upgrade;
+                }
+
                 if (CannotUpgrade(upgrade, out string reason))
                 {
                     Widgets.Label(cannotSelectRect, reason);
                 }
-                else
-                {
-                    if(Widgets.ButtonText(upgradeButtonRect, "WAW.SelectUpgrade".Translate()))
-                    {
-                        if(WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, upgrade.UpgradeCost))
-                        {
-                            SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
-                            _upgradeHolder.SetUpgrade(upgrade);
-                        }
-                    }
-                }
 
+            }
+            Widgets.EndScrollView();
+            Rect upgradeLoreRect = WarbandUI.CenterRectFor(
+                inRect,
+                new Vector2(_loreWidth, _lorehight),
+                Vector2.up * 100);
+
+            if(_selectedUpgrade == null)
+            {
+                Widgets.Label(upgradeLoreRect, "WAW.PleaseSelectUpgrade".Translate());
+
+                return;
+            }
+            Rect upgradeButtonRect = WarbandUI.CenterRectFor(
+                inRect,
+                new Vector2(_buttonWidth, _buttonHeight), 
+                Vector2.up * 200);
+
+            Widgets.Label(upgradeLoreRect, this._selectedUpgrade.Lore);
+
+            if (Widgets.ButtonText(upgradeButtonRect, "WAW.SelectUpgrade".Translate()))
+            {
+                if (Mouse.IsOver(upgradeButtonRect))
+                {
+                    TooltipHandler.TipRegion(upgradeButtonRect, _selectedUpgrade.GetInspectString());
+                }
+                if (WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, _selectedUpgrade.UpgradeCost))
+                {
+                    SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
+                    _upgradeHolder.SetUpgrade(_selectedUpgrade);
+                }
             }
         }
 
@@ -110,6 +144,11 @@ namespace WAWLeadership.UI
                 reason = "WAW.RequireSkill".Translate(attribute.GetLabel(), minLevel);
                 return true;
             }
+            else if (upgrade.RequiresRelation(out Faction empire, out int relation))
+            {
+                reason = "WAW.RequireRelation".Translate(empire.Name, relation);
+                return true;
+            }
             return false;
         }
 
@@ -120,31 +159,27 @@ namespace WAWLeadership.UI
             switch (T.Name)
             {
                 case nameof(Upgrade_Elite):
-                    attribute = new Attribute_Commanding();
-                    minLevel = 3;
-                    if (!this._targetLeader.IsLeaderAvailable())
-                        return false;
-                    var compLeadership1 = this._targetLeader.Leader.TryGetComp<CompLeadership>();
-                    if (compLeadership1 == null)
-                        return false;
-                    attribute = compLeadership1.Leadership.AttributeSet.GetAttribute<Attribute_Commanding>();
-                    return attribute.GetLevel() >= minLevel;
-
-
+                    return RequireSkill<Attribute_Commanding>(out attribute, out minLevel);
                 case nameof(Upgrade_Vehicle):
-                    attribute = new Attribute_Engineering();
-                    minLevel = 2;
-                    if (!this._targetLeader.IsLeaderAvailable())
-                        return false;
-                    var compLeadership2 = this._targetLeader.Leader.TryGetComp<CompLeadership>();
-                    if (compLeadership2 == null)
-                        return false;
-                    attribute = compLeadership2.Leadership.AttributeSet.GetAttribute<Attribute_Engineering>();
-                    return attribute.GetLevel() >= minLevel;
-                 
+                    return RequireSkill<Attribute_Engineering>(out attribute, out minLevel);
+                case nameof(Upgrade_Psycaster):
+                    return RequireSkill<Attribute_Diplomacy>(out attribute, out minLevel);
             }
 
             return true;
+        }
+
+        bool RequireSkill<T>(out LeadershipAttribute attribute, out int minLevel) where T : LeadershipAttribute
+        {
+            attribute = new LeadershipAttribute();
+            minLevel = 2;
+            if (!this._targetLeader.IsLeaderAvailable())
+                return false;
+            var compLeadership = this._targetLeader.Leader.TryGetComp<CompLeadership>();
+            if (compLeadership == null)
+                return false;
+            attribute = compLeadership.Leadership.AttributeSet.GetAttribute<T>();
+            return attribute.GetLevel() >= minLevel;
         }
     }
 }

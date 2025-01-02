@@ -114,11 +114,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 return;
             }
             Current.Game.CurrentMap = playerMap;
-            var cell = CellFinder.StandableCellNear(playerMap.Center, playerMap, 50);
-            if (cell == IntVec3.Invalid)
-            {
-                cell = DropCellFinder.RandomDropSpot(playerMap);
-            }
+            var cell = DropCellFinder.RandomDropSpot(playerMap);
             CameraJumper.TryJump(cell, playerMap);
             DropPodUtility.MakeDropPodAt(cell, playerMap, activeDropPodInfo);
         }

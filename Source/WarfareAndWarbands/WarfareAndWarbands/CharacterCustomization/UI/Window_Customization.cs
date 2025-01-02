@@ -15,6 +15,7 @@ using Verse.Noise;
 using WarfareAndWarbands.CharacterCustomization.Compatibility;
 using WarfareAndWarbands.CharacterCustomization.UI;
 using WarfareAndWarbands.Warband;
+using WarfareAndWarbands.Warband.UI;
 using WarfareAndWarbands.Warfare.UI.Test;
 
 namespace WarfareAndWarbands.CharacterCustomization
@@ -234,10 +235,14 @@ namespace WarfareAndWarbands.CharacterCustomization
             }
         }
 
-    
+
 
         void SelectNextRequest(CustomizationRequest customizationRequest)
         {
+            if (customizationRequest == null)
+            {
+                return;
+            }
             filterBuffer = new List<string>();
             filterStream = "";
             selectedRequest = customizationRequest;
@@ -380,26 +385,26 @@ namespace WarfareAndWarbands.CharacterCustomization
             if (selectedRequest != null)
             {
                 if (HasHeadGear(selectedRequest))
-                    DrawEquipment(headGearRect, selectedRequest.apparelRequests.First(x => IsHeadGear(x)), SelectionType.head);
+                    DrawEquipments(headGearRect, selectedRequest.apparelRequests.Where(x => IsHeadGear(x)), SelectionType.head);
                 else
-                    DrawEquipment(headGearRect, null, SelectionType.head);
+                    DrawEquipments(headGearRect, null, SelectionType.head);
 
                 if (HasTopGear(selectedRequest))
-                    DrawEquipment(topGearRect, selectedRequest.apparelRequests.First(x => IsTopGear(x)), SelectionType.top);
+                    DrawEquipments(topGearRect, selectedRequest.apparelRequests.Where(x => IsTopGear(x)), SelectionType.top);
                 else
-                    DrawEquipment(topGearRect, null, SelectionType.top);
+                    DrawEquipments(topGearRect, null, SelectionType.top);
 
                 if (HasBottomGear(selectedRequest))
-                    DrawEquipment(bottomGearRect, selectedRequest.apparelRequests.First(x => IsBottomGear(x)), SelectionType.bottom);
+                    DrawEquipments(bottomGearRect, selectedRequest.apparelRequests.Where(x => IsBottomGear(x)), SelectionType.bottom);
                 else
-                    DrawEquipment(bottomGearRect, null, SelectionType.bottom);
+                    DrawEquipments(bottomGearRect, null, SelectionType.bottom);
 
                 if (HasUtility(selectedRequest))
-                    DrawEquipment(utilRect, selectedRequest.apparelRequests.First(x => IsUtility(x)), SelectionType.utils);
+                    DrawEquipments(utilRect, selectedRequest.apparelRequests.Where(x => IsUtility(x)), SelectionType.utils);
                 else
-                    DrawEquipment(utilRect, null, SelectionType.utils);
+                    DrawEquipments(utilRect, null, SelectionType.utils);
 
-                DrawEquipment(weaponRect, selectedRequest.weaponRequest, SelectionType.weapons);
+                DrawEquipments(weaponRect, new List<ThingDef>() { selectedRequest.weaponRequest }, SelectionType.weapons);
 
 
 
@@ -462,7 +467,7 @@ namespace WarfareAndWarbands.CharacterCustomization
         {
             foreach (var buffer in filterBuffer)
             {
-                if (!target.Contains(buffer))
+                if (!target.ToString().ToUpper().Contains(buffer.ToUpper()))
                 {
                     return false;
                 }
@@ -486,6 +491,10 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             if (Equipped(item))
             {
                 Widgets.DrawHighlight(rect);
+                if (Mouse.IsOver(rect) && selectionType != SelectionType.weapons)
+                {
+                    itemTex = TexUI.DismissTex;
+                }
             }
             Rect labelRect = new Rect(rect.xMax + 5, rect.y, 80, rect.height);
             Widgets.Label(labelRect, item.label);
@@ -568,6 +577,7 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
         {
             base.Close(doCloseSound);
             UpdatePawnKindDef();
+            WarbandUtil.RefreshSoldierPawnKinds();
         }
 
         void UpdatePawnKindDef()
@@ -575,16 +585,13 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             selectedRequest?.UpdatePawnKindDef();
         }
 
-        void DrawEquipment(Rect rect, ThingDef equipment = null, SelectionType selectionType = SelectionType.none)
+        void DrawEquipments(Rect rect, IEnumerable<ThingDef> equipments = null, SelectionType selectionType = SelectionType.none)
         {
-            bool isInvalid = equipment == null || equipment.graphicData.graphicClass == typeof(Graphic_StackCount);
-            Texture2D equipmentTex;
-
-            equipmentTex = isInvalid ? Texture2D.blackTexture : ContentFinder<Texture2D>.Get(equipment.graphicData.texPath);
-
-            bool selectBodyGroup = Widgets.ButtonImage(rect, equipmentTex);
+            if (equipments != null && equipments.Count() > 0 && equipments.First() != null)
+                WarbandUI.FillSlots(rect, equipments.Select(x => Widgets.GetIconFor(x)));
+            bool selectBodyGroup = Widgets.ButtonInvisible(rect);
             if (selectBodyGroup)
-            {
+            {   
                 SelectList(selectionType);
             }
 

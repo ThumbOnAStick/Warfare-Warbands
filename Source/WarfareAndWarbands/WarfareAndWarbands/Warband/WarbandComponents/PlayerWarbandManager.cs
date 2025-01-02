@@ -127,6 +127,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             {
                 LongEventHandler.QueueLongEvent(delegate ()
                 {
+                    if (!upgradeHolder.CanAttackCurrent)
+                        return;
                     if (upgradeHolder.CostsSilver && !WarbandUtil.CantAffordToAttack(warband))
                         return;
                     GameComponent_WAW.Instance.OnRaid(this.leader.Leader);

@@ -37,7 +37,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
         }
 
         public void LaunchWarband(LocalTargetInfo lInfo)
-        {
+        { 
+            if (!warband.playerWarbandManager.upgradeHolder.CanAttackCurrent)
+                return;
             if (warband.playerWarbandManager.upgradeHolder.CostsSilver && !WarbandUtil.CantAffordToAttack(warband))
                 return;
             GameComponent_WAW.Instance.OnRaid(warband.playerWarbandManager.leader.Leader);

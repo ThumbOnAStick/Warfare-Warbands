@@ -50,7 +50,19 @@
 	<WAW.AlreadyUpgraded>Upgrade is already installed</WAW.AlreadyUpgraded>
 	<WAW.IsFree>No service fee</WAW.IsFree>
 	<WAW.Upgrade>Upgrade Warband</WAW.Upgrade>
-	<WAW.SelectOneRequest>Please select at least one customization request.</WAW.SelectOneRequest>
+	<WAW.SelectOneRequest>Please select at least one custom pawn kind.</WAW.SelectOneRequest>
 	<WAW.CastersOverflow>There can be at most 3 psycasters.</WAW.CastersOverflow>
 	<WAW.RecruitCaster>Recruit Psycaster</WAW.RecruitCaster>
+	<WAW.EltexCost>Eltex Cost: {0}</WAW.EltexCost>
+	<WAW.PsyCasterLabel>Psycasting Crew</WAW.PsyCasterLabel>
+	<WAW.RecruitPsycasters>Recruit Psycasters</WAW.RecruitPsycasters>
+	<WAW.RecruitPsycasters.Desc>Recruit trained psycasters from the empire, sending these psycasters out cost elex.</WAW.RecruitPsycasters.Desc>
+	<WAW.EltexTip>You can click on one of the three slots to clear selection.</WAW.EltexTip>
+	<WAW.AlreadySelectedPaths>Already selected {0} paths</WAW.AlreadySelectedPaths>
+	<WAW.RequireRelation>Requires {1} goodwill from {0}</WAW.RequireRelation>
+	<WAW.DRAG>Drag To Move</WAW.DRAG>
+	<WAW.NextStep>Next Step</WAW.NextStep>
+	<WAW.FactionOverride>Decide warband's faction type, this will override the ideology (Ideology DLC) and race (HAR mod) of generated soldiers.</WAW.FactionOverride>
+	<WAW.InsufficientPsycaster>No psycaster in the team， please recuruit more from "recruit psycasters" window.</WAW.InsufficientPsycaster>
+	<WAW.PleaseSelectUpgrade>Please select an upgrade</WAW.PleaseSelectUpgrade>
 </LanguageData>

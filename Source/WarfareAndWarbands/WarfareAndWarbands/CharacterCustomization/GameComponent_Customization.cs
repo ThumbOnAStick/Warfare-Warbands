@@ -38,13 +38,20 @@ namespace WarfareAndWarbands.CharacterCustomization
         {
             base.LoadedGame();
             GenerateAllPawnKindDef();
+            RemoveNulls();
+        }
+
+        private void RemoveNulls()
+        {
+            customizationRequests.RemoveAll(x => x == null);
         }
 
         private void GenerateAllPawnKindDef()
         {
             foreach (var request in customizationRequests)
             {
-                var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request);
+            
+                var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request, FactionDefOf.OutlanderCivil);
                 if (HARActive())
                 {
                     defaultKindDef.race = request.GetAlienRace();
@@ -70,7 +77,7 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         public void AddRequest(CustomizationRequest request)
         {
-            var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request);
+            var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request, FactionDefOf.OutlanderCivil);
             AddRequest(defaultKindDef, request);
         }
 

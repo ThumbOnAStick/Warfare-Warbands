@@ -9,19 +9,21 @@ using Verse;
 using Verse.Noise;
 using Verse.Sound;
 using WarfareAndWarbands.Warband.UI;
+using WarfareAndWarbands.Warband.UI.WarbandConfigureSteps;
 
 namespace WarfareAndWarbands.Warband
 {
     public class Window_ReArrangeWarband : Window
     {
+        private Vector2 scrollPosition;
+        private Warband warband;
+        private readonly float descriptionHeight = 70f;
+        private readonly float descriptionWidth = 120f;
+        private readonly float entryHeight = 20f;
+        private readonly float entryWidth = 20f;
+        private readonly int pawnKindsEachRow = 6;
+        private int step = 0;
 
-        public override Vector2 InitialSize
-        {
-            get
-            {
-                return new Vector2(800f, 500f);
-            }
-        }
         public Window_ReArrangeWarband(Warband warband)
         {
             WarbandUtil.RefreshSoldierPawnKinds();
@@ -34,6 +36,13 @@ namespace WarfareAndWarbands.Warband
                 {
                     GameComponent_WAW.playerWarband.bandMembers[ele.Key] = warband.bandMembers[ele.Key];
                 }
+            }
+        }
+        public override Vector2 InitialSize
+        {
+            get
+            {
+                return new Vector2(800f, 500f);
             }
         }
         protected override void SetInitialSizeAndPosition()
@@ -56,29 +65,39 @@ namespace WarfareAndWarbands.Warband
         void DoArrangeWindow(Rect inRect)
         {
 
-            WarbandUI.DrawColorPanel(inRect, out colorsHeight, out Rect colorSelectorRect, this.warband);
+            WarbandUI.DrawExitButton(this, inRect);
+            if (step <= 0)
+            {
+                StepOne.Draw(inRect);
+            }
+            else if (step == 1)
+            {
+                StepTwo.Draw(inRect);
+            }
+            else
+            {
+                StepThree.Draw(inRect, ref scrollPosition, pawnKindsEachRow, descriptionHeight, descriptionWidth, entryWidth, entryHeight, warband);
+                DrawExtraCost(inRect);
+                DrawRecruitButton(inRect);
+            }
+            WarbandUI.DrawNextStepButton(inRect, ref step);
 
-            WarbandUI.DrawPawnSelection(inRect, colorSelectorRect, ref scrollPosition, pawnKindsEachRow, colorsHeight, descriptionHeight, descriptionWidth, entryWidth, entryHeight);
+       
 
-            WarbandUI.DrawResetButton();
-
-            DrawRecruitButton();
-
-            DrawExtraCost(colorSelectorRect);
 
         }
 
-        void DrawExtraCost(Rect colorSelectorRect)
+        void DrawExtraCost(Rect inRect)
         {
-            Rect costRect = new Rect(30, colorSelectorRect.y + colorsHeight, 200, 50);
+            Rect costRect = new Rect(30, inRect.y, 200, 50);
             string costLabel = "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostExtra(warband.bandMembers, warband.playerWarbandManager.NewRecruitCostMultiplier).ToString());
             Widgets.Label(costRect, costLabel + $"(-{(1 - warband.playerWarbandManager.NewRecruitCostMultiplier) * 100}%)");
 
         }
 
-        void DrawRecruitButton()
+        void DrawRecruitButton(Rect inRect)
         {
-            bool doRecruit = Widgets.ButtonText(new Rect(330 + 50 - 100, 400, 200, 50), "WAW.ConfigWarband".Translate());
+            bool doRecruit = Widgets.ButtonText(new Rect(inRect.x + inRect.width / 2 - 100, 350, 200, 50), "WAW.ConfigWarband".Translate());
             if (doRecruit)
             {
                 this.Close();
@@ -89,14 +108,7 @@ namespace WarfareAndWarbands.Warband
 
 
 
-        private Vector2 scrollPosition;
-        private Warband warband;
-        private float colorsHeight = 200;
-        private readonly float descriptionHeight = 70f;
-        private readonly float descriptionWidth = 120f;
-        private readonly float entryHeight = 20f;
-        private readonly float entryWidth = 20f;
-        private readonly int pawnKindsEachRow = 5;
+
      
     }
 }

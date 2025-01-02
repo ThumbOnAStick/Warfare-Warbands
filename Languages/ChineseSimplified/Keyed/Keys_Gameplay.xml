@@ -25,7 +25,7 @@
 	<WAW.LostWarband.Desc>所有人都死了，整个战团都被摧毁了。</WAW.LostWarband.Desc>
 	<WAW.LeaveIn>将在 {0} 天后离开地图</WAW.LeaveIn>
 	<WAW.CustomizeCharacter>角色定制</WAW.CustomizeCharacter>
-	<WAW.DisplayEquipped>配备显示器：</WAW.DisplayEquipped>
+	<WAW.DisplayEquipped>显示已装备：</WAW.DisplayEquipped>
 	<WAW.AlienRace>外星种族：{0}</WAW.AlienRace>
 	<WAW.tooltip>重新选择已装备的服装以将其卸下。</WAW.tooltip>
 	<WAW.tooltip1>选择另一种武器来取消当前武器的装备。</WAW.tooltip1>
@@ -76,5 +76,7 @@
 	<WAW.NoVehicle>车队中没有车辆，请使用“购买载具”按钮为车队添置车辆。</WAW.NoVehicle>
     <WAW.AboutBridgeCombatTeam>关于：车队</WAW.AboutBridgeCombatTeam>
     <WAW.AboutBridgeCombatTeam.Desc>车队使用地面载具，所以你无法发动空袭。\n每个车队成员都被给予能够将车辆返还车队的指令。</WAW.AboutBridgeCombatTeam.Desc>
-
+	<WAW.CasterAdded>灵能使已被加入设置。</WAW.CasterAdded>
+	<WAW.PsycasterKilled>来自{0}的灵能使在战斗中死亡，帝国对此表达了不满。</WAW.PsycasterKilled>
+	<WAW.CantAffordEltex>灵质不足</WAW.CantAffordEltex>
 </LanguageData>

@@ -24,6 +24,7 @@ namespace WarfareAndWarbands.Warband
         public Dictionary<string, int> bandMembers;
         public TechLevel techLevel = TechLevel.Industrial;
         public Color colorOverride;
+        public FactionDef pawnFactionType;
 
         public PlayerWarbandArrangement()
         {
@@ -153,10 +154,11 @@ namespace WarfareAndWarbands.Warband
                 }
                 var warband = WarbandUtil.SpawnWarband(Faction.OfPlayer, target);
                 warband.playerWarbandManager.colorOverride.SetColorOverride();
+                if (pawnFactionType != null)
+                    warband.SetFactionType(pawnFactionType);
                 SoundDefOf.ExecuteTrade.PlayOneShot(SoundInfo.OnCamera());
             });
         }
-
 
 
 
@@ -180,6 +182,8 @@ namespace WarfareAndWarbands.Warband
                 SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
             playerWarbandSite.bandMembers = new Dictionary<string, int>(bandMembers);
             playerWarbandSite.playerWarbandManager.colorOverride.SetColorOverride(this.colorOverride);
+            if(pawnFactionType != null)
+                playerWarbandSite.SetFactionType(pawnFactionType);
         }
 
         private bool CreateWarbandWorldObject(GlobalTargetInfo target)
@@ -198,7 +202,6 @@ namespace WarfareAndWarbands.Warband
             {  
                 return false;
             }
-            int cost = GetCostEstablishment();
             IEnumerable<FloatMenuOption> opts = SelectWarbandWorldObjectOptions(target);
             Find.WindowStack.Add(new FloatMenu(opts.ToList()));
             return true;
@@ -213,6 +216,8 @@ namespace WarfareAndWarbands.Warband
             Scribe_References.Look<Map>(ref this.currentMap, "currentMap");
             Scribe_Values.Look(ref this.techLevel, "techLevel");
             Scribe_Values.Look(ref this.colorOverride, "colorOverride", Color.white);
+            Scribe_Defs.Look(ref this.pawnFactionType, "_pawnFactionType");
+
             // cache player warband arrangement
             foreach (var ele in WarbandUtil.SoldierPawnKindsCache)
             {

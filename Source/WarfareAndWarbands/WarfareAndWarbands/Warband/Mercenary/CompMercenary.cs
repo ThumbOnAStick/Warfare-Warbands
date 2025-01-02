@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace WarfareAndWarbands.Warband
     {
         bool servesPlayerFaction = false;
         bool retreated = false;
+        bool _isFromEmpire = false;
         private bool isLeaderCache;
         Faction servingFaction;
         int lastServeTick = 0;
@@ -49,6 +51,8 @@ namespace WarfareAndWarbands.Warband
                 return (Pawn)this.parent;
             }
         }
+
+        public bool IsFromEmpire => this._isFromEmpire;
 
 
         public bool ServesPlayerFaction
@@ -84,8 +88,9 @@ namespace WarfareAndWarbands.Warband
                 if (!Mercenary.Downed && !retreated)
                 {
                     yield return WarbandUI.RetreatPawn(this);
-                    yield return WarbandUI.RecruitPawn(this);
-                    if(warband != null &&
+                    if (!this.IsFromEmpire)
+                        yield return WarbandUI.RecruitPawn(this);
+                    if (warband != null &&
                        warband.playerWarbandManager.upgradeHolder.HasUpgrade &&
                        warband.playerWarbandManager.upgradeHolder.SelectedUpgrade is Upgrade_Vehicle)
                     {
@@ -93,7 +98,7 @@ namespace WarfareAndWarbands.Warband
                     }
                 }
             }
-            
+
         }
 
         public void ResetAll()
@@ -116,6 +121,10 @@ namespace WarfareAndWarbands.Warband
         public override void Notify_Downed()
         {
             base.Notify_Downed();
+            if (this.IsFromEmpire)
+            {
+                return;
+            }
             this.warband?.playerWarbandManager?.injuriesManager?.InjurePawn(pawnKindName, GenTicks.TicksGame);
             var faction = Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband);
             this.Retreat();
@@ -143,6 +152,10 @@ namespace WarfareAndWarbands.Warband
                 {
                     TryNotifyPlayerLeaderKilled();
                     warband?.playerWarbandManager?.leader?.OnLeaderChanged();
+                }
+                else if (IsFromEmpire)
+                {
+                    TryNotifyPlayerPsyCasterKilled();
                 }
                 else
                 {
@@ -194,6 +207,15 @@ namespace WarfareAndWarbands.Warband
             }
         }
 
+        void TryNotifyPlayerPsyCasterKilled()
+        {
+            if (Faction.OfEmpire != null)
+            {
+                Messages.Message("WAW.PsycasterKilled".Translate(Faction.OfEmpire.Name), MessageTypeDefOf.PawnDeath);
+                if (warband != null)
+                    warband.Faction.TryAffectGoodwillWith(Faction.OfEmpire, -5);
+            }
+        }
 
         public void Retreat()
         {
@@ -286,6 +308,11 @@ namespace WarfareAndWarbands.Warband
             lastServeTick = Find.TickManager.TicksGame;
         }
 
+        public void SetEmpireBackground()
+        {
+            this._isFromEmpire = true;
+        }
+
         public override void CompTick()
         {
             base.CompTick();
@@ -305,6 +332,7 @@ namespace WarfareAndWarbands.Warband
             base.PostExposeData();
             Scribe_Values.Look(ref servesPlayerFaction, "servesPlayerFaction", false);
             Scribe_Values.Look(ref retreated, "retreated", false);
+            Scribe_Values.Look(ref _isFromEmpire, "_isFromEmpire", false);
             Scribe_Values.Look(ref lastServeTick, "lastServeTick", 0);
             Scribe_Values.Look(ref pawnKindName, "pawnKindName", "none");
             Scribe_References.Look(ref warband, "warband");

@@ -20,8 +20,9 @@ namespace WarfareAndWarbands.Warband
         public Dictionary<string, int> bandMembers;
         public NPCWarbandManager npcWarbandManager;
         public PlayerWarbandManager playerWarbandManager;
-        private List<string> stringBuffers;
-        private List<int> intBuffers;
+        private List<string> _stringBuffers;
+        private List<int> _intBuffers;
+        private FactionDef _pawnKindFactionType;
         private bool isSettling = false;
         private string customName = "Warband";
         public static readonly int playerAttackRange = 10;
@@ -38,6 +39,8 @@ namespace WarfareAndWarbands.Warband
             this.customName != "Warband" ?
             this.customName :
             (this.def.label + "(" + this.Faction.Name + ")");
+
+        public FactionDef PawnKindFactionType => _pawnKindFactionType;
 
         public override Texture2D ExpandingIcon
         {
@@ -70,8 +73,12 @@ namespace WarfareAndWarbands.Warband
                 }
             }
             WarbandUtil.RefreshAllPlayerWarbands();
+        }
 
-
+        public void SetFactionType(FactionDef type)
+        {
+            Log.Message("faction type set");
+            this._pawnKindFactionType = type;   
         }
 
         public void SetMembers(Dictionary<string, int> members)
@@ -427,10 +434,10 @@ namespace WarfareAndWarbands.Warband
         {
             base.ExposeData();
             Scribe_Collections.Look<string, int>(ref this.bandMembers,
-  "bandMembers", LookMode.Value, LookMode.Value, ref stringBuffers, ref intBuffers);
+  "bandMembers", LookMode.Value, LookMode.Value, ref _stringBuffers, ref _intBuffers);
             Scribe_Values.Look(ref this.isSettling, "isSettling");
             Scribe_Values.Look(ref this.customName, "customName", "Warband");
-
+            Scribe_Defs.Look(ref this._pawnKindFactionType, "_pawnKindFactionType");
             npcWarbandManager?.ExposeData();
             playerWarbandManager?.ExposeData();
         }

@@ -59,7 +59,6 @@ namespace WarfareAndWarbands.CharacterCustomization
             this.thingDefsAndStyles = new Dictionary<string, string>(other.thingDefsAndStyles);
             this.itemAndStuff = new Dictionary<ThingDef, ThingDef>(other.itemAndStuff);
             this.weaponRequest = other.weaponRequest;
-
         }
 
         public int CombatPowerCache => combatPowerCache;

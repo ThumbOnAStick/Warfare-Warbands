@@ -9,7 +9,7 @@ using Verse.Noise;
 
 namespace WAWLeadership
 {
-    public abstract class LeadershipAttribute : IExposable
+    public class LeadershipAttribute : IExposable
     {
         protected int level;
         private static readonly int maxLevel = 3;
