@@ -9,6 +9,14 @@ namespace WarbandWarfareQuestline
 {
     public class GameComponent_Questline : GameComponent
     {
+        public GameComponent_Questline(Game game) 
+        {
 
+        }
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            Log.Message("WAW: questline module active");
+        }
     }
 }

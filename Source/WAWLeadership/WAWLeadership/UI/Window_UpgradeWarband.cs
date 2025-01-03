@@ -98,31 +98,32 @@ namespace WAWLeadership.UI
                 new Vector2(_loreWidth, _lorehight),
                 Vector2.up * 100);
 
-            if(_selectedUpgrade == null)
+            if (_selectedUpgrade == null)
             {
                 Widgets.Label(upgradeLoreRect, "WAW.PleaseSelectUpgrade".Translate());
-
                 return;
             }
+
             Rect upgradeButtonRect = WarbandUI.CenterRectFor(
                 inRect,
-                new Vector2(_buttonWidth, _buttonHeight), 
+                new Vector2(_buttonWidth, _buttonHeight),
                 Vector2.up * 200);
 
             Widgets.Label(upgradeLoreRect, this._selectedUpgrade.Lore);
 
-            if (Widgets.ButtonText(upgradeButtonRect, "WAW.SelectUpgrade".Translate()))
-            {
-                if (Mouse.IsOver(upgradeButtonRect))
+            if (!this._upgradeHolder.HasUpgrade)
+                if (Widgets.ButtonText(upgradeButtonRect, "WAW.SelectUpgrade".Translate()))
                 {
-                    TooltipHandler.TipRegion(upgradeButtonRect, _selectedUpgrade.GetInspectString());
+                    if (Mouse.IsOver(upgradeButtonRect))
+                    {
+                        TooltipHandler.TipRegion(upgradeButtonRect, _selectedUpgrade.GetInspectString());
+                    }
+                    if (WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, _selectedUpgrade.UpgradeCost))
+                    {
+                        SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
+                        _upgradeHolder.SetUpgrade(_selectedUpgrade);
+                    }
                 }
-                if (WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, _selectedUpgrade.UpgradeCost))
-                {
-                    SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
-                    _upgradeHolder.SetUpgrade(_selectedUpgrade);
-                }
-            }
         }
 
         public bool CannotUpgrade(PlayerWarbandUpgrade upgrade, out string reason)
