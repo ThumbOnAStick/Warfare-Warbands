@@ -24,7 +24,10 @@ namespace WAWLeadership
                     break;
 
                 case "Settlement":
-                    TryToInteractWithSettlements(o, ref usedSkill, leader); 
+                    TryToInteractWithSettlements(o, ref usedSkill, leader);
+                    break;
+                case "Warband":
+                    DoInteractWithWarbands(ref usedSkill, leader, (Warband)o);
                     break;
                 default:
                     TryToInteractWithSite(o, ref usedSkill, leader, warband);
@@ -186,6 +189,20 @@ namespace WAWLeadership
         }
         #endregion
 
-
+        #region Warbands
+        static void DoInteractWithWarbands(ref bool usedSkill, Pawn leader, Warband warband)
+        {
+            if (usedSkill)
+            {
+                return;
+            }
+            if (warband.Faction == Faction.OfPlayer && ValidateLeader<Attribute_Medic>(leader, 3))
+            {
+                warband.playerWarbandManager.injuriesManager.RecoverAll();
+                Messages.Message("WAW.AllRecovered".Translate(leader.NameShortColored), MessageTypeDefOf.PositiveEvent);
+                usedSkill = true;
+            }
+        }
+        #endregion
     }
 }

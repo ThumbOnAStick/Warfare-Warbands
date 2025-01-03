@@ -129,6 +129,7 @@
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Outpost.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Psycaster\Upgrade_Psycaster.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Vehicle.cs" />
+    <Compile Include="Warband\WarbandComponents\WarbandPather.cs" />
     <Compile Include="Warband\WAWCaravan\CaravanWarbandUtility.cs" />
     <Compile Include="Warband\WAWCaravan\HarmonyPatches\CaravanGizmosPatch.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\Leader\PlayerWarbandLeaderUtil.cs" />

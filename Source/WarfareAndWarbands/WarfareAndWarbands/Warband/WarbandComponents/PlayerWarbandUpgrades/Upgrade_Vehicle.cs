@@ -29,6 +29,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
 
         public override bool CanDroppod => false;
 
+        public override float MoveSpeed => 0.001f;
+
         public override string ModRequired => "SmashPhil.VehicleFramework";
 
         public void OnSquadSent()
@@ -80,7 +82,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         public override void OnUpgraded()
         {
             base.OnUpgraded();
-            Find.LetterStack.ReceiveLetter("WAW.AboutBridgeCombatTeam".Translate(), "WAW.AboutBridgeCombatTeam.Desc".Translate(), LetterDefOf.NeutralEvent);
+            Find.LetterStack.ReceiveLetter("WAW.AboutBrigadeCombatTeam".Translate(), "WAW.AboutBrigadeCombatTeam.Desc".Translate(), LetterDefOf.NeutralEvent);
         }
 
         public override bool CanAttackCurrent()

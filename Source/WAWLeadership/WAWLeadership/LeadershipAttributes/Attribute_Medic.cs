@@ -43,6 +43,8 @@ namespace WAWLeadership.LeadershipAttributes
             {
                 outList.Add("WAW.RecoveryRate".Translate((1f - this.RecoveryCurve().Evaluate(level)) * 100));
             }
+            if (this.level >= 3)
+                outList.Add("WAW.HealsPlayerWarband".Translate());
             return outList;
         }
 

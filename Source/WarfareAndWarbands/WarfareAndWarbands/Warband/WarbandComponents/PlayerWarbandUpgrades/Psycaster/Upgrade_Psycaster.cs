@@ -84,7 +84,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
 
         public override bool CanAttackCurrent()
         {
-            return !NoPsycasters() || VPE.TryToSpendEltexFromColony(Find.AnyPlayerHomeMap, this.GetEltexCost());
+            return !NoPsycasters() && VPE.TryToSpendEltexFromColony(Find.AnyPlayerHomeMap, this.GetEltexCost());
         }
 
         public override bool RequiresRelation(out Faction faction, out int relation)

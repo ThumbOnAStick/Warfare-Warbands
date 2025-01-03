@@ -47,6 +47,11 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             }
             selectedGroup.InjurePawn(pKind);
         }
+        public void RecoverAll()
+        {
+            recoveries.Clear();
+        }
+        
         public void RemovePawn(string pKindName)
         {
             if (recoveries.Count < 1)
@@ -61,7 +66,6 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
                     break;
                 }
             }
-
         }
 
         public bool IsInjured()

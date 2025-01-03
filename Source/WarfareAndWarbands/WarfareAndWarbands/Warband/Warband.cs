@@ -20,6 +20,7 @@ namespace WarfareAndWarbands.Warband
         public Dictionary<string, int> bandMembers;
         public NPCWarbandManager npcWarbandManager;
         public PlayerWarbandManager playerWarbandManager;
+        public WarbandPather worldPather;
         private List<string> _stringBuffers;
         private List<int> _intBuffers;
         private FactionDef _pawnKindFactionType;
@@ -33,13 +34,14 @@ namespace WarfareAndWarbands.Warband
             bandMembers = new Dictionary<string, int>();
             npcWarbandManager = new NPCWarbandManager(this);
             playerWarbandManager = new PlayerWarbandManager(this);
+            worldPather = new WarbandPather(this);
         }
         public override Color ExpandingIconColor => this.Faction.Color;
         public override string Label => 
             this.customName != "Warband" ?
             this.customName :
             (this.def.label + "(" + this.Faction.Name + ")");
-
+        public override Vector3 DrawPos => this.worldPather.TweenedPos ;
         public FactionDef PawnKindFactionType => _pawnKindFactionType;
 
         public override Texture2D ExpandingIcon
@@ -56,6 +58,11 @@ namespace WarfareAndWarbands.Warband
                 }
             }
         }
+
+        //public override void Draw()
+        //{
+        //    base.Draw();
+        //}
 
         public override void PostAdd()
         {
@@ -183,13 +190,13 @@ namespace WarfareAndWarbands.Warband
         }
 
 
-
         public override void Tick()
         {
 
             base.Tick();
             npcWarbandManager?.Tick();
             playerWarbandManager?.Tick();
+            worldPather?.Tick();
             RemoveMapCheck();
             SiteCheck();
 
@@ -268,14 +275,9 @@ namespace WarfareAndWarbands.Warband
         public void OrderPlayerWarbandToResettle()
         {
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(this), CameraJumper.MovementMode.Pan);
-            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(OrderPlayerWarbandToResettle), true, extraLabelGetter: ExtraLabel);
+            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(OrderPlayerWarbandToResettle), true);
         }
 
-        public string ExtraLabel(GlobalTargetInfo targetInfo)
-        {
-            int cost = GetResettleCost(targetInfo);
-            return "WAW.ResettleFee".Translate(cost);
-        }
 
         public void TryToRemovePawn(string kindName)
         {
@@ -336,21 +338,6 @@ namespace WarfareAndWarbands.Warband
         {
             base.PostMake();
             playerWarbandManager?.ResetRaidTick();
-        }
-
-
-        public int GetResettleCost(GlobalTargetInfo targetInfo)
-        {
-            if (!targetInfo.IsValid)
-            {
-                return 0;
-            }
-            float distance = Find.WorldGrid.ApproxDistanceInTiles(targetInfo.Tile, this.Tile);
-            var curve = WarbandUtil.ResettleCurve();
-            int memberCount = this.GetMemberCount();
-            int costPerPawn = (int)curve.Evaluate(memberCount);
-            int cost = (int)distance * costPerPawn * memberCount;
-            return cost;
         }
 
         public bool OrderPlayerWarbandToResettle(GlobalTargetInfo info)
@@ -440,6 +427,14 @@ namespace WarfareAndWarbands.Warband
             Scribe_Defs.Look(ref this._pawnKindFactionType, "_pawnKindFactionType");
             npcWarbandManager?.ExposeData();
             playerWarbandManager?.ExposeData();
+            Scribe_Deep.Look<WarbandPather>(ref this.worldPather, "worldPather", new object[]
+            {
+                this
+            });
+            if(worldPather == null)
+            {
+                worldPather = new WarbandPather(this);
+            }
         }
 
 

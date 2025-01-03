@@ -79,4 +79,9 @@
 	<WAW.CasterAdded>灵能使已被加入设置。</WAW.CasterAdded>
 	<WAW.PsycasterKilled>来自{0}的灵能使在战斗中死亡，帝国对此表达了不满。</WAW.PsycasterKilled>
 	<WAW.CantAffordEltex>灵质不足</WAW.CantAffordEltex>
+	<WAW.UsePod>使用空投仓</WAW.UsePod>
+	<WAW.OnFoot>步行</WAW.OnFoot>
+	<WAW.AllRecovered>由于{0}的医疗技能, 战团中的所有伤员都痊愈了。</WAW.AllRecovered>
+	<WAW.HealsPlayerWarband>能治疗另一个玩家战团。</WAW.HealsPlayerWarband>
+
 </LanguageData>

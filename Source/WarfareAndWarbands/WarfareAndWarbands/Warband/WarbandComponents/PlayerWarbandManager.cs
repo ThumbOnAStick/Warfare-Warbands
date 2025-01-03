@@ -110,7 +110,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                         {
                             MapParent mapParent = (MapParent)info.WorldObject;
                             this.targetMapP = mapParent;
-                            WarbandUI.GetPlayerWarbandAttackOptions(this);
+                            WarbandUI.GetPlayerWarbandAttackOptions(this);   
                             result = true;
                         }
                     }
@@ -177,7 +177,6 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         {
             return PlayerWarbandResettleManager.OrderPlayerWarbandToResettle(info, warband);
         }
-
 
         public string GetInspectString()
         {

@@ -75,10 +75,14 @@
 	<WAW.WarbandLossFailed>Due to {0}'s recruiting ability, the lost unit is soon replaced.</WAW.WarbandLossFailed>
 	<WAW.TransportedToWarband>All loots have been transfered to warband.</WAW.TransportedToWarband>
 	<WAW.NoVehicle>There's no vehicles in storage, plase pruchase more using "purchase vehicles" command.</WAW.NoVehicle>
-    <WAW.AboutBridgeCombatTeam>About: Bridge Combat Team</WAW.AboutBridgeCombatTeam>
-    <WAW.AboutBridgeCombatTeam.Desc>Bridge combat teams use ground vehicles, so it cannot launch any droppod raid, also, you'll need to purchase vehicles before an attack can be launched.\nA recycle command is added to bridge combat team crews, this command returns sent vehicles back to storage.</WAW.AboutBridgeCombatTeam.Desc>
+    <WAW.AboutBrigadeCombatTeam>About: brigade Combat Team</WAW.AboutBrigadeCombatTeam>
+    <WAW.AboutBrigadeCombatTeam.Desc>brigade combat teams use ground vehicles, so it cannot launch any droppod raid, also, you'll need to purchase vehicles before an attack can be launched.\nA recycle command is added to brigade combat team crews, this command returns sent vehicles back to storage.</WAW.AboutBrigadeCombatTeam.Desc>
 	<WAW.CasterAdded>An imperial {0} has been added to your configuration.</WAW.CasterAdded>
 	<WAW.PsycasterKilled>A psycaster from {0} has died during your recent military operation, the empire is upset about the news.</WAW.PsycasterKilled>
 	<WAW.CantAffordEltex>Insufficient Eltex</WAW.CantAffordEltex>
-
+	<WAW.UsePod>Use transport pod</WAW.UsePod>
+	<WAW.OnFoot>Travel on foot</WAW.OnFoot>
+	<WAW.IsMovingTo>Moving to destination!</WAW.IsMovingTo>
+	<WAW.AllRecovered>Thanks to {0}'s medical skill, everyone in the warband has been healed.</WAW.AllRecovered>
+	<WAW.HealsPlayerWarband>Can heal another player warband</WAW.HealsPlayerWarband>
 </LanguageData>	

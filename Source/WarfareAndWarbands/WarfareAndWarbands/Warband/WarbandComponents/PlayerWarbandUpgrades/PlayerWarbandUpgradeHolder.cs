@@ -17,6 +17,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         public bool CanDroppod => !HasUpgrade || SelectedUpgrade.CanDroppod;
         public bool CanAttackCurrent => !HasUpgrade || SelectedUpgrade.CanAttackCurrent();
         public bool HasUpgrade => SelectedUpgrade != null;
+        public float MoveSpeed => HasUpgrade? SelectedUpgrade.MoveSpeed : 0.0005f;
         public QualityCategory GearQuality => HasUpgrade? selectedUpgrade.GearQuality : QualityCategory.Normal;
 
         public PlayerWarbandUpgrade SelectedUpgrade => selectedUpgrade;
