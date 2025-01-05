@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <WarbandWarfareQuestline.FactionTraitDef>
+        <defName>WAW_Cautious</defName>
+        <label>Cautious</label>
+        <commonality>1</commonality>
+        <supplyBonus>1</supplyBonus>
+        <description>Leaders of this faction are risk-averse, they contribute to a conservative power in the league congress.</description>
+    </WarbandWarfareQuestline.FactionTraitDef>
+</Defs>

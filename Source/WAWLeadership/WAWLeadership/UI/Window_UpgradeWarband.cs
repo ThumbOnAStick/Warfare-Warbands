@@ -103,14 +103,17 @@ namespace WAWLeadership.UI
                 Widgets.Label(upgradeLoreRect, "WAW.PleaseSelectUpgrade".Translate());
                 return;
             }
-
+       
             Rect upgradeButtonRect = WarbandUI.CenterRectFor(
                 inRect,
                 new Vector2(_buttonWidth, _buttonHeight),
                 Vector2.up * 200);
 
             Widgets.Label(upgradeLoreRect, this._selectedUpgrade.Lore);
-
+            if (CannotUpgrade(_selectedUpgrade, out string reason1))
+            {
+                return;
+            }
             if (!this._upgradeHolder.HasUpgrade)
                 if (Widgets.ButtonText(upgradeButtonRect, "WAW.SelectUpgrade".Translate()))
                 {

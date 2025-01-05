@@ -10,7 +10,7 @@ using Verse;
 namespace WarfareAndWarbands
 {
     [StaticConstructorOnStartup]
-    internal static class WAWTex
+    public static class WAWTex
     {
         public static readonly Texture2D ModIcon = ContentFinder<Texture2D>.Get("UI/Icon/ModIcon", true);
         public static readonly Texture2D ResettleIcon = ContentFinder<Texture2D>.Get("UI/Commands/Resettle", true);
@@ -31,6 +31,8 @@ namespace WarfareAndWarbands
         public static readonly Texture2D WarbandVehicleTex = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/BrigadeCombatTeam");
         public static readonly Texture2D WarbandPsycasterTex = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/Psycasters");
         public static readonly Texture2D PurchaseVehicleTex = ContentFinder<Texture2D>.Get("UI/Commands/PurchaseVehicle");
+        public static readonly Texture2D Town = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/MinorFaction_Town");
+        public static readonly Texture2D Village = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/MinorFaction_Village");
 
 
     }

@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\wawleadership\\ui\\window_upgradewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\wawleadership\\wawleadership\\ui\\window_upgradewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|solutionrelative:wawleadership\\ui\\window_upgradewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -19,7 +19,7 @@
       "RelativeMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|solutionrelative:wawleadership\\leadershipattributes\\attributeset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\wawleadership\\wawleadership\\interactionutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\wawleadership\\interactionutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|solutionrelative:wawleadership\\interactionutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -137,8 +137,7 @@
               "RelativeToolTip": "WAWLeadership\\InteractionUtility.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAMcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T12:55:13.016Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T12:55:13.016Z"
             },
             {
               "$type": "Document",
@@ -218,9 +217,9 @@
               "Title": "Window_UpgradeWarband.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_UpgradeWarband.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\UI\\Window_UpgradeWarband.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_UpgradeWarband.cs*",
-              "RelativeToolTip": "WAWLeadership\\UI\\Window_UpgradeWarband.cs*",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAmwH0AAAARAAAAAAAAAA==",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_UpgradeWarband.cs",
+              "RelativeToolTip": "WAWLeadership\\UI\\Window_UpgradeWarband.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAHMAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-25T13:55:36.925Z",
               "EditorCaption": ""
@@ -233,7 +232,7 @@
               "RelativeDocumentMoniker": "WAWLeadership\\UI\\Window_Leadership.cs",
               "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_Leadership.cs",
               "RelativeToolTip": "WAWLeadership\\UI\\Window_Leadership.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAIA5wDMAAABVAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAIA5wD4AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-16T08:40:37.077Z",
               "EditorCaption": ""
@@ -248,8 +247,7 @@
               "RelativeToolTip": "WAWLeadership\\LeadershipAttributes\\AttributeSet.cs",
               "ViewState": "AgIAAKQAAAAAAAAAAIA7wK8AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-15T12:23:07.481Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-15T12:23:07.481Z"
             },
             {
               "$type": "Document",
@@ -369,8 +367,7 @@
               "RelativeToolTip": "WAWLeadership\\LeadershipAttributes\\LeadershipAttribute.cs",
               "ViewState": "AgIAAGMAAAAAAAAAAAAAAAsAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-15T08:05:54.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-15T08:05:54.161Z"
             },
             {
               "$type": "Document",

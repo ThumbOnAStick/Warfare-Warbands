@@ -65,5 +65,9 @@
 	<WAW.FactionOverride>决定战团的派系类型，这会覆盖士兵的文化和外星种族。</WAW.FactionOverride>
 	<WAW.InsufficientPsycaster>无灵能使，请从“招募灵能使”面板中选择。</WAW.InsufficientPsycaster>
 	<WAW.PleaseSelectUpgrade>请选择一项升级。</WAW.PleaseSelectUpgrade>
-
+	<WAW.JoinPlayerLeague>加入联盟</WAW.JoinPlayerLeague>
+	<WAW.JoinPlayerLeague.ToolTip>{0}会加入玩家的联盟。</WAW.JoinPlayerLeague.ToolTip>
+	<WAW.SaveVillage>拯救村庄</WAW.SaveVillage>
+	<WAW.SaveVillage.Desc>一群村民需要你的帮助！他们声称他们的村庄被一群袭击者霸占，并希望你派出战团消灭这些袭击者。\n他们同意加入联盟并为我们的战团提供服务。</WAW.SaveVillage.Desc>
+	<WAW.QuestAvailable>联盟任务： {0}</WAW.QuestAvailable>
 </LanguageData>

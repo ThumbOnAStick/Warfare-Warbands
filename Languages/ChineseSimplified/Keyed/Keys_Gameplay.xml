@@ -74,8 +74,8 @@
 	<WAW.PromoteSoldier.Desc>把{0}“升职”为殖民者</WAW.PromoteSoldier.Desc>
 	<WAW.PromotionSuccess>{0}加入了你的殖民地。</WAW.PromotionSuccess>
 	<WAW.NoVehicle>车队中没有车辆，请使用“购买载具”按钮为车队添置车辆。</WAW.NoVehicle>
-    <WAW.AboutBridgeCombatTeam>关于：车队</WAW.AboutBridgeCombatTeam>
-    <WAW.AboutBridgeCombatTeam.Desc>车队使用地面载具，所以你无法发动空袭。\n每个车队成员都被给予能够将车辆返还车队的指令。</WAW.AboutBridgeCombatTeam.Desc>
+    <WAW.AboutBrigadeCombatTeam>关于：车队</WAW.AboutBrigadeCombatTeam>
+    <WAW.AboutBrigadeCombatTeam.Desc>车队使用地面载具，所以你无法发动空袭。\n每个车队成员都被给予能够将车辆返还车队的指令。</WAW.AboutBrigadeCombatTeam.Desc>
 	<WAW.CasterAdded>灵能使已被加入设置。</WAW.CasterAdded>
 	<WAW.PsycasterKilled>来自{0}的灵能使在战斗中死亡，帝国对此表达了不满。</WAW.PsycasterKilled>
 	<WAW.CantAffordEltex>灵质不足</WAW.CantAffordEltex>
@@ -83,5 +83,6 @@
 	<WAW.OnFoot>步行</WAW.OnFoot>
 	<WAW.AllRecovered>由于{0}的医疗技能, 战团中的所有伤员都痊愈了。</WAW.AllRecovered>
 	<WAW.HealsPlayerWarband>能治疗另一个玩家战团。</WAW.HealsPlayerWarband>
-
+	<WAW.GeneratingRaiders>生成强盗</WAW.GeneratingRaiders>
+	
 </LanguageData>

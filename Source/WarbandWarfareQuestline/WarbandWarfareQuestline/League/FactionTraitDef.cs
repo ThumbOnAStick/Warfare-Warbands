@@ -9,6 +9,10 @@ namespace WarbandWarfareQuestline
 {
     public class FactionTraitDef : Def
     {
-        
+        public int commonality;
+        //supply bonus per day
+        public float supplyBonus;
+
+ 
     }
 }

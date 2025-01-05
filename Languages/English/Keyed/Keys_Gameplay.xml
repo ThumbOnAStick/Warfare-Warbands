@@ -85,4 +85,5 @@
 	<WAW.IsMovingTo>Moving to destination!</WAW.IsMovingTo>
 	<WAW.AllRecovered>Thanks to {0}'s medical skill, everyone in the warband has been healed.</WAW.AllRecovered>
 	<WAW.HealsPlayerWarband>Can heal another player warband</WAW.HealsPlayerWarband>
+	<WAW.GeneratingRaiders>Generating Raiders</WAW.GeneratingRaiders>
 </LanguageData>	

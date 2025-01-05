@@ -30,4 +30,19 @@
     <expandingIconPriority>100</expandingIconPriority>
     <expandMore>true</expandMore>
   </WorldObjectDef>
+
+  <WorldObjectDef Name="WAW_MinorFactionSettlement">
+    <defName>WAW_MinorFactionSettlement</defName>
+    <label>mini settlement</label>
+    <description>A base of one of the minor factions.</description>
+    <worldObjectClass>WarbandWarfareQuestline.League.MinorFactionSettlement</worldObjectClass>
+    <expandingIcon>true</expandingIcon>
+    <expandingIconPriority>10</expandingIconPriority>
+    <canBePlayerHome>true</canBePlayerHome>
+    <mapGenerator>Base_MinorFaction</mapGenerator>
+    <comps>
+      <li Class="WorldObjectCompProperties_FormCaravan" />
+    </comps>
+  </WorldObjectDef>
+
   </Defs>
