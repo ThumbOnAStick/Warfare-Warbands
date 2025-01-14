@@ -88,7 +88,7 @@ namespace WarfareAndWarbands.Warband
                 if (!Mercenary.Downed && !retreated)
                 {
                     yield return WarbandUI.RetreatPawn(this);
-                    if (!this.IsFromEmpire)
+                    if (!this.IsFromEmpire && Mercenary.MapHeld != null && Mercenary.MapHeld.ParentFaction == Faction.OfPlayer)
                         yield return WarbandUI.RecruitPawn(this);
                     if (warband != null &&
                        warband.playerWarbandManager.upgradeHolder.HasUpgrade &&
@@ -236,7 +236,7 @@ namespace WarfareAndWarbands.Warband
 
         public void TryToPromote()
         {
-            if (WarbandUtil.TryToSpendSilverFromColony(Find.CurrentMap, (int)parent.MarketValue))
+            if (WarbandUtil.TryToSpendSilverFromColonyOrBank(Find.CurrentMap, (int)parent.MarketValue))
             {
                 this.ResetAll();
                 if (ModsConfig.IdeologyActive)

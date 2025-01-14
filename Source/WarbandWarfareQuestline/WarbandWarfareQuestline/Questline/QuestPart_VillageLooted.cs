@@ -12,13 +12,34 @@ namespace WarbandWarfareQuestline.Questline
 {
     public class QuestPart_VillageLooted : QuestPartActivable
     {
-        private int ticks = 0;
+        public string factionID;
         public MinorFactionSettlement questSettlement;
         public MinorFaction faction;
+        private int _ticks = 0;
+        private readonly int _forceQuestEndTicks = 5 * GenDate.TicksPerDay;
+
+        public MinorFaction Faction
+        {
+            get
+            {
+                if(faction == null)
+                {
+                    faction = questSettlement.MinorFaction;
+                }
+                return faction;
+            }
+        }
 
         void FinishQuest()
         {
             quest.End(QuestEndOutcome.Success);
+            quest.GetFirstOrAddPart<QuestPart_Choice>()?.choices?.First()?.rewards?.First()?.Notify_Used();
+            questSettlement?.SetFaction(null);
+        }
+
+        void FailQuest()
+        {
+            quest.End(QuestEndOutcome.Fail);
         }
 
         public override IEnumerable<GlobalTargetInfo> QuestLookTargets
@@ -33,7 +54,7 @@ namespace WarbandWarfareQuestline.Questline
         {
             base.PreQuestAccept();
             this.Enable(new SignalArgs());
-            questSettlement = faction.GenerateSettlementOccupied();
+            questSettlement = Faction.GenerateSettlementOccupied();
 
         }
 
@@ -45,11 +66,26 @@ namespace WarbandWarfareQuestline.Questline
         public override void QuestPartTick()
         {
             base.QuestPartTick();
-            ticks++;
-            if(ticks > 5000)
+            _ticks++;
+            // Check village
+            if (this.questSettlement.HasMap)
             {
-                FinishQuest();
+                if(!GenHostility.AnyHostileActiveThreatToPlayer(this.questSettlement.Map))
+                {
+                    FinishQuest();
+                }
             }
+            else if(_ticks > _forceQuestEndTicks)
+            {
+                FailQuest();
+            }
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_References.Look(ref this.questSettlement, "questSettlement");
+            Scribe_Values.Look(ref this._ticks, "_ticks");
         }
     }
 }

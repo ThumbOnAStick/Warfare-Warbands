@@ -36,5 +36,7 @@
 	<WAW.LeaderInfo>领袖信息</WAW.LeaderInfo>
 	<WAW.RecycleVehicle>回收载具</WAW.RecycleVehicle>
 	<WAW.RecycleVehicle.Desc>车队的载具在每次出击后都会清零，这个操作可以将载具储存到战团。</WAW.RecycleVehicle.Desc>
-	<WAW.PurchaseVehicles>购买载具</WAW.PurchaseVehicles>
+	<WAW.PurchaseVehicles>购买载具</WAW.PurchaseVehicles>	
+  <WAW.AutoLoad>快速装载</WAW.AutoLoad>
+	<WAW.AutoLoad.Desc>装载10格内的所有物品。</WAW.AutoLoad.Desc>
 </LanguageData>

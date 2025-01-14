@@ -80,7 +80,7 @@ namespace WarfareAndWarbands.Warband.Compatibility_Vehicle
                 Widgets.DrawTextureFitted(textureRect, vehicle.uiIcon, 1);
                 if (Widgets.ButtonText(buttonRect, "WAW.BuyVehicle".Translate(vehicle.label)))
                 {
-                    if (WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, (int)vehicle.BaseMarketValue))
+                    if (WarbandUtil.TryToSpendSilverFromColonyOrBank(Find.AnyPlayerHomeMap, (int)vehicle.BaseMarketValue))
                     {
                         SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
                         this._upgrade.AddVehicle(vehicle.defName);

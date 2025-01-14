@@ -37,6 +37,8 @@ namespace WarfareAndWarbands.Warband
                     GameComponent_WAW.playerWarband.bandMembers[ele.Key] = warband.bandMembers[ele.Key];
                 }
             }
+            GameComponent_WAW.playerWarband.pawnFactionType = warband.PawnKindFactionType;
+            GameComponent_WAW.playerWarband.colorOverride = warband.playerWarbandManager.colorOverride.GetColorOverride();
         }
         public override Vector2 InitialSize
         {
@@ -81,10 +83,6 @@ namespace WarfareAndWarbands.Warband
                 DrawRecruitButton(inRect);
             }
             WarbandUI.DrawNextStepButton(inRect, ref step);
-
-       
-
-
         }
 
         void DrawExtraCost(Rect inRect)

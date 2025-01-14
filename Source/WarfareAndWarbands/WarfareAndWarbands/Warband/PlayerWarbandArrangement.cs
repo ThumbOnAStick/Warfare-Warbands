@@ -136,7 +136,7 @@ namespace WarfareAndWarbands.Warband
                 "WAW.Default".Translate(GetCostEstablishment()),
                 delegate
                 {
-                    if (!WarbandUtil.TryToSpendSilverFromColony(currentMap, GetCostEstablishment()))
+                    if (!WarbandUtil.TryToSpendSilverFromColonyOrBank(currentMap, GetCostEstablishment()))
                     {
                         return;
                     }
@@ -148,7 +148,7 @@ namespace WarfareAndWarbands.Warband
                 "WAW.Immediate".Translate(GetCostEstablishmentImmediate()),
             delegate
             {
-                if (!WarbandUtil.TryToSpendSilverFromColony(currentMap, GetCostEstablishmentImmediate()))
+                if (!WarbandUtil.TryToSpendSilverFromColonyOrBank(currentMap, GetCostEstablishmentImmediate()))
                 {
                     return;
                 }
@@ -174,7 +174,7 @@ namespace WarfareAndWarbands.Warband
                 return;
             }
             int cost = GetCostExtra(playerWarbandSite.bandMembers, playerWarbandSite.playerWarbandManager.NewRecruitCostMultiplier);
-            if (!WarbandUtil.TryToSpendSilverFromColony(currentMap, cost))
+            if (!WarbandUtil.TryToSpendSilverFromColonyOrBank(currentMap, cost))
             {
                 return;
             }

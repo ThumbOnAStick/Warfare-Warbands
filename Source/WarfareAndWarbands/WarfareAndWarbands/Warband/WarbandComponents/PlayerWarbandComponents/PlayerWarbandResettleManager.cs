@@ -45,7 +45,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         private static bool MoveTo(GlobalTargetInfo info, Warband warband)
         {
-            if (!WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, GetTravelCost(info, warband)))
+            if (!WarbandUtil.TryToSpendSilverFromColonyOrBank(Find.AnyPlayerHomeMap, GetTravelCost(info, warband)))
             {
                 Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent);
                 return false;
@@ -79,11 +79,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         {
 
             int cost = GetFlightCost(info, warband);
-            if (!WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, cost))
+            if (!WarbandUtil.TryToSpendSilverFromColonyOrBank(Find.AnyPlayerHomeMap, cost))
             {
                 Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent);
                 return false;
             }
+            warband.worldPather.ResetPath();
             TransportPodsArrivalAction_SpawnWarband action = new TransportPodsArrivalAction_SpawnWarband(warband);
             TravelingTransportPods travelingTransportPods = (TravelingTransportPods)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.TravelingTransportPods);
             travelingTransportPods.Tile = warband.Tile;

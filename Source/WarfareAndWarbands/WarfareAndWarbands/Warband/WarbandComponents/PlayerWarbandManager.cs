@@ -158,6 +158,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             this.lootManager.WithdrawLootInSilver();
         }
 
+        public void WithdrawLootToBank()
+        {
+            this.lootManager.WithdrawLootToBank();
+
+        }
+
         public void StoreAll(IEnumerable<Thing> things)
         {
             this.lootManager.StoreAll(things);

@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,29 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.Grammar;
+using WarbandWarfareQuestline.League;
 using static System.Collections.Specialized.BitVector32;
 
 namespace WarbandWarfareQuestline.Questline
 {
     public class Reward_MinorFactionJoin : Reward
     {
+        public string factionID;
         public MinorFaction mFaction;
+
+        public MinorFaction MFaction
+        {
+            get
+            {
+              
+                if(mFaction == null)
+                {
+                    Log.Message($"{factionID},{GameComponent_League.Instance.FactionsTemp.First().FactionID}");
+                    mFaction = GameComponent_League.Instance.FactionsTemp.Any(x => x.FactionID == factionID) ? GameComponent_League.Instance.FactionsTemp.First(x => x.FactionID == factionID) : null;
+                }
+                return mFaction;    
+            }
+        }
 
         public override IEnumerable<GenUI.AnonymousStackElement> StackElements
         {
@@ -21,10 +38,13 @@ namespace WarbandWarfareQuestline.Questline
             {
                 yield return QuestPartUtility.GetStandardRewardStackElement("WAW.JoinPlayerLeague".Translate(), delegate (Rect r)
                 {
-                    GUI.color = mFaction.FactionColor;
-                    GUI.DrawTexture(r, mFaction.GetFactionIcon());
-                    GUI.color = Color.white;
-                }, () => "WAW.JoinPlayerLeague.ToolTip".Translate(mFaction.FactionName) + "\n" + mFaction.Trait.description);
+                    if (MFaction != null)
+                    {
+                        GUI.color = MFaction.FactionColor;
+                        GUI.DrawTexture(r, MFaction.GetFactionIcon());
+                        GUI.color = Color.white;
+                    }
+                }, () => MFaction == null ? new TaggedString("") : "WAW.JoinPlayerLeague.ToolTip".Translate(mFaction.FactionName) + "\n" + mFaction.Trait.description);
             }
         }
 
@@ -40,7 +60,24 @@ namespace WarbandWarfareQuestline.Questline
 
         public override void InitFromValue(float rewardValue, RewardsGeneratorParams parms, out float valueActuallyUsed)
         {
-            throw new NotImplementedException();
+            valueActuallyUsed = 0f;
         }
+
+        public override void Notify_Used()
+        {
+            base.Notify_Used();
+            this.mFaction.JoinPlayer();
+            Log.Message("Reward Used");
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref factionID, "factionID");
+        }
+
+
+
+
     }
 }

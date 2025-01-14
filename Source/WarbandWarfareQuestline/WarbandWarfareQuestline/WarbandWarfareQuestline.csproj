@@ -89,6 +89,7 @@
     <Compile Include="Questline\GameComponent_Questline.cs" />
     <Compile Include="League\MinorFaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Questline\Quests.cs" />
     <Compile Include="Questline\QuestPart_VillageLooted.cs" />
     <Compile Include="Questline\Reward_MinorFactionJoin.cs" />
   </ItemGroup>

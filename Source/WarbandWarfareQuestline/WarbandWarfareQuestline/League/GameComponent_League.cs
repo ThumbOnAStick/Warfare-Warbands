@@ -12,17 +12,24 @@ namespace WarbandWarfareQuestline.League
 {
     public class GameComponent_League:GameComponent
     {
-        private int _lastCheckTick = 0;
         public static GameComponent_League Instance;
+        private int _lastCheckTick = 0;
+        private List<MinorFaction> _minorFactions;
+        private List<MinorFaction> _minorFactionsTemp;
         private readonly int policyGenerationDays = 15;
         private readonly int eventGenerationDays = 15;
+        
 
         public GameComponent_League(Game game)
         {
             Instance = this;
+            _minorFactions = new List<MinorFaction>();
+            _minorFactionsTemp = new List<MinorFaction>();
         }
 
         public int EventGenrationTicks => eventGenerationDays * GenDate.TicksPerDay;
+        public List<MinorFaction> Factions => _minorFactions;
+        public List<MinorFaction> FactionsTemp => _minorFactionsTemp;
 
         bool ShouldCheckNow()
         {
@@ -34,34 +41,6 @@ namespace WarbandWarfareQuestline.League
             _lastCheckTick = GenTicks.TicksGame;
         }
 
-        void GiveVillageQuest()
-        {
-            //Generate a village
-            MinorFaction m = MinorFactionHelper.GenerateMinorFaction(FactionTraitDefOf.WAW_Cautious, TechLevel.Neolithic, FactionDefOf.TribeCivil.DefaultColor);
-
-            // Give player a quest
-            Quest quest = new Quest
-            {
-                challengeRating = 4,
-                name = "WAW.SaveVillage".Translate(),
-                description = "WAW.SaveVillage.Desc".Translate(),
-                ticksUntilAcceptanceExpiry = GenDate.TicksPerDay * 5
-            };
-            List<QuestPart_Choice.Choice> choices =
-            new List<QuestPart_Choice.Choice>()
-            {
-                new QuestPart_Choice.Choice()
-                {
-                    questParts =  new List<QuestPart>(),
-                    rewards = new List<Reward>(){ new Reward_MinorFactionJoin() { mFaction = m} }
-                }
-            };
-            quest.AddPart(new QuestPart_Choice() { choices = choices });
-            quest.AddPart(new QuestPart_VillageLooted() { inSignalEnable = QuestGen.slate.Get<string>("inSignal", null, false), faction = m});
-            quest.root = new QuestScriptDef();
-            Find.QuestManager.Add(quest);
-            Find.LetterStack.ReceiveLetter(LetterMaker.MakeLetter("WAW.QuestAvailable".Translate(quest.name), quest.description, LetterDefOf.PositiveEvent, null, quest));
-        }
 
         public override void GameComponentTick()
         {
@@ -75,13 +54,20 @@ namespace WarbandWarfareQuestline.League
         public override void StartedNewGame()
         {
             base.StartedNewGame();
-            GiveVillageQuest();
-         }
+            //Quests.GiveVillageQuest();
+        }
 
         public override void FinalizeInit()
         {
             base.FinalizeInit();
             Log.Message("WAW: league module active");
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Collections.Look(ref _minorFactions, "_minorFactions", LookMode.Deep);
+            Scribe_Collections.Look(ref _minorFactionsTemp, "_minorFactionsTemp", LookMode.Deep);
         }
 
     }

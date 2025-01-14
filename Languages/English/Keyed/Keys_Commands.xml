@@ -6,8 +6,8 @@
 	<WAW.EmptyStorage>The storage is empty</WAW.EmptyStorage>
 	<WAW.WarbandWithdraw>withdraw loot</WAW.WarbandWithdraw>
 	<WAW.WarbandWithdraw.Desc>Return all loots with drop pods</WAW.WarbandWithdraw.Desc>
-	<WAW.InItems>directly send items</WAW.InItems>
-	<WAW.InSilvers>send in the form of silvers</WAW.InSilvers>
+	<WAW.InItems>Directly send items</WAW.InItems>
+	<WAW.InSilvers>Sell loots for silvers</WAW.InSilvers>
 	<WAW.LandAttack>Initiate ground attack</WAW.LandAttack>
 	<WAW.PodAttack>Attack in transport pods</WAW.PodAttack>
 	<WAW.Dismiss>dismiss</WAW.Dismiss>
@@ -40,4 +40,6 @@
 	<WAW.RecycleVehicle>Recycle Vehicle</WAW.RecycleVehicle>
 	<WAW.RecycleVehicle.Desc>A bridge combat team clears all its vehicles everytime it raids, this command stores a vechile back to warband.</WAW.RecycleVehicle.Desc>
 	<WAW.PurchaseVehicles>Purchase Vehicles</WAW.PurchaseVehicles>
+	<WAW.AutoLoad>Quick Load</WAW.AutoLoad>
+	<WAW.AutoLoad.Desc>Load everything 10 cells near loot chest.</WAW.AutoLoad.Desc>
 </LanguageData>	

@@ -68,6 +68,7 @@ namespace WarbandWarfareQuestline.League
             pawn.Corpse.GetComp<CompRottable>().RotProgress += (float)pawn.Corpse.Age;
         }
 
+
     }
 
 }

@@ -18,7 +18,9 @@ namespace WarfareAndWarbands
         public static WorldObjectDef WAW_WarbandRecruiting;
         public static WorldObjectDef WAW_MinorFactionSettlement;
         public static ThingDef WAW_LootChest;
+        public static ThingDef LootChestIncoming;
         public static SitePartDef WAWEmptySite;
+        public static ThingDef ActiveDropPodLootChest;
 
     }
 }

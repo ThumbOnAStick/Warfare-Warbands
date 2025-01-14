@@ -42,7 +42,7 @@ namespace WarfareAndWarbands.Warband
             this.customName :
             (this.def.label + "(" + this.Faction.Name + ")");
         public override Vector3 DrawPos => this.worldPather.TweenedPos ;
-        public FactionDef PawnKindFactionType => _pawnKindFactionType;
+        public FactionDef PawnKindFactionType => _pawnKindFactionType ?? DefDatabase<FactionDef>.AllDefs.First();
 
         public override Texture2D ExpandingIcon
         {
@@ -382,6 +382,11 @@ namespace WarfareAndWarbands.Warband
             playerWarbandManager?.WithdrawLootInSilver();
         }
 
+        public void WithdrawLootToBank()
+        {
+            this.playerWarbandManager?.WithdrawLootToBank();
+        }
+
         void RemoveMapCheck()
         {
             if (this.HasMap && this.ShouldRemoveMapNow(out bool flag))
@@ -416,6 +421,7 @@ namespace WarfareAndWarbands.Warband
                 Log.Message("Sites removed.");
             }
         }
+
 
         public override void ExposeData()
         {

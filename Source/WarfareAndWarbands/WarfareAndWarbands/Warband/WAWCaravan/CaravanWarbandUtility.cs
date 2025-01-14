@@ -29,6 +29,13 @@ namespace WarfareAndWarbands.Warband
 
         public static bool TryToSpendSilverFromCaravan(Caravan caravan, int cost)
         {
+            if (GameComponent_WAW.playerBankAccount.Balance >= cost)
+            {
+                GameComponent_WAW.playerBankAccount.Spend(cost);
+                int remains = GameComponent_WAW.playerBankAccount.Balance;
+                Messages.Message("WAW.SpentFromBank".Translate(cost, remains), MessageTypeDefOf.PositiveEvent);
+                return true;
+            }
             if (!caravan.CanAfford(cost))
             {
                 Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent);

@@ -12,6 +12,7 @@ using WarfareAndWarbands.CharacterCustomization;
 using WarfareAndWarbands.Warband.Mercenary;
 using WarfareAndWarbands.Warband.UI;
 using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades;
+using static System.Collections.Specialized.BitVector32;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -52,7 +53,7 @@ namespace WarfareAndWarbands.Warband
         public static bool CantAffordToAttack(Warband warband)
         {
             int cost = (int)PlayerWarbandArrangement.GetCostOriginal(warband.bandMembers);
-            bool cantAfford = !WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, cost);
+            bool cantAfford = !WarbandUtil.TryToSpendSilverFromColonyOrBank(Find.AnyPlayerHomeMap, cost);
             if (cantAfford)
             {
                 return false;
@@ -321,7 +322,7 @@ namespace WarfareAndWarbands.Warband
 
         }
 
-        public static bool TryToSpendSilverFromColony(Map currentMap, int cost)
+        public static bool TryToSpendSilverFromColonyOrBank(Map currentMap, int cost)
         {
             if(currentMap == null)
             {
@@ -334,6 +335,13 @@ namespace WarfareAndWarbands.Warband
             IEnumerable<Thing> silvers = from x in currentMap.listerThings.AllThings
                                          where x.def == ThingDefOf.Silver && x.IsInAnyStorage()
                                          select x;
+            if(GameComponent_WAW.playerBankAccount.Balance >= cost)
+            {
+                GameComponent_WAW.playerBankAccount.Spend(cost);
+                int remains = GameComponent_WAW.playerBankAccount.Balance;
+                Messages.Message("WAW.SpentFromBank".Translate(cost, remains), MessageTypeDefOf.PositiveEvent);
+                return true;
+            }
             if (silvers.Sum((Thing t) => t.stackCount) < cost)
             {
                 Messages.Message("WAW.CantAfford".Translate(), MessageTypeDefOf.NegativeEvent);
@@ -411,12 +419,17 @@ namespace WarfareAndWarbands.Warband
 
         static void SpawnLootChest(LocalTargetInfo info)
         {
-            if (Find.CurrentMap.listerThings.AllThings.Any(x => x.def == WAWDefof.WAW_LootChest))
+            if (Find.CurrentMap.listerThings.AllThings.Any(x => x.def == WAWDefof.WAW_LootChest ))
             {
                 return;
             }
-            Thing chest = GenSpawn.Spawn(WAWDefof.WAW_LootChest, info.Cell, Find.CurrentMap);
+            Thing chest = ThingMaker.MakeThing(WAWDefof.WAW_LootChest);
+            chest.SetFaction(Faction.OfPlayer);
+            ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(WAWDefof.ActiveDropPodLootChest, null);
+            activeDropPod.Contents = new ActiveDropPodInfo();
+            activeDropPod.Contents.GetDirectlyHeldThings().TryAddOrTransfer(chest);
             chest.TryGetComp<CompLootChest>()?.AssignWarband(warbandCache);
+            SkyfallerMaker.SpawnSkyfaller(WAWDefof.LootChestIncoming, activeDropPod, info.Cell, Find.CurrentMap);
         }
 
         static void GUIAction(LocalTargetInfo info)

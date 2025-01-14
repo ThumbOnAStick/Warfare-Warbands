@@ -15,7 +15,7 @@
 	<WAW.TargetingMapParent>试图占领{0}。</WAW.TargetingMapParent>
 	<WAW.InvalidObject>抱歉，我们无法攻击这个目标。</WAW.InvalidObject>
 	<WAW.FarObject>长官，我们只能攻击十格内的目标。</WAW.FarObject>
-	<WAW.CantAfford>资金不足</WAW.CantAfford>
+	<WAW.CantAfford>殖民地和银行都没有足够的资金。</WAW.CantAfford>
 	<WAW.EmptyWarband>没有什么可以撤回的。</WAW.EmptyWarband>
 	<WAW.NoMembers>这支战团中没有人能够战斗。</WAW.NoMembers>
 	<WAW.WaitForCooldown>抱歉，我们在接下来的 {0} 天内无法活动。</WAW.WaitForCooldown>
@@ -84,5 +84,8 @@
 	<WAW.AllRecovered>由于{0}的医疗技能, 战团中的所有伤员都痊愈了。</WAW.AllRecovered>
 	<WAW.HealsPlayerWarband>能治疗另一个玩家战团。</WAW.HealsPlayerWarband>
 	<WAW.GeneratingRaiders>生成强盗</WAW.GeneratingRaiders>
-	
+	<WAW.SpentFromBank>我们从银行账户取出${0}支付了这笔费用，现在还剩${1}。</WAW.SpentFromBank>
+	<WAW.ReturnInterest>利息到账</WAW.ReturnInterest>
+	<WAW.ReturnInterest.Desc>我们的银行账户收到了 ${0} 的利息。</WAW.ReturnInterest.Desc>
+	<WAW.DepositeLoots>将战利品作为存款存放到银行。</WAW.DepositeLoots>
 </LanguageData>

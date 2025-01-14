@@ -14,7 +14,19 @@ namespace WarbandWarfareQuestline.League
         {
             MinorFaction minorFaction = new MinorFaction(trait, level, factionColor);
             minorFaction.Init();
+            GameComponent_League.Instance.FactionsTemp.Add(minorFaction);
             return minorFaction;
         }
+
+        public static void JoinPlayer(this MinorFaction f)
+        {
+            bool ContiansFaction(MinorFaction x) { return x.FactionID == f.FactionID; }
+            if (GameComponent_League.Instance.FactionsTemp.Any(ContiansFaction))
+            {
+                GameComponent_League.Instance.FactionsTemp.RemoveAll(ContiansFaction);
+                GameComponent_League.Instance.Factions.Add(f);
+            }
+        }
+
     }
 }

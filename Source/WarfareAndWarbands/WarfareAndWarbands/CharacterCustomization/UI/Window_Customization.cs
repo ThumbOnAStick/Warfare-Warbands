@@ -412,6 +412,16 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         }
 
+
+        #region SelectionPanel
+
+        List<ThingDef> AllEquippedItems(List<ThingDef> selectedList)
+        {
+            return selectedList.Where(x =>
+selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
+|| (selectedRequest.weaponRequest != null && selectedRequest.weaponRequest.defName == x.defName)).ToList();
+        }
+
         void DrawSearchBar(Rect selectionPanelBar)
         {
             int boxHeight = 30;
@@ -429,6 +439,109 @@ namespace WarfareAndWarbands.CharacterCustomization
             Widgets.ButtonImage(searchBoxRect, TexButton.Search);
         }
 
+        void TryMakeStuffOptions(ThingDef equipment)
+        {
+            if (CanAddFloatMenu(equipment))
+            {
+                AddEquipmentSuffOptions(equipment);
+            }
+            else
+            {
+                MakeSelection(equipment);
+            }
+        }
+        void TryToDrawStyleIcon(ref Texture2D itemTex, ThingDef item)
+        {
+            if (ModsConfig.IdeologyActive)
+            {
+                if (this.thingsAndStyles.ContainsKey(item))
+                {
+                    ThingStyleDef style = thingsAndStyles[item];
+                    if (style != null)
+                        itemTex = style.UIIcon;
+                }
+            }
+        }
+        void DrawApparelTooltip(Rect rect)
+        {
+            string tooltip;
+            if (selectionType != SelectionType.weapons)
+            {
+                tooltip = "WAW.tooltip".Translate();
+            }
+            else
+            {
+                tooltip = "WAW.tooltip1".Translate();
+
+            }
+            if (Mouse.IsOver(rect))
+            {
+                Widgets.DrawHighlight(rect);
+            }
+            TooltipHandler.TipRegion(rect, tooltip);
+        }
+        void TryToDrawStyleButton(Rect rect, ThingDef item)
+        {
+            if (!ModsConfig.IdeologyActive)
+            {
+                return;
+            }
+            Rect styleButtonRect = new Rect(rect.x, rect.yMax + 5, rect.width, itemSpacing);
+            if (!Mouse.IsOver(styleButtonRect) && !Mouse.IsOver(rect) && !Equipped(item))
+            {
+                return;
+            }
+            bool changeStyle = Widgets.CustomButtonText(
+                ref styleButtonRect,
+                CustomizationUtil.StyleStringFor(item, thingsAndStyles),
+               bgColor: new Color(0, 0, 0, 0),
+               textColor: Color.white,
+               borderColor: new Color(0, 0, 0, 0),
+               unfilledBgColor: new Color(0, 0, 0, 0),
+               fillPercent: 0);
+            if (changeStyle)
+            {
+                CustomizationUI.GetStyleOptions(item, ref thingsAndStyles, item.StylesFor(), this);
+            }
+        }
+        void DrawSelectorItem(Rect rect, ThingDef item)
+        {
+            string graphicPath = item.graphicData.texPath;
+            var stuff = selectedRequest.GetStuff(item);
+            Texture2D itemTex = Widgets.GetIconFor(item, stuff);
+            TryToDrawStyleIcon(ref itemTex, item);
+            if (Equipped(item))
+            {
+                Widgets.DrawHighlight(rect);
+                if (Mouse.IsOver(rect) && selectionType != SelectionType.weapons)
+                {
+                    itemTex = TexUI.DismissTex;
+                }
+            }
+            Rect labelRect = new Rect(rect.xMax + 5, rect.y, 80, rect.height);
+            Widgets.Label(labelRect, item.label);
+            DrawApparelTooltip(rect);
+            bool selectEquipment = Widgets.ButtonImage(
+                rect,
+                itemTex,
+                baseColor: stuff == null ? Color.white : stuff.stuffProps.color);
+            if (selectEquipment)
+            {
+                TryMakeStuffOptions(item);
+            }
+            TryToDrawStyleButton(rect, item);
+        }
+        bool ContainsAll(string target)
+        {
+            foreach (var buffer in filterBuffer)
+            {
+                if (!target.ToString().ToUpper().Contains(buffer.ToUpper()))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         void DrawSelectionPanel(Rect inRect)
         {
             int itemHeight = 50;
@@ -463,90 +576,8 @@ namespace WarfareAndWarbands.CharacterCustomization
             Widgets.EndScrollView();
         }
 
-        bool ContainsAll(string target)
-        {
-            foreach (var buffer in filterBuffer)
-            {
-                if (!target.ToString().ToUpper().Contains(buffer.ToUpper()))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        #endregion
 
-        List<ThingDef> AllEquippedItems(List<ThingDef> selectedList)
-        {
-            return selectedList.Where(x =>
-selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
-|| (selectedRequest.weaponRequest != null && selectedRequest.weaponRequest.defName == x.defName)).ToList();
-        }
-
-        void DrawSelectorItem(Rect rect, ThingDef item)
-        {
-            string graphicPath = item.graphicData.texPath;
-            var stuff = selectedRequest.GetStuff(item);
-            Texture2D itemTex = Widgets.GetIconFor(item, stuff);
-            TryToDrawStyleIcon(ref itemTex, item); 
-            if (Equipped(item))
-            {
-                Widgets.DrawHighlight(rect);
-                if (Mouse.IsOver(rect) && selectionType != SelectionType.weapons)
-                {
-                    itemTex = TexUI.DismissTex;
-                }
-            }
-            Rect labelRect = new Rect(rect.xMax + 5, rect.y, 80, rect.height);
-            Widgets.Label(labelRect, item.label);
-            DrawApparelTooltip(rect);
-            bool selectEquipment = Widgets.ButtonImage(
-                rect, 
-                itemTex, 
-                baseColor: stuff == null? Color.white : stuff.stuffProps.color);
-            if (selectEquipment)
-            {
-                TryMakeStuffOptions(item);
-            }
-            TryToDrawStyleButton(rect, item);
-        }
-
-        void TryToDrawStyleIcon(ref Texture2D itemTex, ThingDef item)
-        {
-            if (ModsConfig.IdeologyActive)
-            {
-                if (this.thingsAndStyles.ContainsKey(item))
-                {
-                    ThingStyleDef style = thingsAndStyles[item];
-                    if (style != null)
-                        itemTex = style.UIIcon;
-                }
-            }
-        }
-
-        void TryToDrawStyleButton(Rect rect, ThingDef item)
-        {
-            if (!ModsConfig.IdeologyActive)
-            {
-                return;
-            }
-            Rect styleButtonRect = new Rect(rect.x, rect.yMax + 5, rect.width, itemSpacing);
-            if (!Mouse.IsOver(styleButtonRect) && !Mouse.IsOver(rect) && !Equipped(item))
-            {
-                return;
-            }
-            bool changeStyle = Widgets.CustomButtonText(
-                ref styleButtonRect,
-                CustomizationUtil.StyleStringFor(item, thingsAndStyles),
-               bgColor: new Color(0, 0, 0, 0),
-               textColor: Color.white,
-               borderColor: new Color(0, 0, 0, 0),
-               unfilledBgColor: new Color(0, 0, 0, 0),
-               fillPercent: 0);
-            if (changeStyle)
-            {
-                CustomizationUI.GetStyleOptions(item, ref thingsAndStyles, item.StylesFor(), this);
-            }
-        }
 
         bool Equipped(ThingDef item)
         {
@@ -554,24 +585,7 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
                || (selectedRequest.weaponRequest != null && selectedRequest.weaponRequest.defName == item.defName);
         }
 
-        void DrawApparelTooltip(Rect rect)
-        {
-            string tooltip;
-            if (selectionType != SelectionType.weapons)
-            {
-                tooltip = "WAW.tooltip".Translate();
-            }
-            else
-            {
-                tooltip = "WAW.tooltip1".Translate();
-
-            }
-            if (Mouse.IsOver(rect))
-            {
-                Widgets.DrawHighlight(rect);
-            }
-            TooltipHandler.TipRegion(rect, tooltip);
-        }
+       
 
         public override void Close(bool doCloseSound = true)
         {
@@ -602,17 +616,6 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             }
         }
 
-        void TryMakeStuffOptions(ThingDef equipment)
-        {
-            if (CanAddFloatMenu(equipment))
-            {
-                AddEquipmentSuffOptions(equipment);
-            }
-            else
-            {
-                MakeSelection(equipment);
-            }
-        }
 
         void AddEquipmentSuffOptions(ThingDef equipment)
         {

@@ -110,6 +110,7 @@ namespace WarfareAndWarbands.Warband.UI
         {
             yield return new FloatMenuOption("WAW.InItems".Translate(), delegate { band.WithdrawLoot(); });
             yield return new FloatMenuOption("WAW.InSilvers".Translate(), delegate { band.WithdrawLootInSilver(); });
+            yield return new FloatMenuOption("WAW.DepositeLoots".Translate(), delegate { band.WithdrawLootToBank(); });
 
         }
 
@@ -267,6 +268,26 @@ namespace WarfareAndWarbands.Warband.UI
                 action = delegate ()
                 {
                     lootComp.TransferToWarband();
+                },
+                Order = 3000f
+            };
+            return command_Action;
+        }
+
+        public static Command AutoLoadLoot(CompLootChest lootComp)
+        {
+            Command_Action command_Action = new Command_Action
+            {
+                icon = WAWTex.QuickLoadTex,
+                defaultLabel = "WAW.AutoLoad".Translate(),
+                defaultDesc = "WAW.AutoLoad.Desc".Translate(),
+                onHover = delegate 
+                {
+                    GenDraw.DrawRadiusRing(lootComp.parent.Position, lootComp.QuickLootRadius);
+                },
+                action = delegate ()
+                {
+                    lootComp.LoadEverythingNear();
                 },
                 Order = 3000f
             };
@@ -449,13 +470,22 @@ namespace WarfareAndWarbands.Warband.UI
                 bool add = Widgets.ButtonImage(new Rect(labelRect.xMax, labelRect.y, entryWidth, entryHeight), TexUI.ArrowTexRight);
                 if (minus && GameComponent_WAW.playerWarband.bandMembers[p.defName] > 0) { GameComponent_WAW.playerWarband.bandMembers[p.defName]--; }
                 if (add) { GameComponent_WAW.playerWarband.bandMembers[p.defName]++; }
-                bool contains = warband == null ?
-                    GameComponent_WAW.playerWarband.bandMembers.ContainsKey(p.defName) && GameComponent_WAW.playerWarband.bandMembers[p.defName] > 0 :
-                    warband.bandMembers.ContainsKey(p.defName) && warband.bandMembers[p.defName] > 0;
-                if (contains)
+                bool arrangementContains = GameComponent_WAW.playerWarband.bandMembers.ContainsKey(p.defName) && GameComponent_WAW.playerWarband.bandMembers[p.defName] > 0;
+                if (arrangementContains)
                 {
                     Widgets.DrawBox(boxRect);
                 }
+                if(warband != null)
+                {
+                    bool warbandContians = warband.bandMembers.ContainsKey(p.defName) && warband.bandMembers[p.defName] > 0;
+                    if (warbandContians)
+                    {
+                        Widgets.DrawBox(boxRect, lineTexture: BaseContent.GreyTex);
+
+                    }
+                }
+
+
                 if (p.defaultFactionType != null)
                 {
                     GUI.color = p.defaultFactionType.DefaultColor;

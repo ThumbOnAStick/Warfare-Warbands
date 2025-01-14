@@ -45,14 +45,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 Messages.Message(m);
                 return;
             }
-
-            ActiveDropPodInfo activeDropPodInfo = new ActiveDropPodInfo();
-            activeDropPodInfo.innerContainer.TryAddRangeOrTransfer(storage, true, false);
-            activeDropPodInfo.spawnWipeMode = new WipeMode?(WipeMode.Vanish);
+            LaunchItemsToHome(ref storage);
             storage.Clear();
-            LaunchItemsToHome(activeDropPodInfo);
         }
-
 
 
         public void WithdrawLootInSilver()
@@ -64,13 +59,26 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 Messages.Message(m);
                 return;
             }
-            ActiveDropPodInfo activeDropPodInfo = new ActiveDropPodInfo();
             List<Thing> silvers = GetLootValueInSilver();
-            activeDropPodInfo.innerContainer.TryAddRangeOrTransfer(silvers, true, false);
-            activeDropPodInfo.spawnWipeMode = new WipeMode?(WipeMode.Vanish);
-            storage?.Clear();
             Messages.Message("WAW.LootValue".Translate(this.lootValueMultiplier * 100), MessageTypeDefOf.NeutralEvent);
-            LaunchItemsToHome(activeDropPodInfo);
+            LaunchItemsToHome(ref silvers);
+            storage?.Clear();
+
+        }
+
+        public void WithdrawLootToBank()
+        {
+
+            if (storage.Count < 1)
+            {
+                Message m = new Message("WAW.EmptyWarband".Translate(), MessageTypeDefOf.RejectInput);
+                Messages.Message(m);
+                return;
+            }
+            int amount = (int)(GetLootValue() * this.lootValueMultiplier);
+            Messages.Message("WAW.LootValueBankAccount".Translate(this.lootValueMultiplier * 100, amount), MessageTypeDefOf.NeutralEvent);
+            GameComponent_WAW.playerBankAccount.Deposit(amount); 
+            storage?.Clear();
 
         }
 
@@ -106,17 +114,21 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         {
             return this.storage.Count;
         }
-        void LaunchItemsToHome(ActiveDropPodInfo activeDropPodInfo)
+        void LaunchItemsToHome(ref List<Thing> items)
         {
+            Log.Message(items.Count);
             Map playerMap = Find.AnyPlayerHomeMap;
             if (playerMap == null)
             {
                 return;
             }
             Current.Game.CurrentMap = playerMap;
-            var cell = DropCellFinder.RandomDropSpot(playerMap);
-            CameraJumper.TryJump(cell, playerMap);
-            DropPodUtility.MakeDropPodAt(cell, playerMap, activeDropPodInfo);
+            if (DropCellFinder.TryFindDropSpotNear(playerMap.Center, playerMap, out IntVec3 cell, false, false))
+            {
+                CameraJumper.TryJump(cell, playerMap);
+                //DropPodUtility.MakeDropPodAt(cell, playerMap, activeDropPodInfo);
+                DropPodUtility.DropThingsNear(cell, playerMap, items, canRoofPunch: false, forbid: false);
+            }
         }
 
         public float GetLootMultiplier()

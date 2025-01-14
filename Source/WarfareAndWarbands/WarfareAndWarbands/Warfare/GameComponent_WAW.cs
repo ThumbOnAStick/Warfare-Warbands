@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Verse;
 using WarfareAndWarbands.Warband;
+using WarfareAndWarbands.Warfare.Bank;
 using WarfareAndWarbands.Warfare.UI;
 
 namespace WarfareAndWarbands
@@ -18,6 +19,7 @@ namespace WarfareAndWarbands
         List<int> durabilitities = new List<int>();
         Dictionary<Faction, int> factionsAndWarDurabilities = new Dictionary<Faction, int>();
         public static PlayerWarbandArrangement playerWarband;
+        public static WAWBankAccount playerBankAccount;
         public static GameComponent_WAW Instance;
         public UnityEvent onRaid;
         public UnityEvent onRaided;
@@ -35,6 +37,7 @@ namespace WarfareAndWarbands
             onRaid = new UnityEvent();
             onRaided = new UnityEvent();
             onLeaderAbilityUsed = new UnityEvent();
+            playerBankAccount = new WAWBankAccount();
         }
 
         public override void ExposeData()
@@ -46,6 +49,11 @@ namespace WarfareAndWarbands
             Scribe_Values.Look(ref everAssignedWarbandLeader, "everAssignedWarbandLeader");
             Scribe_Values.Look(ref everUsedQuickRaid, "everUsedQuickRaid");
             playerWarband.ExposeData();
+            Scribe_Deep.Look(ref playerBankAccount, "playerBank");
+            if(playerBankAccount == null)
+            {
+                playerBankAccount = new WAWBankAccount(); 
+            }
         }
 
         public void AppendFactionInfoToTable(Faction faction)
@@ -144,14 +152,25 @@ namespace WarfareAndWarbands
             }
         }
         
-        Faction PlayerWarband()
+        Faction GetPlayerWarband()
         {
-            return Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband);
+            Faction f = Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband);
+            if (f == null)
+            {
+                FactionGeneratorParms factionGeneratorParms = new FactionGeneratorParms(WAWDefof.PlayerWarband, default(IdeoGenerationParms), new bool?(true));
+                f = FactionGenerator.NewGeneratedFaction(factionGeneratorParms);
+                Find.FactionManager.Add(f);
+            }
+            return f;
         }
 
         void TryToSetRelation()
         {
-            var playerWarband = PlayerWarband();
+            var playerWarband = GetPlayerWarband();
+            if(playerWarband == null)
+            {
+                return;
+            }
             foreach(var faction in Find.FactionManager.AllFactions)
             {
                 if(faction == playerWarband)
@@ -163,7 +182,7 @@ namespace WarfareAndWarbands
                     other = playerWarband,
                     kind = FactionRelationKind.Neutral
                 };
-                faction.SetRelation(r);
+                faction?.SetRelation(r);
             }
         }
         
@@ -208,7 +227,7 @@ namespace WarfareAndWarbands
             }
         }
 
-        void SelfTick()
+        void SpawnRandomWarband()
         {
             var validFactions = WarfareUtil.GetValidWarFactions();
             int len = validFactions.Count;
@@ -221,6 +240,23 @@ namespace WarfareAndWarbands
                 return;
             }
             WarfareUtil.SpawnWarbandTargetingBase(pickedFaction, worldObject);
+        }
+
+        void ReturnInterest()
+        {
+            if(!playerBankAccount.CanSpend())
+            {
+                return;
+            }
+            var interest = playerBankAccount.Interest;
+            playerBankAccount.ReturnInterestPerSeason();
+            Letter l = LetterMaker.MakeLetter("WAW.ReturnInterest".Translate(), "WAW.ReturnInterest.Desc".Translate(interest), LetterDefOf.PositiveEvent);
+            Find.LetterStack.ReceiveLetter(l);
+        }
+
+        void SelfTick()
+        {
+            ReturnInterest();
         }
 
         public void OnRaid(Pawn raidLeader = null)

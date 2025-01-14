@@ -48,13 +48,18 @@ namespace WarfareAndWarbands
 
         }
 
-        [DebugAction("WAW", "decrease war durability by fifty", actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Decrease war durability by fifty", actionType = DebugActionType.Action)]
         public static void DecreaseDurabilityByFiftyAction()
         {
             IEnumerable<FloatMenuOption> opts = DecreaseDurabilityByOptions(50);
             Find.WindowStack.Add(new FloatMenu(opts.ToList()));
         }
 
+        [DebugAction("WAW", "Add 10000 to bank account", actionType = DebugActionType.Action)]
+        public static void AddMoneyToAccount()
+        {
+            GameComponent_WAW.playerBankAccount.Deposit(10000);
+        }
 
         public static void TryToDefeatFaction(Faction f)
         {

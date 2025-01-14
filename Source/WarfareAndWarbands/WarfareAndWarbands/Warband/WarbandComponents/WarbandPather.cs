@@ -178,6 +178,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             }
         }
 
+        public void ResetPath()
+        {
+            this.nextTileCostLeft = 0f;
+            this.moving = false;    
+        }
+
 
         public void ExposeData()
         {

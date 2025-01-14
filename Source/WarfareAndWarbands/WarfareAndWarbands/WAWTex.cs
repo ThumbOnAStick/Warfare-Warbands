@@ -33,6 +33,7 @@ namespace WarfareAndWarbands
         public static readonly Texture2D PurchaseVehicleTex = ContentFinder<Texture2D>.Get("UI/Commands/PurchaseVehicle");
         public static readonly Texture2D Town = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/MinorFaction_Town");
         public static readonly Texture2D Village = ContentFinder<Texture2D>.Get("World/WorldObjects/Expanding/MinorFaction_Village");
+        public static readonly Texture2D QuickLoadTex = ContentFinder<Texture2D>.Get("UI/Commands/WAWQuickLoad");
 
 
     }

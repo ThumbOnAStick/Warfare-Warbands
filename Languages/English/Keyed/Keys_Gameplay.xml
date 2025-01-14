@@ -16,7 +16,7 @@
 	<WAW.TargetingMapParent>Trying to occupy {0}.</WAW.TargetingMapParent>
 	<WAW.InvalidObject>we are not attacking this one, sorry.</WAW.InvalidObject>
 	<WAW.FarObject>we cannot reach that far, sir, ten tiles for the most.</WAW.FarObject>
-	<WAW.CantAfford>insufficient funds</WAW.CantAfford>
+	<WAW.CantAfford>insufficient funds from either player map or bank.</WAW.CantAfford>
 	<WAW.EmptyWarband>There's nothing to withdraw.</WAW.EmptyWarband>
 	<WAW.NoMembers>No one in this warband is able to fight.</WAW.NoMembers>
 	<WAW.WaitForCooldown>Sorry, we won't be avialable in next {0} days.</WAW.WaitForCooldown>
@@ -86,4 +86,9 @@
 	<WAW.AllRecovered>Thanks to {0}'s medical skill, everyone in the warband has been healed.</WAW.AllRecovered>
 	<WAW.HealsPlayerWarband>Can heal another player warband</WAW.HealsPlayerWarband>
 	<WAW.GeneratingRaiders>Generating Raiders</WAW.GeneratingRaiders>
+	<WAW.SpentFromBank>${0} was spent from our bank account, we still have ${1} left.</WAW.SpentFromBank>
+	<WAW.ReturnInterest>Interest Payment Arrived</WAW.ReturnInterest>
+	<WAW.ReturnInterest.Desc>A total interest of ${0} has been added to our bank account.</WAW.ReturnInterest.Desc>
+	<WAW.LootValueBankAccount>${1} has been deposited, it's worth {0}% of the loots' value, this number is decided by leader's economy ability.</WAW.LootValueBankAccount>
+	<WAW.DepositeLoots>Deposite loots into our bank account.</WAW.DepositeLoots>
 </LanguageData>	

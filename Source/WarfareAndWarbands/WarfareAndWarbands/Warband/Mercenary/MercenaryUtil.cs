@@ -23,8 +23,20 @@ namespace WarfareAndWarbands.Warband.Mercenary
             {
                 for (int i = 0; i < ele.Value; i++)
                 {
-                    Pawn pawn = warband.Faction == Faction.OfPlayer ? GenerateWarbandPawnForPlayer(warband, ele.Key) : GenerateWarbandPawnForNPC(warband, ele.Key);
-                    
+                    Pawn pawn;
+                    try
+                    {
+                        pawn = warband.Faction == Faction.OfPlayer ? GenerateWarbandPawnForPlayer(warband, ele.Key, out bool succeed) : GenerateWarbandPawnForNPC(warband, ele.Key);
+                    }
+                    catch
+                    {
+                        Log.Warning($"Tried to generate {ele.Value} but failed.");
+                        continue;
+                    }
+                    if (pawn == null)
+                    {
+                        continue;
+                    }
                     if (CEActive())
                     {
                         CE.GenerateAmmoFor(pawn);
@@ -65,39 +77,53 @@ namespace WarfareAndWarbands.Warband.Mercenary
         {
             return ModsConfig.IsActive("CETeam.CombatExtended");
         }
-        static PawnGenerationRequest GetRequest(Warband warband, string kindDefName)
+        static PawnGenerationRequest GetRequest(Warband warband, string kindDefName, out bool succeed)
         {
-            PawnKindDef kindDef = PawnKindDefOf.Pirate;
+            PawnKindDef kindDef = WarbandUtil.SoldierPawnKindsCache.Where(x => x.combatPower > 50).RandomElement();
+            bool isCustom = false;
             if (GameComponent_Customization.Instance.customizationRequests.Any(x => x.defName == kindDefName))
             {
                 kindDef = GameComponent_Customization.Instance.generatedKindDefs.First(x => x.defName == kindDefName);
+                isCustom = true;
             }
-            if (WarbandUtil.SoldierPawnKindsCache.Any(x => x.defName == kindDefName))
+            else if (WarbandUtil.SoldierPawnKindsCache.Any(x => x.defName == kindDefName))
             {
                 kindDef = WarbandUtil.SoldierPawnKindsCache.First(x => x.defName == kindDefName);
             }
             Faction faction = kindDef.defaultFactionType != null ? Find.FactionManager.FirstFactionOfDef(kindDef.defaultFactionType) : warband.Faction;
-            if (warband.PawnKindFactionType != null)
+            if (warband.PawnKindFactionType != null && !isCustom)
             {
                 var f = Find.FactionManager.FirstFactionOfDef(warband.PawnKindFactionType);
                 if (f != null)
                 {
                     faction = f;
-                    Log.Message("faction type set for generation request");
                 }
             }
-            PawnGenerationRequest request = new PawnGenerationRequest(kindDef, faction, mustBeCapableOfViolence: true)
+            try
             {
-                AllowedDevelopmentalStages = DevelopmentalStage.Adult,
-            };
-            return request;
+                succeed = true;
+                PawnGenerationRequest request = new PawnGenerationRequest(kindDef, faction, mustBeCapableOfViolence: true, developmentalStages: DevelopmentalStage.Adult);
+                return request;
+            }
+            catch (Exception e)
+            {
+                succeed = false;
+                warband.SetFactionType(null);
+                Log.Message("WAW: Failed to generate pawn generation request: " + e);
+                return new PawnGenerationRequest(kindDef, warband.Faction);
+            }
         }
 
 
-        static Pawn GenerateWarbandPawnForPlayer(Warband warband, string kindDefName)
+        static Pawn GenerateWarbandPawnForPlayer(Warband warband, string kindDefName, out bool succeed)
         {
+            Pawn pawn;
+            pawn = GenerateRequestedPawn(warband, kindDefName, out succeed);
+            if(!succeed)
+            {
+                return null;
+            }
 
-            Pawn pawn = GenerateRequestedPawn(warband, kindDefName);
             if (GameComponent_Customization.Instance.customizationRequests.Any(x => x.defName == kindDefName))
             {
                 var targetRequest = GameComponent_Customization.Instance.customizationRequests.First(x => x.defName == kindDefName);
@@ -171,15 +197,24 @@ namespace WarfareAndWarbands.Warband.Mercenary
 
         static Pawn GenerateWarbandPawnForNPC(Warband warband, string kindefName)
         {
-            Pawn pawn = GenerateRequestedPawn(warband, kindefName);
+            Pawn pawn = GenerateRequestedPawn(warband, kindefName, out bool succeed);
             return pawn;
         }
 
-        static Pawn GenerateRequestedPawn(Warband warband, string kindefName)
+        static Pawn GenerateRequestedPawn(Warband warband, string kindefName, out bool succeed)
         {
-            PawnGenerationRequest request = GetRequest(warband, kindefName);
-            Pawn pawn = PawnGenerator.GeneratePawn(request);
+            PawnGenerationRequest request = GetRequest(warband, kindefName, out succeed);
+            Pawn pawn;
+            try
+            {
+                pawn = PawnGenerator.GeneratePawn(request);
 
+            }
+            catch (Exception ex)
+            {
+                Log.Message("WAW: Failed to generate pawn !" + ex);
+                return null;
+            }
             if (pawn.Faction != warband.Faction)
                 pawn.SetFaction(warband.Faction);
             return pawn;

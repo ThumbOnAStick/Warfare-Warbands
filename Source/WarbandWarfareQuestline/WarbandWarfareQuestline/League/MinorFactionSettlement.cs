@@ -34,6 +34,8 @@ namespace WarbandWarfareQuestline.League
             }
         }
 
+        public MinorFaction MinorFaction => this._minorFaction;
+
         public override Material Material
         {
             get
@@ -153,13 +155,25 @@ namespace WarbandWarfareQuestline.League
 
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan)
         {
-            if(this.Faction == null)
-            {
-                yield break;
-            }
-            yield return new FloatMenuOption("AttackSettlement".Translate(Label), action: () => MinorFactionBaseUtil.AttackNow(caravan, this));
+            return CaravanArrivalAction_Enter.GetFloatMenuOptions(caravan, this);
         }
 
+        public override IEnumerable<FloatMenuOption> GetTransportPodsFloatMenuOptions(IEnumerable<IThingHolder> pods, CompLaunchable representative)
+        {
+            yield break;
+        }
+
+        public override IEnumerable<FloatMenuOption> GetShuttleFloatMenuOptions(IEnumerable<IThingHolder> pods, Action<int, TransportPodsArrivalAction> launchAction)
+        {
+            yield break;
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref this._nameInt, "nameInt");
+            Scribe_References.Look(ref this._minorFaction, "_minorFaction");
+        }
 
     }
 }

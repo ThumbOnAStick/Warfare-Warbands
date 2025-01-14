@@ -21,9 +21,6 @@ namespace WarbandWarfareQuestline.League
 
         private static readonly IntRange SettlementSizeRange = new IntRange(34, 38);
 
-        private bool generatePawns = false;
-
-        private bool clearBuildingFaction;
 
         private static List<IntVec3> tmpCandidates = new List<IntVec3>();
 
@@ -70,7 +67,7 @@ namespace WarbandWarfareQuestline.League
             ResolveParams resolveParams = default(ResolveParams);
             resolveParams.rect = rect;
             resolveParams.faction = faction;
-            resolveParams.settlementDontGeneratePawns = new bool?(!this.generatePawns);
+            resolveParams.settlementDontGeneratePawns = false;
             resolveParams.addRoomCenterToRootsToUnfog = true;
             BaseGen.globalSettings.map = map;
             BaseGen.globalSettings.minBuildings = 1;
@@ -78,16 +75,7 @@ namespace WarbandWarfareQuestline.League
             BaseGen.symbolStack.Push("settlement", resolveParams, null);
    
             BaseGen.Generate();
-            if (this.clearBuildingFaction)
-            {
-                foreach (Building building in map.listerThings.GetThingsOfType<Building>())
-                {
-                    if (!(building is Building_Turret) && building.Faction == faction)
-                    {
-                        building.SetFaction(null, null);
-                    }
-                }
-            }
+
         }
 
 

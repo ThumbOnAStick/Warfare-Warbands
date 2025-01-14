@@ -17,6 +17,7 @@ namespace WarfareAndWarbands.Warfare.UI
     {
         public static void DoWindowContents(Rect inRect, Window window, Map map)
         {
+            Text.Font = GameFont.Small;
             Rect exitButtonRect = new Rect(430, 0, 30, 30);
             bool exit = Widgets.ButtonImage(exitButtonRect, TexButton.CloseXSmall);
             if (exit)
@@ -44,7 +45,7 @@ namespace WarfareAndWarbands.Warfare.UI
                 window.Close();
                 Find.WindowStack.Add(new Window_ArrangeWarband(map));
             }
-
+            
             Rect characterCustomizationButtonRect = new Rect(arrangeWarbandWindowButtonRect.xMax + 10, 400, 100, 50);
             bool customizationWindow = Widgets.ButtonText(characterCustomizationButtonRect, "WAW.CustomizeCharacter".Translate());
             if (customizationWindow)

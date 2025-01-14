@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +12,19 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace WarbandWarfareQuestline
 {
-    public class MinorFaction : IExposable
+    public class MinorFaction : IExposable, ILoadReferenceable
     {
         private string _factionName;
         private FactionTraitDef _trait;
         private TechLevel _techLevel;
         private Color _factionColor;
+        private string ID;
 
         public MinorFaction()
         {
-
+            this.ID = Guid.NewGuid().ToString();
         }
-        public MinorFaction(FactionTraitDef trait, TechLevel level, Color factionColor)
+        public MinorFaction(FactionTraitDef trait, TechLevel level, Color factionColor) : this()
         {
             this._trait = trait;
             this._techLevel = level;
@@ -36,6 +38,9 @@ namespace WarbandWarfareQuestline
             this._factionColor = factionColor;
         }
 
+        public string FactionName => _factionName;
+        public FactionTraitDef Trait => _trait;
+        public string FactionID => this.ID;
         public Color FactionColor => _factionColor;
 
         public void Init()
@@ -74,16 +79,18 @@ namespace WarbandWarfareQuestline
         }
 
 
-        public string FactionName => _factionName;
-        public FactionTraitDef Trait => _trait;
-
         public void ExposeData()
         {
             Scribe_Values.Look(ref this._techLevel, "_level");
             Scribe_Values.Look(ref _factionName, "_factionName");
             Scribe_Values.Look(ref _factionColor, "_factionColor");
+            Scribe_Values.Look(ref ID, "ID");
             Scribe_Defs.Look(ref _trait, "_trait");
+        }
 
+        public string GetUniqueLoadID()
+        {
+            return "MinorFaction_" + ID;
         }
     }
 }
