@@ -175,10 +175,8 @@ namespace WarfareAndWarbands.Warband
         void ResolvePawn(Pawn p)
         {
             p.holdingOwner?.Remove(p);
-            if (Find.WorldPawns.Contains(p))
-            {
-                Find.WorldPawns.RemovePawn(p);
-            }
+            if (!Find.WorldPawns.Contains(p))
+                Find.WorldPawns.PassToWorld(p);
         }
 
         void ResolveCaravan(Caravan caravan)

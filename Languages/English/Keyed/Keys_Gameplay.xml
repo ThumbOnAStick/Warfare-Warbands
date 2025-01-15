@@ -90,5 +90,5 @@
 	<WAW.ReturnInterest>Interest Payment Arrived</WAW.ReturnInterest>
 	<WAW.ReturnInterest.Desc>A total interest of ${0} has been added to our bank account.</WAW.ReturnInterest.Desc>
 	<WAW.LootValueBankAccount>${1} has been deposited, it's worth {0}% of the loots' value, this number is decided by leader's economy ability.</WAW.LootValueBankAccount>
-	<WAW.DepositeLoots>Deposite loots into our bank account.</WAW.DepositeLoots>
+	<WAW.DepositeLoots>Deposit loots into our bank account.</WAW.DepositeLoots>
 </LanguageData>	

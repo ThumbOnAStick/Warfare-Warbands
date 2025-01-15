@@ -49,7 +49,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             {
                 return;
             }
-            this.leader = p;
+            this.leader = p; 
+            if (!Find.WorldPawns.Contains(p))
+                Find.WorldPawns.PassToWorld(p);
             caravan?.RemovePawn(p);
             SendLeaderSetMessage(p);
             ResolveCaravan(caravan);

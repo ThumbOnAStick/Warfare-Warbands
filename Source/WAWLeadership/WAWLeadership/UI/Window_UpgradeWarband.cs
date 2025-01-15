@@ -121,7 +121,7 @@ namespace WAWLeadership.UI
                     {
                         TooltipHandler.TipRegion(upgradeButtonRect, _selectedUpgrade.GetInspectString());
                     }
-                    if (WarbandUtil.TryToSpendSilverFromColony(Find.AnyPlayerHomeMap, _selectedUpgrade.UpgradeCost))
+                    if (WarbandUtil.TryToSpendSilverFromColonyOrBank(Find.AnyPlayerHomeMap, _selectedUpgrade.UpgradeCost))
                     {
                         SoundDefOf.ExecuteTrade.PlayOneShotOnCamera();
                         _upgradeHolder.SetUpgrade(_selectedUpgrade);

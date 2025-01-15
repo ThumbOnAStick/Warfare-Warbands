@@ -7,24 +7,35 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using WarbandWarfareQuestline.League;
+using WarfareAndWarbands;
 
 namespace WarbandWarfareQuestline.Questline
 {
     public static class Quests
     {
+
+        static Quest Generate(string nameKey, string descriptionKey)
+        {
+            Quest quest = new Quest
+            {
+                id = Find.UniqueIDsManager.GetNextQuestID(),
+                appearanceTick = Find.TickManager.TicksGame,
+                challengeRating = 4,
+                name = nameKey.Translate(),
+                description = descriptionKey.Translate(),
+                ticksUntilAcceptanceExpiry = GenDate.TicksPerDay * 5,
+                root = WAWDefof.WAW_SaveVillage
+            };
+            return quest;
+        }
+         
         public static void GiveVillageQuest()
         {
             //Generate a village
             MinorFaction m = MinorFactionHelper.GenerateMinorFaction(FactionTraitDefOf.WAW_Cautious, TechLevel.Neolithic, FactionDefOf.TribeCivil.DefaultColor);
 
-            // Give player a quest
-            Quest quest = new Quest
-            {
-                challengeRating = 4,
-                name = "WAW.SaveVillage".Translate(),
-                description = "WAW.SaveVillage.Desc".Translate(),
-                ticksUntilAcceptanceExpiry = GenDate.TicksPerDay * 5
-            };
+            // Give the quest
+            Quest quest = Generate("WAW.SaveVillage", "WAW.SaveVillage.Desc");
             List<QuestPart_Choice.Choice> choices =
             new List<QuestPart_Choice.Choice>()
             {
@@ -36,7 +47,6 @@ namespace WarbandWarfareQuestline.Questline
             };
             quest.AddPart(new QuestPart_Choice() { choices = choices });
             quest.AddPart(new QuestPart_VillageLooted() { inSignalEnable = QuestGen.slate.Get<string>("inSignal", null, false), faction = m });
-            quest.root = QuestScriptDefOf.WandererJoins;
             Find.QuestManager.Add(quest);
             Find.LetterStack.ReceiveLetter(LetterMaker.MakeLetter("WAW.QuestAvailable".Translate(quest.name), quest.description, LetterDefOf.PositiveEvent, null, quest));
         }

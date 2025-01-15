@@ -109,11 +109,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
               "$type": "Document",
@@ -219,7 +223,7 @@
               "RelativeDocumentMoniker": "WAWLeadership\\UI\\Window_UpgradeWarband.cs",
               "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_UpgradeWarband.cs",
               "RelativeToolTip": "WAWLeadership\\UI\\Window_UpgradeWarband.cs",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAAAHMAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAH0AAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-25T13:55:36.925Z",
               "EditorCaption": ""
