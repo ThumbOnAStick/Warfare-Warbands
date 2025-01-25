@@ -54,7 +54,11 @@ namespace WarbandWarfareQuestline.League
         public override void StartedNewGame()
         {
             base.StartedNewGame();
-            //Quests.GiveVillageQuest();
+            if (!Prefs.DevMode)
+            {
+                return;
+            }
+            Quests.GiveVillageQuest();
         }
 
         public override void FinalizeInit()

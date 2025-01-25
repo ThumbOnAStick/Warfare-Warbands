@@ -188,8 +188,6 @@
     <Compile Include="WAWTex.cs" />
     <Compile Include="Misc\Window_WAWUpdateLog.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Warfare\Events\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

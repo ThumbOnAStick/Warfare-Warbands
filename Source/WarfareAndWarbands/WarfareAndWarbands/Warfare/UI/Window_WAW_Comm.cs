@@ -12,6 +12,12 @@ namespace WarfareAndWarbands.Warfare.UI
 {
     public class Window_WAW_Comm : Window
     {
+        private int currentPanel = 0;
+        private List<TabRecord> _tabs = new List<TabRecord>();
+        private readonly Map map;
+        private static readonly int warbandPanel = 0;
+        private static readonly int leaguePanel = 1;
+        private static readonly int warfarePanel = 2;
         public Window_WAW_Comm()
         {
             this.map = Find.AnyPlayerHomeMap;
@@ -29,17 +35,43 @@ namespace WarfareAndWarbands.Warfare.UI
             }
         }
 
+        void DrawSelectionMenu(Rect inRect)
+        {
+            Rect menuRect = new Rect(0, 50, inRect.width, inRect.height);
+            Widgets.DrawMenuSection(menuRect);
+            TabDrawer.DrawTabs<TabRecord>(menuRect, this._tabs, 200f);
+        }
+        public void DoWarband()
+        {
+            currentPanel = warbandPanel;
+        }
+
+        public void DoLeague()
+        {
+            currentPanel = leaguePanel;
+        }
+
+        public void DoWarfare()
+        {
+            currentPanel = warfarePanel;
+        }
         public override void PostOpen()
         {
             base.PostOpen();
-        }
+            //Init Tabs 
+            _tabs = new List<TabRecord>();
+            this._tabs.Add(new TabRecord("WAW.MainPanelWarband".Translate(), () => { this.DoWarband(); }, () => this.currentPanel == warbandPanel));
+            this._tabs.Add(new TabRecord("WAW.MainPanelLeague".Translate(), () => { this.DoLeague(); }, () => this.currentPanel == leaguePanel));
+            this._tabs.Add(new TabRecord("WAW.MainPanelWarfare".Translate(), () => { this.DoWarfare(); }, () => this.currentPanel == warfarePanel));
 
+        }
         public override void DoWindowContents(Rect inRect)
         {
-            WAWUI.DoWindowContents(inRect, this, map);
+            DrawSelectionMenu(inRect);
+            inRect = inRect.ContractedBy(17f);
+            WAWUI.DoWindowContents(inRect, this, map, this.currentPanel);
         }
 
-        private readonly Map map;
 
     }
 }

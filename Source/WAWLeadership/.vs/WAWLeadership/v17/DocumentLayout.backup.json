@@ -223,7 +223,7 @@
               "RelativeDocumentMoniker": "WAWLeadership\\UI\\Window_UpgradeWarband.cs",
               "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_UpgradeWarband.cs",
               "RelativeToolTip": "WAWLeadership\\UI\\Window_UpgradeWarband.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAAAH0AAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAIIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-25T13:55:36.925Z",
               "EditorCaption": ""
@@ -238,8 +238,7 @@
               "RelativeToolTip": "WAWLeadership\\UI\\Window_Leadership.cs",
               "ViewState": "AgIAACcAAAAAAAAAAIA5wD4AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T08:40:37.077Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-16T08:40:37.077Z"
             },
             {
               "$type": "Document",

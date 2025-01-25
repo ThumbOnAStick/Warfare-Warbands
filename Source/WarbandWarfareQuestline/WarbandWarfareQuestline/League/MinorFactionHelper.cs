@@ -24,7 +24,8 @@ namespace WarbandWarfareQuestline.League
             if (GameComponent_League.Instance.FactionsTemp.Any(ContiansFaction))
             {
                 GameComponent_League.Instance.FactionsTemp.RemoveAll(ContiansFaction);
-                GameComponent_League.Instance.Factions.Add(f);
+                if (!GameComponent_League.Instance.Factions.Contains(f))
+                    GameComponent_League.Instance.Factions.Add(f);
             }
         }
 

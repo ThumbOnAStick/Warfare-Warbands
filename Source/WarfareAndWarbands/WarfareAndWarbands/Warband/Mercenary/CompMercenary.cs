@@ -30,10 +30,10 @@ namespace WarfareAndWarbands.Warband
         private bool isLeaderCache;
         Faction servingFaction;
         int lastServeTick = 0;
-        string pawnKindName;
+        string pawnKindName; 
         Warband warband;
         private int ServeDuration =>
-            this.warband.playerWarbandManager.upgradeHolder.HasUpgrade?
+            this.warband != null && this.warband.playerWarbandManager.upgradeHolder.HasUpgrade ?
             warband.playerWarbandManager.upgradeHolder.SelectedUpgrade.MaintainDays * GenDate.TicksPerDay : 60000;
 
         public CompProperties_Mercenary Props

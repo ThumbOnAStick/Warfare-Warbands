@@ -192,9 +192,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             Scribe_Values.Look(ref this.tweenedPos, "tweenedPos");
             Scribe_Values.Look(ref this.nextTile, "nextTile");
             Scribe_Values.Look(ref this.nextTileCostLeft, "nextTileCostLeft");
-
+            Scribe_Values.Look(ref this.destTile, "destTile");
         }
 
-
+            
     }
 }

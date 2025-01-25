@@ -50,8 +50,9 @@ namespace WarfareAndWarbands.CharacterCustomization
         {
             foreach (var request in customizationRequests)
             {
-            
-                var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request, FactionDefOf.OutlanderCivil);
+
+                var factionDef = Faction.OfPlayer != null ? Faction.OfPlayer.def : FactionDefOf.OutlanderCivil;
+                var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request, factionDef);
                 if (HARActive())
                 {
                     defaultKindDef.race = request.GetAlienRace();
@@ -77,7 +78,8 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         public void AddRequest(CustomizationRequest request)
         {
-            var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request, FactionDefOf.OutlanderCivil);
+            var factionDef = Faction.OfPlayer != null ? Faction.OfPlayer.def : FactionDefOf.OutlanderCivil;
+            var defaultKindDef = CustomizationUtil.GenerateDefaultKindDef(request, factionDef);
             AddRequest(defaultKindDef, request);
         }
 

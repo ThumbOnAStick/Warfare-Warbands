@@ -15,7 +15,6 @@ namespace WarbandWarfareQuestline.Questline
         public string factionID;
         public MinorFactionSettlement questSettlement;
         public MinorFaction faction;
-        private int _ticks = 0;
         private readonly int _forceQuestEndTicks = 5 * GenDate.TicksPerDay;
 
         public MinorFaction Faction
@@ -42,11 +41,36 @@ namespace WarbandWarfareQuestline.Questline
             quest.End(QuestEndOutcome.Fail);
         }
 
+        void CheckHostility()
+        {
+            if (!GenHostility.AnyHostileActiveThreatToPlayer(this.questSettlement.Map))
+            {
+                FinishQuest();
+            }
+        }
+
+        bool IsTimeOut()
+        {
+            return GenTicks.TicksGame > this.EnableTick + _forceQuestEndTicks;
+        }
+
         public override IEnumerable<GlobalTargetInfo> QuestLookTargets
         {
             get
             {
                 yield return questSettlement;
+            }
+        }
+
+        void VillageTick()
+        {
+            if (this.questSettlement.HasMap)
+            {
+                CheckHostility();
+            }
+            else if (IsTimeOut())
+            {
+                FailQuest();
             }
         }
 
@@ -66,26 +90,17 @@ namespace WarbandWarfareQuestline.Questline
         public override void QuestPartTick()
         {
             base.QuestPartTick();
-            _ticks++;
+
             // Check village
-            if (this.questSettlement.HasMap)
-            {
-                if(!GenHostility.AnyHostileActiveThreatToPlayer(this.questSettlement.Map))
-                {
-                    FinishQuest();
-                }
-            }
-            else if(_ticks > _forceQuestEndTicks)
-            {
-                FailQuest();
-            }
+            VillageTick();
         }
 
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_References.Look(ref this.questSettlement, "questSettlement");
-            Scribe_Values.Look(ref this._ticks, "_ticks");
+            Scribe_References.Look(ref this.faction, "faction");
+            Scribe_Values.Look(ref this.factionID, "factionID");
         }
     }
 }

@@ -25,7 +25,7 @@
 	<WAW.LostWarband>warband destroyed</WAW.LostWarband>
 	<WAW.LostWarband.Desc>Everyone is dead, the entire warband is destroyed.</WAW.LostWarband.Desc>
 	<WAW.LeaveIn>will leave map in {0} days</WAW.LeaveIn>
-	<WAW.CustomizeCharacter>character customization</WAW.CustomizeCharacter>
+	<WAW.CustomizeCharacter>Character Customization</WAW.CustomizeCharacter>
 	<WAW.DisplayEquipped>Display Equipped:</WAW.DisplayEquipped>
 	<WAW.AlienRace>Alien Race: {0}</WAW.AlienRace>
 	<WAW.tooltip>Re-select equipped apparel to unequip it.</WAW.tooltip>

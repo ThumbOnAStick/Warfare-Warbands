@@ -89,11 +89,21 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 }
                 else
                 {
-                    bool flag3 = info.WorldObject == null || 
-                        !(info.WorldObject is MapParent) || 
-                        WarbandUtil.IsWorldObjectNonHostile(info.WorldObject)
-                        ||Find.World.Impassable(info.Tile);
-                    if (flag3)
+                    bool hasWorldObject = info.WorldObject != null && info.WorldObject is MapParent;
+                    bool reservedByQuest = false;
+                    List<Quest> quests = Find.QuestManager.QuestsListForReading;
+                    for (int i = 0; i < quests.Count; i++)
+                    {
+                        Quest quest = quests[i];
+                        if (!quest.hidden && !quest.Historical && !quest.dismissed && quest.QuestLookTargets.Contains(info.WorldObject))
+                        {
+                            reservedByQuest = true;
+                        }
+                    }
+                    bool flag3 = !hasWorldObject ||
+                WarbandUtil.IsWorldObjectNonHostile(info.WorldObject)
+                        || Find.World.Impassable(info.Tile);
+                    if (flag3 && !reservedByQuest)
                     {
                         Messages.Message("WAW.InvalidObject".Translate(), MessageTypeDefOf.RejectInput, true);
                         result = false;

@@ -67,7 +67,7 @@ namespace WarbandWarfareQuestline.Questline
         {
             base.Notify_Used();
             this.mFaction.JoinPlayer();
-            Log.Message("Reward Used");
+            Log.Message("Current Faction Count: " + GameComponent_League.Instance.Factions.Count);
         }
 
         public override void ExposeData()

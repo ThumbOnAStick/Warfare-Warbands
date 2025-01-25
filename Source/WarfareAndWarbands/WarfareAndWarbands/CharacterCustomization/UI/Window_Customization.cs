@@ -547,13 +547,11 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             int itemHeight = 50;
             int optionHeight = 20;
             Rect outRect = new Rect(inRect.xMax - 200, 100, 150, 400);
-            Rect viewRect = new Rect(outRect.x, outRect.y, outRect.width, (itemHeight + itemSpacing) * selectedList.Count);
             Rect boxRect = new Rect(outRect.x - 10, outRect.y - 10, 170, 420);
             Rect optionRect = new Rect(boxRect.x, boxRect.yMax + optionHeight, 150, optionHeight);
             DrawSearchBar(boxRect);
             Widgets.CheckboxLabeled(optionRect, "WAW.DisplayEquipped".Translate(), ref displayEquipped);
             Widgets.DrawBox(boxRect, 1);
-            Widgets.BeginScrollView(outRect, ref scrollPosition1, viewRect);
             int selectedIndex = 0;
             var listToDisplay = selectedList;
             if (displayEquipped)
@@ -565,7 +563,8 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             {
                 listToDisplay = listToDisplay.Where(x => ContainsAll(x.label)).ToList();
             }
-
+            Rect viewRect = new Rect(outRect.x, outRect.y, outRect.width, (itemHeight + itemSpacing) * listToDisplay.Count);
+            Widgets.BeginScrollView(outRect, ref scrollPosition1, viewRect);
             foreach (var item in listToDisplay)
             {
                 Rect itemRect = new Rect(viewRect.x + 10, viewRect.y + selectedIndex * (itemHeight + itemSpacing), itemHeight, itemHeight);

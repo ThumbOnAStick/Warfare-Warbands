@@ -39,6 +39,22 @@ namespace WarfareAndWarbands.Warband
             }
             GameComponent_WAW.playerWarband.pawnFactionType = warband.PawnKindFactionType;
             GameComponent_WAW.playerWarband.colorOverride = warband.playerWarbandManager.colorOverride.GetColorOverride();
+            StepTwo.currentIndex = 0;
+            if (warband.PawnKindFactionType != null)
+            {
+                var faction= Find.FactionManager.AllFactions.FirstOrDefault(x =>
+                x.def.humanlikeFaction
+                && !x.Hidden 
+                && x.def.defName == warband.PawnKindFactionType.defName
+                && !x.def.factionIconPath.NullOrEmpty()
+                && !x.Hidden);
+                if(faction != null)
+                {
+                    StepTwo.SetFaction(faction.def);
+                }
+            }
+
+
         }
         public override Vector2 InitialSize
         {

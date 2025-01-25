@@ -70,4 +70,7 @@
 	<WAW.SaveVillage>Save Village</WAW.SaveVillage>
 	<WAW.SaveVillage.Desc>A group of villagers need your help! They claimed that a some raiders recently took over their settlement and they begger help from our troops. \nThey have promised they would join the league and provide services for our warbands.</WAW.SaveVillage.Desc>
 	<WAW.QuestAvailable>League quest available: {0}</WAW.QuestAvailable>
+	<WAW.MainPanelWarband>Warband</WAW.MainPanelWarband>
+	<WAW.MainPanelLeague>League</WAW.MainPanelLeague>
+	<WAW.MainPanelWarfare>Warfare</WAW.MainPanelWarfare>
 </LanguageData>

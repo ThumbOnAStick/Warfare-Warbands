@@ -12,7 +12,16 @@ namespace WarfareAndWarbands.Warband.UI.WarbandConfigureSteps
 {
     internal static class StepTwo
     {
-        static int currentIndex = 0;
+
+        public static FactionDef currentFaction;
+
+        public static int currentIndex = 0;
+
+        public static List<FactionDef> AllUsableFactions => Find.FactionManager.AllFactions.
+            Where(x => x.def.humanlikeFaction && !x.Hidden)
+            .Select(x=>x.def)
+            .Distinct()
+            .ToList();
 
         static void NextPage(int cap)
         {
@@ -26,15 +35,23 @@ namespace WarfareAndWarbands.Warband.UI.WarbandConfigureSteps
                 currentIndex--;
         }
 
+        public static void SetFaction(FactionDef def)
+        {
+            var facs = AllUsableFactions;
+            if (facs.Any(x => x == def))
+            {
+                currentIndex = facs.FirstIndexOf(x => x == def);
+            }
+        }
+
         public static void Draw(Rect inRect)
         {
-            var allFactions = Find.FactionManager.AllFactions.Where(x => x.def.humanlikeFaction && !x.Hidden);
-            var factionDefs = allFactions.Select(x => x.def).Distinct();
+            var factionDefs = AllUsableFactions;
             Rect elementRect = WarbandUI.CenterRectFor(inRect, new Vector2(100, 100));
-            if (allFactions.Count() > currentIndex)
+            FactionDef currentDef;
+            if (factionDefs.Count() > currentIndex)
             {
-
-                FactionDef currentDef = factionDefs.ElementAtOrDefault(currentIndex);
+                currentDef = factionDefs.ElementAtOrDefault(currentIndex);
                 if (currentDef != null)
                 {
                     GUI.color = currentDef.DefaultColor;
@@ -42,13 +59,21 @@ namespace WarfareAndWarbands.Warband.UI.WarbandConfigureSteps
                     GUI.color = Color.white;
                     GameComponent_WAW.playerWarband.pawnFactionType = currentDef;
                 }
+                else
+                {
+                    currentIndex = 0;
+                }
+            }
+            else
+            {
+                currentIndex = 0;
             }
             float nextPageButtonWidth = 30;
             Rect nextPageRect = new Rect(new Vector2(elementRect.xMax, elementRect.y), new Vector2(nextPageButtonWidth, 100));
             Rect prevPageRect = new Rect(new Vector2(elementRect.xMin - nextPageButtonWidth, elementRect.y), new Vector2(nextPageButtonWidth, 100));
             if(Widgets.ButtonImage(nextPageRect, TexUI.ArrowTexRight))
             {
-                NextPage(allFactions.Count());
+                NextPage(factionDefs.Count());
             }
             if(Widgets.ButtonImage(prevPageRect, TexUI.ArrowTexLeft))
             {
@@ -58,5 +83,6 @@ namespace WarfareAndWarbands.Warband.UI.WarbandConfigureSteps
             Rect descRect = WarbandUI.CenterRectFor(inRect, new Vector2(300, 100), new Vector2(0, 150));
             Widgets.Label(descRect, "WAW.FactionOverride".Translate());
         }
+
     }
 }
