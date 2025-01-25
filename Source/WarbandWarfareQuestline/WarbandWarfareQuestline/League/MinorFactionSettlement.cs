@@ -21,8 +21,9 @@ namespace WarbandWarfareQuestline.League
         private Material _cachedMat;
         private MinorFaction _minorFaction;
         private readonly string villageMatPath = "World/WorldObjects/Expanding/MinorFaction_Village";
+        private readonly string townMatPath = "World/WorldObjects/Expanding/MinorFaction_Village";
 
-        public string Name
+                public string Name
         {
             get
             {

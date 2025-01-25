@@ -31,6 +31,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
 
         public virtual float MoveSpeed => 0.0005f;
 
+        public virtual float Wage => 0f;
+
         public virtual TaggedString CostLabel => ($"${this.UpgradeCost}").Colorize(new Color(.8f,.8f, .2f));
 
         public virtual RimWorld.QualityCategory GearQuality => RimWorld.QualityCategory.Normal;

@@ -104,8 +104,10 @@ namespace WarfareAndWarbands.Warband
         void DrawExtraCost(Rect inRect)
         {
             Rect costRect = new Rect(30, inRect.y, 200, 50);
-            string costLabel = "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostExtra(warband.bandMembers, warband.playerWarbandManager.NewRecruitCostMultiplier).ToString());
+            Rect balanceRect = new Rect(30, costRect.yMax + 10, 200, 50);
+            TaggedString costLabel = "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostExtra(warband.bandMembers, warband.playerWarbandManager.NewRecruitCostMultiplier).ToString());
             Widgets.Label(costRect, costLabel + $"(-{(1 - warband.playerWarbandManager.NewRecruitCostMultiplier) * 100}%)");
+            Widgets.Label(balanceRect, "WAW.AccountBalance".Translate(GameComponent_WAW.playerBankAccount.Balance.ToString()));
 
         }
 

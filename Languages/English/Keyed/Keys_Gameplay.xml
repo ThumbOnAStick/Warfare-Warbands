@@ -91,4 +91,6 @@
 	<WAW.ReturnInterest.Desc>A total interest of ${0} has been added to our bank account.</WAW.ReturnInterest.Desc>
 	<WAW.LootValueBankAccount>${1} has been deposited, it's worth {0}% of the loots' value, this number is decided by leader's economy ability.</WAW.LootValueBankAccount>
 	<WAW.DepositeLoots>Deposit loots into our bank account.</WAW.DepositeLoots>
+	<WAW.TaxPaid>A total amount of ${0} seasonal tax money has been deposited in your bank account.</WAW.TaxPaid>
+	<WAW.TaxWageDiscount>%{0} used to pay warband wages</WAW.TaxWageDiscount>
 </LanguageData>	

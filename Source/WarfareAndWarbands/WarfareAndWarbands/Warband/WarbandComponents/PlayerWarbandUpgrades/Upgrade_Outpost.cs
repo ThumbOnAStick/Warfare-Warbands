@@ -15,6 +15,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         public override int UpgradeCost => 5000;
         public override string Label => "WAW.OutpostLabel".Translate();
         public override string Lore => "WAW.OutpostLore".Translate();
+        public override float Wage => .05f; 
 
         public override Texture2D TextureOverride()
         {

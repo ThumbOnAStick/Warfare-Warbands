@@ -6,7 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using WarbandWarfareQuestline.League.UI;
 using WarbandWarfareQuestline.Questline;
+using WarfareAndWarbands;
+using WarfareAndWarbands.Warband;
 
 namespace WarbandWarfareQuestline.League
 {
@@ -41,12 +44,76 @@ namespace WarbandWarfareQuestline.League
             _lastCheckTick = GenTicks.TicksGame;
         }
 
+        float GetTaxDiscount()
+        {
+            var allAvialablePlayerWarbands = WarbandUtil.AllActivePlayerWarbands();
+            float discount = 0;
+            foreach (var w in allAvialablePlayerWarbands)
+            {
+                if (w.playerWarbandManager.upgradeHolder.HasUpgrade)
+                {
+                    discount += w.playerWarbandManager.upgradeHolder.SelectedUpgrade.Wage;
+                }
+            }
+            return discount;
+        }
+
+        int GetTax()
+        {
+            int totalTax = 0;
+            foreach (var f in _minorFactions)
+            {
+                totalTax += f.Tax;
+            }
+            return totalTax; 
+        }
+
+
+        int GetTax(out float discount)
+        {
+            int totalTax = GetTax();
+            discount = GetTaxDiscount();
+            totalTax = (int)(totalTax * (1 - discount));
+            return totalTax;
+        }
+
+        void DepositTax(out int totalTax, out float discount)
+        {
+            totalTax = GetTax(out discount);
+            GameComponent_WAW.playerBankAccount.Deposit(totalTax);
+        }
+
+        bool ShouldPayTax()
+        {
+            return _minorFactions.Count > 0;
+        }
+
+        void PayTax()
+        {
+            if (!ShouldPayTax())
+            {
+                return;
+            }
+            DepositTax(out int totalTax, out float discount);
+            NotifyTaxPayed(totalTax, discount);
+        }
+
+        void NotifyTaxPayed(int amount, float discount)
+        {
+            TaggedString stringBuilder = "WAW.TaxPaid".Translate(amount);
+            if (discount > 0)
+            {
+                stringBuilder += "(" + "WAW.TaxWageDiscount".Translate((discount * 100).ToString("0.00")) + ")";
+            }
+            Messages.Message(stringBuilder, MessageTypeDefOf.NeutralEvent);
+        }
 
         public override void GameComponentTick()
         {
             base.GameComponentTick();
             if (ShouldCheckNow())
             {
+                PayTax();
                 ResetLastCheckTick();
             }
         }
@@ -59,6 +126,13 @@ namespace WarbandWarfareQuestline.League
                 return;
             }
             Quests.GiveVillageQuest();
+            Window_League.AppendDrawingEvent();
+        }
+
+        public override void LoadedGame()
+        {
+            base.LoadedGame();
+            Window_League.AppendDrawingEvent();
         }
 
         public override void FinalizeInit()

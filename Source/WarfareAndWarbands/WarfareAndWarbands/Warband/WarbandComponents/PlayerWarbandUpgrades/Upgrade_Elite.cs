@@ -24,6 +24,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         public override int UpgradeCost => 10000;
         public override string Label => "WAW.EliteLabel".Translate();
         public override string Lore => "WAW.EliteLore".Translate();
+        public override float Wage => .1f; 
 
         public override QualityCategory GearQuality => QualityCategory.Masterwork;
 

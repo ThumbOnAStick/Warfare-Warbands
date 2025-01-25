@@ -73,4 +73,5 @@
 	<WAW.MainPanelWarband>Warband</WAW.MainPanelWarband>
 	<WAW.MainPanelLeague>League</WAW.MainPanelLeague>
 	<WAW.MainPanelWarfare>Warfare</WAW.MainPanelWarfare>
+	<WAW.AccountBalance>Bank account balance: ${0}</WAW.AccountBalance>
 </LanguageData>

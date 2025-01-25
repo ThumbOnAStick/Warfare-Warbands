@@ -63,7 +63,11 @@ namespace WarfareAndWarbands.Warband
         {
 
             Rect costRect = new Rect(30, inRect.y, 200, 50);
+            Rect balanceRect = new Rect(30, costRect.yMax + 10, 200, 50);
+
             Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostEstablishment().ToString()));
+            Widgets.Label(balanceRect, "WAW.AccountBalance".Translate(GameComponent_WAW.playerBankAccount.Balance.ToString()));
+
         }
 
         void DrawRecruitButton(Rect inRect)

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using Verse;
 using WarfareAndWarbands.CharacterCustomization;
 using WarfareAndWarbands.QuickRaid.UI;
@@ -14,12 +15,15 @@ using WarfareAndWarbands.Warband.UI;
 
 namespace WarfareAndWarbands.Warfare.UI
 {
-    internal static class WAWUI
+    public static class WAWUI
     {
-        
+        public static UnityEvent onLeagueDrawn = new UnityEvent();
+        public static Rect InRect => _inRect;
+        static Rect _inRect;
 
         public static void DoWindowContents(Rect inRect, Window window, Map map, int mode = 0)
         {
+            _inRect = inRect;
             Text.Font = GameFont.Small;
             Rect exitButtonRect = new Rect(445, 0, 15, 15);
             bool exit = Widgets.ButtonImage(exitButtonRect, TexButton.CloseXSmall);
@@ -56,6 +60,9 @@ namespace WarfareAndWarbands.Warfare.UI
                         window.Close();
                         Find.WindowStack.Add(new Window_QuickRaid());
                     }
+                    break;
+                case 1:
+                    onLeagueDrawn.Invoke();
                     break;
                 case 2:
                     var visibleFactions = Find.FactionManager.AllFactionsVisible.Where(x => !x.def.isPlayer && !x.defeated);

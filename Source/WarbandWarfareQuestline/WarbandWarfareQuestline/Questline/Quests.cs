@@ -32,7 +32,7 @@ namespace WarbandWarfareQuestline.Questline
         public static void GiveVillageQuest()
         {
             //Generate a village
-            MinorFaction m = MinorFactionHelper.GenerateMinorFaction(FactionTraitDefOf.WAW_Cautious, TechLevel.Neolithic, FactionDefOf.TribeCivil.DefaultColor);
+            MinorFaction m = MinorFactionHelper.GenerateMinorFaction(FactionTraitDefOf.WAW_Cautious, TechLevel.Neolithic);
 
             // Give the quest
             Quest quest = Generate("WAW.SaveVillage", "WAW.SaveVillage.Desc");

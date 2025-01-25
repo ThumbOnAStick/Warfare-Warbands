@@ -70,4 +70,8 @@
 	<WAW.SaveVillage>拯救村庄</WAW.SaveVillage>
 	<WAW.SaveVillage.Desc>一群村民需要你的帮助！他们声称他们的村庄被一群袭击者霸占，并希望你派出战团消灭这些袭击者。\n他们同意加入联盟并为我们的战团提供服务。</WAW.SaveVillage.Desc>
 	<WAW.QuestAvailable>联盟任务： {0}</WAW.QuestAvailable>
+	<WAW.MainPanelWarband>战团</WAW.MainPanelWarband>
+	<WAW.MainPanelLeague>联盟</WAW.MainPanelLeague>
+	<WAW.MainPanelWarfare>战争</WAW.MainPanelWarfare>
+	<WAW.AccountBalance>银行存款：${0}</WAW.AccountBalance>
 </LanguageData>

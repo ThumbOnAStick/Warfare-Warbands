@@ -31,7 +31,7 @@ namespace WarfareAndWarbands.Warband
             lord.AddPawn(mercenary);
         }
 
-        [DebugAction("WAW", "Spawn imperial skipmaster", false, false, false, false, 0, false, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("WAW", "Spawn imperial skipmaster", requiresRoyalty: true,  false, false, false, 0, false, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         public static void DoDropHeavyItemsJob()
         {
             if (GameComponent_Customization.Instance.customizationRequests.Count < 1)

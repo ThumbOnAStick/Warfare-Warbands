@@ -78,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="League\DebugActionLeague.cs" />
     <Compile Include="League\FactionTraitDef.cs" />
     <Compile Include="League\FactionTraitDefOf.cs" />
     <Compile Include="League\GameComponent_League.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="League\MinorFactionHelper.cs" />
     <Compile Include="League\MinorFactionSettlement.cs" />
     <Compile Include="League\PlayerLeague.cs" />
+    <Compile Include="League\UI\Window_League.cs" />
     <Compile Include="Questline\GameComponent_Questline.cs" />
     <Compile Include="League\MinorFaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

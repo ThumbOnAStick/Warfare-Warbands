@@ -5,14 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Verse;
 
 namespace WarbandWarfareQuestline.League
 {
     public static class MinorFactionHelper
     {
-        public static MinorFaction GenerateMinorFaction(FactionTraitDef trait, TechLevel level, Color factionColor)
+        public static MinorFaction GenerateRandomMinorFaction()
         {
-            MinorFaction minorFaction = new MinorFaction(trait, level, factionColor);
+            var trait = DefDatabase<FactionTraitDef>.GetRandom();
+            float chancer = UnityEngine.Random.Range(0f, 1f);
+            var level = chancer > .5f ? TechLevel.Industrial : TechLevel.Neolithic;
+            MinorFaction minorFaction = new MinorFaction(trait, level);
+            minorFaction.Init();
+            GameComponent_League.Instance.FactionsTemp.Add(minorFaction);
+            return minorFaction;
+        }
+        public static MinorFaction GenerateMinorFaction(FactionTraitDef trait, TechLevel level)
+        {
+            MinorFaction minorFaction = new MinorFaction(trait, level);
             minorFaction.Init();
             GameComponent_League.Instance.FactionsTemp.Add(minorFaction);
             return minorFaction;
