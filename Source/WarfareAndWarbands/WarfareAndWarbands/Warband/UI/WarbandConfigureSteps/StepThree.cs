@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Verse;
+using WarfareAndWarbands.Warband.VassalWarband;
 
 namespace WarfareAndWarbands.Warband.UI.WarbandConfigureSteps
 {
@@ -18,5 +19,6 @@ namespace WarfareAndWarbands.Warband.UI.WarbandConfigureSteps
             WarbandUI.DrawResetButton(); 
 
         }
+
     }
 }

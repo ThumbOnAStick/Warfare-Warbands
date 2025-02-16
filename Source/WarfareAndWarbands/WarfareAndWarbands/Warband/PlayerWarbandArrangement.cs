@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using AlienRace;
+using RimWorld;
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,8 @@ using UnityEngine.Windows.Speech;
 using Verse;
 using Verse.Noise;
 using Verse.Sound;
-using WarfareAndWarbands.Warband.UI;
+using WarfareAndWarbands.Warband.VassalWarband;
 using WarfareAndWarbands.Warband.WarbandRecruiting;
-using static UnityEngine.GraphicsBuffer;
 
 namespace WarfareAndWarbands.Warband
 {
@@ -111,6 +111,33 @@ namespace WarfareAndWarbands.Warband
             return true;
         }
 
+        #region Vassal
+
+        public bool CreateVassalWarbandWorldObject(GlobalTargetInfo target)
+        {
+            if (target.WorldObject != null)
+            {
+                return false;
+            }
+
+            if (Find.World.Impassable(target.Tile))
+            {
+                return false;
+            }
+
+            SpawVassalWarband(target);
+            return true;
+        }
+
+        void SpawVassalWarband(GlobalTargetInfo target)
+        {
+            var warband = (WorldObject_VassalWarband)WorldObjectMaker.MakeWorldObject(WAWDefof.WAW_WarbandVassal);
+            warband.Tile = target.Tile;
+            warband.SetFaction(Faction.OfPlayer);
+            warband.SetBandMembers(bandMembers);
+            Find.WorldObjects.Add(warband);
+        }
+        #endregion
 
         public void CreateWarbandWorldObject(Map currMap)
         {
@@ -126,8 +153,6 @@ namespace WarfareAndWarbands.Warband
                 if (GenWorld.MouseTile() > 0)
                     GenDraw.DrawWorldRadiusRing(GenWorld.MouseTile(), Warband.playerAttackRange);
             });
-
-
         }
 
         public IEnumerable<FloatMenuOption> SelectWarbandWorldObjectOptions(GlobalTargetInfo target)
@@ -159,7 +184,6 @@ namespace WarfareAndWarbands.Warband
                 SoundDefOf.ExecuteTrade.PlayOneShot(SoundInfo.OnCamera());
             });
         }
-
 
 
         public void SetNewWarBandMembers(Warband playerWarbandSite)

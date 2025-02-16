@@ -13,7 +13,6 @@ namespace WarfareAndWarbands.Warband.UI.WarbandConfigureSteps
     internal static class StepTwo
     {
 
-        public static FactionDef currentFaction;
 
         public static int currentIndex = 0;
 

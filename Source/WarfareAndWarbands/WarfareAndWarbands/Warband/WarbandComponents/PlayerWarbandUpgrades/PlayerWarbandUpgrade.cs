@@ -94,7 +94,11 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
 
         public virtual void OnUpgraded()
         {
-
+            if(this.Wage > 0)
+            {
+                Letter l = LetterMaker.MakeLetter("WAW.WageDemandingWarband".Translate(), "WAW.WageDemandingWarband.Desc".Translate((Wage * 100).ToString("0.00")), LetterDefOf.NeutralEvent);
+                Find.LetterStack.ReceiveLetter(l);
+            }
         }
 
 

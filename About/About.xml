@@ -5,70 +5,7 @@
 	<supportedVersions>
 		<li>1.5</li>
 	</supportedVersions>
-	<description>[h3]Reminder: This mod is still work in progress and might contain unknown bugs, please avoid adding it to your existing play-through[/h3]
-
-		[hr][/hr]
-		[h1]About[/h1]
-		This mod aims to enhance the "World" apsect of Rimworld, the player is given easier access to raiding and looting, without sacrificing the lives of valuable colonists.
-		[hr][/hr]
-		
-		[h1]Content[/h1]
-		[h2]Recruiting[/h2]
-		WAW tab on the right bottom corner displays the current war progress, the button on the bottom allows you to recruit a new warband.
-		[img]https://i.imgur.com/tgZ1dhK.png[/img]
-		[img]https://i.imgur.com/nYege8e.png[/img]
-		A recruiting window displays soldier kinds of different tech levels and their prices (by default, the actual price is twice of the soldier combat power), you can freely add any soldier kind to your warband by adjusting their amount.
-		[img]https://i.imgur.com/oP4SVMw.png[/img]
-		
-		[h2]Raiding[/h2]
-		The spawned warband is able to raid enemies if you can afford their service fee(if the map is opened, an drop pod attack is available), there is a cool-down of few days before the warband can launch another raid.
-		[img]https://i.imgur.com/7swFCqY.png[/img]
-		Raiding comes with losses, every killed soldier is counted, and your warband will be destroyed if everyone is dead.
-		[img]https://i.imgur.com/vYoIEFb.png[/img]
-		every spawned soldier returns to their own faction after few days, you can also manually make them retreat to close the map.
-		[img]https://i.imgur.com/dJ7xcEt.png[/img]
-		
-		[h2]Looting[/h2]
-		A loot chest is added to the game, it can be spawned(using [b]place loot box[/b] ability) by any warband member, and will transfer all its items to the warband it belongs to.
-		[img]https://i.imgur.com/HSZDLcr.png[/img]
-		The warband is able to return loots or convert them to silver.
-		[img]https://i.imgur.com/2sMsuxB.png[/img]
-		
-		[h2]World Events[/h2]
-		For now, world events are just random npc warbands spawning to destroy hostile world targets, weakening the "hit points" of other factions, so by default the custom faction defeat of this mod (after which all its bases will be destroyed) is disabled, you can still re-enable custom defeat in the settings.
-		
-		[hr][/hr]
-		[h1]Compatibility[/h1]
-		
-		[h2]Compatible With:[/h2]
-		Combat Extended
-		[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2222935097]Rim War[/url]
-		[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1775170117]RimCities[/url]
-		[url="https://steamcommunity.com/sharedfiles/filedetails/?id=2723801948"]VFE:Pirates[/url]
-		[SR]Factional War
-		
-		[h2]Incompatible With:[/h2]
-		To be found
-		
-		[h2]Patched For:[/h2]
-		None, but planned
-		
-		[hr][/hr]
-		[h1]Credits[/h1]
-		Inspired by VFE:Pirates, Rim War and Empire mod
-		@CrackaJack for some ideas
-		
-		[h3]I'd be grateful for your support:[/h3]
-		[url=https://ko-fi.com/thumbstick][img]https://storage.ko-fi.com/cdn/logomarkLogo.png[/img][/url]
-		
-		[hr][/hr]
-		[h1]FAQ[/h1]
-		Q: Can you you use warbands in this mod to aid your colony during raids?
-		Yes.
-		Q: How to close the map?
-		Select all pawns, click on "Retreat" command button
-		Q: How can I test the mod?
-		Use "WAW" section of the debug actions</description>
+	<description>A mod that aims to enhance open world aspect of Rimworld.</description>
 	<packageId>Thumb.Warbands</packageId>
 	<modDependencies>
 		<li>
@@ -77,5 +14,9 @@
 			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
 		</li>	
 	</modDependencies>
+
+	<incompatibleWith>
+		<li>bs.xenotypespawncontrol</li>
+	</incompatibleWith>
 	
 </ModMetaData>

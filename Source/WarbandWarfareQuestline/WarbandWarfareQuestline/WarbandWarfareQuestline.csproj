@@ -88,6 +88,9 @@
     <Compile Include="League\MinorFactionSettlement.cs" />
     <Compile Include="League\PlayerLeague.cs" />
     <Compile Include="League\UI\Window_League.cs" />
+    <Compile Include="League\WAWScheduled\QuestEvent.cs" />
+    <Compile Include="League\WAWScheduled\TaxEvent.cs" />
+    <Compile Include="League\WAWScheduled\WAWScheduledEvent.cs" />
     <Compile Include="Questline\GameComponent_Questline.cs" />
     <Compile Include="League\MinorFaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -45,4 +45,17 @@
     </comps>
   </WorldObjectDef>
 
+  <WorldObjectDef>
+    <defName>WAW_WarbandVassal</defName>
+    <label>Vassal Warband</label>
+    <description>A warband from your vassal.</description>
+    <worldObjectClass>WarfareAndWarbands.Warband.VassalWarband.WorldObject_VassalWarband</worldObjectClass>
+    <texture>World/WorldObjects/Caravan</texture>
+    <useDynamicDrawer>true</useDynamicDrawer>
+    <expandingIcon>true</expandingIcon>
+    <expandingIconTexture>World/WorldObjects/Expanding/Warband</expandingIconTexture>
+    <expandingIconPriority>100</expandingIconPriority>
+    <expandMore>true</expandMore>
+  </WorldObjectDef>
+
   </Defs>

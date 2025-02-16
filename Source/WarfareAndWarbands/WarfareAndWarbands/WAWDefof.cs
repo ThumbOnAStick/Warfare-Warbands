@@ -15,6 +15,7 @@ namespace WarfareAndWarbands
         public static JobDef WAWRecycleVehicle;
         public static FactionDef PlayerWarband;
         public static WorldObjectDef WAW_Warband;
+        public static WorldObjectDef WAW_WarbandVassal;
         public static WorldObjectDef WAW_WarbandRecruiting;
         public static WorldObjectDef WAW_MinorFactionSettlement;
         public static ThingDef WAW_LootChest;

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using WarbandWarfareQuestline.League.UI;
+using WarbandWarfareQuestline.League.WAWScheduled;
 using WarbandWarfareQuestline.Questline;
 using WarfareAndWarbands;
 using WarfareAndWarbands.Warband;
@@ -19,93 +20,42 @@ namespace WarbandWarfareQuestline.League
         private int _lastCheckTick = 0;
         private List<MinorFaction> _minorFactions;
         private List<MinorFaction> _minorFactionsTemp;
-        private readonly int policyGenerationDays = 15;
-        private readonly int eventGenerationDays = 15;
-        
+        private QuestEvent _questChecker;
+        private TaxEvent _taxer;
+        private readonly int baseEventGenerationDays = 5;
+        private readonly int minorFactionEventGenerationDays = 30;
+
 
         public GameComponent_League(Game game)
         {
             Instance = this;
             _minorFactions = new List<MinorFaction>();
             _minorFactionsTemp = new List<MinorFaction>();
+            _questChecker = new QuestEvent();   
+            _taxer = new TaxEvent();    
         }
 
-        public int EventGenrationTicks => eventGenerationDays * GenDate.TicksPerDay;
+        public FloatRange dateOffset = new FloatRange(.8f, .12f);
+        public int BaseEventGenrationTicks => (int)(baseEventGenerationDays * dateOffset.RandomInRange) * GenDate.TicksPerDay;
+
         public List<MinorFaction> Factions => _minorFactions;
         public List<MinorFaction> FactionsTemp => _minorFactionsTemp;
 
         bool ShouldCheckNow()
         {
-            return GenTicks.TicksGame - _lastCheckTick > EventGenrationTicks;
+            return GenTicks.TicksGame - _lastCheckTick > BaseEventGenrationTicks;
         }
+
+        bool ShouldPayTaxNow()
+        {
+            return GenTicks.TicksGame - _lastCheckTick > BaseEventGenrationTicks;
+
+        }
+
 
         void ResetLastCheckTick()
         {
             _lastCheckTick = GenTicks.TicksGame;
-        }
-
-        float GetTaxDiscount()
-        {
-            var allAvialablePlayerWarbands = WarbandUtil.AllActivePlayerWarbands();
-            float discount = 0;
-            foreach (var w in allAvialablePlayerWarbands)
-            {
-                if (w.playerWarbandManager.upgradeHolder.HasUpgrade)
-                {
-                    discount += w.playerWarbandManager.upgradeHolder.SelectedUpgrade.Wage;
-                }
-            }
-            return discount;
-        }
-
-        int GetTax()
-        {
-            int totalTax = 0;
-            foreach (var f in _minorFactions)
-            {
-                totalTax += f.Tax;
-            }
-            return totalTax; 
-        }
-
-
-        int GetTax(out float discount)
-        {
-            int totalTax = GetTax();
-            discount = GetTaxDiscount();
-            totalTax = (int)(totalTax * (1 - discount));
-            return totalTax;
-        }
-
-        void DepositTax(out int totalTax, out float discount)
-        {
-            totalTax = GetTax(out discount);
-            GameComponent_WAW.playerBankAccount.Deposit(totalTax);
-        }
-
-        bool ShouldPayTax()
-        {
-            return _minorFactions.Count > 0;
-        }
-
-        void PayTax()
-        {
-            if (!ShouldPayTax())
-            {
-                return;
-            }
-            DepositTax(out int totalTax, out float discount);
-            NotifyTaxPayed(totalTax, discount);
-        }
-
-        void NotifyTaxPayed(int amount, float discount)
-        {
-            TaggedString stringBuilder = "WAW.TaxPaid".Translate(amount);
-            if (discount > 0)
-            {
-                stringBuilder += "(" + "WAW.TaxWageDiscount".Translate((discount * 100).ToString("0.00")) + ")";
-            }
-            Messages.Message(stringBuilder, MessageTypeDefOf.NeutralEvent);
         }
 
         public override void GameComponentTick()
@@ -113,7 +63,8 @@ namespace WarbandWarfareQuestline.League
             base.GameComponentTick();
             if (ShouldCheckNow())
             {
-                PayTax();
+                this._questChecker.Check();
+                this._taxer.Check();
                 ResetLastCheckTick();
             }
         }
@@ -146,6 +97,16 @@ namespace WarbandWarfareQuestline.League
             base.ExposeData();
             Scribe_Collections.Look(ref _minorFactions, "_minorFactions", LookMode.Deep);
             Scribe_Collections.Look(ref _minorFactionsTemp, "_minorFactionsTemp", LookMode.Deep);
+            Scribe_Deep.Look(ref _questChecker, "_questChecker", LookMode.Deep);
+            Scribe_Deep.Look(ref _taxer, "_taxer", LookMode.Deep);
+            if(_taxer == null)
+            {
+                _taxer = new TaxEvent();
+            }
+            if(_questChecker == null)
+            {
+                _questChecker = new QuestEvent();
+            }
         }
 
     }

@@ -23,7 +23,7 @@ namespace WarbandWarfareQuestline.League
         private readonly string villageMatPath = "World/WorldObjects/Expanding/MinorFaction_Village";
         private readonly string townMatPath = "World/WorldObjects/Expanding/MinorFaction_Village";
 
-                public string Name
+         public string Name
         {
             get
             {
@@ -36,6 +36,7 @@ namespace WarbandWarfareQuestline.League
         }
 
         public MinorFaction MinorFaction => this._minorFaction;
+        public string MatPath => this._minorFaction.TechLevel < TechLevel.Industrial? villageMatPath : townMatPath;
 
         public override Material Material
         {

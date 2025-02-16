@@ -49,6 +49,7 @@ namespace WarbandWarfareQuestline
         public string FactionID => this.ID;
         public Color FactionColor => _factionColor;
         public int Tax => this._techLevel < TechLevel.Industrial ? 3000 : 10000;
+        public TechLevel TechLevel => this._techLevel;
 
         public void Init()
         {

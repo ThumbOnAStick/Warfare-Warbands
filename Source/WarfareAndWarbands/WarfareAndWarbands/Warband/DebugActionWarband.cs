@@ -12,6 +12,9 @@ using Verse.AI.Group;
 using WarfareAndWarbands.CharacterCustomization;
 using WarfareAndWarbands.Warband.Compatibility_VPE;
 using WarfareAndWarbands.Warband.PlayerWarbandRaid;
+using WarfareAndWarbands.Warband.UI;
+using WarfareAndWarbands.Warband.VassalWarband;
+using WarfareAndWarbands.Warband.VassalWarband.UI;
 using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades.Psycaster;
 
 namespace WarfareAndWarbands.Warband
@@ -57,6 +60,14 @@ namespace WarfareAndWarbands.Warband
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
             Find.WorldSelector.ClearSelection();
             Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(SpawnForPlayer), true);
+        }
+
+        [DebugAction("WAW", "Spawn Vassal Warband", actionType = DebugActionType.Action)]
+        public static void SpawnVassalForPlayer()
+        {
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
+            Find.WorldSelector.ClearSelection();
+            Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(SpawnVassalForPlayer), true);
         }
 
         [DebugAction("WAW", "Spawn Warband Targeting", actionType = DebugActionType.Action)]
@@ -119,6 +130,16 @@ namespace WarfareAndWarbands.Warband
                 return false;
             }
             Find.WindowStack.Add(new FloatMenu(SpawnForPlayerOptions(info).ToList()));
+            return true;
+        }
+
+        static bool SpawnVassalForPlayer(GlobalTargetInfo info)
+        {
+            if (info.WorldObject != null)
+            {
+                return false;
+            }
+            Find.WindowStack.Add(new Window_CreateVassalWarband(info, 1000));
             return true;
         }
 

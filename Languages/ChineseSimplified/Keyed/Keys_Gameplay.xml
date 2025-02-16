@@ -87,5 +87,9 @@
 	<WAW.SpentFromBank>我们从银行账户取出${0}支付了这笔费用，现在还剩${1}。</WAW.SpentFromBank>
 	<WAW.ReturnInterest>利息到账</WAW.ReturnInterest>
 	<WAW.ReturnInterest.Desc>我们的银行账户收到了 ${0} 的利息。</WAW.ReturnInterest.Desc>
-	<WAW.DepositeLoots>将战利品作为存款存放到银行。</WAW.DepositeLoots>
+	<WAW.DepositeLoots>将战利品作为存款存放到银行。</WAW.DepositeLoots>	
+	<WAW.WageDemandingWarband>关于：工资</WAW.WageDemandingWarband>
+	<WAW.WageDemandingWarband.Desc>这个战团不收取服务费，但是他们会抽成{0}%的税收</WAW.WageDemandingWarband.Desc>
+	<WAW.VassalBudget>盟友的预算：{0}</WAW.VassalBudget>
+
 </LanguageData>

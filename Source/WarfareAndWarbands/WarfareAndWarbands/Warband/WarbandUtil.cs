@@ -122,7 +122,11 @@ namespace WarfareAndWarbands.Warband
 
         public static List<PawnKindDef> SoldierPawnKinds()
         {
-            var cache = DefDatabase<PawnKindDef>.AllDefs.Where(x => x.isFighter && x.race.race.Humanlike).OrderBy(x => x.combatPower).ToList();
+            bool IsNoble(PawnKindDef kind)
+            {
+                return kind.minTitleRequired != null && kind.minTitleRequired.canBeInherited;
+            }
+            var cache = DefDatabase<PawnKindDef>.AllDefs.Where(x => x.isFighter && x.race.race.Humanlike && !IsNoble(x)).OrderBy(x => x.combatPower).ToList();
             List<PawnKindDef> result = new List<PawnKindDef>(cache);
             if (GameComponent_Customization.Instance != null)
             {
@@ -396,7 +400,11 @@ namespace WarfareAndWarbands.Warband
             var mp = (MapParent)o;
             if (mp.HasMap)
                 return false;
-            return o.Faction != null && o.Faction != Faction.OfPlayer && !o.Faction.Hidden && !o.Faction.HostileTo(Faction.OfPlayer);
+            if(o.Faction == Faction.OfPlayer)
+            {
+                return true;
+            }
+            return o.Faction != null && !o.Faction.HostileTo(Faction.OfPlayer);
         }
 
         public static SimpleCurve ResettleCurve()

@@ -13,6 +13,7 @@ using Verse.Noise;
 using WarfareAndWarbands.CharacterCustomization;
 using WarfareAndWarbands.Warband.Compatibility_Vehicle;
 using WarfareAndWarbands.Warband.PlayerWarbandRaid;
+using WarfareAndWarbands.Warband.VassalWarband;
 using WarfareAndWarbands.Warband.WarbandComponents;
 using WarfareAndWarbands.Warband.WAWCaravan.UI;
 
@@ -131,11 +132,33 @@ namespace WarfareAndWarbands.Warband.UI
 
         }
 
+        public static IEnumerable<FloatMenuOption> VassalWarbandAttackOptions(WorldObject_VassalWarband vassal, MapParent p)
+        {
+
+            yield return new FloatMenuOption("WAW.LandAttack".Translate(), delegate
+            {
+                vassal.AttackLand(p);
+            });
+            //if (p.HasMap)
+            //    yield return new FloatMenuOption("WAW.PodAttack".Translate(), delegate
+            //    {
+            //        vassal.AttackDropPod();
+            //    });
+
+        }
+
+        public static void GetVassalWarbandAttackOptions(this WorldObject_VassalWarband vassal, MapParent p)
+        {
+            FloatMenu floatMenuMap = new FloatMenu(VassalWarbandAttackOptions(vassal, p).ToList());
+            Find.WindowStack.Add(floatMenuMap);
+        }
+
         public static void GetPlayerWarbandAttackOptions(PlayerWarbandManager attackManager)
         {
             FloatMenu floatMenuMap = new FloatMenu(PlayerWarbandAttackOptions(attackManager).ToList());
             Find.WindowStack.Add(floatMenuMap);
         }
+
 
         public static Command DismissWarband(Warband band)
         {
@@ -498,6 +521,82 @@ namespace WarfareAndWarbands.Warband.UI
             Widgets.EndScrollView();
         }
 
+        public static void DrawPawnSelection(
+          Rect inRect,
+          ref Vector2 scrollPosition,
+          int pawnKindsEachRow,
+          float descriptionHeight,
+          float descriptionWidth,
+          float entryWidth,
+          float entryHeight,
+          WorldObject_VassalWarband warband
+          )
+        {
+
+            var techLeve = "WAW.TechLevel".Translate((int)GameComponent_WAW.playerWarband.techLevel);
+            int techWidth = 80;
+            Rect techRect = TopCenterRectFor(inRect, new Vector2(techWidth, 50));
+            Rect techRectMinus = new Rect(techRect.x - entryWidth, techRect.y, entryWidth, entryHeight);
+            Rect techRectAddon = new Rect(techRect.xMax + entryWidth, techRect.y, entryWidth, entryHeight);
+            bool decreaseTech = Widgets.ButtonImage(techRectMinus, TexUI.ArrowTexLeft);
+            Widgets.Label(techRect, techLeve);
+            bool addTech = Widgets.ButtonImage(techRectAddon, TexUI.ArrowTexRight);
+            if (addTech && GameComponent_WAW.playerWarband.techLevel < TechLevel.Archotech) { GameComponent_WAW.playerWarband.techLevel++; }
+            if (decreaseTech && GameComponent_WAW.playerWarband.techLevel > TechLevel.Undefined) { GameComponent_WAW.playerWarband.techLevel -= 1; }
+            var allCombatPawns = WarbandUtil.SoldierPawnKindsWithTechLevel(GameComponent_WAW.playerWarband.techLevel);
+            Rect outRect = CenterRectFor(inRect, new Vector2(inRect.width, 200f));
+            Rect viewRect = new Rect(outRect.x, outRect.y, inRect.width - 30f, (float)((allCombatPawns.Count() / pawnKindsEachRow + 1) * (descriptionHeight + entryHeight + 10)));
+            Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect);
+            float depth = outRect.y;
+            int pawnKindsStacked = 0;
+            if (allCombatPawns.Count < 1)
+            {
+                Widgets.Label(new Rect(30, depth, descriptionWidth, descriptionHeight), "WAW.FoundZeroPawns".Translate());
+            }
+            foreach (PawnKindDef p in allCombatPawns)
+            {
+                pawnKindsStacked++;
+                if (pawnKindsStacked > pawnKindsEachRow)
+                {
+                    pawnKindsStacked = 1;
+                    depth += descriptionHeight + 30;
+                }
+                float distance = 30 + 110 * (pawnKindsStacked - 1);
+                Rect boxRect = new Rect(distance, depth, descriptionWidth - 30, descriptionHeight + entryHeight);
+                Widgets.Label(new Rect(boxRect.position, new Vector2(descriptionWidth, descriptionHeight)), WarbandUI.PawnKindLabel(p) + "(" + p.combatPower + ")");
+                var amount = GameComponent_WAW.playerWarband.bandMembers[p.defName];
+                Rect labelRect = CenterRectFor(boxRect, new Vector2(entryWidth, entryHeight));
+                Widgets.Label(labelRect, amount.ToString());
+                bool minus = Widgets.ButtonImage(new Rect(labelRect.x - entryWidth * 2, labelRect.y, entryWidth, entryHeight), TexUI.ArrowTexLeft);
+                bool add = Widgets.ButtonImage(new Rect(labelRect.xMax, labelRect.y, entryWidth, entryHeight), TexUI.ArrowTexRight);
+                if (minus && GameComponent_WAW.playerWarband.bandMembers[p.defName] > 0) { GameComponent_WAW.playerWarband.bandMembers[p.defName]--; }
+                if (add) { GameComponent_WAW.playerWarband.bandMembers[p.defName]++; }
+                bool arrangementContains = GameComponent_WAW.playerWarband.bandMembers.ContainsKey(p.defName) && GameComponent_WAW.playerWarband.bandMembers[p.defName] > 0;
+                if (arrangementContains)
+                {
+                    Widgets.DrawBox(boxRect);
+                }
+                if (warband != null)
+                {
+                    bool warbandContians = warband.BandMembers.ContainsKey(p.defName) && warband.BandMembers[p.defName] > 0;
+                    if (warbandContians)
+                    {
+                        Widgets.DrawBox(boxRect, lineTexture: BaseContent.GreyTex);
+                    }
+                }
+
+
+                if (p.defaultFactionType != null)
+                {
+                    GUI.color = p.defaultFactionType.DefaultColor;
+                    Widgets.DrawTextureFitted(CenterRectFor(boxRect, new Vector2(30, 30), Vector2.up * 30), p.defaultFactionType.FactionIcon, 1f);
+                    GUI.color = Color.white;
+
+                }
+            }
+
+            Widgets.EndScrollView();
+        }
         public static void DrawResetButton()
         {
             bool doReset = Widgets.ButtonText(new Rect(330, 325, 100, 20), "WAW.ResetWarband".Translate());

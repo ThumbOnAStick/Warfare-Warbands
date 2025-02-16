@@ -93,4 +93,7 @@
 	<WAW.DepositeLoots>Deposit loots into our bank account.</WAW.DepositeLoots>
 	<WAW.TaxPaid>A total amount of ${0} seasonal tax money has been deposited in your bank account.</WAW.TaxPaid>
 	<WAW.TaxWageDiscount>%{0} used to pay warband wages</WAW.TaxWageDiscount>
+	<WAW.WageDemandingWarband>About: Wages</WAW.WageDemandingWarband>
+	<WAW.WageDemandingWarband.Desc>This warband do not have a service fee, but they will demand a {0}% portion of tax income.</WAW.WageDemandingWarband.Desc>
+	<WAW.VassalBudget>Vassal budget: {0}</WAW.VassalBudget>
 </LanguageData>	
