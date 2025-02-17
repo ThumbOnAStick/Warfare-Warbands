@@ -123,6 +123,7 @@
     <Compile Include="Warband\UI\WarbandConfigureSteps\StepTwo.cs" />
     <Compile Include="Warband\VassalWarband\UI\VassalWarbandUI.cs" />
     <Compile Include="Warband\VassalWarband\UI\Window_CreateVassalWarband.cs" />
+    <Compile Include="Warband\VassalWarband\VassalHolder.cs" />
     <Compile Include="Warband\VassalWarband\WorldObject_VassalWarband.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\PlayerWarbandSkillBonus.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\PlayerWarbandUpgrade.cs" />

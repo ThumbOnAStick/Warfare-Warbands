@@ -42,4 +42,7 @@
 	<WAW.PurchaseVehicles>Purchase Vehicles</WAW.PurchaseVehicles>
 	<WAW.AutoLoad>Quick Load</WAW.AutoLoad>
 	<WAW.AutoLoad.Desc>Load everything 10 cells near loot chest.</WAW.AutoLoad.Desc>
+	<WAW.SpawnVassalCommand>Spawn Vassal Warband</WAW.SpawnVassalCommand>
+	<WAW.SpawnVassalCommand.Desc>Spawn a temporary warband that can be deployed only once using this vassal faction's budget.</WAW.SpawnVassalCommand.Desc>
+	<WAW.VassalWillBeAvialableIn>Avialable in {0} days</WAW.VassalWillBeAvialableIn>
 </LanguageData>	

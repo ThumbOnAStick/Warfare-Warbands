@@ -11,7 +11,8 @@ using Verse;
 using Verse.AI.Group;
 using WarfareAndWarbands;
 using WarfareAndWarbands.Warband;
-using static System.Collections.Specialized.BitVector32;
+using WarfareAndWarbands.Warband.VassalWarband;
+using WarfareAndWarbands.Warband.VassalWarband.UI;
 
 namespace WarbandWarfareQuestline.League
 {
@@ -20,10 +21,11 @@ namespace WarbandWarfareQuestline.League
         private string _nameInt;
         private Material _cachedMat;
         private MinorFaction _minorFaction;
+        private VassalHolder _armyHolder;
         private readonly string villageMatPath = "World/WorldObjects/Expanding/MinorFaction_Village";
         private readonly string townMatPath = "World/WorldObjects/Expanding/MinorFaction_Village";
 
-         public string Name
+        public string Name
         {
             get
             {
@@ -37,7 +39,8 @@ namespace WarbandWarfareQuestline.League
 
         public MinorFaction MinorFaction => this._minorFaction;
         public string MatPath => this._minorFaction.TechLevel < TechLevel.Industrial? villageMatPath : townMatPath;
-
+        public int Budget => this._minorFaction.TechLevel < TechLevel.Industrial ? 3500 : 5000;
+        public float Duration => this._minorFaction.TechLevel < TechLevel.Industrial ? 3.5f : 10f;
         public override Material Material
         {
             get
@@ -52,11 +55,13 @@ namespace WarbandWarfareQuestline.League
         }
         public override Texture2D ExpandingIcon => WAWTex.Village;
         public override string Label => Name;
+
         public void SetMinorFaction(MinorFaction minorFaction)
         {
             this._minorFaction = minorFaction;
         }
 
+        #region MapGen
         void DamageBuildings()
         {
             for (int i = 0; i < Map.listerThings.AllThings.Count; i++)
@@ -113,25 +118,9 @@ namespace WarbandWarfareQuestline.League
                 GenerateCorpses();
             }, "WAW.GeneratingRaiders", false, null, true, null);
         }
+        #endregion
 
-        public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
-        {
-            alsoRemoveWorldObject = false;
-            return !base.Map.mapPawns.AnyPawnBlockingMapRemoval; 
-        }
-
-        public override void PostMapGenerate()
-        {
-            base.PostMapGenerate();
-            GenerateLootedBase();
-        }
-
-        public override void Tick()
-        {
-            base.Tick();
-
-        }
-
+   
         private void SpawnPawnsNearCenter(IEnumerable<Pawn> pawnList)
         {                
             LordJob_AssaultColony lordJob = new LordJob_AssaultColony(Faction);
@@ -155,6 +144,25 @@ namespace WarbandWarfareQuestline.League
             }
         }
 
+        public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
+        {
+            alsoRemoveWorldObject = false;
+            return !base.Map.mapPawns.AnyPawnBlockingMapRemoval;
+        }
+
+        public override void PostMapGenerate()
+        {
+            base.PostMapGenerate();
+            GenerateLootedBase();
+        }
+
+
+        public override void PostAdd()
+        {
+            base.PostAdd();
+            this._armyHolder = new VassalHolder(Duration, Budget);
+        }
+
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Caravan caravan)
         {
             return CaravanArrivalAction_Enter.GetFloatMenuOptions(caravan, this);
@@ -170,11 +178,52 @@ namespace WarbandWarfareQuestline.League
             yield break;
         }
 
+        public override IEnumerable<Gizmo> GetGizmos()
+        {
+
+            if (this.Faction == Faction.OfPlayer)
+            {
+                yield return new Command_Action()
+                {
+                    action =
+                    () =>
+                    {
+                        CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
+                        Find.WorldSelector.ClearSelection();
+                        Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(SpawnVassalForPlayer), true);
+                    },
+                    defaultLabel = "WAW.SpawnVassalCommand".Translate(),
+                    defaultDesc = "WAW.SpawnVassalCommand.Desc".Translate(),
+                    icon = WAWTex.WarbandTex,
+                    Disabled = !this._armyHolder.CanUse(),
+                    disabledReason = "WAW.VassalWillBeAvialableIn".Translate(_armyHolder.GetRemainingDays()),
+                };
+                
+            }
+
+        }
+
+        bool SpawnVassalForPlayer(GlobalTargetInfo info)
+        {
+            if (info.WorldObject != null)
+            {
+                return false;
+            }
+            Find.WindowStack.Add(new Window_CreateVassalWarband(info, this._armyHolder));
+            return true;
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();
             Scribe_Values.Look(ref this._nameInt, "nameInt");
             Scribe_References.Look(ref this._minorFaction, "_minorFaction");
+            Scribe_Deep.Look(ref this._armyHolder, "_armyHolder");
+
+            if(_armyHolder == null)
+            {
+                _armyHolder = new VassalHolder(Duration, Budget);
+            }
         }
 
     }

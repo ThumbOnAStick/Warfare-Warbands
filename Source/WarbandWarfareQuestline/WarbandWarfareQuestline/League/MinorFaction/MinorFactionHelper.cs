@@ -19,6 +19,8 @@ namespace WarbandWarfareQuestline.League
             MinorFaction minorFaction = new MinorFaction(trait, level);
             minorFaction.Init();
             GameComponent_League.Instance.FactionsTemp.Add(minorFaction);
+            var settlement = minorFaction.GenerateSettlement();
+            settlement.SetFaction(Faction.OfPlayer);
             return minorFaction;
         }
         public static MinorFaction GenerateMinorFaction(FactionTraitDef trait, TechLevel level)

@@ -95,5 +95,6 @@
 	<WAW.TaxWageDiscount>%{0} used to pay warband wages</WAW.TaxWageDiscount>
 	<WAW.WageDemandingWarband>About: Wages</WAW.WageDemandingWarband>
 	<WAW.WageDemandingWarband.Desc>This warband do not have a service fee, but they will demand a {0}% portion of tax income.</WAW.WageDemandingWarband.Desc>
-	<WAW.VassalBudget>Vassal budget: {0}</WAW.VassalBudget>
+	<WAW.VassalBudget>Vassal budget: ${0}</WAW.VassalBudget>
+	<WAW.VassalCantAfford>This vassal colony doesn't have enough budget.</WAW.VassalCantAfford>
 </LanguageData>	

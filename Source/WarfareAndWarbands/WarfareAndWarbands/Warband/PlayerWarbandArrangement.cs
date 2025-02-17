@@ -113,8 +113,18 @@ namespace WarfareAndWarbands.Warband
 
         #region Vassal
 
-        public bool CreateVassalWarbandWorldObject(GlobalTargetInfo target)
+        public bool CreateVassalWarbandWorldObject(GlobalTargetInfo target, int budget)
         {
+            if(this.GetCostEstablishment() > budget)
+            {
+                Messages.Message("WAW.VassalCantAfford".Translate(), MessageTypeDefOf.RejectInput);
+                return false;
+            }
+            if(!this.bandMembers.Any(x => x.Value > 0))
+            {
+                return false;
+            }
+
             if (target.WorldObject != null)
             {
                 return false;
@@ -135,6 +145,7 @@ namespace WarfareAndWarbands.Warband
             warband.Tile = target.Tile;
             warband.SetFaction(Faction.OfPlayer);
             warband.SetBandMembers(bandMembers);
+            warband.SetColor(colorOverride);
             Find.WorldObjects.Add(warband);
         }
         #endregion

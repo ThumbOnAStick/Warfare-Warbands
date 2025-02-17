@@ -139,7 +139,7 @@ namespace WarfareAndWarbands.Warband
             {
                 return false;
             }
-            Find.WindowStack.Add(new Window_CreateVassalWarband(info, 1000));
+            Find.WindowStack.Add(new Window_CreateVassalWarband(info, new VassalHolder(1.5f, 10000)));
             return true;
         }
 

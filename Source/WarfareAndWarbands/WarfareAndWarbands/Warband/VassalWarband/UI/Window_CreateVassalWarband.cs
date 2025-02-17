@@ -19,8 +19,9 @@ namespace WarfareAndWarbands.Warband.VassalWarband.UI
         private readonly float entryHeight = 20f;
         private readonly float entryWidth = 20f;
         private readonly int pawnKindsEachRow = 6;
+        private readonly int _budget = 0;
         private int step = 0;
-        private int budget = 0;
+        private VassalHolder holder;
         private GlobalTargetInfo target;
 
         public Window_CreateVassalWarband()
@@ -30,12 +31,19 @@ namespace WarfareAndWarbands.Warband.VassalWarband.UI
 
         public Window_CreateVassalWarband(int budget) : this() 
         {
-            this.budget = budget;
+            this._budget = budget;
         }
         public Window_CreateVassalWarband(GlobalTargetInfo info, int budget) : this(budget)
         {
             this.target = info;
         }
+        public Window_CreateVassalWarband(GlobalTargetInfo info, VassalHolder holder) : this()
+        {
+            this.target = info;
+            this.holder = holder;
+            _budget = holder.Budget;
+        }
+
         public override Vector2 InitialSize
         {
             get
@@ -72,7 +80,7 @@ namespace WarfareAndWarbands.Warband.VassalWarband.UI
             Rect balanceRect = new Rect(30, costRect.yMax + 10, 200, 50);
 
             Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostEstablishment().ToString()));
-            Widgets.Label(balanceRect, "WAW.VassalBudget".Translate(budget));
+            Widgets.Label(balanceRect, "WAW.VassalBudget".Translate(_budget));
 
         }
 
@@ -82,7 +90,8 @@ namespace WarfareAndWarbands.Warband.VassalWarband.UI
             if (doRecruit)
             {
                 this.Close();
-                GameComponent_WAW.playerWarband.CreateVassalWarbandWorldObject(this.target);
+                GameComponent_WAW.playerWarband.CreateVassalWarbandWorldObject(this.target, this._budget);
+                this.holder.OnUsed();
             }
         }
     }
