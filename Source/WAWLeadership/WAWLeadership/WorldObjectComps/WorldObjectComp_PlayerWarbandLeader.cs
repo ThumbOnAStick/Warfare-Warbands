@@ -76,8 +76,7 @@ namespace WAWLeadership.WorldObjectComps
         {
             base.Initialize(props);
             lastUsageTick = -coolDownTicks;
-            Log.Message("Init");
-        }
+         }
 
         public void ResetLastUsedTick()
         {

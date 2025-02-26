@@ -92,7 +92,6 @@ namespace WarfareAndWarbands.Warband.VassalWarband
                 Messages.Message("WAW.NoMembers".Translate(), MessageTypeDefOf.RejectInput, true);
                 result = false;
             }
-
             else
             {
                 bool hasWorldObject = info.WorldObject != null && info.WorldObject is MapParent;
@@ -152,7 +151,6 @@ namespace WarfareAndWarbands.Warband.VassalWarband
                 action = () =>
                 {
                     OderAttack();
-
                 }
             };
         }

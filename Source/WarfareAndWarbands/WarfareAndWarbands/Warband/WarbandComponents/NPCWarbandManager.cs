@@ -33,11 +33,24 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             CheckAllEnemiesDefeated();
             CheckShouldDestroySite();
             AIWarbandRaidUpdate();
+            SpawnWarbandMembersInTargetMap();
         }
 
         public void SetTargetTile(int targetTile)
         {
             this.targetTile = targetTile;
+        }
+
+        public void SpawnWarbandMembersInTargetMap()
+        {
+            var mapP = TryGetTarget();
+            if (!this.warband.HasMap && mapP != null && mapP.HasMap)
+            {
+                //Spawn warband
+                this.warband.SpawnOffenders(mapP.Map);
+                if (!this.warband.Destroyed)
+                    this.warband.Destroy();
+            }
         }
 
         public void CheckAllEnemiesDefeated()
@@ -56,10 +69,13 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public void OnDefeated()
         {
-            GameComponent_WAW.Instance.DecreaseDurability(warband.Faction, progressPoint);
-
+            DescreaseDurability();
             SendHostileWarbandDefeatedMessage();
+        }
 
+        void DescreaseDurability()
+        {
+            GameComponent_WAW.Instance.DecreaseDurability(warband.Faction, progressPoint);
         }
 
         public MapParent TryGetTarget()
@@ -158,39 +174,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         void AIWarbandRaidUpdate()
         {
-            if (warband.Faction == Faction.OfPlayer)
-            {
-                return;
-            }
-            if (!HasTargetingFaction())
-            {
-                return;
-            }
-            var factionBase = this.TryGetTarget();
-            if (factionBase.Faction == null)
-            {
-                return;
-            }
-            if (Find.TickManager.TicksGame - warband.creationGameTicks > assaultDuration && factionBase.Map == null)
-            {
-                if (factionBase as Warband != null)
-                {
-                    GameComponent_WAW.Instance.DecreaseDurability(factionBase.Faction, progressPoint);
-                    MoveAndDestroy(factionBase);
-                    BeatOpponent();
-                }
-                else if (factionBase as Settlement != null)
-                {
-                    TryToOccupySettlement(ref factionBase);
-                    warband.Destroy();
-                }
-                else
-                {
-                    MoveAndDestroy(factionBase);
-                }
-            }
-
-
+          
         }
 
 

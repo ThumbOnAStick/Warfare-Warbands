@@ -53,7 +53,7 @@ namespace WarbandWarfareQuestline.League
                 return this._cachedMat;
             }
         }
-        public override Texture2D ExpandingIcon => WAWTex.Village;
+        public override Texture2D ExpandingIcon => this._minorFaction.TechLevel < TechLevel.Industrial ?  WAWTex.Village : WAWTex.Town;
         public override string Label => Name;
 
         public void SetMinorFaction(MinorFaction minorFaction)

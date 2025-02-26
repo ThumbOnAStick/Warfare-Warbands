@@ -180,7 +180,7 @@ namespace WarfareAndWarbands.Warband
         public override void PostMapGenerate()
         {
             this.playerWarbandManager?.cooldownManager?.SetLastRaidTick();
-            SpawnPawns();
+            SpawnDefenders();
         }
 
         public override void Destroy()
@@ -209,7 +209,7 @@ namespace WarfareAndWarbands.Warband
             {
                 result = !GenHostility.AnyHostileActiveThreatToPlayer(this.Map, false, false) && result;
             }
-            alsoRemoveWorldObject = this.Faction != Faction.OfPlayer;
+            alsoRemoveWorldObject = this.Faction != Faction.OfPlayer && !GenHostility.AnyHostileActiveThreatToPlayer(this.Map, false, false);
             return result;
         }
 
@@ -219,7 +219,7 @@ namespace WarfareAndWarbands.Warband
             this.Tile = tile;
         }
 
-        public void SpawnPawns()
+        public void SpawnDefenders()
         {
             List<Pawn> pawnList = MercenaryUtil.GenerateWarbandPawns(this);
             try
@@ -239,6 +239,19 @@ namespace WarfareAndWarbands.Warband
             }
         }
 
+        public void SpawnOffenders(Map m)
+        {
+            List<Pawn> pawnList = MercenaryUtil.GenerateWarbandPawns(this);
+    
+            SpawnPawnsNearEdge(pawnList, m);
+            if (this.Faction != Faction.OfPlayer)
+            {
+                LordJob_AssaultColony lordJobDefendPoint = new LordJob_AssaultColony(this.Faction);
+                LordMaker.MakeNewLord(this.Faction, lordJobDefendPoint, m, pawnList);
+            }
+        }
+
+
         void SpawnPawnsNearCenter(List<Pawn> pawnList)
         {
             foreach (Pawn p in pawnList)
@@ -253,7 +266,30 @@ namespace WarfareAndWarbands.Warband
             }
         }
 
-      
+        void SpawnPawnsNearEdge(List<Pawn> pawnList, Map m)
+        {
+            IntVec3 cell = CellFinder.RandomEdgeCell(m);
+            try
+            {
+                CellFinder.TryFindRandomCellNear(cell, m, 15, (IntVec3 c) => c.Walkable(m), out IntVec3 newCell);
+                GenSpawn.Spawn(pawnList.First(), CellFinder.RandomClosewalkCellNear(newCell, m, 10), m);
+            }
+            catch (Exception e)
+            {
+                Log.Message($"Error while trying to generate warband pawn:{e.Message},{e.StackTrace}");
+                return;
+            }
+
+            foreach (Pawn p in pawnList)
+            {
+                if (!p.Spawned)
+                {
+                    CellFinder.TryFindRandomCellNear(cell, m, 15, (IntVec3 c)=> c.Walkable(m), out IntVec3 newCell);
+                    if (newCell != IntVec3.Invalid)
+                        GenSpawn.Spawn(p, newCell, m);
+                }
+            }
+        }
 
 
         public override IEnumerable<FloatMenuOption> GetTransportPodsFloatMenuOptions(IEnumerable<IThingHolder> pods, CompLaunchable representative)

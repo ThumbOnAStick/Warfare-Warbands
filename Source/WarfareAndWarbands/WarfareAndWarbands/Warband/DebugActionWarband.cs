@@ -25,7 +25,7 @@ namespace WarfareAndWarbands.Warband
         public static void SpawnRandomMercenary()
         {
             Faction faction = FactionUtility.DefaultFactionFrom(WAWDefof.PlayerWarband);
-            PawnKindDef localKindDef = WarbandUtil.SoldierPawnKinds().RandomElement();
+            PawnKindDef localKindDef = WarbandUtil.GetSoldierPawnKinds().RandomElement();
             PawnGenerationRequest request = new PawnGenerationRequest(localKindDef, faction, PawnGenerationContext.NonPlayer);
             request.MustBeCapableOfViolence = true;
             Pawn mercenary = PawnGenerator.GeneratePawn(request);

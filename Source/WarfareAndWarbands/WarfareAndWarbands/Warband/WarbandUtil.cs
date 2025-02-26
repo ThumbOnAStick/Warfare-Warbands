@@ -38,7 +38,7 @@ namespace WarfareAndWarbands.Warband
 
         public static void RefreshSoldierPawnKinds()
         {
-            SoldierPawnKindsCache = SoldierPawnKinds();
+            SoldierPawnKindsCache = GetSoldierPawnKinds();
         }
 
         public static string GetSoldierLabel(string defName)
@@ -120,11 +120,11 @@ namespace WarfareAndWarbands.Warband
             return AllPlayerWarbandsCache.Count() + AllPlayerRecruitingWarbandsCache.Count();
         }
 
-        public static List<PawnKindDef> SoldierPawnKinds()
+        public static List<PawnKindDef> GetSoldierPawnKinds()
         {
             bool IsNoble(PawnKindDef kind)
             {
-                return kind.minTitleRequired != null && kind.minTitleRequired.canBeInherited;
+                return kind.titleRequired != null && !kind.titleRequired.bedroomRequirements.NullOrEmpty();
             }
             var cache = DefDatabase<PawnKindDef>.AllDefs.Where(x => x.isFighter && x.race.race.Humanlike && !IsNoble(x)).OrderBy(x => x.combatPower).ToList();
             List<PawnKindDef> result = new List<PawnKindDef>(cache);

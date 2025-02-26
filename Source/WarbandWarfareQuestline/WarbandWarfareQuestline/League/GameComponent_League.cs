@@ -9,6 +9,7 @@ using Verse;
 using WarbandWarfareQuestline.League.UI;
 using WarbandWarfareQuestline.League.WAWScheduled;
 using WarbandWarfareQuestline.Questline;
+using WarbandWarfareQuestline.Skirmish;
 using WarfareAndWarbands;
 using WarfareAndWarbands.Warband;
 
@@ -24,6 +25,7 @@ namespace WarbandWarfareQuestline.League
         private TaxEvent _taxer;
         private readonly int baseEventGenerationDays = 5;
         private readonly int minorFactionEventGenerationDays = 30;
+        private readonly int skirmishInterval = 3;
 
 
         public GameComponent_League(Game game)
@@ -37,6 +39,7 @@ namespace WarbandWarfareQuestline.League
 
         public FloatRange dateOffset = new FloatRange(.8f, .12f);
         public int BaseEventGenrationTicks => (int)(baseEventGenerationDays * dateOffset.RandomInRange) * GenDate.TicksPerDay;
+        public int SkirmishIntervalTicks => BaseEventGenrationTicks + skirmishInterval * GenDate.TicksPerDay;
 
         public List<MinorFaction> Factions => _minorFactions;
         public List<MinorFaction> FactionsTemp => _minorFactionsTemp;
@@ -46,16 +49,28 @@ namespace WarbandWarfareQuestline.League
             return GenTicks.TicksGame - _lastCheckTick > BaseEventGenrationTicks;
         }
 
-        bool ShouldPayTaxNow()
+        bool ShouldDoSkirmishNow()
         {
-            return GenTicks.TicksGame - _lastCheckTick > BaseEventGenrationTicks;
+            return GenTicks.TicksGame - _lastCheckTick > SkirmishIntervalTicks;
 
         }
-
 
         void ResetLastCheckTick()
         {
             _lastCheckTick = GenTicks.TicksGame;
+        }
+
+        void CheckTax()
+        {
+            this._taxer.Check();
+        }
+
+        void CheckSkirmish()
+        {
+            if(ShouldDoSkirmishNow())
+            {
+                GameComponent_Skrimish.Instance.CreateRandomSkirmsish();
+            }
         }
 
         public override void GameComponentTick()
@@ -63,8 +78,15 @@ namespace WarbandWarfareQuestline.League
             base.GameComponentTick();
             if (ShouldCheckNow())
             {
-                this._questChecker.Check();
-                this._taxer.Check();
+                //Check quests, for the sake of players, diable this shit for now.
+                //this._questChecker.Check();
+
+                // Receive Tax Every Month
+                CheckTax();
+
+                // Check 
+                CheckSkirmish();
+
                 ResetLastCheckTick();
             }
         }
@@ -72,6 +94,7 @@ namespace WarbandWarfareQuestline.League
         public override void StartedNewGame()
         {
             base.StartedNewGame();
+            // Disable village quest for now
             if (!Prefs.DevMode)
             {
                 return;
@@ -107,6 +130,15 @@ namespace WarbandWarfareQuestline.League
             {
                 _questChecker = new QuestEvent();
             }
+            if(_minorFactions == null)
+            {
+                _minorFactions = new List<MinorFaction>();
+            }
+            if(_minorFactionsTemp == null)
+            {
+                _minorFactionsTemp = new List<MinorFaction>();
+            }
+
         }
 
     }

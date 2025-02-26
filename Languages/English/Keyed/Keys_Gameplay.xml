@@ -56,7 +56,7 @@
 	<WAW.NoComms>There's no powered comms console in your colony.</WAW.NoComms>
 	<WAW.CaravanWarband>about: warband establishment</WAW.CaravanWarband>
 	<WAW.CaravanWarband.Desc>If you are never going to build a comms console, you will have to use a cravan to create a warband and make one colonist the leader of the warband, before doing that, make sure the caravan has enough silvers.</WAW.CaravanWarband.Desc>
-	<WAW.AboutAssignLeader>About: Assign Leader</WAW.AboutAssignLeader>
+	<WAW.AboutAssignLeader>About: Leader Asignment</WAW.AboutAssignLeader>
 	<WAW.AboutAssignLeader.Desc>You can assign a leader for this newly crated warband, to do this, you only need a caravan that can approach the warband site.</WAW.AboutAssignLeader.Desc>
 	<WAW.AboutQuickAttack>About: Raid Shortcut</WAW.AboutQuickAttack>
 	<WAW.AboutQuickAttack.Desc>You can access raid shortcut window through the main mod panel, it makes it easier to select from active warbands.</WAW.AboutQuickAttack.Desc>
@@ -97,4 +97,7 @@
 	<WAW.WageDemandingWarband.Desc>This warband do not have a service fee, but they will demand a {0}% portion of tax income.</WAW.WageDemandingWarband.Desc>
 	<WAW.VassalBudget>Vassal budget: ${0}</WAW.VassalBudget>
 	<WAW.VassalCantAfford>This vassal colony doesn't have enough budget.</WAW.VassalCantAfford>
+	<WAW.EnemyBaseDestroyed>After days of siege, an enemy base was taken.</WAW.EnemyBaseDestroyed>
+	<WAW.SkirmishBonus>Skirmish Bonus</WAW.SkirmishBonus>
+	<WAW.SkirmishBonus.Desc>A total of {0} has been transfered to your bank account.</WAW.SkirmishBonus.Desc>
 </LanguageData>	

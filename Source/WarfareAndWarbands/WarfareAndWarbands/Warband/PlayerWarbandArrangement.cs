@@ -34,7 +34,7 @@ namespace WarfareAndWarbands.Warband
         public void Refresh()
         {
             bandMembers = new Dictionary<string, int>();
-            var allPawnKinds = WarbandUtil.SoldierPawnKinds();
+            var allPawnKinds = WarbandUtil.GetSoldierPawnKinds();
             foreach (var kind in allPawnKinds)
             {
                 if (!bandMembers.ContainsKey(kind.defName))

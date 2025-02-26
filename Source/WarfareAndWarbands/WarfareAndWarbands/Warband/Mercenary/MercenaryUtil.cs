@@ -20,7 +20,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
         {
             var members = warband.Faction == Faction.OfPlayer ? warband.playerWarbandManager.injuriesManager.GetActiveMembers(warband.bandMembers) : warband.bandMembers;
             //member table
-            List<Pawn> list = GeneratePawnsFromTable(warband, members, Faction.OfPlayer);
+            List<Pawn> list = GeneratePawnsFromTable(warband, members);
  
             //leader
             if (warband.Faction == Faction.OfPlayer &&
@@ -48,7 +48,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
             return list;
         }
 
-        public static List<Pawn> GeneratePawnsFromTable(Warband warband, Dictionary<string, int> table, Faction fac)
+        public static List<Pawn> GeneratePawnsFromTable(Warband warband, Dictionary<string, int> table)
         {
             List<Pawn> list = new List<Pawn>();
             foreach (var ele in table)
@@ -91,6 +91,11 @@ namespace WarfareAndWarbands.Warband.Mercenary
                     try
                     {
                         pawn = GenerateVassalPawn(warband, ele.Key, out bool succeed);
+                        if (pawn != null && GameComponent_Customization.Instance.customizationRequests.Any(x => x.defName == ele.Key))
+                        {
+                            var targetRequest = GameComponent_Customization.Instance.customizationRequests.First(x => x.defName == ele.Key);
+                            targetRequest?.CustomizePawn(ref pawn);
+                        }
                     }
                     catch
                     {
@@ -130,26 +135,32 @@ namespace WarfareAndWarbands.Warband.Mercenary
             {
                 kindDef = WarbandUtil.SoldierPawnKindsCache.First(x => x.defName == kindDefName);
             }
-            Faction faction = kindDef.defaultFactionType != null ? Find.FactionManager.FirstFactionOfDef(kindDef.defaultFactionType) : warband.Faction;
+            Faction pawnFaction = kindDef.defaultFactionType != null ? Find.FactionManager.FirstFactionOfDef(kindDef.defaultFactionType) : warband.Faction;
             if (warband.PawnKindFactionType != null && !isCustom)
             {
                 var f = Find.FactionManager.FirstFactionOfDef(warband.PawnKindFactionType);
                 if (f != null)
                 {
-                    faction = f;
+                    pawnFaction = f;
                 }
             }
+
+            if(warband.Faction != Faction.OfPlayer)
+            {
+                pawnFaction = warband.Faction;
+            }
+
             try
             {
                 succeed = true;
-                PawnGenerationRequest request = new PawnGenerationRequest(kindDef, faction, mustBeCapableOfViolence: true, developmentalStages: DevelopmentalStage.Adult);
+                PawnGenerationRequest request = new PawnGenerationRequest(kindDef, pawnFaction, mustBeCapableOfViolence: true, developmentalStages: DevelopmentalStage.Adult);
                 return request;
             }
             catch (Exception e)
             {
                 succeed = false;
                 warband.SetFactionType(null);
-                Log.Message("WAW: Failed to generate pawn generation request: " + e);
+                Log.Error("WAW: Failed to generate pawn generation request: " + e);
                 return new PawnGenerationRequest(kindDef, warband.Faction);
             }
         }
