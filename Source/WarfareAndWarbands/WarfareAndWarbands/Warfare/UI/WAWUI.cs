@@ -18,8 +18,14 @@ namespace WarfareAndWarbands.Warfare.UI
     public static class WAWUI
     {
         public static UnityEvent onLeagueDrawn = new UnityEvent();
+        public static UnityEvent onLeagueInit = new UnityEvent();
         public static Rect InRect => _inRect;
         static Rect _inRect;
+
+        public static void InitWindow()
+        {
+            onLeagueInit.Invoke();
+        }
 
         public static void DoWindowContents(Rect inRect, Window window, Map map, int mode = 0)
         {

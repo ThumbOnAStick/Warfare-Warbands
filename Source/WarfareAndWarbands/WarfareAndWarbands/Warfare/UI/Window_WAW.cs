@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using LudeonTK;
+using RimWorld;
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace WarfareAndWarbands.UI
         public Window_WAW()
         {
             this.map = Find.AnyPlayerHomeMap;
+
         }
         public Window_WAW(Map map) 
         {
@@ -48,7 +50,11 @@ namespace WarfareAndWarbands.UI
             }
         }
 
-   
+        protected override void SetInitialSizeAndPosition()
+        {
+            base.SetInitialSizeAndPosition();
+            WAWUI.InitWindow();
+        }
 
         public void DoWarband()
         {

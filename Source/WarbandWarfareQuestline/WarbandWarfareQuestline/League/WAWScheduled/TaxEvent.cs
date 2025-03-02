@@ -13,6 +13,11 @@ namespace WarbandWarfareQuestline.League.WAWScheduled
     internal class TaxEvent: WAWScheduledEvent
     {
 
+        public TaxEvent()
+        {
+
+        }
+
         float GetTaxDiscount()
         {
             var allAvialablePlayerWarbands = WarbandUtil.AllActivePlayerWarbands();

@@ -60,7 +60,7 @@ namespace WarbandWarfareQuestline.League
                 faction = tribe;
             }
             else
-            {
+            {   
                 faction = map.ParentFaction;
             }
             rect.ClipInsideMap(map);

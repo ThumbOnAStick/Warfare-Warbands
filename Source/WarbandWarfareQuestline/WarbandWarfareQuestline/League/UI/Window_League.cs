@@ -8,28 +8,42 @@ using WarfareAndWarbands.Warfare.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using Verse;
+using WarfareAndWarbands;
 namespace WarbandWarfareQuestline.League.UI
 {
     internal static class Window_League
     {
-        static int height = 50;
-        static readonly int initialHeight = 50;
-        static readonly int space = 80;
+        static readonly int townPosY = 50;
+        static readonly int villagePosY = 100;
+        static readonly int settlementCountDisplayOffsetX = 75;
+        static readonly int settlementCountDisplayOffsetY = 25;
+
+
+        static int villageCount = 0;
+        static int townCount = 0;
+
 
         public static void AppendDrawingEvent()
         {
             WAWUI.onLeagueDrawn.AddListener(new UnityAction(Draw));
+            WAWUI.onLeagueInit.AddListener(new UnityAction(RecalculateSettlementCount));
+
+        }
+
+        public static void RecalculateSettlementCount()
+        {
+            villageCount = GameComponent_League.Instance.GetRuralCount();
+            townCount = GameComponent_League.Instance.GetTownCount();
         }
 
         public static void Draw()
         {
-            foreach(var faction in GameComponent_League.Instance.Factions)
-            {
-                GUI.color = faction.FactionColor;
-                Widgets.DrawTextureFitted(new Rect(0, height, 50, 50), faction.GetFactionIcon(), 1);
-                height += space;
-            }
-            height = initialHeight;
+
+            Widgets.DrawTextureFitted(new Rect(0, townPosY, 50, 50), WAWTex.Town, 1);
+            Widgets.Label(new Rect(settlementCountDisplayOffsetX, townPosY + settlementCountDisplayOffsetY, 100, 50), villageCount.ToString());
+            Widgets.DrawTextureFitted(new Rect(0, villagePosY, 50, 50), WAWTex.Village, 1);
+            Widgets.Label(new Rect(settlementCountDisplayOffsetX, villagePosY + settlementCountDisplayOffsetY, 100, 50), townCount.ToString());
+
         }
     }
 }

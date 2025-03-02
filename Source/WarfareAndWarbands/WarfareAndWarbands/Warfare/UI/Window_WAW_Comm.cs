@@ -35,11 +35,17 @@ namespace WarfareAndWarbands.Warfare.UI
             }
         }
 
+        protected override void SetInitialSizeAndPosition()
+        {
+            base.SetInitialSizeAndPosition();
+            WAWUI.InitWindow();
+        }
+
         void DrawSelectionMenu(Rect inRect)
         {
             Rect menuRect = new Rect(0, 50, inRect.width, inRect.height);
             Widgets.DrawMenuSection(menuRect);
-            TabDrawer.DrawTabs<TabRecord>(menuRect, this._tabs, 200f);
+            TabDrawer.DrawTabs(menuRect, this._tabs, 200f);
         }
         public void DoWarband()
         {

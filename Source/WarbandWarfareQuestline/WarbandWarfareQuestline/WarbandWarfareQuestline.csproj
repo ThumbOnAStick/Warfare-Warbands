@@ -90,6 +90,7 @@
     <Compile Include="League\UI\Dialog_ChoosePolicy.cs" />
     <Compile Include="League\UI\Window_League.cs" />
     <Compile Include="League\WAWScheduled\QuestEvent.cs" />
+    <Compile Include="League\WAWScheduled\SkirmishEvent.cs" />
     <Compile Include="League\WAWScheduled\TaxEvent.cs" />
     <Compile Include="League\WAWScheduled\WAWScheduledEvent.cs" />
     <Compile Include="Questline\GameComponent_Questline.cs" />

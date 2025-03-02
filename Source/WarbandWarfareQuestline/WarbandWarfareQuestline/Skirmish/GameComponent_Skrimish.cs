@@ -10,7 +10,7 @@ namespace WarbandWarfareQuestline.Skirmish
     public class GameComponent_Skrimish : GameComponent
     {
         private List<Skirmish> _skirmishes;
-        private List<string> _eventList;
+        private readonly List<string> _eventList;
 
         public static GameComponent_Skrimish Instance;
         private const string skirmishString = "Skirmish";
@@ -46,7 +46,11 @@ namespace WarbandWarfareQuestline.Skirmish
         public override void GameComponentTick()
         {
             base.GameComponentTick();
-            for (int i = 0; i < _skirmishes.Count; i++)
+            if(GenTicks.TicksGame % 100  != 0)
+            {
+                return;
+            }
+            for (int i = 0; i <  _skirmishes.Count; i++)
             {
                 var skirmish = _skirmishes[i];
                 if (skirmish.ShouldDestroy())
@@ -71,7 +75,11 @@ namespace WarbandWarfareQuestline.Skirmish
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Collections.Look(ref _skirmishes, "skirmishes");
+            Scribe_Collections.Look(ref _skirmishes, "skirmishes", LookMode.Deep);
+            if(_skirmishes == null)
+            {
+                _skirmishes = new List<Skirmish>();
+            }
         }
 
 
