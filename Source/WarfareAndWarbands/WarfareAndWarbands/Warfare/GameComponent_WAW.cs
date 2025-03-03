@@ -26,6 +26,7 @@ namespace WarfareAndWarbands
         public UnityEvent onLeaderAbilityUsed;
         private bool everUsedQuickRaid = false;
         private bool everAssignedWarbandLeader = false;
+        private bool everInformedAboutTownBuilding = false;
         private Pawn raidLeaderCache;
         private int lastTick = 0;
 
@@ -48,6 +49,7 @@ namespace WarfareAndWarbands
             Scribe_Values.Look(ref lastTick, "lastTick", GenTicks.TicksGame);
             Scribe_Values.Look(ref everAssignedWarbandLeader, "everAssignedWarbandLeader");
             Scribe_Values.Look(ref everUsedQuickRaid, "everUsedQuickRaid");
+            Scribe_Values.Look(ref everInformedAboutTownBuilding, "everInformedAboutTownBuilding");
             playerWarband.ExposeData();
             Scribe_Deep.Look(ref playerBankAccount, "playerBank");
             if(playerBankAccount == null)
@@ -285,6 +287,22 @@ namespace WarfareAndWarbands
         public Pawn GetRaidLeaderCache()
         {
             return this.raidLeaderCache;
+        }
+
+        public void InformPlayerToBuildATown()
+        {
+            if (everInformedAboutTownBuilding)
+            {
+                return;
+            }
+            this.everInformedAboutTownBuilding = true;
+            Letter l = LetterMaker.MakeLetter("WAW.BuildTown".Translate(), "WAW.BuildTown.Desc".Translate
+                (
+                WAWSettings.townConstructionSkillRequirement.ToString(),
+                WAWSettings.townConstructionCost.ToString().Colorize(Color.yellow),
+                WAWSettings.townConstructionDuration.ToString().Colorize(Color.cyan)
+                ), LetterDefOf.NeutralEvent);
+            Find.LetterStack.ReceiveLetter(l);
         }
     }
 }

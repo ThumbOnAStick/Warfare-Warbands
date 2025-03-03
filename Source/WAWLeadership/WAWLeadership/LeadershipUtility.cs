@@ -21,6 +21,8 @@ namespace WAWLeadership
         static WorldObjectComp_PlayerWarbandLeader leaderCompCache;
         static Warband warbandCache;
 
+        public static WorldObjectComp_PlayerWarbandLeader LeaderCompCache => leaderCompCache;
+
         public static void SetWarbandCache(Warband warband)
         {
             warbandCache = warband;

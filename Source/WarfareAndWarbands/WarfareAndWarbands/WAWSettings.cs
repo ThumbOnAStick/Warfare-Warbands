@@ -25,6 +25,9 @@ namespace WarfareAndWarbands
         public static bool upgradeRequiresLeader= true;
         public static float warbandRaidCooldown = 1.5f;
         public static float warbandRecruitTimeMultiplier = 1f;
+        public static int townConstructionDuration= 10;
+        public static int townConstructionSkillRequirement = 3;
+        public static int townConstructionCost = 10000;
 
         private static readonly float UpdateVersion = 1.11f;
 

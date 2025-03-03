@@ -63,7 +63,7 @@
 	<WAW.DRAG>Drag To Move</WAW.DRAG>
 	<WAW.NextStep>Next Step</WAW.NextStep>
 	<WAW.FactionOverride>Decide warband's faction type, this will override the ideology (Ideology DLC) and race (HAR mod) of generated soldiers.</WAW.FactionOverride>
-	<WAW.InsufficientPsycaster>No psycaster in the team， please recuruit more from "recruit psycasters" window.</WAW.InsufficientPsycaster>
+	<WAW.InsufficientPsycaster>No psycaster in the team, please recuruit more from "recruit psycasters" window.</WAW.InsufficientPsycaster>
 	<WAW.PleaseSelectUpgrade>Please select an upgrade</WAW.PleaseSelectUpgrade>
 	<WAW.JoinPlayerLeague>Joins Player League</WAW.JoinPlayerLeague>
 	<WAW.JoinPlayerLeague.ToolTip>{0} will join the player league.</WAW.JoinPlayerLeague.ToolTip>

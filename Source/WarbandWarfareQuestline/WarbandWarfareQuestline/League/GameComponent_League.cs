@@ -8,10 +8,7 @@ using System.Threading.Tasks;
 using Verse;
 using WarbandWarfareQuestline.League.UI;
 using WarbandWarfareQuestline.League.WAWScheduled;
-using WarbandWarfareQuestline.Questline;
-using WarbandWarfareQuestline.Skirmish;
-using WarfareAndWarbands;
-using WarfareAndWarbands.Warband;
+using RimWorld.Planet;
 
 namespace WarbandWarfareQuestline.League
 {
