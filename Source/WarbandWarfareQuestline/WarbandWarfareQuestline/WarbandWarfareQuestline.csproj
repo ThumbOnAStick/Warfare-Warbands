@@ -20,7 +20,7 @@
     <OutputPath>..\..\..\1.5\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -100,6 +100,7 @@
     <Compile Include="Questline\QuestPart_VillageLooted.cs" />
     <Compile Include="Questline\Reward_MinorFactionJoin.cs" />
     <Compile Include="Skirmish\GameComponent_Skrimish.cs" />
+    <Compile Include="Skirmish\HarmonyPatches_Skirmish.cs" />
     <Compile Include="Skirmish\Siege.cs" />
     <Compile Include="Skirmish\Skirmish.cs" />
     <Compile Include="Skirmish\SkirmishHelper.cs" />

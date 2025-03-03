@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld.Planet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,20 @@ namespace WarbandWarfareQuestline.Skirmish
             _skirmishes.Add(skirmish);
         }
 
+        public void OnWorldObjectDestroyed()
+        {
+            for (int i = 0; i < _skirmishes.Count; i++)
+            {
+                var skirmish = _skirmishes[i];
+                if (skirmish.ShouldGiveBonus())
+                {
+                    skirmish.SendBonus();
+                    DestroySkirmish(skirmish);
+                    return;
+                }
+            }
+        }
+
         public override void GameComponentTick()
         {
             base.GameComponentTick();
@@ -53,23 +68,20 @@ namespace WarbandWarfareQuestline.Skirmish
             for (int i = 0; i <  _skirmishes.Count; i++)
             {
                 var skirmish = _skirmishes[i];
+           
                 if (skirmish.ShouldDestroy())
                 {
                     DestroySkirmish(skirmish);
                     return;
-                }
-                if (skirmish.ShouldGiveBonus())
-                {
-                    skirmish.SendBonus();
-                    DestroySkirmish(skirmish);
                 }
             }
         }
 
         void DestroySkirmish(Skirmish skirmish)
         {
+            if (_skirmishes.Contains(skirmish))
+                _skirmishes.Remove(skirmish);
             skirmish.PreDestroy();
-            _skirmishes.Remove(skirmish);
         }
 
         public override void ExposeData()
