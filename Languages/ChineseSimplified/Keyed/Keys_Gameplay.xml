@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
 	<!--Gameplay-->
 	<WAW.Welcome>战团战争</WAW.Welcome>
@@ -92,6 +92,12 @@
 	<WAW.WageDemandingWarband.Desc>这个战团不收取服务费，但是他们会抽成{0}%的税收</WAW.WageDemandingWarband.Desc>
 	<WAW.VassalBudget>盟友的预算：{0}</WAW.VassalBudget>
 	<WAW.VassalCantAfford>这个盟友没有足够的预算。</WAW.VassalCantAfford>
-	<WAW.SkirmishBonus>Skirmish Bonus</WAW.SkirmishBonus>
-	<WAW.SkirmishBonus.Desc>A total of {0} has been transfered to your bank account.</WAW.SkirmishBonus.Desc>
+	<WAW.SkirmishBonus>战役奖励</WAW.SkirmishBonus>
+	<WAW.SkirmishBonus.Desc>${0}被转入你的银行账户。</WAW.SkirmishBonus.Desc>
+	<WAW.BuildTown>关于：建造城镇</WAW.BuildTown>
+	<WAW.BuildTown.Desc>你可以命令工程技能高于{0}的团长利用被摧毁的据点建造城镇（使用“互动”选项点击被摧毁的据点），同时你需要消耗${1}的费用和{2}天时间。</WAW.BuildTown.Desc>
+	<WAW.ConfirmBuildTown>建造一个能够立刻加入你的联盟的定居点, 消耗${0}并花费{1}天.</WAW.ConfirmBuildTown>
+	<WAW.TownConstructionPlanned>定居点开始建造</WAW.TownConstructionPlanned>
+	<WAW.TownConstructionPlanned.Desc>定居点已经开始建造，数日后将会投入使用。</WAW.TownConstructionPlanned.Desc>
+
 </LanguageData>

@@ -383,7 +383,26 @@ namespace WarfareAndWarbands.Warband
             }
             return true;
         }
-    
+        public static bool TryToSpendSilverFromBank(int cost)
+        {
+
+            if (cost <= 0)
+            {
+                return true;
+            }
+
+            if (GameComponent_WAW.playerBankAccount.Balance >= cost)
+            {
+                GameComponent_WAW.playerBankAccount.Spend(cost);
+                int remains = GameComponent_WAW.playerBankAccount.Balance;
+                Messages.Message("WAW.SpentFromBank".Translate(cost, remains), MessageTypeDefOf.PositiveEvent);
+                return true;
+            }
+
+            return true;
+        }
+
+
         public static Settlement AddNewHome(int tile, Faction faction, WorldObjectDef targetDef)
         {
             Settlement settlement;

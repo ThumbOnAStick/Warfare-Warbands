@@ -100,4 +100,9 @@
 	<WAW.EnemyBaseDestroyed>After days of siege, an enemy base was taken.</WAW.EnemyBaseDestroyed>
 	<WAW.SkirmishBonus>Skirmish Bonus</WAW.SkirmishBonus>
 	<WAW.SkirmishBonus.Desc>A total of {0} has been transfered to your bank account.</WAW.SkirmishBonus.Desc>
+	<WAW.BuildTown>About: Town Construction</WAW.BuildTown>
+	<WAW.BuildTown.Desc>You can build a town by scrapping from this destroyed enemy settlement (use interaction ability of the warband on the destroyed settlement), with a leader of level {0} Engineering skill and ${1} fee. It will take {2} days.</WAW.BuildTown.Desc>
+	<WAW.ConfirmBuildTown>Build a town that automatically joins your league, this will cost ${0} and {1} days.</WAW.ConfirmBuildTown>
+	<WAW.TownConstructionPlanned>Planned: Town Contruction</WAW.TownConstructionPlanned>
+	<WAW.TownConstructionPlanned.Desc>Town construction has been initiated, we need to wait few days before the construction is complete.</WAW.TownConstructionPlanned.Desc>
 </LanguageData>	
