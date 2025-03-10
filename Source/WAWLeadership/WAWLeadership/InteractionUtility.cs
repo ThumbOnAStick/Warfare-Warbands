@@ -186,8 +186,6 @@ namespace WAWLeadership
 
             TaggedString text = "WAW.ConfirmBuildTown".Translate(WAWSettings.townConstructionCost, WAWSettings.townConstructionDuration);
             WindowStack windowStack = Find.WindowStack;
-
-
             windowStack.Add(Dialog_MessageBox.CreateConfirmation(text, confirmedAct, true, null, WindowLayer.Dialog));
         }
         static void confirmedAct()

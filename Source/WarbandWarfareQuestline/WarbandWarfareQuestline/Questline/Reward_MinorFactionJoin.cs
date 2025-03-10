@@ -9,7 +9,7 @@ using UnityEngine;
 using Verse;
 using Verse.Grammar;
 using WarbandWarfareQuestline.League;
-using static System.Collections.Specialized.BitVector32;
+using WarbandWarfareQuestline.League.MinorFactions;
 
 namespace WarbandWarfareQuestline.Questline
 {

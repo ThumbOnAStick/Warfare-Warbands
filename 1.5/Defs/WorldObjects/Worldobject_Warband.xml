@@ -31,11 +31,24 @@
     <expandMore>true</expandMore>
   </WorldObjectDef>
 
+  <WorldObjectDef>
+    <defName>WAW_SettlementConstruction</defName>
+    <label>construction</label>
+    <description>A settlement under construction.</description>
+    <worldObjectClass>WarfareAndWarbands.Warband.WorldObject_WarbandRecruiting</worldObjectClass>
+    <texture>World/WorldObjects/Caravan</texture>
+    <useDynamicDrawer>true</useDynamicDrawer>
+    <expandingIcon>true</expandingIcon>
+    <expandingIconTexture>World/WorldObjects/Expanding/WarbandRecruiting</expandingIconTexture>
+    <expandingIconPriority>100</expandingIconPriority>
+    <expandMore>true</expandMore>
+  </WorldObjectDef>
+
   <WorldObjectDef Name="WAW_MinorFactionSettlement">
     <defName>WAW_MinorFactionSettlement</defName>
     <label>mini settlement</label>
     <description>A base of one of the minor factions.</description>
-    <worldObjectClass>WarbandWarfareQuestline.League.MinorFactionSettlement</worldObjectClass>
+    <worldObjectClass>WarbandWarfareQuestline.League.MinorFactions.MinorFactionSettlement</worldObjectClass>
     <expandingIcon>true</expandingIcon>
     <expandingIconPriority>10</expandingIconPriority>
     <canBePlayerHome>true</canBePlayerHome>

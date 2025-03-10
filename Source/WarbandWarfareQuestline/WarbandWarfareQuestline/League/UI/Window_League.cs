@@ -40,9 +40,9 @@ namespace WarbandWarfareQuestline.League.UI
         {
 
             Widgets.DrawTextureFitted(new Rect(0, townPosY, 50, 50), WAWTex.Town, 1);
-            Widgets.Label(new Rect(settlementCountDisplayOffsetX, townPosY + settlementCountDisplayOffsetY, 100, 50), villageCount.ToString());
+            Widgets.Label(new Rect(settlementCountDisplayOffsetX, townPosY + settlementCountDisplayOffsetY, 100, 50), townCount.ToString());
             Widgets.DrawTextureFitted(new Rect(0, villagePosY, 50, 50), WAWTex.Village, 1);
-            Widgets.Label(new Rect(settlementCountDisplayOffsetX, villagePosY + settlementCountDisplayOffsetY, 100, 50), townCount.ToString());
+            Widgets.Label(new Rect(settlementCountDisplayOffsetX, villagePosY + settlementCountDisplayOffsetY, 100, 50), villageCount.ToString());
 
         }
     }

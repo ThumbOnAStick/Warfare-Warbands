@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Verse;
+using WarbandWarfareQuestline.League.MinorFactions;
 
 namespace WarbandWarfareQuestline.League
 {

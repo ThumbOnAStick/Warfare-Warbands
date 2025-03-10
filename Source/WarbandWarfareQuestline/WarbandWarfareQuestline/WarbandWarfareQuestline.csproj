@@ -83,9 +83,10 @@
     <Compile Include="League\FactionTraitDefOf.cs" />
     <Compile Include="League\GameComponent_League.cs" />
     <Compile Include="League\GenStep_MinorSettlement.cs" />
-    <Compile Include="League\MinorFaction\MinorFactionBaseUtil.cs" />
-    <Compile Include="League\MinorFaction\MinorFactionHelper.cs" />
-    <Compile Include="League\MinorFaction\MinorFactionSettlement.cs" />
+    <Compile Include="League\MinorFactions\MinorFactionBaseUtil.cs" />
+    <Compile Include="League\MinorFactions\MinorFactionHelper.cs" />
+    <Compile Include="League\MinorFactions\MinorFactionSettlement.cs" />
+    <Compile Include="League\MinorFactions\TownConstruction.cs" />
     <Compile Include="League\PlayerLeague.cs" />
     <Compile Include="League\UI\Dialog_ChoosePolicy.cs" />
     <Compile Include="League\UI\Window_League.cs" />
@@ -94,7 +95,7 @@
     <Compile Include="League\WAWScheduled\TaxEvent.cs" />
     <Compile Include="League\WAWScheduled\WAWScheduledEvent.cs" />
     <Compile Include="Questline\GameComponent_Questline.cs" />
-    <Compile Include="League\MinorFaction\MinorFaction.cs" />
+    <Compile Include="League\MinorFactions\MinorFaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Questline\Quests.cs" />
     <Compile Include="Questline\QuestPart_VillageLooted.cs" />

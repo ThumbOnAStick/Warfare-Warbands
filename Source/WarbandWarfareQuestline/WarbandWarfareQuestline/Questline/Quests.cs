@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
-using WarbandWarfareQuestline.League;
+using WarbandWarfareQuestline.League.MinorFactions;
 using WarfareAndWarbands;
 
 namespace WarbandWarfareQuestline.Questline

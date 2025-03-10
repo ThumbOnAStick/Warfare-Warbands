@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Verse;
 using WarbandWarfareQuestline.League.UI;
 using WarbandWarfareQuestline.League.WAWScheduled;
-using RimWorld.Planet;
+using WarbandWarfareQuestline.League.MinorFactions;
 
 namespace WarbandWarfareQuestline.League
 {

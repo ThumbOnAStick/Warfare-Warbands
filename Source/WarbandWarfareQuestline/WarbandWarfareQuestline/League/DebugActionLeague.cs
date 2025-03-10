@@ -10,8 +10,8 @@ using Verse;
 using WarfareAndWarbands.Warband;
 using WarfareAndWarbands;
 using RimWorld.Planet;
-using WarfareAndWarbands.Warband.VassalWarband.UI;
 using WarbandWarfareQuestline.Skirmish;
+using WarbandWarfareQuestline.League.MinorFactions;
 
 namespace WarbandWarfareQuestline.League
 {
