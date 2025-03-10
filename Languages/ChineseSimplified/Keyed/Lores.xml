@@ -4,4 +4,8 @@
 <WAW.OutpostLore>哨站不能移动，但是能免费为殖民地提供帮助。</WAW.OutpostLore>
 <WAW.VehicleLore>配备车辆的佣兵团。</WAW.VehicleLore>
 <WAW.PsyCasterLore>来自破碎帝国的灵能使将会带领这支队伍，不过他们要求灵质作为补偿。</WAW.PsyCasterLore>
+
+<!-- Events -->
+<WAW.SkirmishEvent>一场遭遇战正在进行，如果我们消灭所有的敌对战团，我们能够得到赏金。</WAW.SkirmishEvent>
+<WAW.SiegeEvent>一个敌对据点正在被围攻，我们可以加入围攻以获取赏金。</WAW.SiegeEvent>
 </LanguageData> 
