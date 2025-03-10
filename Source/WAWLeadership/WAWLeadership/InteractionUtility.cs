@@ -9,6 +9,7 @@ using Verse;
 using WarfareAndWarbands;
 using WAWLeadership.LeadershipAttributes;
 using WarfareAndWarbands.Warband;
+using WarfareAndWarbands.Warband.UI;
 
 namespace WAWLeadership
 {
@@ -19,7 +20,9 @@ namespace WAWLeadership
         {
             switch (o.GetType().Name)
             {
+                
                 case "PeaceTalks":
+                    
                     TryToInteractWithPeaceTalks(o, ref usedSkill, leader);
                     break;
 
@@ -28,6 +31,9 @@ namespace WAWLeadership
                     break;
                 case "Warband":
                     DoInteractWithWarbands(ref usedSkill, leader, (Warband)o);
+                    break;
+                case "DestroyedSettlement":
+                    DoInteractWithDestroyedSettlement(leader, o);
                     break;
                 default:
                     TryToInteractWithSite(o, ref usedSkill, leader, warband);
@@ -170,6 +176,49 @@ namespace WAWLeadership
         }
         #endregion
 
+        #region DestroyedSettlements
+        static void DoInteractWithDestroyedSettlement(Pawn leader, WorldObject o)
+        {
+            if (!ValidateLeader<Attribute_Engineering>(leader, 3))
+            {
+                return;
+            }
+
+            TaggedString text = "WAW.ConfirmBuildTown".Translate(WAWSettings.townConstructionCost, WAWSettings.townConstructionDuration);
+            WindowStack windowStack = Find.WindowStack;
+
+
+            windowStack.Add(Dialog_MessageBox.CreateConfirmation(text, confirmedAct, true, null, WindowLayer.Dialog));
+        }
+        static void confirmedAct()
+        {
+            if (CheckFund())
+            {
+                UseSkill();
+                SendSuccessLetter();
+            }
+        }
+        static bool CheckFund()
+        {
+            if (!WarbandUtil.TryToSpendSilverFromColonyOrBank(null, WAWSettings.townConstructionCost))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        static void UseSkill()
+        {
+            LeadershipUtility.LeaderCompCache?.ResetLastUsedTick();
+        }
+
+        static void SendSuccessLetter()
+        {
+            Letter l = LetterMaker.MakeLetter("WAW.TownConstructionPlanned".Translate(), "WAW.TownConstructionPlanned.Desc".Translate(), LetterDefOf.NeutralEvent);
+            Find.LetterStack.ReceiveLetter(l);
+        }
+
+        #endregion
 
         #region WorkingSite
         static void DoInteractWithWorkingSite(ref bool usedSkill, Pawn leader, Site site)
