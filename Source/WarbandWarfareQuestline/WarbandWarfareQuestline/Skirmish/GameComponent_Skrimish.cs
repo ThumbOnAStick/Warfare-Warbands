@@ -1,4 +1,4 @@
-﻿using RimWorld.Planet;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,25 +30,50 @@ namespace WarbandWarfareQuestline.Skirmish
             switch (val)
             {
                 case skirmishString:
-                    Register(SkirmishHelper.CreateRandomSkirmish());
+                    Skirmish skirmish = SkirmishHelper.CreateRandomSkirmish();
+                    if (skirmish != null)
+                    {
+                        Register(skirmish);
+                    }
                     break;
 
                 case siegeString:
-                    Register(SkirmishHelper.CreateSiege());
+                    Skirmish siege = SkirmishHelper.CreateSiege();
+                    if (siege != null)
+                    {
+                        Register(siege);
+                    }
                     break;
             }
         }
 
         public void Register(Skirmish skirmish)
         {
+            if (skirmish == null)
+                return;
+                
+            if (_skirmishes == null)
+                _skirmishes = new List<Skirmish>();
+                
             _skirmishes.Add(skirmish);
         }
 
         public void OnWorldObjectDestroyed()
         {
+            if (_skirmishes == null)
+            {
+                _skirmishes = new List<Skirmish>();
+                return;
+            }
+            
+            _skirmishes.RemoveAll(s => s == null);
+            
             for (int i = 0; i < _skirmishes.Count; i++)
             {
                 var skirmish = _skirmishes[i];
+                if (skirmish == null)
+                    continue;
+                    
                 if (skirmish.ShouldGiveBonus())
                 {
                     skirmish.SendBonus();
@@ -61,14 +86,25 @@ namespace WarbandWarfareQuestline.Skirmish
         public override void GameComponentTick()
         {
             base.GameComponentTick();
-            if(GenTicks.TicksGame % 100  != 0)
+            if(GenTicks.TicksGame % 100 != 0)
             {
                 return;
             }
-            for (int i = 0; i <  _skirmishes.Count; i++)
+            
+            if (_skirmishes == null)
+            {
+                _skirmishes = new List<Skirmish>();
+                return;
+            }
+            
+            _skirmishes.RemoveAll(s => s == null);
+            
+            for (int i = 0; i < _skirmishes.Count; i++)
             {
                 var skirmish = _skirmishes[i];
-           
+                if (skirmish == null)
+                    continue;
+                    
                 if (skirmish.ShouldDestroy())
                 {
                     DestroySkirmish(skirmish);
@@ -79,9 +115,17 @@ namespace WarbandWarfareQuestline.Skirmish
 
         void DestroySkirmish(Skirmish skirmish)
         {
+            if (skirmish == null)
+                return;
+            
+            if (_skirmishes == null)
+                return;
+                
             if (_skirmishes.Contains(skirmish))
                 _skirmishes.Remove(skirmish);
+            
             skirmish.PreDestroy();
+            skirmish.PostDestroy();
         }
 
         public override void ExposeData()
