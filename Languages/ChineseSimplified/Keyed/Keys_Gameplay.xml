@@ -99,5 +99,7 @@
 	<WAW.ConfirmBuildTown>建造一个能够立刻加入你的联盟的定居点, 消耗${0}并花费{1}天.</WAW.ConfirmBuildTown>
 	<WAW.TownConstructionPlanned>定居点开始建造</WAW.TownConstructionPlanned>
 	<WAW.TownConstructionPlanned.Desc>定居点已经开始建造，数日后将会投入使用。</WAW.TownConstructionPlanned.Desc>
+	<WAW.ConstructionComplete>定居点建造完成</WAW.ConstructionComplete>
+	<WAW.ConstructionComplete.Desc>一个新的工业科技定居点建造完成，{0}加入了我们的联盟。</WAW.ConstructionComplete.Desc>
 
 </LanguageData>

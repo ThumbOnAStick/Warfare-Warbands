@@ -29,11 +29,13 @@ namespace WarfareAndWarbands.Warfare.UI
             onLeagueInit.Invoke();
         }
 
+
         public static void DoWindowContents(Rect inRect, Window window, Map map, int mode = 0)
         {
+            inRect = inRect.ContractedBy(17f);
             _inRect = inRect;
             Text.Font = GameFont.Small;
-            
+
             // Draw exit button
             Rect exitButtonRect = new Rect(inRect.width - 20, 0, 15, 15);
             bool exit = Widgets.ButtonImage(exitButtonRect, TexButton.CloseXSmall);
@@ -42,14 +44,11 @@ namespace WarfareAndWarbands.Warfare.UI
                 window.Close();
             }
 
-            // Draw tab menu
-            DrawSelectionMenu(inRect, window as Window_WAW);
-
             // Content area starts below the tab menu
             Rect contentRect = new Rect(
-                inRect.x, 
-                MENU_TOP_PADDING + TAB_HEIGHT, 
-                inRect.width, 
+                inRect.x,
+                MENU_TOP_PADDING + TAB_HEIGHT,
+                inRect.width,
                 inRect.height - (MENU_TOP_PADDING + TAB_HEIGHT));
 
             switch (mode)
@@ -69,17 +68,17 @@ namespace WarfareAndWarbands.Warfare.UI
         private static void DrawSelectionMenu(Rect inRect, Window_WAW window)
         {
             if (window == null) return;
-            
+
             Rect menuRect = new Rect(0, MENU_TOP_PADDING, inRect.width, inRect.height);
             Widgets.DrawMenuSection(menuRect);
-            TabDrawer.DrawTabs(menuRect, window.Tabs, 200f);
+            //TabDrawer.DrawTabs(menuRect, window.Tabs, window.InitialSize.x);
         }
 
         private static void DrawWarbandPanel(Rect contentRect, Window window, Map map)
         {
             int width = 300;
             int height = 120;
-            
+
             // Center the arrange warband button in the content area
             Rect arrangeWarbandWindowButtonRect = WarbandUI.CenterRectFor(contentRect, new Vector2(width, height));
             bool arrangeWarbandWindow = Widgets.ButtonText(arrangeWarbandWindowButtonRect, "ArrangeWarband".Translate());
@@ -123,27 +122,27 @@ namespace WarfareAndWarbands.Warfare.UI
         private static void DrawWarfarePanel(Rect contentRect)
         {
             var visibleFactions = Find.FactionManager.AllFactionsVisible.Where(x => !x.def.isPlayer && !x.defeated);
-            
+
             // Calculate the total height needed for all factions
             float totalHeight = visibleFactions.Count() * (descriptionHeight + 10);
-            
+
             // Create the view rect with the total height needed
             Rect viewRect = new Rect(0, 0, contentRect.width - 16f, totalHeight); // 16f for scroll bar width
-            
+
             Widgets.BeginScrollView(contentRect, ref scrollPosition, viewRect);
-            
+
             float currentY = 0f;
             foreach (Faction f in visibleFactions)
             {
                 Rect iconRect = new Rect(30, currentY, 24, 24);
                 Rect labelRect = new Rect(75, currentY, descriptionWidth, descriptionHeight);
-                
+
                 Widgets.ButtonImage(iconRect, f.def.FactionIcon, f.Color, false, null);
                 Widgets.Label(labelRect, f.GetWarDurabilityString());
-                
+
                 currentY += descriptionHeight + 10;
             }
-            
+
             Widgets.EndScrollView();
         }
 

@@ -35,11 +35,11 @@
     <defName>WAW_SettlementConstruction</defName>
     <label>construction</label>
     <description>A settlement under construction.</description>
-    <worldObjectClass>WarfareAndWarbands.Warband.WorldObject_WarbandRecruiting</worldObjectClass>
+    <worldObjectClass>WarbandWarfareQuestline.League.MinorFactions.TownConstruction</worldObjectClass>
     <texture>World/WorldObjects/Caravan</texture>
     <useDynamicDrawer>true</useDynamicDrawer>
     <expandingIcon>true</expandingIcon>
-    <expandingIconTexture>World/WorldObjects/Expanding/WarbandRecruiting</expandingIconTexture>
+    <expandingIconTexture>World/WorldObjects/Expanding/MinorFaction_Town_Construction</expandingIconTexture>
     <expandingIconPriority>100</expandingIconPriority>
     <expandMore>true</expandMore>
   </WorldObjectDef>

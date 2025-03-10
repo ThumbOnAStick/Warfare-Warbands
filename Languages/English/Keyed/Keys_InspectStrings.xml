@@ -8,4 +8,5 @@
     <WAW.ActiveMembers>Active Members:</WAW.ActiveMembers>
 	<WAW.RemainingDays>remaining days: {0} days</WAW.RemainingDays>
     <WAW.leaderRecoveryFactor>leader's medical ability factor: {0}%</WAW.leaderRecoveryFactor>
+    <WAW.RemainingConstructionDays>Remaining days: {0}/{1}</WAW.RemainingConstructionDays>
 </LanguageData>

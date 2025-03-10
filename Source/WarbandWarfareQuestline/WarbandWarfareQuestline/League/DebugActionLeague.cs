@@ -12,6 +12,7 @@ using WarfareAndWarbands;
 using RimWorld.Planet;
 using WarbandWarfareQuestline.Skirmish;
 using WarbandWarfareQuestline.League.MinorFactions;
+using System.Threading;
 
 namespace WarbandWarfareQuestline.League
 {
@@ -20,7 +21,7 @@ namespace WarbandWarfareQuestline.League
         [DebugAction("WAW", "Random faction join player league", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
         public static void SpawnRandomMercenary()
         {
-            MinorFaction m = MinorFactionHelper.GenerateRandomMinorFaction();
+            MinorFaction m = MinorFactionHelper.GenerateRandomMinorFactionAndJoinPlayer();
             m.JoinPlayer();
         }
 
@@ -42,6 +43,12 @@ namespace WarbandWarfareQuestline.League
             SpawnSiegeEvent();
         }
 
+        [DebugAction("WAW", "Spawn Settlement Construction", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        public static void SpawnSettlementConstruction()
+        {
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
+            Find.WorldTargeter.BeginTargeting(SpawnConstruction, true);
+        }
 
 
         static bool SpawnSkirmish(GlobalTargetInfo info)
@@ -54,10 +61,35 @@ namespace WarbandWarfareQuestline.League
             GameComponent_Skrimish.Instance.Register(skirmish);
             return true;
         }
+
         static void SpawnSiegeEvent()
         {
             Siege skirmish = SkirmishHelper.CreateSiege();
             GameComponent_Skrimish.Instance.Register(skirmish);
+        }
+
+        static bool SpawnConstruction(GlobalTargetInfo info)
+        {
+            if (info.WorldObject != null)
+            {
+                return false;
+            }
+            GenerateTownConstructionAround(info.Tile);
+            return true;
+        }
+
+        static WorldObject GenerateTownConstructionAround(int tile)
+        {
+            TileFinder.TryFindPassableTileWithTraversalDistance(tile, 5, 10, out int randomTile);
+            return GenerateTownConstruction(randomTile);
+        }
+
+        static WorldObject GenerateTownConstruction(int tile)
+        {
+            var result = WorldObjectMaker.MakeWorldObject(WAWDefof.WAW_SettlementConstruction);
+            result.Tile = tile;
+            Find.WorldObjects.Add(result);
+            return result;
         }
     }
 }

@@ -41,7 +41,9 @@ namespace WarfareAndWarbands.UI
         {
             this.map = map;
         }
-        
+
+        public List<TabRecord> Tabs => this._tabs;
+
         public override Vector2 InitialSize
         {
             get
@@ -89,7 +91,6 @@ namespace WarfareAndWarbands.UI
         public override void DoWindowContents(Rect inRect)
         {
             DrawSelectionMenu(inRect);
-            inRect = inRect.ContractedBy(17f);
             WAWUI.DoWindowContents(inRect, this, map, this.currentPanel);
         }
 

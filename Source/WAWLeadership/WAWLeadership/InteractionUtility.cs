@@ -16,6 +16,8 @@ namespace WAWLeadership
     public static class InteractionUtility
     {
 
+        static int tileTemp = 1;
+
         public static void TryToInteract(WorldObject o, ref bool usedSkill, Pawn leader, Warband warband = null)
         {
             switch (o.GetType().Name)
@@ -183,19 +185,31 @@ namespace WAWLeadership
             {
                 return;
             }
-
+            if(o == null)
+            {
+                return;
+            }
+            SetTileTemp(o.Tile);
             TaggedString text = "WAW.ConfirmBuildTown".Translate(WAWSettings.townConstructionCost, WAWSettings.townConstructionDuration);
             WindowStack windowStack = Find.WindowStack;
-            windowStack.Add(Dialog_MessageBox.CreateConfirmation(text, confirmedAct, true, null, WindowLayer.Dialog));
+            windowStack.Add(Dialog_MessageBox.CreateConfirmation(text, ConfirmedAct, true, null, WindowLayer.Dialog));
         }
-        static void confirmedAct()
+
+        static void SetTileTemp(int val)
+        {
+            tileTemp = val;
+        }
+
+        static void ConfirmedAct()
         {
             if (CheckFund())
             {
+                GenerateTownConstructionAround(tileTemp);
                 UseSkill();
                 SendSuccessLetter();
             }
         }
+
         static bool CheckFund()
         {
             if (!WarbandUtil.TryToSpendSilverFromColonyOrBank(null, WAWSettings.townConstructionCost))
@@ -216,6 +230,19 @@ namespace WAWLeadership
             Find.LetterStack.ReceiveLetter(l);
         }
 
+        static WorldObject GenerateTownConstructionAround(int tile)
+        {
+            TileFinder.TryFindPassableTileWithTraversalDistance(tile, 5, 10, out int randomTile);
+            return GenerateTownConstruction(randomTile);
+        }
+
+        static WorldObject GenerateTownConstruction(int tile)
+        {
+            var result = WorldObjectMaker.MakeWorldObject(WAWDefof.WAW_SettlementConstruction);
+            result.Tile = tile;
+            Find.WorldObjects.Add(result);
+            return result;
+        }
         #endregion
 
         #region WorkingSite

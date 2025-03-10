@@ -74,7 +74,6 @@ namespace WarfareAndWarbands.Warfare.UI
         public override void DoWindowContents(Rect inRect)
         {
             DrawSelectionMenu(inRect);
-            inRect = inRect.ContractedBy(17f);
             WAWUI.DoWindowContents(inRect, this, map, this.currentPanel);
         }
 

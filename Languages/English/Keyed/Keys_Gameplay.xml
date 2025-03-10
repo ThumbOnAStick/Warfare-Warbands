@@ -105,4 +105,6 @@
 	<WAW.ConfirmBuildTown>Build a town that automatically joins your league, this will cost ${0} and {1} days.</WAW.ConfirmBuildTown>
 	<WAW.TownConstructionPlanned>Planned: Town Contruction</WAW.TownConstructionPlanned>
 	<WAW.TownConstructionPlanned.Desc>Town construction has been initiated, we need to wait few days before the construction is complete.</WAW.TownConstructionPlanned.Desc>
+	<WAW.ConstructionComplete>Settlement Construction Complete</WAW.ConstructionComplete>
+	<WAW.ConstructionComplete.Desc>A new industrial settlement is constructed, and its faction {0} joined your league.</WAW.ConstructionComplete.Desc>
 </LanguageData>	

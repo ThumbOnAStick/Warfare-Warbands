@@ -62,15 +62,7 @@ namespace WarbandWarfareQuestline.League.MinorFactions
             return result;
         }
 
-        public static MinorFactionSettlement GenerateTownConstruction(int tile)
-        {
-            MinorFactionSettlement result = (MinorFactionSettlement)WorldObjectMaker.MakeWorldObject(WAWDefof.WAW_MinorFactionSettlement);
-            result.Tile = tile;
-            result.Name = faction.NameForSettlement();
-            result.SetMinorFaction(faction);
-            Find.WorldObjects.Add(result);
-            return result;
-        }
+       
 
         public static void SpawnCorpse(PawnKindDef pawnKindDef, IntVec3 spawnPosition, Map map)
         {
