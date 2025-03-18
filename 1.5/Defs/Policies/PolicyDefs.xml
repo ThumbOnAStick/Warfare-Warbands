@@ -1,0 +1,14 @@
+<Defs>
+    <WarbandWarfareQuestline.League.Policies.PolicyDef>
+        <defName>RoadConstruct</defName>
+        <label>Road Construct</label>
+        <category>Economy</category>
+    </WarbandWarfareQuestline.League.Policies.PolicyDef>
+
+    <WarbandWarfareQuestline.League.Policies.PolicyDef>
+        <defName>ArmExpansion</defName>
+        <label>Arm Expansion</label>
+        <category>Warfare</category>
+    </WarbandWarfareQuestline.League.Policies.PolicyDef>
+
+</Defs>

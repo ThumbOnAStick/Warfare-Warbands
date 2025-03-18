@@ -88,6 +88,12 @@
     <Compile Include="League\MinorFactions\MinorFactionSettlement.cs" />
     <Compile Include="League\MinorFactions\TownConstruction.cs" />
     <Compile Include="League\PlayerLeague.cs" />
+    <Compile Include="League\Policies\Policy.cs" />
+    <Compile Include="League\Policies\PolicyCategoryDef.cs" />
+    <Compile Include="League\Policies\PolicyDef.cs" />
+    <Compile Include="League\Policies\PolicyTable.cs" />
+    <Compile Include="League\Policies\PolicyWorker.cs" />
+    <Compile Include="League\Policies\UI\Window_Policies.cs" />
     <Compile Include="League\UI\Dialog_ChoosePolicy.cs" />
     <Compile Include="League\UI\Window_League.cs" />
     <Compile Include="League\WAWScheduled\QuestEvent.cs" />
@@ -107,8 +113,6 @@
     <Compile Include="Skirmish\SkirmishHelper.cs" />
     <Compile Include="Skirmish\SkirmishWorker.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="League\Policy\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -139,7 +139,6 @@
     <Compile Include="Warband\WarbandComponents\PlayerWarbandComponents\Leader\PlayerWarbandLeaderUtil.cs" />
     <Compile Include="Warband\WarbandRecruiting\DebugAction_WarbandRecruiting.cs" />
     <Compile Include="Warband\WarbandRecruiting\WorldObject_WarbandRecruiting.cs" />
-    <Compile Include="Warband\GameComponent_Warband.cs" />
     <Compile Include="Warband\LootChest\CompLootChest.cs" />
     <Compile Include="Warband\LootChest\CompProperties_LootChest.cs" />
     <Compile Include="Warband\DebugActionWarband.cs" />

@@ -24,6 +24,5 @@ namespace WarfareAndWarbands
         public static SitePartDef WAWEmptySite;
         public static ThingDef ActiveDropPodLootChest;
         public static QuestScriptDef WAW_SaveVillage;
-
     }
 }
