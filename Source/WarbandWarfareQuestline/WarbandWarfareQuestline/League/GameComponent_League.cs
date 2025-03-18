@@ -23,6 +23,8 @@ namespace WarbandWarfareQuestline.League
         private TaxEvent _taxer;
         private SkirmishEvent _skirmish;
         private PolicyTree _policyTree;
+        private PolicyCategoryDef _hatedPolicyCategory;
+        private PolicyCategoryDef _lovedPolicyCategory;
         private readonly int baseEventGenerationTicks;
         private readonly int baseEventGenerationDays = 5;
 
@@ -91,6 +93,25 @@ namespace WarbandWarfareQuestline.League
             return this._minorFactions.Where(x => x.TechLevel < TechLevel.Industrial).Count();
         }
 
+        public void JoinPlayer(MinorFaction f)
+        {
+            bool ContainsFaction(MinorFaction x) => x.FactionID == f.FactionID;
+
+            _minorFactionsTemp.RemoveAll(ContainsFaction);
+
+            if (!_minorFactions.Contains(f))
+            {
+                // Decide hated policy
+                int commons = _minorFactions.Count(m => m.Trait.dislikedCategory == f.Trait.dislikedCategory) + 1;
+                if (commons >= (float)_minorFactions.Count / 2)
+                {
+                    _hatedPolicyCategory = f.Trait.dislikedCategory;
+                    Log.Message($"Disliked trait changed: {f.Trait.dislikedCategory}");
+                }
+                _minorFactions.Add(f);
+            }
+        }
+
         public override void GameComponentTick()
         {
             base.GameComponentTick();
@@ -141,6 +162,9 @@ namespace WarbandWarfareQuestline.League
             Scribe_Deep.Look(ref _questChecker, "_questChecker");
             Scribe_Deep.Look(ref _taxer, "_taxer");
             Scribe_Deep.Look(ref _policyTree, "_policyTable");
+            Scribe_Defs.Look(ref _hatedPolicyCategory, "_hatedPolicy");
+            Scribe_Defs.Look(ref _lovedPolicyCategory, "_lovedPolicy");
+
 
             if (_taxer == null)
             {
@@ -168,6 +192,8 @@ namespace WarbandWarfareQuestline.League
             }
 
         }
+
+       
 
     }
 }

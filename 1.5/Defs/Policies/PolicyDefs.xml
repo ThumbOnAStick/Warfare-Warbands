@@ -23,14 +23,14 @@
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>TradeAgreement</defName>
         <label>Trade Agreement</label>
-        <prerequisite>RoadConstruct</prerequisite>
+        <prerequisite>TaxReform</prerequisite>
         <category>Economy</category>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>ResourceOptimization</defName>
         <label>Resource Optimization</label>
-        <prerequisite>RoadConstruct</prerequisite>
+        <prerequisite>TaxReform</prerequisite>
         <category>Economy</category>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
@@ -52,7 +52,7 @@
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>EliteForces</defName>
         <label>Elite Forces</label>
-        <prerequisite>ArmExpansion</prerequisite>
+        <prerequisite>WeaponUpgrades</prerequisite>
         <category>Warfare</category>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 </Defs>

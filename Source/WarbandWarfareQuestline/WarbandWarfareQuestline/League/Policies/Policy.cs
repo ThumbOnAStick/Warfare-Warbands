@@ -39,12 +39,13 @@ namespace WarbandWarfareQuestline.League.Policies
 
         public void Execute()
         {
-            this._def.workerClass.Execute();
+            this._disabled = false;
+            this._def.workerClass?.Execute();
         }
 
         public void Tick()
         {
-            this._def.workerClass.Tick();
+            this._def.workerClass?.Tick();
         }
 
         public void Unlock()
@@ -66,5 +67,6 @@ namespace WarbandWarfareQuestline.League.Policies
         {
             this._children.Add(p);  
         }
+
     }
 }

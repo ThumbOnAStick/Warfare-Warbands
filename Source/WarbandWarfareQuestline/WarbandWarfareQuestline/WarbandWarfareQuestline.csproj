@@ -79,8 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="League\DebugActionLeague.cs" />
-    <Compile Include="League\FactionTraitDef.cs" />
-    <Compile Include="League\FactionTraitDefOf.cs" />
+    <Compile Include="League\MinorFactions\FactionTraitDef.cs" />
+    <Compile Include="League\MinorFactions\FactionTraitDefOf.cs" />
     <Compile Include="League\GameComponent_League.cs" />
     <Compile Include="League\GenStep_MinorSettlement.cs" />
     <Compile Include="League\MinorFactions\MinorFactionBaseUtil.cs" />

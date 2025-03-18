@@ -12,6 +12,8 @@ namespace WarbandWarfareQuestline.League.Policies.UI
     {
         private PolicyTree _policyTree;
 
+        public override Vector2 InitialSize => new Vector2(1000, 500);
+
         public Window_PolicyTree()
         {
             _policyTree = new PolicyTree();
