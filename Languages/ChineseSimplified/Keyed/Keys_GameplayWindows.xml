@@ -74,4 +74,6 @@
 	<WAW.MainPanelLeague>联盟</WAW.MainPanelLeague>
 	<WAW.MainPanelWarfare>战争</WAW.MainPanelWarfare>
 	<WAW.AccountBalance>银行存款：${0}</WAW.AccountBalance>
+	<WAW.PolicyTreeButton>打开决策树</WAW.PolicyTreeButton>
+
 </LanguageData>

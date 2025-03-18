@@ -1,4 +1,4 @@
-﻿using LudeonTK;
+using LudeonTK;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -19,29 +19,20 @@ namespace WarbandWarfareQuestline.League
     public static class DebugActionLeague
     {
         [DebugAction("WAW", "Random faction join player league", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
-        public static void SpawnRandomMercenary()
-        {
-            MinorFaction m = MinorFactionHelper.GenerateRandomMinorFactionAndJoinPlayer();
-            m.JoinPlayer();
-        }
+        public static void SpawnRandomMercenary() =>
+            MinorFactionHelper.GenerateRandomMinorFactionAndJoinPlayer().JoinPlayer();
 
-        [DebugAction("WAW", "Do Random Skirmish", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
-        public static void RandomSkirmish()
-        {
+        [DebugAction("WAW", "Create Random Skirmish", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        public static void CreateRandomSkirmish() =>
             GameComponent_Skrimish.Instance.CreateRandomSkirmsish();
-        }
 
-        [DebugAction("WAW", "Spawn Skirmish", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
-        public static void SpawnSkirmish()
-        {
+        [DebugAction("WAW", "Initiate Skirmish", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        public static void InitiateSkirmish() =>
             Find.WorldTargeter.BeginTargeting(SpawnSkirmish, true);
-        }
 
         [DebugAction("WAW", "Spawn Siege", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
-        public static void SpawnSiege()
-        {
+        public static void SpawnSiege() =>
             SpawnSiegeEvent();
-        }
 
         [DebugAction("WAW", "Spawn Settlement Construction", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
         public static void SpawnSettlementConstruction()
@@ -50,21 +41,20 @@ namespace WarbandWarfareQuestline.League
             Find.WorldTargeter.BeginTargeting(SpawnConstruction, true);
         }
 
-
         static bool SpawnSkirmish(GlobalTargetInfo info)
         {
             if (info.WorldObject != null)
             {
                 return false;
             }
-            Skirmish.Skirmish skirmish = SkirmishHelper.CreateSkirmish(info);
+            var skirmish = SkirmishHelper.CreateSkirmish(info);
             GameComponent_Skrimish.Instance.Register(skirmish);
             return true;
         }
 
         static void SpawnSiegeEvent()
         {
-            Siege skirmish = SkirmishHelper.CreateSiege();
+            var skirmish = SkirmishHelper.CreateSiege();
             GameComponent_Skrimish.Instance.Register(skirmish);
         }
 

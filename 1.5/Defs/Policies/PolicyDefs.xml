@@ -1,4 +1,5 @@
 <Defs>
+    <!-- Existing PolicyDefs -->
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>RoadConstruct</defName>
         <label>Road Construct</label>
@@ -11,4 +12,47 @@
         <category>Warfare</category>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
+    <!-- New Economy Policies -->
+    <WarbandWarfareQuestline.League.Policies.PolicyDef>
+        <defName>TaxReform</defName>
+        <label>Tax Reform</label>
+        <prerequisite>RoadConstruct</prerequisite>
+        <category>Economy</category>
+    </WarbandWarfareQuestline.League.Policies.PolicyDef>
+
+    <WarbandWarfareQuestline.League.Policies.PolicyDef>
+        <defName>TradeAgreement</defName>
+        <label>Trade Agreement</label>
+        <prerequisite>RoadConstruct</prerequisite>
+        <category>Economy</category>
+    </WarbandWarfareQuestline.League.Policies.PolicyDef>
+
+    <WarbandWarfareQuestline.League.Policies.PolicyDef>
+        <defName>ResourceOptimization</defName>
+        <label>Resource Optimization</label>
+        <prerequisite>RoadConstruct</prerequisite>
+        <category>Economy</category>
+    </WarbandWarfareQuestline.League.Policies.PolicyDef>
+
+    <!-- New Warfare Policies -->
+    <WarbandWarfareQuestline.League.Policies.PolicyDef>
+        <defName>AdvancedTactics</defName>
+        <label>Advanced Tactics</label>
+        <prerequisite>ArmExpansion</prerequisite>
+        <category>Warfare</category>
+    </WarbandWarfareQuestline.League.Policies.PolicyDef>
+
+    <WarbandWarfareQuestline.League.Policies.PolicyDef>
+        <defName>WeaponUpgrades</defName>
+        <label>Weapon Upgrades</label>
+        <prerequisite>ArmExpansion</prerequisite>
+        <category>Warfare</category>
+    </WarbandWarfareQuestline.League.Policies.PolicyDef>
+
+    <WarbandWarfareQuestline.League.Policies.PolicyDef>
+        <defName>EliteForces</defName>
+        <label>Elite Forces</label>
+        <prerequisite>ArmExpansion</prerequisite>
+        <category>Warfare</category>
+    </WarbandWarfareQuestline.League.Policies.PolicyDef>
 </Defs>

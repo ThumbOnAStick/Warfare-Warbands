@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 
 namespace WarbandWarfareQuestline.League.Policies
@@ -13,9 +11,21 @@ namespace WarbandWarfareQuestline.League.Policies
         public PolicyWorker workerClass;
         public PolicyCategoryDef category;
 
-        public Policy CreatePolicy(bool disabled)
+        public Policy CreatePolicy(bool disabled, IEnumerable<PolicyDef> allPolicyDefs)
         {
-            return new Policy(this, disabled);
+            bool isChildOf(PolicyDef x) => x.prerequisite == this;
+            var result = new Policy(this, disabled);
+            if (!allPolicyDefs.Any(isChildOf))
+            {
+                return result;
+            }
+            var childrenDefs = allPolicyDefs.Where(isChildOf).ToList();
+            foreach (var item in childrenDefs)
+            {
+                result.AddChild(item.CreatePolicy(true, allPolicyDefs));
+            }
+            return result;
+
         }
     }
 }

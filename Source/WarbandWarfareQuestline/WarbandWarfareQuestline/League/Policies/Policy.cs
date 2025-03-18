@@ -12,22 +12,29 @@ namespace WarbandWarfareQuestline.League.Policies
 
         private PolicyDef _def;
         private bool _disabled;
+        private List<Policy> _children;
 
-        public Policy() { }
+        public Policy() 
+        {
+            _children = new List<Policy>();
+        }
 
-        public Policy(PolicyDef def, bool disabled)
+        public Policy(PolicyDef def, bool disabled) : this()
         {
             _def = def;
             _disabled = disabled;
+
         }
 
         public PolicyDef Def => this._def;
         public bool Disabled => this._disabled;
+        public List<Policy> Children => this._children;
 
         public void ExposeData()
         {
             Scribe_Defs.Look(ref _def, "_def");
             Scribe_Values.Look(ref _disabled, "_disabled");
+            Scribe_Collections.Look(ref _children, "_children", LookMode.Deep);
         }
 
         public void Execute()
@@ -53,6 +60,11 @@ namespace WarbandWarfareQuestline.League.Policies
         public bool HasPrerequisite()
         {
             return this.Def.prerequisite != null;
+        }
+
+        public void AddChild(Policy p)
+        {
+            this._children.Add(p);  
         }
     }
 }

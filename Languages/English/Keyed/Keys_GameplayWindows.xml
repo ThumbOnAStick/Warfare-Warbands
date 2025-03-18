@@ -74,4 +74,5 @@
 	<WAW.MainPanelLeague>League</WAW.MainPanelLeague>
 	<WAW.MainPanelWarfare>Warfare</WAW.MainPanelWarfare>
 	<WAW.AccountBalance>Bank account balance: ${0}</WAW.AccountBalance>
+	<WAW.PolicyTreeButton>Open policy tree</WAW.PolicyTreeButton>
 </LanguageData>

@@ -22,7 +22,7 @@ namespace WarbandWarfareQuestline.League
         private QuestEvent _questChecker;
         private TaxEvent _taxer;
         private SkirmishEvent _skirmish;
-        private PolicyTable _policyTable;
+        private PolicyTree _policyTree;
         private readonly int baseEventGenerationTicks;
         private readonly int baseEventGenerationDays = 5;
 
@@ -35,7 +35,7 @@ namespace WarbandWarfareQuestline.League
             _questChecker = new QuestEvent();   
             _taxer = new TaxEvent();
             _skirmish = new SkirmishEvent();
-            _policyTable = new PolicyTable();   
+            _policyTree = new PolicyTree();   
             baseEventGenerationTicks = BaseEventGenrationTicks;
         }
 
@@ -44,6 +44,7 @@ namespace WarbandWarfareQuestline.League
 
         public List<MinorFaction> Factions => _minorFactions;
         public List<MinorFaction> FactionsTemp => _minorFactionsTemp;
+        public PolicyTree PolicyTree => _policyTree;
 
         bool ShouldCheckNow()
         {
@@ -73,7 +74,7 @@ namespace WarbandWarfareQuestline.League
 
         void RefreshPolicyTable()
         {
-            this._policyTable?.Refresh();
+            this._policyTree?.Refresh();
         }
 
         void AppendDrawingEvent()
@@ -139,7 +140,7 @@ namespace WarbandWarfareQuestline.League
             Scribe_Collections.Look(ref _minorFactionsTemp, "_minorFactionsTemp", LookMode.Deep);
             Scribe_Deep.Look(ref _questChecker, "_questChecker");
             Scribe_Deep.Look(ref _taxer, "_taxer");
-            Scribe_Deep.Look(ref _policyTable, "_policyTable");
+            Scribe_Deep.Look(ref _policyTree, "_policyTable");
 
             if (_taxer == null)
             {
@@ -161,9 +162,9 @@ namespace WarbandWarfareQuestline.League
             {
                 _minorFactionsTemp = new List<MinorFaction>();
             }
-            if(_policyTable == null)
+            if(_policyTree == null)
             {
-                _policyTable = new PolicyTable();
+                _policyTree = new PolicyTree();
             }
 
         }
