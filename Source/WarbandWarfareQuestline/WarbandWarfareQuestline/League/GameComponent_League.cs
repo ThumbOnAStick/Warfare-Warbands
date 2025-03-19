@@ -10,6 +10,7 @@ using WarbandWarfareQuestline.League.UI;
 using WarbandWarfareQuestline.League.WAWScheduled;
 using WarbandWarfareQuestline.League.MinorFactions;
 using WarbandWarfareQuestline.League.Policies;
+using WarbandWarfareQuestline.League.RoadBuilding;
 
 namespace WarbandWarfareQuestline.League
 {
@@ -23,6 +24,7 @@ namespace WarbandWarfareQuestline.League
         private TaxEvent _taxer;
         private SkirmishEvent _skirmish;
         private PolicyTree _policyTree;
+        private RoadBuilder _roadbuilder;
         private PolicyCategoryDef _hatedPolicyCategory;
         private PolicyCategoryDef _lovedPolicyCategory;
         private readonly int baseEventGenerationTicks;
@@ -37,7 +39,8 @@ namespace WarbandWarfareQuestline.League
             _questChecker = new QuestEvent();   
             _taxer = new TaxEvent();
             _skirmish = new SkirmishEvent();
-            _policyTree = new PolicyTree();   
+            _policyTree = new PolicyTree();
+            _roadbuilder = new RoadBuilder();
             baseEventGenerationTicks = BaseEventGenrationTicks;
         }
 
@@ -47,6 +50,7 @@ namespace WarbandWarfareQuestline.League
         public List<MinorFaction> Factions => _minorFactions;
         public List<MinorFaction> FactionsTemp => _minorFactionsTemp;
         public PolicyTree PolicyTree => _policyTree;
+        public RoadBuilder RoadBuilder => _roadbuilder;
 
         bool ShouldCheckNow()
         {
@@ -162,9 +166,9 @@ namespace WarbandWarfareQuestline.League
             Scribe_Deep.Look(ref _questChecker, "_questChecker");
             Scribe_Deep.Look(ref _taxer, "_taxer");
             Scribe_Deep.Look(ref _policyTree, "_policyTable");
+            Scribe_Deep.Look(ref _roadbuilder, "_roadbuilder");
             Scribe_Defs.Look(ref _hatedPolicyCategory, "_hatedPolicy");
             Scribe_Defs.Look(ref _lovedPolicyCategory, "_lovedPolicy");
-
 
             if (_taxer == null)
             {
@@ -189,6 +193,10 @@ namespace WarbandWarfareQuestline.League
             if(_policyTree == null)
             {
                 _policyTree = new PolicyTree();
+            }
+            if (_roadbuilder == null)
+            {
+                _roadbuilder = new RoadBuilder();
             }
 
         }

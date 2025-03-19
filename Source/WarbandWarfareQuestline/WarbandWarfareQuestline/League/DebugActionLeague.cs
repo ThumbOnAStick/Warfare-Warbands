@@ -38,7 +38,20 @@ namespace WarbandWarfareQuestline.League
         public static void SpawnSettlementConstruction()
         {
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
-            Find.WorldTargeter.BeginTargeting(SpawnConstruction, true);
+            Find.WorldTargeter.BeginTargeting(SpawnTownConstruction, true);
+        }
+
+        [DebugAction("WAW", "Build Road1", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        public static void DecideRoadStart()
+        {
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
+            Find.WorldTargeter.BeginTargeting(DecideRoadStartingTile, true);
+        }
+        [DebugAction("WAW", "Build Road2", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        public static void DecideRoadEnd()
+        {
+            CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
+            Find.WorldTargeter.BeginTargeting(DecideRoadEndingTile, true);
         }
 
         static bool SpawnSkirmish(GlobalTargetInfo info)
@@ -58,7 +71,7 @@ namespace WarbandWarfareQuestline.League
             GameComponent_Skrimish.Instance.Register(skirmish);
         }
 
-        static bool SpawnConstruction(GlobalTargetInfo info)
+        static bool SpawnTownConstruction(GlobalTargetInfo info)
         {
             if (info.WorldObject != null)
             {
@@ -67,6 +80,29 @@ namespace WarbandWarfareQuestline.League
             GenerateTownConstructionAround(info.Tile);
             return true;
         }
+
+        static bool DecideRoadStartingTile(GlobalTargetInfo info)
+        {
+            if (info.WorldObject != null)
+            {
+                return false;
+            }
+            GameComponent_League.Instance.RoadBuilder.SetRoadTiles(from : info.Tile);
+            Find.WorldTargeter.StopTargeting();
+            return true;
+        }
+
+        static bool DecideRoadEndingTile(GlobalTargetInfo info)
+        {
+            if (info.WorldObject != null)
+            {
+                return false;
+            }
+            GameComponent_League.Instance.RoadBuilder.SetRoadTiles(to: info.Tile);
+            GameComponent_League.Instance.RoadBuilder.BuildRoad();
+            return true;
+        }
+
 
         static WorldObject GenerateTownConstructionAround(int tile)
         {

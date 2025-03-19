@@ -76,5 +76,6 @@
 	<WAW.AccountBalance>银行存款：${0}</WAW.AccountBalance>
 	<WAW.PolicyTreeButton>打开决策树</WAW.PolicyTreeButton>
 	<WAW.ManageLeague>管理联盟</WAW.ManageLeague>
+	<WAW.LeagueAction>联盟决策</WAW.LeagueAction>
 
 </LanguageData>
