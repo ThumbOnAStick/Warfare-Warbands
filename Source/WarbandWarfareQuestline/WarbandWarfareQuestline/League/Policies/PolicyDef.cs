@@ -8,8 +8,22 @@ namespace WarbandWarfareQuestline.League.Policies
     public class PolicyDef : Def
     {
         public PolicyDef prerequisite;
-        public PolicyWorker workerClass;
+        public Type workerClass = typeof(PolicyWorker);
+        private PolicyWorker worker;
         public PolicyCategoryDef category;
+
+        public PolicyWorker Worker
+        {
+            get
+            {
+                bool flag = this.worker  == null;
+                if (flag)
+                {
+                    this.worker = (PolicyWorker)Activator.CreateInstance(this.workerClass);
+                }
+                return this.worker;
+            }
+        }
 
         public Policy CreatePolicy(bool disabled, IEnumerable<PolicyDef> allPolicyDefs)
         {

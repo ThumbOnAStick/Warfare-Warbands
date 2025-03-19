@@ -40,12 +40,12 @@ namespace WarbandWarfareQuestline.League.Policies
         public void Execute()
         {
             this._disabled = false;
-            this._def.workerClass?.Execute();
+            this._def.Worker?.Execute();
         }
 
         public void Tick()
         {
-            this._def.workerClass?.Tick();
+            this._def.Worker?.Tick();
         }
 
         public void Unlock()

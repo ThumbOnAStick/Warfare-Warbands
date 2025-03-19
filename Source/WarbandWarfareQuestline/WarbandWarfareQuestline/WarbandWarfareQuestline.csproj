@@ -93,6 +93,7 @@
     <Compile Include="League\Policies\PolicyDef.cs" />
     <Compile Include="League\Policies\PolicyTree.cs" />
     <Compile Include="League\Policies\PolicyWorker.cs" />
+    <Compile Include="League\Policies\PolicyWorker_RoadConstruction.cs" />
     <Compile Include="League\Policies\UI\PolicyDrawer.cs" />
     <Compile Include="League\Policies\UI\Window_PolicyTree.cs" />
     <Compile Include="League\UI\Dialog_ChoosePolicy.cs" />

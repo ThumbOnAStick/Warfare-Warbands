@@ -1,5 +1,4 @@
-﻿using RimWorld.Planet;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +7,12 @@ using Verse;
 
 namespace WarbandWarfareQuestline.League.Policies
 {
-    public class PolicyWorker
+    class PolicyWorker_RoadConstruction : PolicyWorker
     {
-        
-        public virtual void Tick()
+        public override void Execute()
         {
-
-        }
-
-        public virtual void Execute()
-        {
-
+            base.Execute();
+            Log.Message("Road Construction Policy Executed");
         }
     }
 }

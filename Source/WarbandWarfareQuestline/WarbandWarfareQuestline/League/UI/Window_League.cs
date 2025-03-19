@@ -13,10 +13,11 @@ namespace WarbandWarfareQuestline.League.UI
         static readonly int bankPosY = 150;
         static readonly int settlementCountDisplayOffsetX = 75;
         static readonly int settlementCountDisplayOffsetY = 25;
-        static readonly int policyTreeButtonY = 60;
+        static readonly int policyTreeButtonY = 100;
         static readonly int policyTreeButtonX = 300;
         static readonly int policyTreeButtonHight = 50;
         static readonly int policyTreeButtonWidth = 100;
+        static readonly int margin = 15;
 
 
 
@@ -25,7 +26,7 @@ namespace WarbandWarfareQuestline.League.UI
         static int townCount = 0;
 
 
-        public static void AppendDrawingEvent() 
+        public static void AppendDrawingEvent()
         {
             WAWUI.onLeagueDrawn.AddListener(new UnityAction(Draw));
             WAWUI.onLeagueInit.AddListener(new UnityAction(RecalculateSettlementCount));
@@ -55,6 +56,14 @@ namespace WarbandWarfareQuestline.League.UI
             {
                 Find.WindowStack.Add(new Window_PolicyTree(GameComponent_League.Instance.PolicyTree));
             }
+
+            Rect leagueButtonR = new Rect();
+            leagueButtonR.position += Vector2.down;
+            bool openLeagueManagementWindow = Widgets.ButtonText(policyButtonR, "WAW.ManageLeague".Translate());
+
+
+
         }
     }
+
 }

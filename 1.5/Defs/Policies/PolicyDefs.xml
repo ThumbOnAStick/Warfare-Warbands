@@ -4,6 +4,7 @@
         <defName>RoadConstruct</defName>
         <label>Road Construct</label>
         <category>Economy</category>
+        <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_RoadConstruction</workerClass>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
