@@ -77,4 +77,5 @@
 	<WAW.PolicyTreeButton>Open policy tree</WAW.PolicyTreeButton>
 	<WAW.ManageLeague>Manage League</WAW.ManageLeague>
 	<WAW.LeagueAction>League Actions</WAW.LeagueAction>
+	<WAW.Propolicy>{0} is supportative of {1}.</WAW.Propolicy>
 </LanguageData>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Verse;
 using WarfareAndWarbands.Warband;
 using WarfareAndWarbands;
+using WarbandWarfareQuestline.League.Policies;
 
 namespace WarbandWarfareQuestline.League.WAWScheduled
 {
@@ -16,6 +17,13 @@ namespace WarbandWarfareQuestline.League.WAWScheduled
         public TaxEvent()
         {
 
+        }
+
+        float GetTaxBonus()
+        {
+            float result = 0;
+            result += GameComponent_League.Instance.PolicyTree.GetTaxBonus();  
+            return result;
         }
 
         float GetTaxDiscount()
@@ -32,7 +40,7 @@ namespace WarbandWarfareQuestline.League.WAWScheduled
             return discount;
         }
 
-        int GetTax()
+        int GetTaxRaw()
         {
             int totalTax = 0;
             foreach (var f in GameComponent_League.Instance.Factions)
@@ -43,17 +51,18 @@ namespace WarbandWarfareQuestline.League.WAWScheduled
         }
 
 
-        int GetTax(out float discount)
+        int GetTax(out float discount, out float bonus)
         {
-            int totalTax = GetTax();
+            int totalTax = GetTaxRaw();
             discount = GetTaxDiscount();
-            totalTax = (int)(totalTax * (1 - discount));
+            bonus = GetTaxBonus();
+            totalTax = (int)(totalTax * (1 - discount + bonus));
             return totalTax;
         }
 
-        void DepositTax(out int totalTax, out float discount)
+        void DepositTax(out int totalTax, out float discount, out float bonus)
         {
-            totalTax = GetTax(out discount);
+            totalTax = GetTax(out discount, out bonus);
             GameComponent_WAW.playerBankAccount.Deposit(totalTax);
         }
 
@@ -68,17 +77,17 @@ namespace WarbandWarfareQuestline.League.WAWScheduled
             {
                 return;
             }
-            DepositTax(out int totalTax, out float discount);
-            NotifyTaxPayed(totalTax, discount);
+            DepositTax(out int totalTax, out float discount, out float bonus);
+            NotifyTaxPayed(totalTax, discount + bonus);
         }
 
 
-        void NotifyTaxPayed(int amount, float discount)
+        void NotifyTaxPayed(int amount, float rate)
         {
             TaggedString stringBuilder = "WAW.TaxPaid".Translate(amount);
-            if (discount > 0)
+            if (rate != 0)
             {
-                stringBuilder += "(" + "WAW.TaxWageDiscount".Translate((discount * 100).ToString("0.00")) + ")";
+                stringBuilder += "(" + (rate * 100).ToString("0.0") + "%)";
             }
             Messages.Message(stringBuilder, MessageTypeDefOf.NeutralEvent);
         }

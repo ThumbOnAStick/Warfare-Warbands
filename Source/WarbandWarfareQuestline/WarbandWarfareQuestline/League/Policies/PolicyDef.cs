@@ -9,19 +9,20 @@ namespace WarbandWarfareQuestline.League.Policies
     {
         public PolicyDef prerequisite;
         public Type workerClass = typeof(PolicyWorker);
-        private PolicyWorker worker;
         public PolicyCategoryDef category;
+        public float taxBonus;
 
+        private PolicyWorker _worker;
         public PolicyWorker Worker
         {
             get
             {
-                bool flag = this.worker  == null;
+                bool flag = this._worker  == null;
                 if (flag)
                 {
-                    this.worker = (PolicyWorker)Activator.CreateInstance(this.workerClass);
+                    this._worker = (PolicyWorker)Activator.CreateInstance(this.workerClass);
                 }
-                return this.worker;
+                return this._worker;
             }
         }
 

@@ -11,43 +11,73 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
 {
     public class RoadBuilder : IExposable
     {
-        private int fromTileTemp;
-        private int toTileTemp;
+        private int _startingTile;
+        private int _destTile;
+        private int _fromTileTemp;
+        private int _toTileTemp;
 
+        public RoadBuilder() { }
 
-        public RoadBuilder()
+        public void SetStartAndDest(int start = 0, int dest = 0)
         {
-
+            _startingTile = start != 0 ? start : _startingTile;
+            _destTile = dest != 0 ? dest : _destTile;
         }
 
-        public void SetRoadTiles(int from = 0, int to = 0)
+        private void SetTempRoadTiles(int from = 0, int to = 0)
         {
-            if(from != 0)
-            {
-                fromTileTemp = from;
-            }
+            _fromTileTemp = from != 0 ? from : _fromTileTemp;
+            _toTileTemp = to != 0 ? to : _toTileTemp;
+        }
 
-            if(to != 0)
+        private WorldPath GenerateNewPath()
+        {
+            WorldPath worldPath = Find.WorldPathFinder.FindPath(_startingTile, _destTile, null);
+            if (worldPath.Found)
             {
-                toTileTemp = to;
+                worldPath.AddNodeAtStart(_startingTile);
             }
+            return worldPath;
         }
 
         public void BuildRoad()
         {
-            if(fromTileTemp <= 0 || toTileTemp <= 0)
+            if (_startingTile <= 0 || _destTile <= 0)
+            {
+                Log.Error("RoadBuilder: Invalid starting and ending Tile Values");
+                return;
+            }
+
+            var roadPath = GenerateNewPath();
+            var road = DefDatabase<RoadDef>.GetRandom();
+            while (roadPath.NodesLeftCount > 1)
+            {
+                int nextTile = roadPath.ConsumeNextNode();
+                SetTempRoadTiles(_startingTile, nextTile);
+                BuildRoadBetweenTempNodes(road);
+                _startingTile = nextTile;
+            }
+            Log.Message($"Road starting from {_startingTile} to {_destTile} is built");
+        }
+
+        private void BuildRoadBetweenTempNodes(RoadDef road)
+        {
+            if (_fromTileTemp <= 0 || _toTileTemp <= 0)
             {
                 Log.Error("RoadBuilder: Invalid Tile Values");
                 return;
             }
-            Find.WorldGrid.OverlayRoad(fromTileTemp, toTileTemp, DefDatabase<RoadDef>.GetRandom());
-            Log.Message($"Road Built from {fromTileTemp} to {toTileTemp}");
+
+            Find.WorldGrid.OverlayRoad(_fromTileTemp, _toTileTemp, road);
+            Log.Message($"Road Built from {_fromTileTemp} to {_toTileTemp}");
+
+            // Redraw the road
             try
             {
                 Find.World.renderer.SetDirty<WorldLayer_Roads>();
                 Find.World.renderer.SetDirty<WorldLayer_Paths>();
-                Find.WorldPathGrid.RecalculatePerceivedMovementDifficultyAt(fromTileTemp, null);
-                Find.WorldPathGrid.RecalculatePerceivedMovementDifficultyAt(toTileTemp, null);
+                Find.WorldPathGrid.RecalculatePerceivedMovementDifficultyAt(_fromTileTemp, null);
+                Find.WorldPathGrid.RecalculatePerceivedMovementDifficultyAt(_toTileTemp, null);
             }
             catch (Exception e)
             {
@@ -57,7 +87,7 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
 
         public void ExposeData()
         {
-            throw new NotImplementedException();
+             
         }
     }
 }

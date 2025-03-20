@@ -5,12 +5,14 @@
         <label>Road Construct</label>
         <category>Economy</category>
         <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_RoadConstruction</workerClass>
+        <taxBonus>0.1</taxBonus>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>ArmExpansion</defName>
         <label>Arm Expansion</label>
         <category>Warfare</category>
+        <taxBonus>-0.2</taxBonus>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <!-- New Economy Policies -->
@@ -18,6 +20,7 @@
         <defName>TaxReform</defName>
         <label>Tax Reform</label>
         <prerequisite>RoadConstruct</prerequisite>
+        <taxBonus>0.3</taxBonus>
         <category>Economy</category>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
@@ -25,6 +28,7 @@
         <defName>TradeAgreement</defName>
         <label>Trade Agreement</label>
         <prerequisite>TaxReform</prerequisite>
+        <taxBonus>0.2</taxBonus>
         <category>Economy</category>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
@@ -32,6 +36,7 @@
         <defName>ResourceOptimization</defName>
         <label>Resource Optimization</label>
         <prerequisite>TaxReform</prerequisite>
+        <taxBonus>0.4</taxBonus>
         <category>Economy</category>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
@@ -41,6 +46,7 @@
         <label>Advanced Tactics</label>
         <prerequisite>ArmExpansion</prerequisite>
         <category>Warfare</category>
+        <taxBonus>-0.1</taxBonus>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
@@ -48,6 +54,7 @@
         <label>Weapon Upgrades</label>
         <prerequisite>ArmExpansion</prerequisite>
         <category>Warfare</category>
+        <taxBonus>-0.3</taxBonus>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
@@ -55,5 +62,6 @@
         <label>Elite Forces</label>
         <prerequisite>WeaponUpgrades</prerequisite>
         <category>Warfare</category>
+        <taxBonus>-0.2</taxBonus>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 </Defs>

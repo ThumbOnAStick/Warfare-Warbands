@@ -14,7 +14,7 @@ namespace WarbandWarfareQuestline.League.MinorFactions
 
         public static MinorFaction GenerateRandomMinorFactionAndJoinPlayer(TechLevel level, int tile, out WorldObject o)
         {
-            var minorFaction = CreateMinorFaction(level);
+            var minorFaction = GenerateMinorFactionAndJoinPlayer(level);
             var settlement = minorFaction.GenerateSettlement(tile);
             settlement.SetFaction(Faction.OfPlayer);
             o = settlement;
@@ -34,7 +34,7 @@ namespace WarbandWarfareQuestline.League.MinorFactions
             GameComponent_League.Instance.JoinPlayer(f);
         }
 
-        private static MinorFaction CreateMinorFaction(TechLevel level)
+        private static MinorFaction GenerateMinorFactionAndJoinPlayer(TechLevel level)
         {
             var trait = DefDatabase<FactionTraitDef>.GetRandom();
             var minorFaction = new MinorFaction(trait, level);

@@ -77,5 +77,6 @@
 	<WAW.PolicyTreeButton>打开决策树</WAW.PolicyTreeButton>
 	<WAW.ManageLeague>管理联盟</WAW.ManageLeague>
 	<WAW.LeagueAction>联盟决策</WAW.LeagueAction>
+	<WAW.Propolicy>{0}支持{1}。</WAW.Propolicy>
 
 </LanguageData>

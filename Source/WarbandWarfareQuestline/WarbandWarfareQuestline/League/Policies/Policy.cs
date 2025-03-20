@@ -68,5 +68,24 @@ namespace WarbandWarfareQuestline.League.Policies
             this._children.Add(p);  
         }
 
+        private float GetTaxBonus() => this._def.taxBonus;
+
+        public float GetTaxBonusRecursively()
+        {
+            if (Disabled)
+            {
+                return 0;
+            }
+            float result = GetTaxBonus();
+            if(this._children != null && this._children.Count > 0)
+            {
+                foreach (var p in this._children)
+                {
+                    result += p.GetTaxBonusRecursively();
+                }
+            }
+            return result;
+        }
+
     }
 }

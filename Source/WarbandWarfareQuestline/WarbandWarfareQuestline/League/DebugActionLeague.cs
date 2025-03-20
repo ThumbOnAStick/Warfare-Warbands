@@ -87,7 +87,7 @@ namespace WarbandWarfareQuestline.League
             {
                 return false;
             }
-            GameComponent_League.Instance.RoadBuilder.SetRoadTiles(from : info.Tile);
+            GameComponent_League.Instance.RoadBuilder.SetStartAndDest(start : info.Tile);
             Find.WorldTargeter.StopTargeting();
             return true;
         }
@@ -98,7 +98,7 @@ namespace WarbandWarfareQuestline.League
             {
                 return false;
             }
-            GameComponent_League.Instance.RoadBuilder.SetRoadTiles(to: info.Tile);
+            GameComponent_League.Instance.RoadBuilder.SetStartAndDest(dest : info.Tile);
             GameComponent_League.Instance.RoadBuilder.BuildRoad();
             return true;
         }

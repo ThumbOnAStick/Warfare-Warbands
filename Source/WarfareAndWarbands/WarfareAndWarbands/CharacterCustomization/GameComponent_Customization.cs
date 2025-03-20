@@ -125,21 +125,6 @@ namespace WarfareAndWarbands.CharacterCustomization
         }
 
 
-        void AddClothes(CustomizationRequest request)
-        {
-            request.AddApperal("Apparel_HatHood");
-            request.AddApperal("Apparel_Pants");
-            request.AddApperal("Apparel_BasicShirt");
-
-        }
-
-        void AddWeapons(CustomizationRequest request)
-        {
-            ThingDef revolverdef = DefDatabase<ThingDef>.GetNamed("Gun_Revolver");
-            request.weaponRequest = revolverdef;
-        }
-
-
         public override void ExposeData()
         {
             base.ExposeData();

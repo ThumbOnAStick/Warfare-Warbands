@@ -30,7 +30,7 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             for(int i = 0; i < _policyTree.Roots.Count; i++)
             {
                 Rect rootRect = new Rect(inRect.x, height + PolicyDrawer.margin + PolicyDrawer.policyBoxHeight, PolicyDrawer.policyBoxWidth, PolicyDrawer.policyBoxHeight);
-                _policyTree.Roots[i].DrawPolicyAndChildren(rootRect, out height);
+                _policyTree.Roots[i].DrawPolicyRecursively(rootRect, false, out height);
             }
         }
 

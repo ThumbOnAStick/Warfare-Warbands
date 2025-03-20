@@ -79,5 +79,45 @@ namespace WarbandWarfareQuestline.League.Policies
                 this._rootPolicies = new List<Policy>();
             }
         }
+
+        public bool HasPolicy(PolicyDef def)
+        {
+            foreach (var rootPolicy in _rootPolicies)
+            {
+                if (HasPolicyRecursively(rootPolicy, def))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public float GetTaxBonus()
+        {
+            float result = 0;
+            foreach (var policy in this._rootPolicies)
+            {
+                result += policy.GetTaxBonusRecursively();
+            }
+            return result;
+        }
+
+        private bool HasPolicyRecursively(Policy policy, PolicyDef def)
+        {
+            if (policy.Def == def)
+            {
+                return true;
+            }
+            foreach (var child in policy.Children)
+            {
+                if (HasPolicyRecursively(child, def))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
     }
 }

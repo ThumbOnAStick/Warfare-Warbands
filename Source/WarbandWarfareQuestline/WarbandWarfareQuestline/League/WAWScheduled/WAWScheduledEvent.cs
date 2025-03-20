@@ -37,7 +37,7 @@ namespace WarbandWarfareQuestline.League
             }
         }
 
-        public void ExposeData()
+        public virtual void ExposeData()
         {
             Scribe_Values.Look(ref _lastCheckTick, "_lastCheckTick");
         }
