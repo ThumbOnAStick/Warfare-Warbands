@@ -78,5 +78,11 @@
 	<WAW.ManageLeague>管理联盟</WAW.ManageLeague>
 	<WAW.LeagueAction>联盟决策</WAW.LeagueAction>
 	<WAW.Propolicy>{0}支持{1}。</WAW.Propolicy>
-
+	<WAW.ApprovePolicy>通过</WAW.ApprovePolicy>
+	<WAW.RejectPolicy>否决</WAW.RejectPolicy>
+	<WAW.Weshouldapprove>提议:我们应该通过{0}。</WAW.Weshouldapprove>
+    <WAW.PolicyWillBeDisaproved>结果：{0} 会被否决</WAW.PolicyWillBeDisaproved>
+	<WAW.FactionsUnhappy>你的行动将减少{0}点凝聚力。</WAW.FactionsUnhappy>
+	<WAW.GiveDevelopmentPoints>你的行动将为联盟提供{0}点发展点数。</WAW.GiveDevelopmentPoints>
+	<WAW.PolicyWillBeApproved>结果：{0} 会被通过。</WAW.PolicyWillBeApproved>
 </LanguageData>

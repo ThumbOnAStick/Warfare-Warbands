@@ -144,7 +144,7 @@ namespace WarbandWarfareQuestline.League
             RefreshPolicyTable();
 
             // Create a congress window with randomized minor factions
-            Find.WindowStack.Add(new Window_Congress(GenerateRandomMinorFactions(), GenerateRandomMinorFactions()));
+            Find.WindowStack.Add(new Window_Congress(GenerateRandomMinorFactions(), GenerateRandomMinorFactions(), new Policies.Policy(PolicyDefOf.TaxReform, false)));
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace WarbandWarfareQuestline.League
         List<MinorFaction> GenerateRandomMinorFactions()
         {
             List<MinorFaction> factions = new List<MinorFaction>();
-            int count = new IntRange(1, 10).RandomInRange;
+            int count = new IntRange(1, 5).RandomInRange;
             for (int i = 0; i < count; i++)
             {
                 factions.Add(MinorFactionHelper.GenerateMinorFaction(FactionTraitDefOf.WAW_Cautious, RandomTechLevel()));

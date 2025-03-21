@@ -83,6 +83,7 @@
     <Compile Include="League\MinorFactions\FactionTraitDefOf.cs" />
     <Compile Include="League\GameComponent_League.cs" />
     <Compile Include="League\GenStep_MinorSettlement.cs" />
+    <Compile Include="League\MinorFactions\MinorFactionDrawer.cs" />
     <Compile Include="League\MinorFactions\MinorFactionBaseUtil.cs" />
     <Compile Include="League\MinorFactions\MinorFactionHelper.cs" />
     <Compile Include="League\MinorFactions\MinorFactionSettlement.cs" />
