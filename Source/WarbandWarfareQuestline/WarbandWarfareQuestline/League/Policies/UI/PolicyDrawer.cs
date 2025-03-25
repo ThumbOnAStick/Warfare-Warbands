@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -60,7 +61,7 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             }
             if (Widgets.ButtonInvisible(rect))
             {
-                policy.Execute();
+                OpenCongressWindow(policy);
             }
             DrawSupporters(rect, policy, isParentDisabled);
         }
@@ -92,6 +93,18 @@ namespace WarbandWarfareQuestline.League.Policies.UI
                     }
                 }
             }
+        }
+
+        public static void OpenCongressWindow(Policy p)
+        {
+            List<MinorFaction> dissenters = GameComponent_League.Instance.Factions
+                .Where(x => x.Trait.dislikedCategory == p.Def.category)
+                .ToList();
+            var pros = GameComponent_League.Instance.Factions
+                .Where(x => !dissenters.Contains(x))
+                .ToList();
+
+            Find.WindowStack.Add(new Window_Congress(pros, dissenters, p)); 
         }
     }
 }

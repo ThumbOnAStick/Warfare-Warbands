@@ -117,6 +117,7 @@ namespace WarbandWarfareQuestline.League
             }
         }
 
+
         public override void GameComponentTick()
         {
             base.GameComponentTick();
@@ -144,7 +145,7 @@ namespace WarbandWarfareQuestline.League
             RefreshPolicyTable();
 
             // Create a congress window with randomized minor factions
-            Find.WindowStack.Add(new Window_Congress(GenerateRandomMinorFactions(), GenerateRandomMinorFactions(), new Policies.Policy(PolicyDefOf.TaxReform, false)));
+            //Find.WindowStack.Add(new Window_Congress(GenerateRandomMinorFactions(), GenerateRandomMinorFactions(), new Policies.Policy(PolicyDefOf.TaxReform, false)));
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.Noise;
+using Verse.Sound;
 using WarbandWarfareQuestline.League.MinorFactions;
 
 namespace WarbandWarfareQuestline.League.Policies.UI
@@ -175,6 +176,29 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             Widgets.Label(_topTextDrawingArea, "WAW.GiveDevelopmentPoints".Translate(1));
         }
 
+        void DrawInvisibleButtons()
+        {
+
+            if (!Widgets.ButtonInvisible(_leftRect) && !Widgets.ButtonInvisible(_rightRect))
+            {
+                return;
+            }
+
+            if (_leftPercentage > .5f)
+            {
+                SoundDefOf.Quest_Succeded.PlayOneShotOnCamera();
+                this._policy.Execute();
+                this.Close();
+                return;
+            }
+            else
+            {
+                SoundDefOf.TabClose.PlayOneShotOnCamera();
+                this.Close();
+                return;
+            }
+        }
+
         void DrawPolicyLabels(Rect inRect)
         {
             _topTextDrawingArea = inRect.TopPart(0.075f);
@@ -188,6 +212,9 @@ namespace WarbandWarfareQuestline.League.Policies.UI
 
             // Draw opinion impacts
             DrawOpinionImpacts();
+
+            //Draw buttons
+            DrawInvisibleButtons();
 
             Text.Anchor = TextAnchor.UpperLeft;
         }
