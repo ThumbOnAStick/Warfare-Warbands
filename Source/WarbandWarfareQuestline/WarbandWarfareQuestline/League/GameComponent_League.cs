@@ -12,6 +12,7 @@ using WarbandWarfareQuestline.League.MinorFactions;
 using WarbandWarfareQuestline.League.Policies;
 using WarbandWarfareQuestline.League.RoadBuilding;
 using WarbandWarfareQuestline.League.Policies.UI;
+using UnityEngine;
 
 namespace WarbandWarfareQuestline.League
 {
@@ -19,6 +20,15 @@ namespace WarbandWarfareQuestline.League
     {
         public static GameComponent_League Instance;
         private int _lastCheckTick = 0;
+        private int _developmentPoints = 0;
+        private int _developmentLevel = 0;
+        private bool _canChoosePolicyNow = false;
+        private float _cohesion = .5f;
+        private static readonly SimpleCurve _developmentCurve = new SimpleCurve
+        {
+            new CurvePoint(1, 10),
+            new CurvePoint(20, 100)
+        };
         private List<MinorFaction> _minorFactions;
         private List<MinorFaction> _minorFactionsTemp;
         private QuestEvent _questChecker;
@@ -30,7 +40,6 @@ namespace WarbandWarfareQuestline.League
         private PolicyCategoryDef _lovedPolicyCategory;
         private readonly int baseEventGenerationTicks;
         private readonly int baseEventGenerationDays = 5;
-
 
         public GameComponent_League(Game game)
         {
@@ -52,6 +61,10 @@ namespace WarbandWarfareQuestline.League
         public List<MinorFaction> FactionsTemp => _minorFactionsTemp;
         public PolicyTree PolicyTree => _policyTree;
         public RoadBuilder RoadBuilder => _roadbuilder;
+        public bool CanChoosePolicyNow => _canChoosePolicyNow;
+        public float Cohesion => _cohesion;
+        public int DevelopmentPoints => _developmentPoints;
+        public int DevelopmentLevel => _developmentLevel;   
 
         bool ShouldCheckNow()
         {
@@ -117,6 +130,63 @@ namespace WarbandWarfareQuestline.League
             }
         }
 
+        public bool NoFactionInLeague()
+        {
+            return _minorFactions.Count <= 0;
+        }
+
+        public bool PointsInssufficient()
+        {
+            return _developmentPoints < GetNeededPoints();
+        }
+
+        public int GetNeededPoints()
+        {
+            return (int)_developmentCurve.Evaluate(_developmentLevel + 1);
+        }
+
+        public void LevelUP()
+
+        {
+            _developmentLevel++;
+            _developmentPoints = 0;
+        }
+
+        public void AddDevelopmentPoints(int points)
+        {
+            _developmentPoints += points;
+        }
+
+        public void FullfillDevelopmentPoints()
+        {
+            this._developmentPoints = GetNeededPoints();
+        }   
+
+        public string GetPointsAndNeededPoints()
+        {
+            return $"{_developmentPoints}/{GetNeededPoints()}(L{_developmentLevel})";
+        }
+
+        public void OnPolicyChosen(PolicyDef policy)
+        {
+            this.LevelUP();
+            _canChoosePolicyNow = false; 
+        }
+
+        public void AddCohesion(float amount)
+        {
+            if(_cohesion + amount < 0)
+            {
+                // TODO: Add cohesion penalty
+                return;
+            }
+            _cohesion = Mathf.Min(Mathf.Max(_cohesion + amount, 0));
+        }   
+
+        public void SetCohesion(float amount)
+        {
+            _cohesion = amount;
+        }
 
         public override void GameComponentTick()
         {
@@ -144,31 +214,6 @@ namespace WarbandWarfareQuestline.League
             AppendDrawingEvent();
             RefreshPolicyTable();
 
-            // Create a congress window with randomized minor factions
-            //Find.WindowStack.Add(new Window_Congress(GenerateRandomMinorFactions(), GenerateRandomMinorFactions(), new Policies.Policy(PolicyDefOf.TaxReform, false)));
-        }
-
-        /// <summary>
-        /// This function is temproray and should be deleted after testing
-        /// </summary>
-
-        List<MinorFaction> GenerateRandomMinorFactions()
-        {
-            List<MinorFaction> factions = new List<MinorFaction>();
-            int count = new IntRange(1, 5).RandomInRange;
-            for (int i = 0; i < count; i++)
-            {
-                factions.Add(MinorFactionHelper.GenerateMinorFaction(FactionTraitDefOf.WAW_Cautious, RandomTechLevel()));
-            }
-
-            return factions;
-        }
-
-        TechLevel RandomTechLevel()
-        {
-            Array values = Enum.GetValues(typeof(TechLevel));
-            Random random = new Random();
-            return (TechLevel)values.GetValue(random.Next(values.Length));
         }
 
 
@@ -176,7 +221,7 @@ namespace WarbandWarfareQuestline.League
         {
             base.LoadedGame();
             AppendDrawingEvent();
-            RefreshPolicyTable(); 
+            RefreshPolicyTable();
         }
 
 
@@ -198,6 +243,10 @@ namespace WarbandWarfareQuestline.League
             Scribe_Deep.Look(ref _roadbuilder, "_roadbuilder");
             Scribe_Defs.Look(ref _hatedPolicyCategory, "_hatedPolicy");
             Scribe_Defs.Look(ref _lovedPolicyCategory, "_lovedPolicy");
+            Scribe_Values.Look(ref _developmentLevel, "_developmentLevel");
+            Scribe_Values.Look(ref _developmentPoints, "_developmentPoints");
+            Scribe_Values.Look(ref _canChoosePolicyNow, "_canChoosePolicyNow");
+            Scribe_Values.Look(ref _cohesion, "_cohesion");
 
             if (_taxer == null)
             {

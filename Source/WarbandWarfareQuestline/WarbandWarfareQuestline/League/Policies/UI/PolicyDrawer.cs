@@ -55,7 +55,7 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             {
                 Widgets.DrawHighlight(rect, 2);
             }
-            if (isParentDisabled)
+            if (isParentDisabled || GameComponent_League.Instance.NoFactionInLeague() || GameComponent_League.Instance.PointsInssufficient())
             {
                 return;
             }

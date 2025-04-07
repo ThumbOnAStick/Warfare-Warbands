@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 using Verse;
 using WarbandWarfareQuestline.League.Policies.UI;
@@ -8,10 +9,8 @@ namespace WarbandWarfareQuestline.League.UI
 {
     internal static class Window_League
     {
-        static readonly int townPosY = 50;
+        static readonly int iconStartPosY = 0;
         static readonly int iconSize = 50;
-        static readonly int villagePosY = 100;
-        static readonly int bankPosY = 150;
         static readonly int settlementCountDisplayOffsetX = 75;
         static readonly int policyTreeButtonY = 50;
         static readonly int policyTreeButtonX = 300;
@@ -42,9 +41,20 @@ namespace WarbandWarfareQuestline.League.UI
 
         private static void DrawLeftPanel()
         {
-            DrawIconInfo(new Rect(0, townPosY, iconSize, iconSize), WAWTex.Town, townCount.ToString());
-            DrawIconInfo(new Rect(0, villagePosY, iconSize, iconSize), WAWTex.Village, villageCount.ToString());
-            DrawIconInfo(new Rect(0, bankPosY, iconSize, iconSize), WAWTex.BankAccount, GameComponent_WAW.playerBankAccount.Balance.ToString(), true);
+            Rect iconRect = new Rect(0, iconStartPosY, iconSize, iconSize);
+            DrawIconInfoFromUpToBottom(ref iconRect, WAWTex.Town, townCount.ToString(), tooltip: "WAW.TownsIcon".Translate());
+            DrawIconInfoFromUpToBottom(ref iconRect, WAWTex.Village, villageCount.ToString(), tooltip: "WAW.VillageIcon".Translate());
+            DrawIconInfoFromUpToBottom(ref iconRect, WAWTex.BankAccount, GameComponent_WAW.playerBankAccount.Balance.ToString(), true);
+            DrawIconInfoFromUpToBottom(ref iconRect, WAWTex.DevelopmentPoints, GameComponent_League.Instance.GetPointsAndNeededPoints(), tooltip: "WAW.DevelopmentPoints".Translate());
+            DrawIconInfoFromUpToBottom(ref iconRect, WAWTex.Cohesion, String.Format("{0:P2}", GameComponent_League.Instance.Cohesion), tooltip: "WAW.Cohesion".Translate());
+        }
+
+        private static void DrawIconInfoFromUpToBottom(ref Rect iconRect, Texture2D icon, TaggedString value, bool isCurrency = false, string tooltip = null)
+        {
+            iconRect.position += Vector2.up * iconRect.height;
+            DrawIconInfo(iconRect, icon, value, isCurrency);
+            if (tooltip != null)
+                TooltipHandler.TipRegion(iconRect, tooltip);
         }
 
         private static void DrawIconInfo(Rect iconRect, Texture2D icon, TaggedString value, bool isCurrency = false)

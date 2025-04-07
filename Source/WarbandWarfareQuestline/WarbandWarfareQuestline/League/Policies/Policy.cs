@@ -37,9 +37,14 @@ namespace WarbandWarfareQuestline.League.Policies
             Scribe_Collections.Look(ref _children, "_children", LookMode.Deep);
         }
 
+        public void Disable()
+        {
+            this._disabled = true;
+        }
+
         public void Execute()
         {
-            this._disabled = false;
+            this.Unlock();
             this._def.Worker?.Execute();
         }
 

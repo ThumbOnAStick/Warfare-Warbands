@@ -54,6 +54,13 @@ namespace WarbandWarfareQuestline.League
             Find.WorldTargeter.BeginTargeting(DecideRoadEndingTile, true);
         }
 
+        [DebugAction("WAW", "FullfillPoints", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        public static void FullfllDevelopmentPoints()
+        {
+            GameComponent_League.Instance.FullfillDevelopmentPoints();
+            Messages.Message("Development points fullfilled!", MessageTypeDefOf.PositiveEvent);
+        }
+
         static bool SpawnSkirmish(GlobalTargetInfo info)
         {
             if (info.WorldObject != null)
@@ -117,5 +124,6 @@ namespace WarbandWarfareQuestline.League
             Find.WorldObjects.Add(result);
             return result;
         }
+
     }
 }

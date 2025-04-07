@@ -2,6 +2,7 @@
     <!-- Existing PolicyDefs -->
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>RoadConstruct</defName>
+        <description>Invest in road construction to improve infrastructure and boost economic growth, roads are built automatically between player colony and vassal settlements.</description>
         <label>Road Construct</label>
         <category>Economy</category>
         <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_RoadConstruction</workerClass>
@@ -10,6 +11,7 @@
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>ArmExpansion</defName>
+        <description>Expand the military arsenal to strengthen the faction's warfare capabilities.</description>
         <label>Arm Expansion</label>
         <category>Warfare</category>
         <taxBonus>-0.2</taxBonus>
@@ -18,6 +20,7 @@
     <!-- New Economy Policies -->
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>TaxReform</defName>
+        <description>Implement tax reforms to increase revenue and improve economic stability.</description>
         <label>Tax Reform</label>
         <prerequisite>RoadConstruct</prerequisite>
         <taxBonus>0.3</taxBonus>
@@ -26,6 +29,7 @@
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>TradeAgreement</defName>
+        <description>Establish trade agreements to enhance commerce and generate additional income.</description>
         <label>Trade Agreement</label>
         <prerequisite>TaxReform</prerequisite>
         <taxBonus>0.2</taxBonus>
@@ -34,6 +38,7 @@
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>ResourceOptimization</defName>
+        <description>Optimize resource management to maximize efficiency and economic output.</description>
         <label>Resource Optimization</label>
         <prerequisite>TaxReform</prerequisite>
         <taxBonus>0.4</taxBonus>
@@ -43,6 +48,7 @@
     <!-- New Warfare Policies -->
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>AdvancedTactics</defName>
+        <description>Develop advanced military tactics to improve battlefield performance.</description>
         <label>Advanced Tactics</label>
         <prerequisite>ArmExpansion</prerequisite>
         <category>Warfare</category>
@@ -51,6 +57,7 @@
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>WeaponUpgrades</defName>
+        <description>Upgrade weapons to enhance the combat effectiveness of the faction's forces.</description>
         <label>Weapon Upgrades</label>
         <prerequisite>ArmExpansion</prerequisite>
         <category>Warfare</category>
@@ -59,6 +66,7 @@
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>EliteForces</defName>
+        <description>Train and equip elite forces to dominate the battlefield with superior skills and equipment, unlocks elite warband upgrade.</description>
         <label>Elite Forces</label>
         <prerequisite>WeaponUpgrades</prerequisite>
         <category>Warfare</category>
