@@ -107,4 +107,8 @@
 	<WAW.TownConstructionPlanned.Desc>Town construction has been initiated, we need to wait few days before the construction is complete.</WAW.TownConstructionPlanned.Desc>
 	<WAW.ConstructionComplete>Settlement Construction Complete</WAW.ConstructionComplete>
 	<WAW.ConstructionComplete.Desc>A new industrial settlement is constructed, and its faction {0} joined your league.</WAW.ConstructionComplete.Desc>
+	<WAW.CanChoosePolicy>Policy choice avialable</WAW.CanChoosePolicy>
+	<WAW.CanChoosePolicy.Desc>Now you have enough development points to choose a new policy for your league.</WAW.CanChoosePolicy.Desc>
+	<WAW.CongressAvailable>Congress available</WAW.CongressAvailable>
+	<WAW.CongressAvailable.Desc>A new minor faction has joined your league. The league congress is now available, allowing you to establish new policies through it.</WAW.CongressAvailable.Desc>
 </LanguageData>	

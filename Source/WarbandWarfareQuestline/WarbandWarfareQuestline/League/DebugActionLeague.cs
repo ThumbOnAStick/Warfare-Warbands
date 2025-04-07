@@ -13,6 +13,7 @@ using RimWorld.Planet;
 using WarbandWarfareQuestline.Skirmish;
 using WarbandWarfareQuestline.League.MinorFactions;
 using System.Threading;
+using WarbandWarfareQuestline.Questline;
 
 namespace WarbandWarfareQuestline.League
 {
@@ -20,7 +21,7 @@ namespace WarbandWarfareQuestline.League
     {
         [DebugAction("WAW", "Random faction join player league", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
         public static void SpawnRandomMercenary() =>
-            MinorFactionHelper.GenerateRandomMinorFactionAndJoinPlayer().JoinPlayer();
+            MinorFactionHelper.GenerateRandomMinorFactionAndJoinPlayer();
 
         [DebugAction("WAW", "Create Random Skirmish", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
         public static void CreateRandomSkirmish() =>
@@ -47,6 +48,7 @@ namespace WarbandWarfareQuestline.League
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
             Find.WorldTargeter.BeginTargeting(DecideRoadStartingTile, true);
         }
+
         [DebugAction("WAW", "Build Road2", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
         public static void DecideRoadEnd()
         {
@@ -54,11 +56,18 @@ namespace WarbandWarfareQuestline.League
             Find.WorldTargeter.BeginTargeting(DecideRoadEndingTile, true);
         }
 
-        [DebugAction("WAW", "FullfillPoints", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Fullfill development points", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
         public static void FullfllDevelopmentPoints()
         {
             GameComponent_League.Instance.FullfillDevelopmentPoints();
             Messages.Message("Development points fullfilled!", MessageTypeDefOf.PositiveEvent);
+        }
+
+        [DebugAction("WAW", "Give Village Quest", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        public static void GiveVillageQuest()
+        {
+            Quests.GiveVillageQuest();
+            Messages.Message("Village quest given!", MessageTypeDefOf.PositiveEvent);
         }
 
         static bool SpawnSkirmish(GlobalTargetInfo info)
@@ -94,7 +103,7 @@ namespace WarbandWarfareQuestline.League
             {
                 return false;
             }
-            GameComponent_League.Instance.RoadBuilder.SetStartAndDest(start : info.Tile);
+            GameComponent_League.Instance.RoadBuilder.SetStartAndDest(start: info.Tile);
             Find.WorldTargeter.StopTargeting();
             return true;
         }
@@ -105,11 +114,10 @@ namespace WarbandWarfareQuestline.League
             {
                 return false;
             }
-            GameComponent_League.Instance.RoadBuilder.SetStartAndDest(dest : info.Tile);
+            GameComponent_League.Instance.RoadBuilder.SetStartAndDest(dest: info.Tile);
             GameComponent_League.Instance.RoadBuilder.BuildRoad();
             return true;
         }
-
 
         static WorldObject GenerateTownConstructionAround(int tile)
         {
@@ -124,6 +132,5 @@ namespace WarbandWarfareQuestline.League
             Find.WorldObjects.Add(result);
             return result;
         }
-
     }
 }

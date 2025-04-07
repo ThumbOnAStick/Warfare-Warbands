@@ -81,7 +81,7 @@
     <WAW.ApprovePolicy>Approve</WAW.ApprovePolicy>
     <WAW.RejectPolicy>Reject</WAW.RejectPolicy>
     <WAW.Weshouldapprove>Proposal: We should approve {0}.</WAW.Weshouldapprove>
-    <WAW.PolicyWillBeDisaproved>Result: {0} will be disapproved.</WAW.PolicyWillBeDisaproved>
+    <WAW.PolicyWillBeDisapproved>Result: {0} will be disapproved.</WAW.PolicyWillBeDisapproved>
     <WAW.PolicyWillBeApproved>Result: {0} will be approved.</WAW.PolicyWillBeApproved>
     <WAW.FactionsUnhappy>Your action will reduce cohesion by {0}.</WAW.FactionsUnhappy>
     <WAW.GiveDevelopmentPoints>Your action will give {0} development points to your league.</WAW.GiveDevelopmentPoints>

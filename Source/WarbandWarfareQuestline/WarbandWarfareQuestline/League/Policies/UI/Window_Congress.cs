@@ -17,11 +17,12 @@ namespace WarbandWarfareQuestline.League.Policies.UI
         private readonly List<MinorFaction> _pros;
         private readonly List<MinorFaction> _dissenters;
         private readonly Policy _policy;
-        private const float VoteSessionY = 200;
+        private const float voteSessionHeight = 200f;
         private const float PlayerWeight = 0.3f;
         private const float IconDrawSize = 25f;
         private const float PlayerIconDrawSize = 50f;
         private const float DistributionFactor = 0.2f;
+        private const float votingSessionPosY = 500f;
 
         private float _leftPercentage;
         private float _leftPercentageRaw;
@@ -46,6 +47,8 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             _dissenters = dissenters ?? new List<MinorFaction>();
             _policy = policy;
         }
+
+        public override Vector2 InitialSize => new Vector2(500, 1000);
 
         public override bool OnCloseRequest()
         {
@@ -81,9 +84,8 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             float rightWidth = Mathf.Max(inRect.width - leftWidth, 0);
 
             // Define the rectangles for pros and dissenters sections
-            float y = inRect.height - Margin - VoteSessionY;
-            _leftRect = new Rect(inRect.x, VoteSessionY, leftWidth, y).ScaledBy(0.9f);
-            _rightRect = new Rect(_leftRect.xMax, VoteSessionY, rightWidth - Margin, y).ScaledBy(0.9f);
+            _leftRect = new Rect(inRect.x, votingSessionPosY, leftWidth, voteSessionHeight).ScaledBy(0.9f);
+            _rightRect = new Rect(_leftRect.xMax, votingSessionPosY, rightWidth - Margin, voteSessionHeight).ScaledBy(0.9f);
 
             // Draw the pros section
             if (_leftRect.width > 0)
@@ -111,7 +113,7 @@ namespace WarbandWarfareQuestline.League.Policies.UI
 
         void HoverRight()
         {
-            _mouseState = MouseState.HoverRight;
+            _mouseState = MouseState.HoverRight;         
         }
 
         void HoverLeft()
@@ -250,7 +252,7 @@ namespace WarbandWarfareQuestline.League.Policies.UI
 
         void DrawPolicyLabels(Rect inRect)
         {
-            _topTextDrawingArea = inRect.TopPart(0.075f);
+            _topTextDrawingArea = inRect.TopPart(0.1f);
             Text.Anchor = TextAnchor.MiddleCenter;
 
             // Draw header
@@ -259,11 +261,11 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             // Draw policy description
             DrawPolicyDescription();
 
-            // Draw voting results
-            DrawVotingResult();
-
             // Draw opinion impacts
             DrawOpinionImpacts();
+
+            // Draw voting results
+            DrawVotingResult();
 
             // Draw buttons
             DrawInvisibleButtons();

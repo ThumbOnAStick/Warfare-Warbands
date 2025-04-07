@@ -16,21 +16,19 @@ using UnityEngine;
 
 namespace WarbandWarfareQuestline.League
 {
-    public class GameComponent_League:GameComponent
+    public class GameComponent_League : GameComponent
     {
         public static GameComponent_League Instance;
         private int _lastCheckTick = 0;
         private int _developmentPoints = 0;
         private int _developmentLevel = 0;
-        private bool _canChoosePolicyNow = false;
-        private float _cohesion = .5f;
+        private float _cohesion = 0.5f;
         private static readonly SimpleCurve _developmentCurve = new SimpleCurve
-        {
-            new CurvePoint(1, 10),
-            new CurvePoint(20, 100)
-        };
-        private List<MinorFaction> _minorFactions;
-        private List<MinorFaction> _minorFactionsTemp;
+            {
+                new CurvePoint(1, 10),
+                new CurvePoint(20, 100)
+            };
+        private List<MinorFactionSettlement> _minorFactionsSettlements;
         private QuestEvent _questChecker;
         private TaxEvent _taxer;
         private SkirmishEvent _skirmish;
@@ -38,101 +36,124 @@ namespace WarbandWarfareQuestline.League
         private RoadBuilder _roadbuilder;
         private PolicyCategoryDef _hatedPolicyCategory;
         private PolicyCategoryDef _lovedPolicyCategory;
-        private readonly int baseEventGenerationTicks;
-        private readonly int baseEventGenerationDays = 5;
+        private readonly int _baseEventGenerationTicks;
+        private const int baseEventGenerationDays = 5;
+        private const int acceptedSettlementDistance = 50;
+
 
         public GameComponent_League(Game game)
         {
             Instance = this;
-            _minorFactions = new List<MinorFaction>();
-            _minorFactionsTemp = new List<MinorFaction>();
-            _questChecker = new QuestEvent();   
+            _minorFactionsSettlements = new List<MinorFactionSettlement>();
+            _questChecker = new QuestEvent();
             _taxer = new TaxEvent();
             _skirmish = new SkirmishEvent();
             _policyTree = new PolicyTree();
             _roadbuilder = new RoadBuilder();
-            baseEventGenerationTicks = BaseEventGenrationTicks;
+            _baseEventGenerationTicks = BaseEventGenrationTicks;
         }
 
-        public FloatRange dateOffset = new FloatRange(.8f, .12f);
+        public FloatRange dateOffset = new FloatRange(0.8f, 0.12f);
         public int BaseEventGenrationTicks => (int)(baseEventGenerationDays * dateOffset.RandomInRange) * GenDate.TicksPerDay;
 
-        public List<MinorFaction> Factions => _minorFactions;
-        public List<MinorFaction> FactionsTemp => _minorFactionsTemp;
+        public List<MinorFactionSettlement> MinorFactionSettlements => _minorFactionsSettlements;
+        public List<MinorFaction> Factions => _minorFactionsSettlements.Select(x => x.MinorFaction).ToList();
         public PolicyTree PolicyTree => _policyTree;
         public RoadBuilder RoadBuilder => _roadbuilder;
-        public bool CanChoosePolicyNow => _canChoosePolicyNow;
         public float Cohesion => _cohesion;
         public int DevelopmentPoints => _developmentPoints;
-        public int DevelopmentLevel => _developmentLevel;   
+        public int DevelopmentLevel => _developmentLevel;
 
-        bool ShouldCheckNow()
+        private bool ShouldCheckNow()
         {
-            return GenTicks.TicksGame - _lastCheckTick > baseEventGenerationTicks;
+            return GenTicks.TicksGame - _lastCheckTick > _baseEventGenerationTicks;
         }
 
-
-        void ResetLastCheckTick()
+        private void ResetLastCheckTick()
         {
             _lastCheckTick = GenTicks.TicksGame;
         }
 
-        void CheckTax()
+        private void CheckTax()
         {
-            this._taxer.Check();
+            _taxer.Check();
         }
 
-        void CheckSkirmish()
+        private void CheckSkirmish()
         {
-            this._skirmish.Check();
+            _skirmish.Check();
         }
 
-        void CheckQuest()
+        private void CheckQuest()
         {
-            this._questChecker.Check();
+            _questChecker.Check();
         }
 
-        void RefreshPolicyTable()
+        private void RefreshPolicyTable()
         {
-            this._policyTree?.Refresh();
+            _policyTree?.Refresh();
         }
 
-        void AppendDrawingEvent()
+        private void AppendDrawingEvent()
         {
             Window_League.AppendDrawingEvent();
         }
 
         public int GetTownCount()
         {
-            return this._minorFactions.Where(x => x.TechLevel >= TechLevel.Industrial).Count(); 
+            return _minorFactionsSettlements.Count(x => x.MinorFaction.TechLevel >= TechLevel.Industrial);
         }
+
         public int GetRuralCount()
         {
-            return this._minorFactions.Where(x => x.TechLevel < TechLevel.Industrial).Count();
+            return _minorFactionsSettlements.Count(x => x.MinorFaction.TechLevel < TechLevel.Industrial);
         }
 
-        public void JoinPlayer(MinorFaction f)
+        public void InformPlayerOnCongressAvailable()
         {
-            bool ContainsFaction(MinorFaction x) => x.FactionID == f.FactionID;
+            if (_minorFactionsSettlements.Count == 1)
+            {
+                Letter letter = LetterMaker.MakeLetter("WAW.CongressAvailable".Translate(), "WAW.CongressAvailable.Desc".Translate(), LetterDefOf.PositiveEvent);
+                Find.LetterStack.ReceiveLetter(letter);
+            }
+        }
 
-            _minorFactionsTemp.RemoveAll(ContainsFaction);
+        private void ResettleSettlement(MinorFactionSettlement settlement)
+        {
+            // Implement resettlement logic here
+            var playerBaseMap = Find.AnyPlayerHomeMap;
+            if (playerBaseMap == null)
+            {
+                return;
+            }
+            if (Find.WorldGrid.ApproxDistanceInTiles(settlement.Tile, playerBaseMap.Parent.Tile) > acceptedSettlementDistance)
+                MinorFactionBaseUtil.ResettleSettlement(settlement);
+        }
 
-            if (!_minorFactions.Contains(f))
+        public void JoinPlayer(MinorFactionSettlement settlement)
+        {
+            if (!_minorFactionsSettlements.Contains(settlement))
             {
                 // Decide hated policy
-                int commons = _minorFactions.Count(m => m.Trait.dislikedCategory == f.Trait.dislikedCategory) + 1;
-                if (commons >= (float)_minorFactions.Count / 2)
+                int commons = _minorFactionsSettlements.Count(m => m.MinorFaction.Trait.dislikedCategory == settlement.MinorFaction.Trait.dislikedCategory) + 1;
+                if (commons >= (float)_minorFactionsSettlements.Count / 2)
                 {
-                    _hatedPolicyCategory = f.Trait.dislikedCategory;
-                    Log.Message($"Disliked trait changed: {f.Trait.dislikedCategory}");
+                    _hatedPolicyCategory = settlement.MinorFaction.Trait.dislikedCategory;
+                    Log.Message($"Disliked trait changed: {settlement.MinorFaction.Trait.dislikedCategory}");
                 }
-                _minorFactions.Add(f);
+                _minorFactionsSettlements.Add(settlement);
+
+                // If the settlement is too far away, resettle the settlement
+                ResettleSettlement(settlement);
+
+                // Inform the player if the faction is the first one
+                InformPlayerOnCongressAvailable();
             }
         }
 
         public bool NoFactionInLeague()
         {
-            return _minorFactions.Count <= 0;
+            return _minorFactionsSettlements.Count <= 0;
         }
 
         public bool PointsInssufficient()
@@ -146,21 +167,27 @@ namespace WarbandWarfareQuestline.League
         }
 
         public void LevelUP()
-
         {
+            _developmentPoints -= GetNeededPoints();
             _developmentLevel++;
-            _developmentPoints = 0;
         }
 
         public void AddDevelopmentPoints(int points)
         {
             _developmentPoints += points;
+            if (PointsInssufficient())
+            {
+                return;
+            }
+            // If the points are enough to level up, notify the player to choose a policy
+            Letter inform = LetterMaker.MakeLetter("WAW.CanChoosePolicy".Translate(), "WAW.CanChoosePolicy.Desc".Translate(), LetterDefOf.PositiveEvent);
+            Find.LetterStack.ReceiveLetter(inform);
         }
 
         public void FullfillDevelopmentPoints()
         {
-            this._developmentPoints = GetNeededPoints();
-        }   
+            AddDevelopmentPoints(GetNeededPoints());
+        }
 
         public string GetPointsAndNeededPoints()
         {
@@ -169,19 +196,18 @@ namespace WarbandWarfareQuestline.League
 
         public void OnPolicyChosen(PolicyDef policy)
         {
-            this.LevelUP();
-            _canChoosePolicyNow = false; 
+            LevelUP();
         }
 
         public void AddCohesion(float amount)
         {
-            if(_cohesion + amount < 0)
+            if (_cohesion + amount < 0)
             {
                 // TODO: Add cohesion penalty
                 return;
             }
-            _cohesion = Mathf.Min(Mathf.Max(_cohesion + amount, 0));
-        }   
+            _cohesion = Mathf.Min(Mathf.Max(_cohesion + amount, 0), 1);
+        }
 
         public void SetCohesion(float amount)
         {
@@ -193,7 +219,7 @@ namespace WarbandWarfareQuestline.League
             base.GameComponentTick();
             if (ShouldCheckNow())
             {
-                //Check village quests,but for now, disable the quest
+                // Check village quests, but for now, disable the quest
                 CheckQuest();
 
                 // Receive tax every month
@@ -213,9 +239,7 @@ namespace WarbandWarfareQuestline.League
             base.StartedNewGame();
             AppendDrawingEvent();
             RefreshPolicyTable();
-
         }
-
 
         public override void LoadedGame()
         {
@@ -223,8 +247,6 @@ namespace WarbandWarfareQuestline.League
             AppendDrawingEvent();
             RefreshPolicyTable();
         }
-
-
 
         public override void FinalizeInit()
         {
@@ -235,8 +257,7 @@ namespace WarbandWarfareQuestline.League
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Collections.Look(ref _minorFactions, "_minorFactions", LookMode.Deep);
-            Scribe_Collections.Look(ref _minorFactionsTemp, "_minorFactionsTemp", LookMode.Deep);
+            Scribe_Collections.Look(ref _minorFactionsSettlements, "_minorFactions", LookMode.Reference);
             Scribe_Deep.Look(ref _questChecker, "_questChecker");
             Scribe_Deep.Look(ref _taxer, "_taxer");
             Scribe_Deep.Look(ref _policyTree, "_policyTable");
@@ -245,30 +266,28 @@ namespace WarbandWarfareQuestline.League
             Scribe_Defs.Look(ref _lovedPolicyCategory, "_lovedPolicy");
             Scribe_Values.Look(ref _developmentLevel, "_developmentLevel");
             Scribe_Values.Look(ref _developmentPoints, "_developmentPoints");
-            Scribe_Values.Look(ref _canChoosePolicyNow, "_canChoosePolicyNow");
             Scribe_Values.Look(ref _cohesion, "_cohesion");
 
             if (_taxer == null)
             {
                 _taxer = new TaxEvent();
             }
-            if(_questChecker == null)
+            if (_questChecker == null)
             {
                 _questChecker = new QuestEvent();
             }
-            if(_minorFactions == null)
+      
+            if (_minorFactionsSettlements == null)
             {
-                _minorFactions = new List<MinorFaction>();
+                _minorFactionsSettlements = new List<MinorFactionSettlement>();
             }
-            if(_skirmish == null)
+            _minorFactionsSettlements.RemoveAll(x => x == null);
+          
+            if (_skirmish == null)
             {
-                _skirmish = new SkirmishEvent();    
+                _skirmish = new SkirmishEvent();
             }
-            if(_minorFactionsTemp == null)
-            {
-                _minorFactionsTemp = new List<MinorFaction>();
-            }
-            if(_policyTree == null)
+            if (_policyTree == null)
             {
                 _policyTree = new PolicyTree();
             }
@@ -276,10 +295,6 @@ namespace WarbandWarfareQuestline.League
             {
                 _roadbuilder = new RoadBuilder();
             }
-
         }
-
-       
-
     }
 }

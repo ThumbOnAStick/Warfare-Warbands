@@ -15,7 +15,7 @@ namespace WarbandWarfareQuestline.League.Policies.UI
 
         public override Vector2 InitialSize => new Vector2(1000, 500);
 
-        private static readonly Vector2Int messageSize = new Vector2Int(200, 50);
+        private static readonly Vector2Int messageSize = new Vector2Int(1000, 50);
 
         private Rect _currentInrect; 
 

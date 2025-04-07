@@ -120,7 +120,6 @@ namespace WarbandWarfareQuestline.League.MinorFactions
         }
         #endregion
 
-   
         private void SpawnPawnsNearCenter(IEnumerable<Pawn> pawnList)
         {                
             LordJob_AssaultColony lordJob = new LordJob_AssaultColony(Faction);
@@ -217,7 +216,7 @@ namespace WarbandWarfareQuestline.League.MinorFactions
         {
             base.ExposeData();
             Scribe_Values.Look(ref this._nameInt, "nameInt");
-            Scribe_References.Look(ref this._minorFaction, "_minorFaction");
+            Scribe_Deep.Look(ref this._minorFaction, "_minorFaction");
             Scribe_Deep.Look(ref this._armyHolder, "_armyHolder");
 
             if(_armyHolder == null)

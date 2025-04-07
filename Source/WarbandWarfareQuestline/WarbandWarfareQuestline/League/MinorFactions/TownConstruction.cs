@@ -35,7 +35,7 @@ namespace WarbandWarfareQuestline.League.MinorFactions
 
         void CreateProduct()
         {
-            _fac = MinorFactionHelper.GenerateRandomMinorFactionAndJoinPlayer(TechLevel.Industrial, this.Tile, out this._product);
+            _fac = MinorFactionHelper.GenerateRandomMinorFactionOnTileAndJoinPlayer(TechLevel.Industrial, this.Tile, out this._product);
         }
 
         public override void PostAdd()

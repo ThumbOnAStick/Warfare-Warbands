@@ -79,8 +79,6 @@ namespace WarbandWarfareQuestline.Questline
         {
             base.PreQuestAccept();
             this.Enable(new SignalArgs());
-            questSettlement = Faction.GenerateSettlementOccupied();
-
         }
 
         public override void Notify_QuestSignalReceived(Signal signal)

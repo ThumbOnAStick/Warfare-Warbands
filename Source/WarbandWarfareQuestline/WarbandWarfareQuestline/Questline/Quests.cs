@@ -32,7 +32,8 @@ namespace WarbandWarfareQuestline.Questline
         public static void GiveVillageQuest()
         {
             //Generate a village
-            MinorFaction m = MinorFactionHelper.GenerateMinorFaction(FactionTraitDefOf.WAW_Cautious, TechLevel.Neolithic);
+            MinorFaction m = MinorFactionHelper.GenerateRandomMinorFaction(TechLevel.Neolithic);
+            var settlement = m.GenerateSettlementOccupied();
 
             // Give the quest
             Quest quest = Generate("WAW.SaveVillage", "WAW.SaveVillage.Desc");
@@ -42,11 +43,12 @@ namespace WarbandWarfareQuestline.Questline
                 new QuestPart_Choice.Choice()
                 {
                     questParts =  new List<QuestPart>(),
-                    rewards = new List<Reward>(){ new Reward_MinorFactionJoin() { mFaction = m, factionID = m.FactionID} }
+                    rewards = new List<Reward>(){ new Reward_MinorFactionJoin() { mFactionBase = settlement, factionID = m.FactionID} }
                 }
             };
+            quest.AddPart(new QuestPart_WorldObjectTimeout() { worldObject = settlement });
             quest.AddPart(new QuestPart_Choice() { choices = choices });
-            quest.AddPart(new QuestPart_VillageLooted() { inSignalEnable = QuestGen.slate.Get<string>("inSignal", null, false), faction = m });
+            quest.AddPart(new QuestPart_VillageLooted() { inSignalEnable = QuestGen.slate.Get<string>("inSignal", null, false), faction = m, questSettlement = settlement });
             Find.QuestManager.Add(quest);
             Find.LetterStack.ReceiveLetter(LetterMaker.MakeLetter("WAW.QuestAvailable".Translate(quest.name), quest.description, LetterDefOf.PositiveEvent, null, quest));
         }
