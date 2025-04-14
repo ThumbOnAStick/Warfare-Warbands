@@ -36,6 +36,7 @@ namespace WarbandWarfareQuestline.League
         private RoadBuilder _roadbuilder;
         private PolicyCategoryDef _hatedPolicyCategory;
         private PolicyCategoryDef _lovedPolicyCategory;
+        
         private readonly int _baseEventGenerationTicks;
         private const int baseEventGenerationDays = 5;
         private const int acceptedSettlementDistance = 50;
@@ -232,6 +233,12 @@ namespace WarbandWarfareQuestline.League
 
                 Log.Message("Check League");
             }
+        }
+
+        public override void GameComponentOnGUI()
+        {
+            base.GameComponentOnGUI();
+            LeagueDrawer.Draw();
         }
 
         public override void StartedNewGame()

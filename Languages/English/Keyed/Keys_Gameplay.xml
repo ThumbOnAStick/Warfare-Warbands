@@ -111,4 +111,6 @@
 	<WAW.CanChoosePolicy.Desc>Now you have enough development points to choose a new policy for your league.</WAW.CanChoosePolicy.Desc>
 	<WAW.CongressAvailable>Congress available</WAW.CongressAvailable>
 	<WAW.CongressAvailable.Desc>A new minor faction has joined your league. The league congress is now available, allowing you to establish new policies through it.</WAW.CongressAvailable.Desc>
+	<WAW.CantAffordFromBank>Insufficient fund from bank.</WAW.CantAffordFromBank>
+	<WAW.FLTM.ConstructRoad>Road Construction</WAW.FLTM.ConstructRoad>
 </LanguageData>	

@@ -88,4 +88,8 @@
     <WAW.NoFactionsInLeague>There's zero faction in your league</WAW.NoFactionsInLeague>
     <WAW.NotEnoughDevelopmentPoints>There's not enough development points</WAW.NotEnoughDevelopmentPoints>
     <WAW.TaxOffset>(<color value="#FFFFFF">Tax income offset: {0}</color>)</WAW.TaxOffset>
+	<WAW.RoadConstruct.DecideStarting>Select Starting Point</WAW.RoadConstruct.DecideStarting>
+    <WAW.RoadConstruct.DecideDest>Select Destination</WAW.RoadConstruct.DecideDest>
+    <WAW.RoadConstruct.Info>You can only select player bases or vassal settlements.</WAW.RoadConstruct.Info>
+    <WAW.RoadConstruct.Confirm>Confirm</WAW.RoadConstruct.Confirm>
 </LanguageData>

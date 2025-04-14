@@ -2,11 +2,12 @@
     <!-- Existing PolicyDefs -->
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>RoadConstruct</defName>
-        <description>Invest in road construction to improve infrastructure and boost economic growth, roads are built automatically between player colony and vassal settlements.</description>
+        <description>Allows you to construct roads between settlements.</description>
         <label>Road Construct</label>
         <category>Economy</category>
         <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_RoadConstruction</workerClass>
         <taxBonus>0.1</taxBonus>
+        <cost>1000</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
@@ -15,6 +16,7 @@
         <label>Arm Expansion</label>
         <category>Warfare</category>
         <taxBonus>-0.2</taxBonus>
+        <cost>2000</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <!-- New Economy Policies -->
@@ -25,6 +27,7 @@
         <prerequisite>RoadConstruct</prerequisite>
         <taxBonus>0.3</taxBonus>
         <category>Economy</category>
+        <cost>1500</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
@@ -34,6 +37,7 @@
         <prerequisite>TaxReform</prerequisite>
         <taxBonus>0.2</taxBonus>
         <category>Economy</category>
+        <cost>3000</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
@@ -43,6 +47,7 @@
         <prerequisite>TaxReform</prerequisite>
         <taxBonus>0.4</taxBonus>
         <category>Economy</category>
+        <cost>10000</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <!-- New Warfare Policies -->
@@ -53,6 +58,7 @@
         <prerequisite>ArmExpansion</prerequisite>
         <category>Warfare</category>
         <taxBonus>-0.1</taxBonus>
+        <cost>2500</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
@@ -62,6 +68,7 @@
         <prerequisite>ArmExpansion</prerequisite>
         <category>Warfare</category>
         <taxBonus>-0.3</taxBonus>
+        <cost>5000</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
@@ -71,5 +78,6 @@
         <prerequisite>WeaponUpgrades</prerequisite>
         <category>Warfare</category>
         <taxBonus>-0.2</taxBonus>
+        <cost>8000</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 </Defs>

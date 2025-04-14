@@ -15,8 +15,13 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
         private int _destTile;
         private int _fromTileTemp;
         private int _toTileTemp;
+        private bool _unlocked;
 
         public RoadBuilder() { }
+
+        public int StartingTile => _startingTile;
+        public int DestTile => _destTile;
+        public bool Unlocked => _unlocked;  
 
         public void SetStartAndDest(int start = 0, int dest = 0)
         {
@@ -42,7 +47,8 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
 
         public void BuildRoad()
         {
-            if (_startingTile <= 0 || _destTile <= 0)
+            int pointer = _startingTile;
+            if (_startingTile <= 0 || _destTile <= 0 || _startingTile == _destTile)
             {
                 Log.Error("RoadBuilder: Invalid starting and ending Tile Values");
                 return;
@@ -53,23 +59,22 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
             while (roadPath.NodesLeftCount > 1)
             {
                 int nextTile = roadPath.ConsumeNextNode();
-                SetTempRoadTiles(_startingTile, nextTile);
+                SetTempRoadTiles(pointer, nextTile);
                 BuildRoadBetweenTempNodes(road);
-                _startingTile = nextTile;
+                pointer = nextTile;
             }
-            Log.Message($"Road starting from {_startingTile} to {_destTile} is built");
+            Log.Message($"WAWRoadBuilder: Road starting from {_startingTile} to {_destTile} is built");
         }
 
         private void BuildRoadBetweenTempNodes(RoadDef road)
         {
             if (_fromTileTemp <= 0 || _toTileTemp <= 0)
             {
-                Log.Error("RoadBuilder: Invalid Tile Values");
+                Log.Error("WAWRoadBuilder: Invalid Tile Values");
                 return;
             }
 
             Find.WorldGrid.OverlayRoad(_fromTileTemp, _toTileTemp, road);
-            Log.Message($"Road Built from {_fromTileTemp} to {_toTileTemp}");
 
             // Redraw the road
             try
@@ -85,9 +90,40 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
             }
         }
 
+        public void Unlock()
+        {
+            _unlocked = true;
+        }
+
+        public void Lock()
+        {
+            _unlocked = false;
+        }   
+
+        public bool IsRoadReadyToBuild()
+        {
+            return _startingTile > 0 &&
+                _destTile > 0 &&
+                _startingTile != _destTile;
+        }
+
+        public bool ShouldResetNow()
+        {
+            return _startingTile > 0 || 
+                _destTile > 0;
+        }
+
+        public void Reset()
+        {
+            _startingTile = 0;
+            _destTile = 0;
+            _fromTileTemp = 0;
+            _toTileTemp = 0;
+        }
+
         public void ExposeData()
         {
-             
+            Scribe_Values.Look(ref _unlocked, "_unlocked");
         }
     }
 }

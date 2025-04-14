@@ -81,6 +81,7 @@ namespace WarbandWarfareQuestline.League.UI
             if (DrawButton(new Rect(policyTreeButtonX, policyTreeButtonY + 2 * verticalOffset, policyTreeButtonWidth, policyTreeButtonHeight), "WAW.LeagueAction"))
             {
                 // Open Action Float Menu
+                Find.WindowStack.Add(LeagueActions.GetLeagueActionsMenu());
             }
         }
 

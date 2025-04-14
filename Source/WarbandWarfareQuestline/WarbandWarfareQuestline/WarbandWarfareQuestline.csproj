@@ -96,11 +96,13 @@
     <Compile Include="League\Policies\PolicyTree.cs" />
     <Compile Include="League\Policies\PolicyWorker.cs" />
     <Compile Include="League\Policies\PolicyWorker_RoadConstruction.cs" />
+    <Compile Include="League\Policies\UI\LeagueActions.cs" />
     <Compile Include="League\Policies\UI\PolicyDrawer.cs" />
     <Compile Include="League\Policies\UI\Window_PolicyTree.cs" />
     <Compile Include="League\Policies\UI\Window_Congress.cs" />
     <Compile Include="League\RoadBuilder\RoadBuilder.cs" />
     <Compile Include="League\UI\Dialog_ChoosePolicy.cs" />
+    <Compile Include="League\UI\LeagueDrawer.cs" />
     <Compile Include="League\UI\Window_League.cs" />
     <Compile Include="League\WAWScheduled\QuestEvent.cs" />
     <Compile Include="League\WAWScheduled\SkirmishEvent.cs" />

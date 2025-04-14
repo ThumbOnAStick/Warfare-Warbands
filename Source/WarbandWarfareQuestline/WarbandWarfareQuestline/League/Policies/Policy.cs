@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using WarfareAndWarbands;
 
 namespace WarbandWarfareQuestline.League.Policies
 {
@@ -44,13 +45,19 @@ namespace WarbandWarfareQuestline.League.Policies
 
         public void Execute()
         {
-            this.Unlock();
-            this._def.Worker?.Execute();
+            ChargeFees();
+            Unlock();
+            _def.Worker?.Execute();
         }
 
         public void Tick()
         {
-            this._def.Worker?.Tick();
+            _def.Worker?.Tick();
+        }
+
+        void ChargeFees()
+        {
+            GameComponent_WAW.playerBankAccount.Spend(this.Def.cost);
         }
 
         public void Unlock()

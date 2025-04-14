@@ -87,4 +87,9 @@
 	<WAW.PolicyWillBeApproved>结果：{0} 会被通过。</WAW.PolicyWillBeApproved>
  	<WAW.NoFactionsInLeague>你的联盟中没有任何派系。</WAW.NoFactionsInLeague>
     <WAW.NotEnoughDevelopmentPoints>发展点数不足。</WAW.NotEnoughDevelopmentPoints>
+	<WAW.RoadConstruct.DecideStarting>选择起点</WAW.RoadConstruct.DecideStarting>
+	<WAW.RoadConstruct.DecideDest>选择目的地</WAW.RoadConstruct.DecideDest>
+	<WAW.RoadConstruct.Info>你只能选择玩家基地或附庸据点。</WAW.RoadConstruct.Info>
+    <WAW.RoadConstruct.Confirm>确认</WAW.RoadConstruct.Confirm>
+
 </LanguageData>

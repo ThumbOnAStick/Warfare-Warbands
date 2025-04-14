@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using WarbandWarfareQuestline.League.MinorFactions;
+using WarfareAndWarbands;
+using WarfareAndWarbands.Warband;
 
 namespace WarbandWarfareQuestline.League.Policies.UI
 {
@@ -15,7 +17,7 @@ namespace WarbandWarfareQuestline.League.Policies.UI
     {
         public static readonly float margin = 30;
         public static readonly float policyBoxWidth = 200;
-        public static readonly float policyBoxHeight = 25;
+        public static readonly float policyBoxHeight = 35;
         public static readonly float factionIconSize = 15;
         public static readonly float iconMargin = 10;
 
@@ -42,7 +44,8 @@ namespace WarbandWarfareQuestline.League.Policies.UI
         public static void DrawPolicy(this Policy policy, Rect rect, bool isParentDisabled)
         {
             Text.Anchor = TextAnchor.MiddleCenter;
-            Widgets.Label(rect, policy.Def.label);
+            Widgets.Label(rect.TopHalf(), policy.Def.label);
+            Widgets.Label(rect.BottomHalf(), policy.Def.cost.ToString());
             Text.Anchor = TextAnchor.UpperLeft;
 
             Color color = isParentDisabled ? Color.grey : Color.white;
@@ -61,6 +64,12 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             }
             if (Widgets.ButtonInvisible(rect))
             {
+                //if the you cannot afford the cost, show a message
+                if(GameComponent_WAW.playerBankAccount.Balance < policy.Def.cost)
+                {
+                    Messages.Message("WAW.CantAffordFromBank".Translate(), MessageTypeDefOf.RejectInput);
+                    return;
+                }
                 OpenCongressWindow(policy);
             }
             DrawSupporters(rect, policy, isParentDisabled);

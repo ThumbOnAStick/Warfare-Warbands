@@ -11,6 +11,7 @@ namespace WarbandWarfareQuestline.League.Policies
         public Type workerClass = typeof(PolicyWorker);
         public PolicyCategoryDef category;
         public float taxBonus;
+        public int cost;
 
         private PolicyWorker _worker;
         public PolicyWorker Worker

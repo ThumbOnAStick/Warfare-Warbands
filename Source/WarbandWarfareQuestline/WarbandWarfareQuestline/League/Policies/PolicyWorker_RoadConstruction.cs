@@ -13,6 +13,7 @@ namespace WarbandWarfareQuestline.League.Policies
         {
             base.Execute();
             Log.Message("Road Construction Policy Executed");
+            GameComponent_League.Instance.RoadBuilder.Unlock();
         }
     }
 }

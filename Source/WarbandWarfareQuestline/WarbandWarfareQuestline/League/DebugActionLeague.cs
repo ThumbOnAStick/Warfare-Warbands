@@ -70,6 +70,12 @@ namespace WarbandWarfareQuestline.League
             Messages.Message("Village quest given!", MessageTypeDefOf.PositiveEvent);
         }
 
+        [DebugAction("WAW", "Unlock Road Building", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        public static void UnlockRoadBuilding()
+        {
+            GameComponent_League.Instance.RoadBuilder.Unlock();
+        }
+
         static bool SpawnSkirmish(GlobalTargetInfo info)
         {
             if (info.WorldObject != null)

@@ -105,5 +105,7 @@
 	<WAW.CanChoosePolicy.Desc>现在你有足够的发展点数可以为你的联盟选择一项新政策。</WAW.CanChoosePolicy.Desc>
 	<WAW.CongressAvailable>联盟会议可用</WAW.CongressAvailable>
 	<WAW.CongressAvailable.Desc>一个新的小派系加入了你的联盟。联盟会议现在可用，你可以通过它制定新的政策。</WAW.CongressAvailable.Desc>
+	<WAW.CantAffordFromBank>银行余额不足</WAW.CantAffordFromBank>
+	<WAW.FLTM.ConstructRoad>建造道路</WAW.FLTM.ConstructRoad>
 
 </LanguageData>
