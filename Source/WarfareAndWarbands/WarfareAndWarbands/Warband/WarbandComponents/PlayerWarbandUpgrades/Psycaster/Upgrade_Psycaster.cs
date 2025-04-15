@@ -62,7 +62,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
                 icon = this.TextureOverride(),
                 action = delegate
                 {
-                    Find.WindowStack.Add(new Window_VPEWarband(GameComponent_Customization.Instance.customizationRequests, this));
+                    Find.WindowStack.Add(new Window_VPEWarband(GameComponent_Customization.Instance.CustomizationRequests, this));
                 },
             };
         }

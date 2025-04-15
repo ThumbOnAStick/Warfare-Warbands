@@ -220,7 +220,7 @@ namespace WarbandWarfareQuestline.League
             base.GameComponentTick();
             if (ShouldCheckNow())
             {
-                // Check village quests, but for now, disable the quest
+                // Check village quests 
                 CheckQuest();
 
                 // Receive tax every month

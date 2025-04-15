@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using Verse;
 using WarfareAndWarbands.CharacterCustomization.Compatibility;
 using WarfareAndWarbands.HarmonyPatches;
@@ -17,38 +18,34 @@ namespace WarfareAndWarbands.CharacterCustomization
     public class GameComponent_Customization : GameComponent
     {
         public static GameComponent_Customization Instance;
-        public List<CustomizationRequest> customizationRequests;
-        public List<PawnKindDef> generatedKindDefs;
-
+        private List<CustomizationRequest> _customizationRequests;
+        private List<PawnKindDef> _generatedKindDefs;
+        private const int _equipmentBudgetLimit = 120;
+        private int _equipmentBudgetLimitOffset;
 
 
         public GameComponent_Customization(Game game)
         {
             Instance = this;
-            generatedKindDefs = new List<PawnKindDef>();
-            customizationRequests = new List<CustomizationRequest>();
-        }
-        public override void StartedNewGame()
-        {
-            base.StartedNewGame();
-
+            _generatedKindDefs = new List<PawnKindDef>();
+            _customizationRequests = new List<CustomizationRequest>();
+            _equipmentBudgetLimitOffset = 0;
         }
 
-        public override void LoadedGame()
-        {
-            base.LoadedGame();
-            GenerateAllPawnKindDef();
-            RemoveNulls();
-        }
+        public List<CustomizationRequest> CustomizationRequests => _customizationRequests;
+        public List<PawnKindDef> GeneratedKindDefs => _generatedKindDefs;
+        public int EquipmentBudgetLimit => _equipmentBudgetLimit + _equipmentBudgetLimitOffset;
+
+   
 
         private void RemoveNulls()
         {
-            customizationRequests.RemoveAll(x => x == null);
+            _customizationRequests.RemoveAll(x => x == null);
         }
 
         private void GenerateAllPawnKindDef()
         {
-            foreach (var request in customizationRequests)
+            foreach (var request in _customizationRequests)
             {
 
                 var factionDef = Faction.OfPlayer != null ? Faction.OfPlayer.def : FactionDefOf.OutlanderCivil;
@@ -57,7 +54,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                 {
                     defaultKindDef.race = request.GetAlienRace();
                 }
-                generatedKindDefs.Add(defaultKindDef);
+                _generatedKindDefs.Add(defaultKindDef);
             }
             WarbandUtil.RefreshSoldierPawnKinds();
         }
@@ -76,6 +73,11 @@ namespace WarfareAndWarbands.CharacterCustomization
             AddRequest(request);
         }
 
+        public void ReOrder(List<int> order)
+        {
+            _customizationRequests = order.Select(i => _customizationRequests[i]).ToList();
+        }
+
         public void AddRequest(CustomizationRequest request)
         {
             var factionDef = Faction.OfPlayer != null ? Faction.OfPlayer.def : FactionDefOf.OutlanderCivil;
@@ -85,10 +87,10 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         public void AddRequest(PawnKindDef def, CustomizationRequest request)
         {
-            if (!customizationRequests.Any(x => x.defName == def.defName))
+            if (!_customizationRequests.Any(x => x.defName == def.defName))
             {
-                customizationRequests.Add(request);
-                generatedKindDefs.Add(def);
+                _customizationRequests.Add(request);
+                _generatedKindDefs.Add(def);
                 WarbandUtil.RefreshSoldierPawnKinds();
                 GameComponent_WAW.playerWarband.Refresh();
             }
@@ -102,11 +104,11 @@ namespace WarfareAndWarbands.CharacterCustomization
                 Messages.Message("WAW.CantDelete".Translate(), MessageTypeDefOf.RejectInput);
                 return;
             }
-            if (generatedKindDefs.Any(x => x.defName == request.defName))
+            if (_generatedKindDefs.Any(x => x.defName == request.defName))
             {
-                generatedKindDefs.RemoveAll(x => x.defName == request.defName);
+                _generatedKindDefs.RemoveAll(x => x.defName == request.defName);
             }
-            customizationRequests.RemoveAll(x => x.defName == request.defName);
+            _customizationRequests.RemoveAll(x => x.defName == request.defName);
             WarbandUtil.RefreshSoldierPawnKinds();
             GameComponent_WAW.playerWarband.Refresh();
 
@@ -114,21 +116,38 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         public void DeletePawnKindDef(PawnKindDef def)
         {
-            if (generatedKindDefs.Contains(def))
+            if (_generatedKindDefs.Contains(def))
             {
-                generatedKindDefs.Remove(def);
+                _generatedKindDefs.Remove(def);
             }
-            customizationRequests.RemoveAll(x => x.defName == def.defName);
+            _customizationRequests.RemoveAll(x => x.defName == def.defName);
 
             WarbandUtil.RefreshSoldierPawnKinds();
             GameComponent_WAW.playerWarband.Refresh();
         }
 
+        public void IncreaseLimitOffset(int amount)
+        {
+            _equipmentBudgetLimitOffset += amount;
+        }
+
+        public void ReduceLimitOffset(int amount)
+        {
+            _equipmentBudgetLimitOffset = Math.Max(0, _equipmentBudgetLimitOffset - amount);
+        }
+
+        public override void LoadedGame()
+        {
+            base.LoadedGame();
+            GenerateAllPawnKindDef();
+            RemoveNulls();
+        }
 
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Collections.Look(ref customizationRequests, "customizationRequests", LookMode.Deep);
+            Scribe_Collections.Look(ref _customizationRequests, "customizationRequests", LookMode.Deep);
+            Scribe_Values.Look(ref _equipmentBudgetLimitOffset, "equipmentBudgetLimitOffset");
         }
     }
 }

@@ -229,21 +229,6 @@ namespace WarfareAndWarbands
             }
         }
 
-        void SpawnRandomWarband()
-        {
-            var validFactions = WarfareUtil.GetValidWarFactions();
-            int len = validFactions.Count;
-            IntRange r = new IntRange(0, len - 1);
-            int rndIdx = r.RandomInRange;
-            var pickedFaction = validFactions.ElementAt(rndIdx);
-            var worldObject = WarfareUtil.RandomHostileSettlement(pickedFaction);
-            if (worldObject == null)
-            {
-                return;
-            }
-            WarfareUtil.SpawnWarbandTargetingBase(pickedFaction, worldObject);
-        }
-
         void ReturnInterest()
         {
             if(!playerBankAccount.CanSpend())

@@ -91,9 +91,9 @@ namespace WarfareAndWarbands.Warband.Mercenary
                     try
                     {
                         pawn = GenerateVassalPawn(warband, ele.Key, out bool succeed);
-                        if (pawn != null && GameComponent_Customization.Instance.customizationRequests.Any(x => x.defName == ele.Key))
+                        if (pawn != null && GameComponent_Customization.Instance.CustomizationRequests.Any(x => x.defName == ele.Key))
                         {
-                            var targetRequest = GameComponent_Customization.Instance.customizationRequests.First(x => x.defName == ele.Key);
+                            var targetRequest = GameComponent_Customization.Instance.CustomizationRequests.First(x => x.defName == ele.Key);
                             targetRequest?.CustomizePawn(ref pawn);
                         }
                     }
@@ -126,9 +126,9 @@ namespace WarfareAndWarbands.Warband.Mercenary
         {
             PawnKindDef kindDef = WarbandUtil.SoldierPawnKindsCache.Where(x => x.combatPower > 50).RandomElement();
             bool isCustom = false;
-            if (GameComponent_Customization.Instance.customizationRequests.Any(x => x.defName == kindDefName))
+            if (GameComponent_Customization.Instance.CustomizationRequests.Any(x => x.defName == kindDefName))
             {
-                kindDef = GameComponent_Customization.Instance.generatedKindDefs.First(x => x.defName == kindDefName);
+                kindDef = GameComponent_Customization.Instance.GeneratedKindDefs.First(x => x.defName == kindDefName);
                 isCustom = true;
             }
             else if (WarbandUtil.SoldierPawnKindsCache.Any(x => x.defName == kindDefName))
@@ -168,9 +168,9 @@ namespace WarfareAndWarbands.Warband.Mercenary
         static PawnGenerationRequest GetRequestFromVassal(WorldObject_VassalWarband warband, string kindDefName, out bool succeed)
         {
             PawnKindDef kindDef = WarbandUtil.SoldierPawnKindsCache.Where(x => x.combatPower > 50).RandomElement();
-            if (GameComponent_Customization.Instance.customizationRequests.Any(x => x.defName == kindDefName))
+            if (GameComponent_Customization.Instance.CustomizationRequests.Any(x => x.defName == kindDefName))
             {
-                kindDef = GameComponent_Customization.Instance.generatedKindDefs.First(x => x.defName == kindDefName);
+                kindDef = GameComponent_Customization.Instance.GeneratedKindDefs.First(x => x.defName == kindDefName);
             }
             else if (WarbandUtil.SoldierPawnKindsCache.Any(x => x.defName == kindDefName))
             {
@@ -201,9 +201,9 @@ namespace WarfareAndWarbands.Warband.Mercenary
                 return null;
             }
 
-            if (GameComponent_Customization.Instance.customizationRequests.Any(x => x.defName == kindDefName))
+            if (GameComponent_Customization.Instance.CustomizationRequests.Any(x => x.defName == kindDefName))
             {
-                var targetRequest = GameComponent_Customization.Instance.customizationRequests.First(x => x.defName == kindDefName);
+                var targetRequest = GameComponent_Customization.Instance.CustomizationRequests.First(x => x.defName == kindDefName);
                 targetRequest?.CustomizePawn(ref pawn);
             }
 

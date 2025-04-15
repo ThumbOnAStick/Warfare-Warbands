@@ -39,17 +39,17 @@ namespace WarbandWarfareQuestline.League.UI
                 Find.WorldTargeter.StopTargeting();
             }
             CameraJumper.TryShowWorld();
-            Find.WorldTargeter.BeginTargeting(targetAction, true, canSelectTarget: IsRoadTile);
+            Find.WorldTargeter.BeginTargeting(targetAction, true, canSelectTarget: IsRoadBuildableOnTile);
         }
 
-        private static bool IsRoadTile(GlobalTargetInfo info)
+        private static bool IsRoadBuildableOnTile(GlobalTargetInfo info)
         {
             return info.WorldObject?.Faction == RimWorld.Faction.OfPlayer;
         }
 
         private static bool SetRoadTile(GlobalTargetInfo info, bool isStartingTile)
         {
-            if (!IsRoadTile(info))
+            if (!IsRoadBuildableOnTile(info))
             {
                 return false;
             }
@@ -126,7 +126,7 @@ namespace WarbandWarfareQuestline.League.UI
             DrawTileMarker(GameComponent_League.Instance.RoadBuilder.DestTile, Texture2D.whiteTexture);
 
             // Display informational text or confirmation button
-            if (GameComponent_League.Instance.RoadBuilder.IsRoadReadyToBuild())
+            if (GameComponent_League.Instance.RoadBuilder.CanRoadBeBuilt())
             {
                 DrawConfirmationButton(centerBottom);
             }

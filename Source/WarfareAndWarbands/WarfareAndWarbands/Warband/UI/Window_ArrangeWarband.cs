@@ -77,7 +77,6 @@ namespace WarfareAndWarbands.Warband
             {
                 this.Close();
                 GameComponent_WAW.playerWarband.CreateWarbandWorldObject(map);
-
             }
         }
 

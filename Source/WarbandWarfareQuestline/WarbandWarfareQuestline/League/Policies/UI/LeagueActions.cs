@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,13 @@ namespace WarbandWarfareQuestline.League.Policies.UI
 
         static void SwitchToRoadBuilder()
         {
+            // When the cool down is active, notify the player
+            if (!GameComponent_League.Instance.RoadBuilder.IsBuilderReadyToBuild())
+            {
+                Messages.Message("WAW.RoadConstruct.DaysAhead".Translate(GameComponent_League.Instance.RoadBuilder.UsageRemainingCoolDownDays.ToString("0.0")), MessageTypeDefOf.RejectInput);
+                return;
+            }
+
             CameraJumper.TryShowWorld();
             LeagueDrawer.SwitchDrawingMode(LeagueDrawer.LeagueDrawingMode.Roads);
         }

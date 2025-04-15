@@ -12,11 +12,12 @@
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>ArmExpansion</defName>
-        <description>Expand the military arsenal to strengthen the faction's warfare capabilities.</description>
+        <description>Expand the military arsenal to strengthen the faction's warfare capabilities, raise equipment budget.</description>
         <label>Arm Expansion</label>
         <category>Warfare</category>
         <taxBonus>-0.2</taxBonus>
         <cost>2000</cost>
+        <equipmentBudgetLimitOffset>100</equipmentBudgetLimitOffset>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <!-- New Economy Policies -->
@@ -53,7 +54,7 @@
     <!-- New Warfare Policies -->
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>AdvancedTactics</defName>
-        <description>Develop advanced military tactics to improve battlefield performance.</description>
+        <description>Develop advanced military tactics to improve battlefield performance, allows droppod raids for warbands.</description>
         <label>Advanced Tactics</label>
         <prerequisite>ArmExpansion</prerequisite>
         <category>Warfare</category>
@@ -69,6 +70,16 @@
         <category>Warfare</category>
         <taxBonus>-0.3</taxBonus>
         <cost>5000</cost>
+        <equipmentBudgetLimitOffset>200</equipmentBudgetLimitOffset>
+    </WarbandWarfareQuestline.League.Policies.PolicyDef>
+
+    <WarbandWarfareQuestline.League.Policies.PolicyDef>
+        <defName>StartSkirmish</defName>
+        <description>Allows you to start a skirmish on your own.</description>
+        <label>Military Provocation</label>
+        <prerequisite>AdvancedTactics</prerequisite>
+        <category>Warfare</category>
+        <cost>20000</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
@@ -79,5 +90,6 @@
         <category>Warfare</category>
         <taxBonus>-0.2</taxBonus>
         <cost>8000</cost>
+        <equipmentBudgetLimitOffset>200</equipmentBudgetLimitOffset>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 </Defs>

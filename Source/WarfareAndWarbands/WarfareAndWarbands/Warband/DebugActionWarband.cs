@@ -37,11 +37,11 @@ namespace WarfareAndWarbands.Warband
         [DebugAction("WAW", "Spawn imperial skipmaster", requiresRoyalty: true,  false, false, false, 0, false, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         public static void DoDropHeavyItemsJob()
         {
-            if (GameComponent_Customization.Instance.customizationRequests.Count < 1)
+            if (GameComponent_Customization.Instance.CustomizationRequests.Count < 1)
             {
                 return;
             }
-            PsycasterInfo info = new PsycasterInfo(GameComponent_Customization.Instance.customizationRequests.First(), new List<string> { "VPE_Skipmaster" });
+            PsycasterInfo info = new PsycasterInfo(GameComponent_Customization.Instance.CustomizationRequests.First(), new List<string> { "VPE_Skipmaster" });
             var caster = info.CreatePsycaster();
             GenSpawn.Spawn(caster, Verse.UI.MouseCell(), Find.CurrentMap, WipeMode.Vanish);
         }

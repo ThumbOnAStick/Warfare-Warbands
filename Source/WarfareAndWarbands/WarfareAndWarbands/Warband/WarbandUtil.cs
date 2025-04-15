@@ -130,7 +130,7 @@ namespace WarfareAndWarbands.Warband
             List<PawnKindDef> result = new List<PawnKindDef>(cache);
             if (GameComponent_Customization.Instance != null)
             {
-                var generated = GameComponent_Customization.Instance.generatedKindDefs;
+                var generated = GameComponent_Customization.Instance.GeneratedKindDefs;
                 foreach (var ele in generated)
                 {
                     if (!result.Any(x => x.defName == ele.defName))

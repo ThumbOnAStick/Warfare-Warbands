@@ -107,5 +107,5 @@
 	<WAW.CongressAvailable.Desc>一个新的小派系加入了你的联盟。联盟会议现在可用，你可以通过它制定新的政策。</WAW.CongressAvailable.Desc>
 	<WAW.CantAffordFromBank>银行余额不足</WAW.CantAffordFromBank>
 	<WAW.FLTM.ConstructRoad>建造道路</WAW.FLTM.ConstructRoad>
-
+	<WAW.RoadConstruct.DaysAhead.Desc>你需要等到<color value="#00FFFF">{0}天</color>后才能建造道路。</WAW.RoadConstruct.DaysAhead.Desc>
 </LanguageData>

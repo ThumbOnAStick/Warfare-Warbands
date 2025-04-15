@@ -12,6 +12,7 @@ namespace WarbandWarfareQuestline.League.Policies
         public PolicyCategoryDef category;
         public float taxBonus;
         public int cost;
+        public int equipmentBudgetLimitOffset;
 
         private PolicyWorker _worker;
         public PolicyWorker Worker
@@ -22,6 +23,7 @@ namespace WarbandWarfareQuestline.League.Policies
                 if (flag)
                 {
                     this._worker = (PolicyWorker)Activator.CreateInstance(this.workerClass);
+                    this._worker.def = this;
                 }
                 return this._worker;
             }

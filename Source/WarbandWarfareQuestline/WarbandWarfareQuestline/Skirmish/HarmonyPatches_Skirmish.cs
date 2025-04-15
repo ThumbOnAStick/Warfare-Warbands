@@ -27,7 +27,7 @@ namespace WarbandWarfareQuestline.Skirmish
             Harmony harmony;
             if ((harmony = HarmonyPatches_Skirmish.harmony) == null)
             {
-                harmony = (HarmonyPatches_Skirmish.harmony = new Harmony("thumb.WAW"));
+                harmony = (HarmonyPatches_Skirmish.harmony = new Harmony("thumb.WAW.skirmish"));
             }
             HarmonyPatches_Skirmish.harmony = harmony;
             PatchHarmony();
@@ -41,7 +41,7 @@ namespace WarbandWarfareQuestline.Skirmish
         }
 
 
-        public static void WorldObjectDestroyedPatch(WorldObject worldObject)
+        public static void WorldObjectDestroyedPatch()
         {
            GameComponent_Skrimish.Instance.OnWorldObjectDestroyed();
         }

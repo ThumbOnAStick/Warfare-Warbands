@@ -149,7 +149,12 @@ namespace WarbandWarfareQuestline.League.Policies.UI
         void DrawPolicyDescription()
         {
             _topTextDrawingArea.position += new Vector2(0, _topTextDrawingArea.height);
-            Widgets.Label(_topTextDrawingArea, $"<color=#808080>{_policy.Def.description}</color>" + "WAW.TaxOffset".Translate(String.Format("{0:P2}", _policy.Def.taxBonus)));
+            string desc = $"<color=#808080>{_policy.Def.description}</color>";
+            if(_policy.Def.equipmentBudgetLimitOffset > 0)
+            {
+                desc += " " + "WAW.EquipmentImprovingPolicy".Translate(_policy.Def.equipmentBudgetLimitOffset);
+            }
+            Widgets.Label(_topTextDrawingArea, desc + "WAW.TaxOffset".Translate(String.Format("{0:P2}", _policy.Def.taxBonus)));
         }
 
         void DrawVotingResult()

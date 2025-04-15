@@ -92,4 +92,6 @@
     <WAW.RoadConstruct.DecideDest>Select Destination</WAW.RoadConstruct.DecideDest>
     <WAW.RoadConstruct.Info>You can only select player bases or vassal settlements.</WAW.RoadConstruct.Info>
     <WAW.RoadConstruct.Confirm>Confirm</WAW.RoadConstruct.Confirm>
+    <WAW.CombatPowerOutOfLimit>Combat power of this pawnkind is above limit ({0}).</WAW.CombatPowerOutOfLimit>
+    <WAW.EquipmentImprovingPolicy>This policy increases the max combat power of soldier you can select(+{0}).</WAW.EquipmentImprovingPolicy>
 </LanguageData>

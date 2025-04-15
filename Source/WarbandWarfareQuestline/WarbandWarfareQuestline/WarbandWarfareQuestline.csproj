@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="League\DebugActionLeague.cs" />
+    <Compile Include="League\HarmonyPatches_League.cs" />
     <Compile Include="League\MinorFactions\FactionTraitDef.cs" />
     <Compile Include="League\MinorFactions\FactionTraitDefOf.cs" />
     <Compile Include="League\GameComponent_League.cs" />

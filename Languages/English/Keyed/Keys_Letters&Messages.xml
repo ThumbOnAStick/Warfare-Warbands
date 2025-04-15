@@ -113,4 +113,5 @@
 	<WAW.CongressAvailable.Desc>A new minor faction has joined your league. The league congress is now available, allowing you to establish new policies through it.</WAW.CongressAvailable.Desc>
 	<WAW.CantAffordFromBank>Insufficient fund from bank.</WAW.CantAffordFromBank>
 	<WAW.FLTM.ConstructRoad>Road Construction</WAW.FLTM.ConstructRoad>
+	<WAW.RoadConstruct.DaysAhead>Can't build in <color value="#00FFFF">{0}days</color>.</WAW.RoadConstruct.DaysAhead>
 </LanguageData>	

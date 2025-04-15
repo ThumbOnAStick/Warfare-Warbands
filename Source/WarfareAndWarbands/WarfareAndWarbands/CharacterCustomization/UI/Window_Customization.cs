@@ -72,7 +72,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             }
             DrawCutomizationRequests(inRect);
             DrawPawn(inRect);
-            var requests = GameComponent_Customization.Instance.customizationRequests;
+            var requests = GameComponent_Customization.Instance.CustomizationRequests;
             if (requests.Count >= 1 && selectedRequest != null)
             {
                 DrawPawnCost(inRect);
@@ -86,7 +86,7 @@ namespace WarfareAndWarbands.CharacterCustomization
         void InitializeRequests()
         {
             selectedList = new List<ThingDef>();
-            var requests = GameComponent_Customization.Instance.customizationRequests;
+            var requests = GameComponent_Customization.Instance.CustomizationRequests;
             if (requests.Count > 0)
             {
                 SelectNextRequest(requests.First());
@@ -111,12 +111,12 @@ namespace WarfareAndWarbands.CharacterCustomization
         void RefreshDraggables()
         {
             this.draggables = new Dictionary<DraggableButton, CustomizationRequest>();
-            var requests = GameComponent_Customization.Instance.customizationRequests;
+            var requests = GameComponent_Customization.Instance.CustomizationRequests;
             requestOutRect = new Rect(50, 100, pawnkindWidth, 400);
             requestViewRect = new Rect(requestOutRect.x, requestOutRect.y, requestOutRect.width - 10, (pawnkindHeight + pawnkindSpacing) * requests.Count + 5);
             int requestIndex = 0;
             Rect buttonRect = new Rect(requestViewRect.x, requestViewRect.y, requestViewRect.width - 10, pawnkindHeight);
-            if (GameComponent_Customization.Instance.customizationRequests.Count < 1)
+            if (GameComponent_Customization.Instance.CustomizationRequests.Count < 1)
             {
                 return;
             }
@@ -137,7 +137,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             if (draggables.ContainsKey(other) && draggables[other] != null)
             {
                 CustomizationRequest otherRequest = draggables[other];
-                var requests = GameComponent_Customization.Instance.customizationRequests;
+                var requests = GameComponent_Customization.Instance.CustomizationRequests;
                 var idx1 = requests.IndexOf(request);
                 var idx2 = requests.IndexOf(otherRequest);
                 var order = new List<int>();
@@ -156,7 +156,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                         order.Add(i);
                     }
                 }
-                GameComponent_Customization.Instance.customizationRequests = order.Select(i => requests[i]).ToList();
+                GameComponent_Customization.Instance.ReOrder(order);
 
 
             }
@@ -184,7 +184,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             Rect cloneRequestRect = selectedRequest != null ? new Rect(boxRect.xMax, newRequestRect.yMax + 10, 30, 30) : newRequestRect;
             Rect deleteRequestRect = new Rect(boxRect.xMax, cloneRequestRect.yMax + 10, 30, 30);
 
-            var requests = GameComponent_Customization.Instance.customizationRequests;
+            var requests = GameComponent_Customization.Instance.CustomizationRequests;
             if (requests.Count < 1)
             {
                 Rect noPawnKindsFoundRect = new Rect(30, 20, 200, 100);

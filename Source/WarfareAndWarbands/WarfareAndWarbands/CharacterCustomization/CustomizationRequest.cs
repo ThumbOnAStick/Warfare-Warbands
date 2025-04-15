@@ -94,9 +94,9 @@ namespace WarfareAndWarbands.CharacterCustomization
 
         public void UpdatePawnKindDef()
         {
-            if (GameComponent_Customization.Instance.generatedKindDefs.Any(x => x.defName == defName))
+            if (GameComponent_Customization.Instance.GeneratedKindDefs.Any(x => x.defName == defName))
             {
-                PawnKindDef targetDef = GameComponent_Customization.Instance.generatedKindDefs.First(x => x.defName == defName);
+                PawnKindDef targetDef = GameComponent_Customization.Instance.GeneratedKindDefs.First(x => x.defName == defName);
                 combatPowerCache = GetCombatPower();
                 targetDef.combatPower = combatPowerCache;
                 targetDef.label = label;

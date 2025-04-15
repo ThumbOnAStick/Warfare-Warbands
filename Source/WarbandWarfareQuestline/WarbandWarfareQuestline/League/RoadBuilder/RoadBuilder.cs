@@ -15,12 +15,25 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
         private int _destTile;
         private int _fromTileTemp;
         private int _toTileTemp;
+        private int _lastUsageTick;
         private bool _unlocked;
+        private const float _usageCooldownDays = 10;
+        private RoadDef _roadDef;
 
-        public RoadBuilder() { }
+        public RoadBuilder()
+        {
+            _lastUsageTick = -UsageCoolDownTicks;
+            // Default road def
+            _roadDef = DefDatabase<RoadDef>.AllDefs.First();
+        }
 
         public int StartingTile => _startingTile;
         public int DestTile => _destTile;
+        public int LastUsageTick => _lastUsageTick;
+        public int UsageCoolDownTicks => (int)(_usageCooldownDays * GenDate.TicksPerDay);
+        public int UsageRemainingCoolDownTicks => UsageCoolDownTicks - (GenTicks.TicksGame - _lastUsageTick);
+        public float UsageRemainingCoolDownDays => UsageRemainingCoolDownTicks / (float)GenDate.TicksPerDay;
+
         public bool Unlocked => _unlocked;  
 
         public void SetStartAndDest(int start = 0, int dest = 0)
@@ -35,6 +48,11 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
             _toTileTemp = to != 0 ? to : _toTileTemp;
         }
 
+        public void SetLastUsageTick(int tick)
+        {
+            _lastUsageTick = tick;
+        }
+
         private WorldPath GenerateNewPath()
         {
             WorldPath worldPath = Find.WorldPathFinder.FindPath(_startingTile, _destTile, null);
@@ -43,6 +61,11 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
                 worldPath.AddNodeAtStart(_startingTile);
             }
             return worldPath;
+        }
+
+        public bool IsBuilderReadyToBuild()
+        {
+            return UsageRemainingCoolDownTicks < 0;
         }
 
         public void BuildRoad()
@@ -55,14 +78,15 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
             }
 
             var roadPath = GenerateNewPath();
-            var road = DefDatabase<RoadDef>.GetRandom();
             while (roadPath.NodesLeftCount > 1)
             {
                 int nextTile = roadPath.ConsumeNextNode();
                 SetTempRoadTiles(pointer, nextTile);
-                BuildRoadBetweenTempNodes(road);
+                BuildRoadBetweenTempNodes(_roadDef);
                 pointer = nextTile;
             }
+            // Reset usage
+            SetLastUsageTick(GenTicks.TicksGame);
             Log.Message($"WAWRoadBuilder: Road starting from {_startingTile} to {_destTile} is built");
         }
 
@@ -100,7 +124,7 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
             _unlocked = false;
         }   
 
-        public bool IsRoadReadyToBuild()
+        public bool CanRoadBeBuilt()
         {
             return _startingTile > 0 &&
                 _destTile > 0 &&
@@ -124,6 +148,8 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
         public void ExposeData()
         {
             Scribe_Values.Look(ref _unlocked, "_unlocked");
+            Scribe_Values.Look(ref _lastUsageTick, "_lastUsageTick");
+            Scribe_Defs.Look(ref _roadDef, "_roadDef");
         }
     }
 }
