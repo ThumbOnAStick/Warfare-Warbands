@@ -45,33 +45,36 @@ namespace WarbandWarfareQuestline.League.Policies.UI
         {
             Text.Anchor = TextAnchor.MiddleCenter;
             Widgets.Label(rect.TopHalf(), policy.Def.label);
-            Widgets.Label(rect.BottomHalf(), policy.Def.cost.ToString());
+            Widgets.Label(rect.BottomHalf(), policy.Def.CostLabel);
             Text.Anchor = TextAnchor.UpperLeft;
 
-            Color color = isParentDisabled ? Color.grey : Color.white;
-            if (!policy.Disabled)
-            {
-                color = new Color(.2f, 1f, .2f);
-            }
+            Color color = isParentDisabled ? Color.grey : (policy.Disabled ? Color.white : new Color(.2f, 1f, .2f));
             Widgets.DrawBoxSolidWithOutline(rect, new Color(0, 0, 0, 0), color);
+
+            // Draw policy descriptions
+            TooltipHandler.TipRegion(rect, policy.Def.description);
+
             if (!policy.Disabled)
             {
                 Widgets.DrawHighlight(rect, 2);
-            }
-            if (isParentDisabled || GameComponent_League.Instance.NoFactionInLeague() || GameComponent_League.Instance.PointsInssufficient())
-            {
                 return;
             }
+
+            if (isParentDisabled || GameComponent_League.Instance.NoFactionInLeague() || GameComponent_League.Instance.PointsInssufficient())
+            {
+                if (!DebugSettings.godMode) return;
+            }
+
             if (Widgets.ButtonInvisible(rect))
             {
-                //if the you cannot afford the cost, show a message
-                if(GameComponent_WAW.playerBankAccount.Balance < policy.Def.cost)
+                if (GameComponent_WAW.playerBankAccount.Balance < policy.Def.cost && !DebugSettings.godMode)
                 {
                     Messages.Message("WAW.CantAffordFromBank".Translate(), MessageTypeDefOf.RejectInput);
                     return;
                 }
                 OpenCongressWindow(policy);
             }
+
             DrawSupporters(rect, policy, isParentDisabled);
         }
 

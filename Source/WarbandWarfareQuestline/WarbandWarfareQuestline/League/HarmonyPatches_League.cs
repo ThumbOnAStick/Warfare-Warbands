@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using RimWorld;
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
@@ -23,19 +24,38 @@ namespace WarbandWarfareQuestline.League
                 harmony = (HarmonyPatches_League.harmony = new Harmony("thumb.WAW.league"));
             }
             HarmonyPatches_League.harmony = harmony;
-            PatchHarmony();
+            PatchTradePriceImprovement();
             Log.Message("WAWLeague: Patch Successful");
         }
-        public static void PatchHarmony()
+        public static void PatchTradePriceImprovement()
         {
-            MethodInfo original = AccessTools.Method(typeof(Settlement), "get_TradePriceImprovementOffsetForPlayer");
-            HarmonyMethod postfix = new HarmonyMethod(typeof(HarmonyPatches_League).GetMethod("TradeImprovementPatch"));
-            harmony.Patch(original, postfix);
+            MethodInfo original1 = AccessTools.Method(typeof(TradeUtility), "GetPricePlayerSell");
+            HarmonyMethod postfix1 = new HarmonyMethod(typeof(HarmonyPatches_League).GetMethod("SellingImprovementPatch"));
+            harmony.Patch(original1, postfix: postfix1);
+
+            MethodInfo original2 = AccessTools.Method(typeof(TradeUtility), "GetPricePlayerBuy");
+            HarmonyMethod postfix2 = new HarmonyMethod(typeof(HarmonyPatches_League).GetMethod("BuyingImprovementPatch"));
+            harmony.Patch(original2, postfix: postfix2);
+
         }
 
-        public static void TradeImprovementPatch(ref float __result)
+        // Selling improvement
+        public static void SellingImprovementPatch(ref float __result, Thing thing)
         {
-            __result += 1f;
+            // Check if trade deal is available
+            if (GameComponent_League.Instance.IsTradeTreatyActive)
+            {
+                __result = Math.Max(__result, thing.MarketValue);
+            }
+        }
+
+        // Buying improvement
+        public static void BuyingImprovementPatch(ref float __result, Thing thing)
+        {
+            if (GameComponent_League.Instance.IsTradeTreatyActive)
+            {
+                __result = Math.Min(__result, thing.MarketValue);
+            }
         }
     }
 }

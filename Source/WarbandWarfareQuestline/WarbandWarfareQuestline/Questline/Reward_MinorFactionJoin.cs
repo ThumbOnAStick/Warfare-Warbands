@@ -15,22 +15,9 @@ namespace WarbandWarfareQuestline.Questline
 {
     public class Reward_MinorFactionJoin : Reward
     {
-        public string factionID;
         public MinorFactionSettlement mFactionBase;
 
-        public MinorFactionSettlement MFactionBase
-        {
-            get
-            {
-                if (mFactionBase == null)
-                {
-                    mFactionBase = GameComponent_League.Instance.MinorFactionSettlements.Any(x => x.MinorFaction.FactionID == factionID)
-                        ? GameComponent_League.Instance.MinorFactionSettlements.First(x => x.MinorFaction.FactionID == factionID)
-                        : null;
-                }
-                return mFactionBase;
-            }
-        }
+        private const int developmentPointsBonus = 20;
 
         public override IEnumerable<GenUI.AnonymousStackElement> StackElements
         {
@@ -38,13 +25,13 @@ namespace WarbandWarfareQuestline.Questline
             {
                 yield return QuestPartUtility.GetStandardRewardStackElement("WAW.JoinPlayerLeague".Translate(), delegate (Rect r)
                 {
-                    if (MFactionBase != null)
+                    if (mFactionBase != null)
                     {
-                        GUI.color = MFactionBase.MinorFaction.FactionColor;
-                        GUI.DrawTexture(r, MFactionBase.MinorFaction.GetFactionIcon());
+                        GUI.color = mFactionBase.MinorFaction.FactionColor;
+                        GUI.DrawTexture(r, mFactionBase.MinorFaction.GetFactionIcon());
                         GUI.color = Color.white;
                     }
-                }, () => MFactionBase == null ? new TaggedString("") : "WAW.JoinPlayerLeague.ToolTip".Translate(MFactionBase.MinorFaction.FactionName) + "\n" + MFactionBase.MinorFaction.Trait.description);
+                }, () => mFactionBase == null ? new TaggedString("") : "WAW.JoinPlayerLeague.ToolTip".Translate(mFactionBase.MinorFaction.FactionName) + "\n" + mFactionBase.MinorFaction.Trait.description);
             }
         }
 
@@ -55,7 +42,7 @@ namespace WarbandWarfareQuestline.Questline
 
         public override string GetDescription(RewardsGeneratorParams parms)
         {
-            return "WAW.JoinPlayerLeague.ToolTip".Translate(MFactionBase.MinorFaction.FactionName) + "\n" + MFactionBase.MinorFaction.Trait.description;
+            return "WAW.JoinPlayerLeague.ToolTip".Translate(mFactionBase.MinorFaction.FactionName) + "\n" + mFactionBase.MinorFaction.Trait.description;
         }
 
         public override void InitFromValue(float rewardValue, RewardsGeneratorParams parms, out float valueActuallyUsed)
@@ -66,14 +53,15 @@ namespace WarbandWarfareQuestline.Questline
         public override void Notify_Used()
         {
             base.Notify_Used();
-            MFactionBase.JoinPlayer();
+            mFactionBase.JoinPlayer();
+            GameComponent_League.Instance.AddDevelopmentPoints(developmentPointsBonus);
             Log.Message("Current Faction Count: " + GameComponent_League.Instance.Factions.Count);
         }
 
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref factionID, "factionID");
+            Scribe_References.Look(ref mFactionBase, "factionID");
         }
     }
 }

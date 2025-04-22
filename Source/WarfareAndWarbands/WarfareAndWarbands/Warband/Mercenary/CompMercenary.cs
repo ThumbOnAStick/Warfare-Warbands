@@ -133,6 +133,28 @@ namespace WarfareAndWarbands.Warband
         {
             return GenDate.TicksToDays(lastServeTick + ServeDuration - Find.TickManager.TicksGame).ToString("0.0");
         }
+        void Notify_Killed()
+        {
+            if (isLeaderCache)
+            {
+                TryNotifyPlayerLeaderKilled();
+                warband?.playerWarbandManager?.leader?.OnLeaderChanged();
+            }
+
+            else if (IsFromEmpire)
+            {
+                TryNotifyPlayerPsyCasterKilled();
+            }
+            else
+            {
+                TryKillPlayerMercenary(out bool survived);
+                TryNotifyPlayerPawnKilled(survived);
+                if (warband.playerWarbandManager.ShouldPlayerWarbandBeRemoved())
+                {
+                    warband.Destroy();
+                }
+            }
+        }
 
         public override string CompInspectStringExtra()
         {
@@ -148,20 +170,7 @@ namespace WarfareAndWarbands.Warband
             base.Notify_Killed(prevMap, dinfo);
             if (HasServingFaction() && Mercenary.MapHeld != null)
             {
-                if (isLeaderCache)
-                {
-                    TryNotifyPlayerLeaderKilled();
-                    warband?.playerWarbandManager?.leader?.OnLeaderChanged();
-                }
-                else if (IsFromEmpire)
-                {
-                    TryNotifyPlayerPsyCasterKilled();
-                }
-                else
-                {
-                    TryKillPlayerMercenary(out bool survived);
-                    TryNotifyPlayerPawnKilled(survived);
-                }
+                Notify_Killed();
             }
         }
 

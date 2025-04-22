@@ -12,9 +12,14 @@ namespace WarbandWarfareQuestline.Skirmish
 {
     public class Siege : Skirmish
     {
-        private WorldObject _target;
+        private readonly WorldObject _target;
 
         public override int Bonus => 3000; 
+
+        public Siege()
+        {
+
+        }
 
         public Siege(List<Warband> warbands, int creationTick, WorldObject target) : base(warbands, creationTick)
         {

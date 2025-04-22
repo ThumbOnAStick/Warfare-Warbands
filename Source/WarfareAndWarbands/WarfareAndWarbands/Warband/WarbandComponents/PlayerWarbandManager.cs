@@ -256,13 +256,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 return;
             }
             injuriesManager?.Tick();
-            if (ShouldPlayerWarbandBeRemoved())
-            {
-                warband.Destroy();
-            }
+
         }
 
-        bool ShouldPlayerWarbandBeRemoved()
+        public bool ShouldPlayerWarbandBeRemoved()
         {
             return warband.GetMemberCount() < 1 && !warband.HasLeader();
         }

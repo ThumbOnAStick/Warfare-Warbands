@@ -22,4 +22,6 @@
 	<WAW.SelectOnePath>Please select at least one path.</WAW.SelectOnePath>
 	<WAW.enableEquipmentBudgetLimit>Enable equipment budget limit</WAW.enableEquipmentBudgetLimit>
 	<WAW.enableEquipmentBudgetLimit.Desc>Should total eqiupment fee be limited before choosing revelant policies or not.</WAW.enableEquipmentBudgetLimit.Desc>
+	<WAW.enableDroppodPolicyRequirement>Enable droppod policy requirement</WAW.enableDroppodPolicyRequirement>
+	<WAW.enableDroppodPolicyRequirement.Desc>Player warband needs "Advanced Tatics" policy to execute droppod raids.</WAW.enableDroppodPolicyRequirement.Desc>
 </LanguageData>

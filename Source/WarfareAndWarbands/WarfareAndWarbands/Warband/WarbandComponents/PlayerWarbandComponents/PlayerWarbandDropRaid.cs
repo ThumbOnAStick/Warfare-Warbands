@@ -13,6 +13,11 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
 {
     public class PlayerWarbandDropRaid : IExposable
     {
+        public bool Activated => WAWSettings.dropPodRaidRequiresUpgrade || activated;
+        private bool activated;
+        private Warband warband;
+        private Map mapCached;
+
         public PlayerWarbandDropRaid(Warband warband) 
         {
             activated = false;
@@ -33,6 +38,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
             TargetingParameters targetParams = TargetingParameters.ForDropPodsDestination();
             mapCached = map;
             targeter.BeginTargeting(targetParams: targetParams, action: LaunchWarband, onGuiAction: GUIAction);
+
 
         }
 
@@ -82,9 +88,6 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
             TransportPodsArrivalActionUtility.DropTravelingTransportPods(dropPods, near, map);
         }
 
-        public bool Activated => WAWSettings.dropPodRaidRequiresUpgrade || activated;
-        private bool activated;
-        private Warband warband;
-        private Map mapCached;
+
     }
 }

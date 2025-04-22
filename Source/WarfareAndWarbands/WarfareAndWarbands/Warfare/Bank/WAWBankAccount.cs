@@ -11,8 +11,10 @@ namespace WarfareAndWarbands.Warfare.Bank
     public class WAWBankAccount:IExposable
     {
         private int _balance;
-        private readonly float _interestRate = 0.05f;
-       
+        private bool _expanseReductionAvailable;
+        private const float _interestRate = 0.05f;
+        private const float _expenseReduction = 0.1f;
+
         public WAWBankAccount()
         {
 
@@ -24,8 +26,9 @@ namespace WarfareAndWarbands.Warfare.Bank
         }
 
         public int Balance => this._balance;
-        public float GrowthRatio => this._interestRate + 1;
-        public int Interest => (int)(this.Balance * this._interestRate);
+        public float GrowthRatio => _interestRate + 1;
+        public int Interest => (int)(this.Balance * _interestRate);
+        public bool ExpanseReductionAvailable => _expanseReductionAvailable;
 
         public void ReturnInterestPerSeason()
         {
@@ -37,10 +40,26 @@ namespace WarfareAndWarbands.Warfare.Bank
             this._balance += amount;
         }
 
+        // Activate
+        public void ActivateExpanseReduction()
+        {
+            this._expanseReductionAvailable = true;
+        }
+
+        //Deactivate
+        public void DeActivateExpanseReduction()
+        {
+            this._expanseReductionAvailable = false;
+        }
+
         public void Spend(int amount)
         {
-            if(CanSpend())
-            this._balance -= amount; 
+            if (CanSpend())
+            {
+                int actualAmount = _expanseReductionAvailable ? (int)(amount * (1f- _expenseReduction)) : amount;
+                this._balance -= actualAmount; 
+            }
+
         }
 
         public bool CanSpend()

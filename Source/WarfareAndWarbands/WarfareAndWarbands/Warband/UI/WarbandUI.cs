@@ -124,11 +124,19 @@ namespace WarfareAndWarbands.Warband.UI
                 WarbandUtil.TryToSendQuickAttackLetter();
             });
             if (attackManager.targetMapP.HasMap && attackManager.upgradeHolder.CanDroppod)
-                yield return new FloatMenuOption("WAW.PodAttack".Translate(), delegate
+            {
+                if (GameComponent_WAW.Instance.IsDropRaidAvailable || !WAWSettings.enableDroppodPolicyRequirement)
+                    yield return new FloatMenuOption("WAW.PodAttack".Translate(), delegate
+                    {
+                        attackManager.AttackDropPod();
+                        WarbandUtil.TryToSendQuickAttackLetter();
+                    });
+                else
                 {
-                    attackManager.AttackDropPod();
-                    WarbandUtil.TryToSendQuickAttackLetter();
-                });
+                    yield return new FloatMenuOption("WAW.FLTM.PodAttackUnavailable".Translate(), null);
+                }
+            }
+
 
         }
 
@@ -139,12 +147,6 @@ namespace WarfareAndWarbands.Warband.UI
             {
                 vassal.AttackLand(p);
             });
-            //if (p.HasMap)
-            //    yield return new FloatMenuOption("WAW.PodAttack".Translate(), delegate
-            //    {
-            //        vassal.AttackDropPod();
-            //    });
-
         }
 
         public static void GetVassalWarbandAttackOptions(this WorldObject_VassalWarband vassal, MapParent p)

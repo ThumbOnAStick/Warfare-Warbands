@@ -165,17 +165,19 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public void Tick()
         {
-           
+            if (!this.moving)
+            {
+                return;
+            }
             if (this.nextTileCostLeft > 0f)
             {
                 this.nextTileCostLeft -= warband.playerWarbandManager.upgradeHolder.MoveSpeed;
                 ResolveDrawPos();
                 return;
             }
-            if (this.moving)
-            {
-                this.TryEnterNextPathTile();
-            }
+
+            this.TryEnterNextPathTile();
+            
         }
 
         public void ResetPath()

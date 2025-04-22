@@ -6,14 +6,28 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using WarbandWarfareQuestline.League.UI;
+using WarbandWarfareQuestline.Skirmish;
 
 namespace WarbandWarfareQuestline.League.Policies.UI
 {
     public static class LeagueActions 
     {
 
+        public static void OpenActionsMenu()
+        {
+            if(GetActions().Count() == 0)
+            {
+                return;
+            }
+            Find.WindowStack.Add(GetLeagueActionsMenu());
+        }
+
         public static FloatMenu GetLeagueActionsMenu()
         {
+            if (GetActions().Count() <= 0)
+            {
+                return NoActionMenu();
+            }
             return new FloatMenu(GetActions().ToList());
         }
 
@@ -23,6 +37,22 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             {
                 yield return RoadConstructorOption();
             }
+
+            if (GameComponent_Skrimish.Instance.CanCreatePlayerSkirmish())
+            {
+                yield return PlayerSkirmishOption();
+            }
+
+            yield break;
+        }
+
+        public static FloatMenu NoActionMenu()
+        {
+            return new FloatMenu(new List<FloatMenuOption>
+            {
+                new FloatMenuOption("WAW.FLTM.NoActions".Translate(), null)
+            })
+            ;
         }
 
 
@@ -51,6 +81,13 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             return new FloatMenuOption("WAW.FLTM.ConstructRoad".Translate(), () => { SwitchToRoadBuilder(); });
         }
 
+        #endregion
+
+        #region PlayerSkirmish
+        public static FloatMenuOption PlayerSkirmishOption()
+        {
+            return new FloatMenuOption("WAW.FLTM.PlayerSkirmish".Translate(), () => { GameComponent_Skrimish.Instance.CreatePlayerSkirmish(); });
+        }
         #endregion
     }
 }

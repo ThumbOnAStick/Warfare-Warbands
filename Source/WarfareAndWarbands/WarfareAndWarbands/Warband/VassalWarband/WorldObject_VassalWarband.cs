@@ -29,26 +29,6 @@ namespace WarfareAndWarbands.Warband.VassalWarband
         public Dictionary<string, int> BandMembers => _bandMembers;
         public override Color ExpandingIconColor => _colorOverride;
 
-        Dictionary<string, int> GenerateNPCCombatGroup()
-        {
-            Faction f = Find.FactionManager.AllFactions.First(x => !x.Hidden);
-            var combatGroup = f.def.pawnGroupMakers.Where(x => x.kindDef == PawnGroupKindDefOf.Combat && x.maxTotalPoints > 1000).RandomElement();
-            float actualPoints = Math.Max(StorytellerUtility.DefaultThreatPointsNow(Find.AnyPlayerHomeMap), 1000);
-            PawnGroupMakerParms parms = new PawnGroupMakerParms() { points = actualPoints, faction = f, groupKind = combatGroup.kindDef };
-            var results = PawnGroupMakerUtility.ChoosePawnGenOptionsByPoints(parms.points, combatGroup.options, parms);
-            var bandMembers = new Dictionary<string, int>();
-            foreach (var ele in results)
-            {
-                string defName = ele.Option.kind.defName;
-                if (!bandMembers.ContainsKey(defName))
-                    bandMembers.Add(defName, 1);
-                else
-                    bandMembers[defName]++;
-            }
-
-            return bandMembers;
-        }
-
         public void SetBandMembers(Dictionary<string, int> bandMembers)
         {
             this._bandMembers = bandMembers;

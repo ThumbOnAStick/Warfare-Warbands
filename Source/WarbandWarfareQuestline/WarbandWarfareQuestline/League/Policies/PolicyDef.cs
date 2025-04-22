@@ -14,6 +14,8 @@ namespace WarbandWarfareQuestline.League.Policies
         public int cost;
         public int equipmentBudgetLimitOffset;
 
+        public string CostLabel => $"${cost}";
+
         private PolicyWorker _worker;
         public PolicyWorker Worker
         {

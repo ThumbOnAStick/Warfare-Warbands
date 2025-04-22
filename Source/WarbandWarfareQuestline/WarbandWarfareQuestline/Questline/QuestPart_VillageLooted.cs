@@ -34,7 +34,6 @@ namespace WarbandWarfareQuestline.Questline
             quest.End(QuestEndOutcome.Success);
             quest.GetFirstOrAddPart<QuestPart_Choice>()?.choices?.First()?.rewards?.First()?.Notify_Used();
             questSettlement?.SetFaction(Find.FactionManager.OfPlayer);
-
         }
 
         void FailQuest()

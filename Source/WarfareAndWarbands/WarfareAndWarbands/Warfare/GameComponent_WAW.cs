@@ -29,7 +29,7 @@ namespace WarfareAndWarbands
         private bool everInformedAboutTownBuilding = false;
         private Pawn raidLeaderCache;
         private int lastTick = 0;
-
+        private bool _isDropRaidAvailable;
 
         public GameComponent_WAW(Game game)
         {
@@ -40,6 +40,8 @@ namespace WarfareAndWarbands
             onLeaderAbilityUsed = new UnityEvent();
             playerBankAccount = new WAWBankAccount();
         }
+
+        public bool IsDropRaidAvailable => _isDropRaidAvailable;
 
         public override void ExposeData()
         {
@@ -217,6 +219,11 @@ namespace WarfareAndWarbands
         {
             Letter modLoadded = LetterMaker.MakeLetter("WAW.Welcome".Translate(), "WAW.Welcome.Desc".Translate(), LetterDefOf.NeutralEvent);
             Find.LetterStack.ReceiveLetter(modLoadded);
+        }
+
+        public void SetDropRaidAvailable(bool value)
+        {
+            this._isDropRaidAvailable = value;
         }
 
         public override void GameComponentTick()

@@ -1,3 +1,4 @@
+using RimWorld;
 using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,11 @@ namespace WarbandWarfareQuestline.Skirmish
     {
         private List<Skirmish> _skirmishes;
         private readonly List<string> _eventList;
+        private int _lastPlayerCreatedSkrimishTick = -1;
+        private bool _isProvocationActivated = false;
 
         public static GameComponent_Skrimish Instance;
+        private const float playerCreatedSkirmishCooldownDays = 12f;
         private const string skirmishString = "Skirmish";
         private const string siegeString = "Siege";
 
@@ -22,7 +26,50 @@ namespace WarbandWarfareQuestline.Skirmish
             _skirmishes = new List<Skirmish>();
             _eventList = new List<string>() { skirmishString, siegeString };
             Instance = this;
+            _lastPlayerCreatedSkrimishTick = -PlayerCreatedSkrimishCooldownTicks;
         }
+
+        public bool IsProvocationActivated => _isProvocationActivated;
+
+        public int PlayerCreatedSkrimishCooldownTicks
+        {
+            get
+            {
+                return (int)(GenDate.TicksPerDay * playerCreatedSkirmishCooldownDays);
+            }
+        }
+
+        public int RemainingProvocationTicks
+        {
+            get
+            {
+                return PlayerCreatedSkrimishCooldownTicks - (GenTicks.TicksGame - _lastPlayerCreatedSkrimishTick);
+            }
+        }
+
+        public void SetProvocationActivated(bool activated)
+        {
+            _isProvocationActivated = activated;
+        }
+
+        public void ResetProvocationCooldown()
+        {
+            _lastPlayerCreatedSkrimishTick = GenTicks.TicksGame;
+        }
+
+        public bool CanCreatePlayerSkirmish()
+        {
+            if (RemainingProvocationTicks <= 0 && _isProvocationActivated)
+                return true;
+            return false;
+        }
+
+        public void CreatePlayerSkirmish()
+        {
+            SkirmishHelper.CreateRandomSkirmish();
+            Instance.ResetProvocationCooldown();
+        }
+
 
         public void CreateRandomSkirmsish()
         {
@@ -132,6 +179,7 @@ namespace WarbandWarfareQuestline.Skirmish
         {
             base.ExposeData();
             Scribe_Collections.Look(ref _skirmishes, "skirmishes", LookMode.Deep);
+            Scribe_Values.Look(ref _isProvocationActivated, "_isProvocationActivated");
             if(_skirmishes == null)
             {
                 _skirmishes = new List<Skirmish>();

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.Noise;
+using WarfareAndWarbands;
+using WarfareAndWarbands.Warband.UI;
 
 namespace WarbandWarfareQuestline.League.Policies.UI
 {
@@ -52,18 +54,28 @@ namespace WarbandWarfareQuestline.League.Policies.UI
                 _policyTree.Roots[i].DrawPolicyRecursively(rootRect, false, out height);
             }
 
+            // draw close button
+            int closeButtonSize = 25;
+            Rect closeButtonRect = new Rect(inRect.xMax - closeButtonSize, 0, closeButtonSize, closeButtonSize);
+            if (Widgets.ButtonImage(closeButtonRect, TexButton.CloseXSmall))
+            {
+                Close();
+            }
+
             // if there's no factions in the league, show a message
-            if (GameComponent_League.Instance.NoFactionInLeague())
+            if (GameComponent_League.Instance.NoFactionInLeague() && !DebugSettings.godMode)
             {
                 DrawRedMessage("WAW.NoFactionsInLeague");
                 return;
             }
 
             // if development points are not enough, show a message
-            if (GameComponent_League.Instance.PointsInssufficient())
+            if (GameComponent_League.Instance.PointsInssufficient() && !DebugSettings.godMode)
             {
                 DrawRedMessage("WAW.NotEnoughDevelopmentPoints");
             }
+
+         
 
         }
 

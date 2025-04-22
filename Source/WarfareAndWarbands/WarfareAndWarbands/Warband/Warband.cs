@@ -59,11 +59,6 @@ namespace WarfareAndWarbands.Warband
             }
         }
 
-        //public override void Draw()
-        //{
-        //    base.Draw();
-        //}
-
         public override void PostAdd()
         {
             base.PostAdd();
@@ -198,7 +193,6 @@ namespace WarfareAndWarbands.Warband
             playerWarbandManager?.Tick();
             worldPather?.Tick();
             RemoveMapCheck();
-            SiteCheck();
 
         }
 
@@ -431,33 +425,6 @@ namespace WarfareAndWarbands.Warband
                 Current.Game.DeinitAndRemoveMap(map, true);
             }
         }
-
-        void SiteCheck()
-        {
-            if (this.Faction != Faction.OfPlayer)
-            {
-                return;
-            }
-            var predicate = new Predicate<SitePart>(x => x.def.defName == "Outpost" || x.def == SitePartDefOf.BanditCamp);
-            if (this.parts.Any(predicate))
-            {
-                this.parts.RemoveAll(predicate);
-                var sitePartList = new List<SitePartDef>
-                {
-                     WAWDefof.WAWEmptySite,
-                };
-                SiteMakerHelper.GenerateDefaultParams(0f, this.Tile, this.Faction, sitePartList, out List<SitePartDefWithParams> sitePartDefsWithParams);
-                if (sitePartDefsWithParams != null)
-                {
-                    foreach (SitePartDefWithParams sitePart in sitePartDefsWithParams)
-                    {
-                        this.AddPart(new SitePart(this, sitePart.def, sitePart.parms));
-                    }
-                }
-                Log.Message("Sites removed.");
-            }
-        }
-
 
         public override void ExposeData()
         {

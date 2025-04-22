@@ -23,6 +23,7 @@ namespace WarbandWarfareQuestline.League
         private int _developmentPoints = 0;
         private int _developmentLevel = 0;
         private float _cohesion = 0.5f;
+        private bool _isTradeTreatyActive = false;
         private static readonly SimpleCurve _developmentCurve = new SimpleCurve
             {
                 new CurvePoint(1, 10),
@@ -51,6 +52,7 @@ namespace WarbandWarfareQuestline.League
             _skirmish = new SkirmishEvent();
             _policyTree = new PolicyTree();
             _roadbuilder = new RoadBuilder();
+            _isTradeTreatyActive = false;
             _baseEventGenerationTicks = BaseEventGenrationTicks;
         }
 
@@ -64,6 +66,7 @@ namespace WarbandWarfareQuestline.League
         public float Cohesion => _cohesion;
         public int DevelopmentPoints => _developmentPoints;
         public int DevelopmentLevel => _developmentLevel;
+        public bool IsTradeTreatyActive => _isTradeTreatyActive;
 
         private bool ShouldCheckNow()
         {
@@ -215,6 +218,11 @@ namespace WarbandWarfareQuestline.League
             _cohesion = amount;
         }
 
+        public void SetTradeTreaty(bool isActive)
+        {
+            _isTradeTreatyActive = isActive;
+        }
+
         public override void GameComponentTick()
         {
             base.GameComponentTick();
@@ -274,6 +282,7 @@ namespace WarbandWarfareQuestline.League
             Scribe_Values.Look(ref _developmentLevel, "_developmentLevel");
             Scribe_Values.Look(ref _developmentPoints, "_developmentPoints");
             Scribe_Values.Look(ref _cohesion, "_cohesion");
+            Scribe_Values.Look(ref _isTradeTreatyActive, "_isTradeTreatyActive");
 
             if (_taxer == null)
             {

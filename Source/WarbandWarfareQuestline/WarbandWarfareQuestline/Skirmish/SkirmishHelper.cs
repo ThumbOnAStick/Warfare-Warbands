@@ -36,6 +36,7 @@ namespace WarbandWarfareQuestline.Skirmish
         }
 
 
+
         public static Skirmish CreateSkirmish(GlobalTargetInfo info)
         {
             return CreateSkirmish(info.Tile);

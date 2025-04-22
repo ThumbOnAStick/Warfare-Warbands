@@ -43,7 +43,7 @@ namespace WarbandWarfareQuestline.Questline
                 new QuestPart_Choice.Choice()
                 {
                     questParts =  new List<QuestPart>(),
-                    rewards = new List<Reward>(){ new Reward_MinorFactionJoin() { mFactionBase = settlement, factionID = m.FactionID} }
+                    rewards = new List<Reward>(){ new Reward_MinorFactionJoin() { mFactionBase = settlement } }
                 }
             };
             quest.AddPart(new QuestPart_WorldObjectTimeout() { worldObject = settlement });

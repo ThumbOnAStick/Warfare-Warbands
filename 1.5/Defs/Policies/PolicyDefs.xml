@@ -33,21 +33,23 @@
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>TradeAgreement</defName>
-        <description>Establish trade agreements to enhance commerce and generate additional income.</description>
+        <description>Establish trade agreements to enhance commerce and generate additional income, sell and buying prices will be exactly the same as market value.</description>
         <label>Trade Agreement</label>
         <prerequisite>TaxReform</prerequisite>
         <taxBonus>0.2</taxBonus>
         <category>Economy</category>
+        <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_TradeAgreement</workerClass>
         <cost>3000</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>ResourceOptimization</defName>
-        <description>Optimize resource management to maximize efficiency and economic output.</description>
+        <description>Enhance resource management to boost efficiency and economic output, reducing expenses by 10% on all bank transactions.</description>
         <label>Resource Optimization</label>
         <prerequisite>TaxReform</prerequisite>
         <taxBonus>0.4</taxBonus>
         <category>Economy</category>
+        <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_ResourceOptimization</workerClass>
         <cost>10000</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
@@ -60,6 +62,7 @@
         <category>Warfare</category>
         <taxBonus>-0.1</taxBonus>
         <cost>2500</cost>
+        <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_AdvancedTactics</workerClass>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
@@ -80,6 +83,7 @@
         <prerequisite>AdvancedTactics</prerequisite>
         <category>Warfare</category>
         <cost>20000</cost>
+        <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_StartSkirmish</workerClass>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
