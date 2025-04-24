@@ -94,4 +94,5 @@
     <WAW.RoadConstruct.Confirm>Confirm</WAW.RoadConstruct.Confirm>
     <WAW.CombatPowerOutOfLimit>Combat power of this pawnkind is above limit ({0}).</WAW.CombatPowerOutOfLimit>
     <WAW.EquipmentImprovingPolicy>This policy increases the max combat power of soldier you can select(+{0}).</WAW.EquipmentImprovingPolicy>
+    <WAW.EliteUpgradeRequirement>Upgrade requires "Elite Forces" policy.</WAW.EliteUpgradeRequirement>
 </LanguageData>

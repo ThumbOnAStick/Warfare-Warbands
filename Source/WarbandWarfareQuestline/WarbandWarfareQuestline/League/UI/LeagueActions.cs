@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
-using WarbandWarfareQuestline.League.UI;
 using WarbandWarfareQuestline.Skirmish;
 
-namespace WarbandWarfareQuestline.League.Policies.UI
+namespace WarbandWarfareQuestline.League.UI
 {
     public static class LeagueActions 
     {
@@ -38,7 +37,7 @@ namespace WarbandWarfareQuestline.League.Policies.UI
                 yield return RoadConstructorOption();
             }
 
-            if (GameComponent_Skrimish.Instance.CanCreatePlayerSkirmish())
+            if (GameComponent_Skrimish.Instance.IsProvocationActivated)
             {
                 yield return PlayerSkirmishOption();
             }
@@ -86,7 +85,7 @@ namespace WarbandWarfareQuestline.League.Policies.UI
         #region PlayerSkirmish
         public static FloatMenuOption PlayerSkirmishOption()
         {
-            return new FloatMenuOption("WAW.FLTM.PlayerSkirmish".Translate(), () => { GameComponent_Skrimish.Instance.CreatePlayerSkirmish(); });
+            return new FloatMenuOption("WAW.FLTM.PlayerSkirmish".Translate(), () => { GameComponent_Skrimish.Instance.TryToCreatePlayerSkirmish(); });
         }
         #endregion
     }

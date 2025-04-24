@@ -94,6 +94,7 @@
         <category>Warfare</category>
         <taxBonus>-0.2</taxBonus>
         <cost>8000</cost>
+        <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_EliteForces</workerClass>
         <equipmentBudgetLimitOffset>200</equipmentBudgetLimitOffset>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 </Defs>

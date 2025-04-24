@@ -47,6 +47,7 @@ namespace WarbandWarfareQuestline.Skirmish
             }
         }
 
+
         public void SetProvocationActivated(bool activated)
         {
             _isProvocationActivated = activated;
@@ -62,6 +63,14 @@ namespace WarbandWarfareQuestline.Skirmish
             if (RemainingProvocationTicks <= 0 && _isProvocationActivated)
                 return true;
             return false;
+        }
+
+        public void TryToCreatePlayerSkirmish()
+        {
+            if (CanCreatePlayerSkirmish())
+            {
+                CreatePlayerSkirmish();
+            }
         }
 
         public void CreatePlayerSkirmish()

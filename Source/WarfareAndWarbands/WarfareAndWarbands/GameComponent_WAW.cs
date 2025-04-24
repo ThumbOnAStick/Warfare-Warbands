@@ -27,9 +27,10 @@ namespace WarfareAndWarbands
         private bool everUsedQuickRaid = false;
         private bool everAssignedWarbandLeader = false;
         private bool everInformedAboutTownBuilding = false;
+        private bool _isDropRaidAvailable = false;
+        private bool _isEliteUpgradeAvailable = false;
         private Pawn raidLeaderCache;
         private int lastTick = 0;
-        private bool _isDropRaidAvailable;
 
         public GameComponent_WAW(Game game)
         {
@@ -43,6 +44,8 @@ namespace WarfareAndWarbands
 
         public bool IsDropRaidAvailable => _isDropRaidAvailable;
 
+        public bool IsEliteUpgradeAvailable => _isEliteUpgradeAvailable;
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -52,13 +55,42 @@ namespace WarfareAndWarbands
             Scribe_Values.Look(ref everAssignedWarbandLeader, "everAssignedWarbandLeader");
             Scribe_Values.Look(ref everUsedQuickRaid, "everUsedQuickRaid");
             Scribe_Values.Look(ref everInformedAboutTownBuilding, "everInformedAboutTownBuilding");
-            playerWarband.ExposeData();
+            Scribe_Values.Look(ref _isDropRaidAvailable, "isDropRaidAvailable");
             Scribe_Deep.Look(ref playerBankAccount, "playerBank");
-            if(playerBankAccount == null)
+            playerWarband.ExposeData();
+            if (playerBankAccount == null)
             {
                 playerBankAccount = new WAWBankAccount(); 
             }
         }
+
+        public override void LoadedGame()
+        {
+            base.LoadedGame();
+            LoadAllFactions();
+            RefreshPlayerWarbands();
+            TryToSetRelation();
+        }
+
+
+        public override void StartedNewGame()
+        {
+            base.StartedNewGame();
+            GiveModLetter();
+            LoadAllFactions();
+            RefreshPlayerWarbands();
+            TryToSetRelation();
+        }
+
+        public bool CanPlayerUseEliteUpgrade()
+        {
+            return IsEliteUpgradeAvailable || !WAWSettings.enableEliteUpgradePolicyRequirement;
+        }
+
+        public void SetEliteUpgradeAvailable(bool value)
+        {
+            this._isEliteUpgradeAvailable = value;
+        }   
 
         public void AppendFactionInfoToTable(Faction faction)
         {
@@ -191,24 +223,7 @@ namespace WarfareAndWarbands
         }
         
 
-        public override void LoadedGame()
-        {
-            base.LoadedGame();
-            LoadAllFactions();
-            RefreshPlayerWarbands();
-            TryToSetRelation();
-        }
-
-
-        public override void StartedNewGame()
-        {
-            base.StartedNewGame();
-            GiveModLetter();
-            LoadAllFactions();
-            RefreshPlayerWarbands();
-            TryToSetRelation();
-        }
-
+ 
         void RefreshPlayerWarbands()
         {
             WarbandUtil.RefreshAllPlayerWarbands();

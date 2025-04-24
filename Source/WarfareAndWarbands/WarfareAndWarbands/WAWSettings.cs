@@ -25,6 +25,7 @@ namespace WarfareAndWarbands
         public static bool upgradeRequiresLeader= true;
         public static bool enableEquipmentBudgetLimit = true;
         public static bool enableDroppodPolicyRequirement = true;
+        public static bool enableEliteUpgradePolicyRequirement = true;
         public static float warbandRaidCooldown = 1.5f;
         public static float warbandRecruitTimeMultiplier = 1f;
         public static int townConstructionDuration= 10;
@@ -49,6 +50,7 @@ namespace WarfareAndWarbands
             Scribe_Values.Look(ref upgradeRequiresLeader, "upgradeRequiresLeader", true);
             Scribe_Values.Look(ref enableEquipmentBudgetLimit, "enableEquipmentBudgetLimit", true);
             Scribe_Values.Look(ref enableDroppodPolicyRequirement, "enableDroppodPolicyRequirement", true);
+            Scribe_Values.Look(ref enableEliteUpgradePolicyRequirement, "enableEliteUpgradePolicyRequirement", true);
 
         }
 
@@ -75,6 +77,7 @@ namespace WarfareAndWarbands
             listing_Standard.CheckboxLabeled("WAW.enableFactionDefeat".Translate(), ref enableFactionDefeat, "WAW.enableFactionDefeat.Desc".Translate());
             listing_Standard.CheckboxLabeled("WAW.enableEquipmentBudgetLimit".Translate(), ref enableEquipmentBudgetLimit, "WAW.enableEquipmentBudgetLimit.Desc".Translate()); 
             listing_Standard.CheckboxLabeled("WAW.enableDroppodPolicyRequirement".Translate(), ref enableDroppodPolicyRequirement, "WAW.enableDroppodPolicyRequirement.Desc".Translate()); 
+            listing_Standard.CheckboxLabeled("WAW.enableEliteUpgradePolicyRequirement".Translate(), ref enableEliteUpgradePolicyRequirement, "WAW.enableEliteUpgradePolicyRequirement.Desc".Translate()); 
             listing_Standard.End();
             this.Write();
         }

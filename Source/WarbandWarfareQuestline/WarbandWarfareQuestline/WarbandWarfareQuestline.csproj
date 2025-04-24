@@ -97,11 +97,12 @@
     <Compile Include="League\Policies\PolicyTree.cs" />
     <Compile Include="League\Policies\PolicyWorker.cs" />
     <Compile Include="League\Policies\PolicyWorker_AdvancedTactics.cs" />
+    <Compile Include="League\Policies\PolicyWorker_EliteForces.cs" />
     <Compile Include="League\Policies\PolicyWorker_ResourceOptimization.cs" />
     <Compile Include="League\Policies\PolicyWorker_StartSkirmish.cs" />
     <Compile Include="League\Policies\PolicyWorker_TradeAgreement.cs" />
     <Compile Include="League\Policies\PolicyWorker_RoadConstruction.cs" />
-    <Compile Include="League\Policies\UI\LeagueActions.cs" />
+    <Compile Include="League\UI\LeagueActions.cs" />
     <Compile Include="League\Policies\UI\PolicyDrawer.cs" />
     <Compile Include="League\Policies\UI\Window_PolicyTree.cs" />
     <Compile Include="League\Policies\UI\Window_Congress.cs" />

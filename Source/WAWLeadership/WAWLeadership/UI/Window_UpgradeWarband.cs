@@ -137,18 +137,23 @@ namespace WAWLeadership.UI
                 reason = "WAW.AlreadyUpgraded".Translate();
                 return true;
             }
-            else if (!upgrade.RequiredModLoaded())
+            if (upgrade is Upgrade_Elite && !GameComponent_WAW.Instance.CanPlayerUseEliteUpgrade())
+            {
+                reason = "WAW.EliteUpgradeRequirement".Translate();
+                return true;
+            }
+            if (!upgrade.RequiredModLoaded())
             {
                 reason = "WAW.ModNotLoaded".Translate(upgrade.ModRequired);
                 return true;
             }
-            else if (!AttributeRequirementSatisfiedFor(upgrade.GetType(), out LeadershipAttribute attribute, out int minLevel)&&
+            if (!AttributeRequirementSatisfiedFor(upgrade.GetType(), out LeadershipAttribute attribute, out int minLevel)&&
                 WAWSettings.upgradeRequiresLeader)
             {
                 reason = "WAW.RequireSkill".Translate(attribute.GetLabel(), minLevel);
                 return true;
             }
-            else if (upgrade.RequiresRelation(out Faction empire, out int relation))
+            if (upgrade.RequiresRelation(out Faction empire, out int relation))
             {
                 reason = "WAW.RequireRelation".Translate(empire.Name, relation);
                 return true;

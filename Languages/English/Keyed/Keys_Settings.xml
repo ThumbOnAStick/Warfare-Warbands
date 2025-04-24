@@ -24,4 +24,6 @@
 	<WAW.enableEquipmentBudgetLimit.Desc>Should total eqiupment fee be limited before choosing revelant policies or not.</WAW.enableEquipmentBudgetLimit.Desc>
 	<WAW.enableDroppodPolicyRequirement>Enable droppod policy requirement</WAW.enableDroppodPolicyRequirement>
 	<WAW.enableDroppodPolicyRequirement.Desc>Player warband needs "Advanced Tatics" policy to execute droppod raids.</WAW.enableDroppodPolicyRequirement.Desc>
+	<WAW.enableEliteUpgradePolicyRequirement>Enable elite upgrade policy requiremet</WAW.enableEliteUpgradePolicyRequirement>
+	<WAW.enableEliteUpgradePolicyRequirement.Desc>Player warband needs "Elite Forces" policy to execute elite upgrade.</WAW.enableEliteUpgradePolicyRequirement.Desc>
 </LanguageData>

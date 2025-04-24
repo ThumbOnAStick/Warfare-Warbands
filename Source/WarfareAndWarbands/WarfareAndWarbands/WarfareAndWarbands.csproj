@@ -174,7 +174,7 @@
     <Compile Include="Warband\WorldObjectCompProperties_PlayerWarband.cs" />
     <Compile Include="Warband\WorldObjectComp_PlayerWarband.cs" />
     <Compile Include="Warfare\Bank\WAWBankAccount.cs" />
-    <Compile Include="Warfare\GameComponent_WAW.cs" />
+    <Compile Include="GameComponent_WAW.cs" />
     <Compile Include="Warfare\HarmonyPatches\SettlemntDestroyedPatch.cs" />
     <Compile Include="Warfare\UI\Test\DraggableButton.cs" />
     <Compile Include="Warfare\UI\WAWUI.cs" />

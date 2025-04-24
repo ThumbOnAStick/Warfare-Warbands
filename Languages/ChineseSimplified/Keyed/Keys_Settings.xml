@@ -23,5 +23,7 @@
   <WAW.enableEquipmentBudgetLimit.Desc>在选择相关政策之前，是否应该限制总设备费用。</WAW.enableEquipmentBudgetLimit.Desc>
 	<WAW.enableDroppodPolicyRequirement>启用空投战术的政策限制</WAW.enableDroppodPolicyRequirement>
   <WAW.enableDroppodPolicyRequirement.Desc>玩家战团需要“高级战术”政策才能执行空投突袭。</WAW.enableDroppodPolicyRequirement.Desc>
+  <WAW.enableEliteUpgradePolicyRequirement>启用精英部队政策限制</WAW.enableEliteUpgradePolicyRequirement>
+  <WAW.enableEliteUpgradePolicyRequirement.Desc>玩家战团需要“精英部队”政策才能执行精英升级。</WAW.enableEliteUpgradePolicyRequirement.Desc>
 
 </LanguageData>
