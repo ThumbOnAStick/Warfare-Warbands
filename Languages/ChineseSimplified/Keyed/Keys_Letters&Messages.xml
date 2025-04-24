@@ -106,10 +106,10 @@
 	<WAW.CongressAvailable>联盟会议可用</WAW.CongressAvailable>
 	<WAW.CongressAvailable.Desc>一个新的小派系加入了你的联盟。联盟会议现在可用，你可以通过它制定新的政策。</WAW.CongressAvailable.Desc>
 	<WAW.CantAffordFromBank>银行余额不足</WAW.CantAffordFromBank>
+	<WAW.RoadConstruct.DaysAhead.Desc>你需要等到<color value="#00FFFF">{0}天</color>后才能建造道路。</WAW.RoadConstruct.DaysAhead.Desc>
+	<WAW.MilitaryDrills.DaysAhead>无法在<color value="#00FFFF">{0}天</color>内启动军事演习。</WAW.MilitaryDrills.DaysAhead>
 	<WAW.FLTM.ConstructRoad>建造道路</WAW.FLTM.ConstructRoad>
 ``	<WAW.FLTM.NoActions.Desc>没有可用的操作</WAW.FLTM.NoActions.Desc>
-	<WAW.RoadConstruct.DaysAhead.Desc>你需要等到<color value="#00FFFF">{0}天</color>后才能建造道路。</WAW.RoadConstruct.DaysAhead.Desc>
 	<WAW.FLTM.PlayerSkirmish>军事挑衅 （随机战役）</WAW.FLTM.PlayerSkirmish>
-
-
+	<WAW.FLTM.MilitaryDrill>启动军事演习</WAW.FLTM.MilitaryDrill>
 </LanguageData>

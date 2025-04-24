@@ -7,13 +7,13 @@ using Verse;
 
 namespace WarbandWarfareQuestline.League.Policies
 {
-    class PolicyWorker_RoadConstruction : PolicyWorker
+    class PolicyWorker_MilitaryDrills : PolicyWorker
     {
         public override void Execute()
         {
             base.Execute();
-            Log.Message("WAW: Road Construction Policy Executed");
-            GameComponent_League.Instance.RoadBuilder.SetActive(true);
+            Log.Message("WAW : Military Drills Policy Executed");
+            GameComponent_League.Instance.MilitaryDrill.SetActive(true);
         }
     }
 }

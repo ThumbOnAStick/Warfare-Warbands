@@ -14,10 +14,6 @@ namespace WarbandWarfareQuestline.League.UI
 
         public static void OpenActionsMenu()
         {
-            if(GetActions().Count() == 0)
-            {
-                return;
-            }
             Find.WindowStack.Add(GetLeagueActionsMenu());
         }
 
@@ -35,6 +31,11 @@ namespace WarbandWarfareQuestline.League.UI
             if (CanConstructRoad())
             {
                 yield return RoadConstructorOption();
+            }
+
+            if (CanExecuteMilitaryDrill())
+            {
+                yield return MilitaryDrillOption();
             }
 
             if (GameComponent_Skrimish.Instance.IsProvocationActivated)
@@ -56,18 +57,17 @@ namespace WarbandWarfareQuestline.League.UI
 
 
         #region RoadBuilder
-
         static bool CanConstructRoad()
         {
-            return GameComponent_League.Instance.RoadBuilder.Unlocked;
+            return GameComponent_League.Instance.RoadBuilder.IsActive;
         }
 
         static void SwitchToRoadBuilder()
         {
-            // When the cool down is active, notify the player
-            if (!GameComponent_League.Instance.RoadBuilder.IsBuilderReadyToBuild())
+            // When the cooldown is active, notify the player
+            if (!GameComponent_League.Instance.RoadBuilder.IsAvailable())
             {
-                Messages.Message("WAW.RoadConstruct.DaysAhead".Translate(GameComponent_League.Instance.RoadBuilder.UsageRemainingCoolDownDays.ToString("0.0")), MessageTypeDefOf.RejectInput);
+                GameComponent_League.Instance.RoadBuilder.SendAvailabilityNotification();
                 return;
             }
 
@@ -86,6 +86,19 @@ namespace WarbandWarfareQuestline.League.UI
         public static FloatMenuOption PlayerSkirmishOption()
         {
             return new FloatMenuOption("WAW.FLTM.PlayerSkirmish".Translate(), () => { GameComponent_Skrimish.Instance.TryToCreatePlayerSkirmish(); });
+        }
+        #endregion
+
+        #region MilitaryDrill
+
+        static bool CanExecuteMilitaryDrill()
+        {
+            return GameComponent_League.Instance.MilitaryDrill.IsActive;
+        }
+
+        public static FloatMenuOption MilitaryDrillOption()
+        {
+            return new FloatMenuOption("WAW.FLTM.MilitaryDrill".Translate(), () => { GameComponent_League.Instance.MilitaryDrill.TryToExecute(); });
         }
         #endregion
     }

@@ -26,7 +26,7 @@
         <description>Implement tax reforms to increase revenue and improve economic stability.</description>
         <label>Tax Reform</label>
         <prerequisite>RoadConstruct</prerequisite>
-        <taxBonus>0.3</taxBonus>
+        <taxBonus>-0.1</taxBonus>
         <category>Economy</category>
         <cost>1500</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
@@ -36,7 +36,7 @@
         <description>Establish trade agreements to enhance commerce and generate additional income, sell and buying prices will be exactly the same as market value.</description>
         <label>Trade Agreement</label>
         <prerequisite>TaxReform</prerequisite>
-        <taxBonus>0.2</taxBonus>
+        <taxBonus>0.1</taxBonus>
         <category>Economy</category>
         <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_TradeAgreement</workerClass>
         <cost>3000</cost>
@@ -51,6 +51,17 @@
         <category>Economy</category>
         <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_ResourceOptimization</workerClass>
         <cost>10000</cost>
+    </WarbandWarfareQuestline.League.Policies.PolicyDef>
+
+    <WarbandWarfareQuestline.League.Policies.PolicyDef>
+        <defName>InfrastructureDevelopment</defName>
+        <description>Invest in infrastructure for citizens, improves cohesion overtime.</description>
+        <label>Infrastructure Development</label>
+        <prerequisite>ResourceOptimization</prerequisite>
+        <taxBonus>0.3</taxBonus>
+        <category>Economy</category>
+        <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_InfrastructureDevelopment</workerClass>
+        <cost>25000</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
     <!-- New Warfare Policies -->
@@ -97,4 +108,16 @@
         <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_EliteForces</workerClass>
         <equipmentBudgetLimitOffset>200</equipmentBudgetLimitOffset>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
+
+    <WarbandWarfareQuestline.League.Policies.PolicyDef>
+        <defName>MilitaryDrills</defName>
+        <description>Conduct regular military drills to enhance the combat readiness of a certain warband.</description>
+        <label>Military Drills</label>
+        <prerequisite>EliteForces</prerequisite>
+        <category>Warfare</category>
+        <taxBonus>-0.4</taxBonus>
+        <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_MilitaryDrills</workerClass>
+        <cost>15000</cost>
+    </WarbandWarfareQuestline.League.Policies.PolicyDef>
+
 </Defs>

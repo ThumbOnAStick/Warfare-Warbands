@@ -53,6 +53,7 @@ namespace WarbandWarfareQuestline.League.Policies
         public void Tick()
         {
             _def.Worker?.Tick();
+            this.Children?.ForEach(x => x.Tick());
         }
 
         void ChargeFees()

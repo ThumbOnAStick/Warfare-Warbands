@@ -76,10 +76,16 @@
       <HintPath>..\..\..\1.5\Assemblies\WarfareAndWarbands.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="WAWLeadership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\1.5\Assemblies\WAWLeadership.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="League\DebugActionLeague.cs" />
     <Compile Include="League\HarmonyPatches_League.cs" />
+    <Compile Include="League\LeagueComponents\LeagueComponent.cs" />
+    <Compile Include="League\LeagueComponents\MilitaryDrillExecuter\MilitaryDrillExecuter.cs" />
     <Compile Include="League\MinorFactions\FactionTraitDef.cs" />
     <Compile Include="League\MinorFactions\FactionTraitDefOf.cs" />
     <Compile Include="League\GameComponent_League.cs" />
@@ -98,6 +104,8 @@
     <Compile Include="League\Policies\PolicyWorker.cs" />
     <Compile Include="League\Policies\PolicyWorker_AdvancedTactics.cs" />
     <Compile Include="League\Policies\PolicyWorker_EliteForces.cs" />
+    <Compile Include="League\Policies\PolicyWorker_InfrastructureDevelopment.cs" />
+    <Compile Include="League\Policies\PolicyWorker_MilitaryDrills.cs" />
     <Compile Include="League\Policies\PolicyWorker_ResourceOptimization.cs" />
     <Compile Include="League\Policies\PolicyWorker_StartSkirmish.cs" />
     <Compile Include="League\Policies\PolicyWorker_TradeAgreement.cs" />
@@ -106,7 +114,7 @@
     <Compile Include="League\Policies\UI\PolicyDrawer.cs" />
     <Compile Include="League\Policies\UI\Window_PolicyTree.cs" />
     <Compile Include="League\Policies\UI\Window_Congress.cs" />
-    <Compile Include="League\RoadBuilder\RoadBuilder.cs" />
+    <Compile Include="League\LeagueComponents\RoadBuilder\RoadBuilder.cs" />
     <Compile Include="League\UI\Dialog_ChoosePolicy.cs" />
     <Compile Include="League\UI\LeagueDrawer.cs" />
     <Compile Include="League\UI\Window_League.cs" />

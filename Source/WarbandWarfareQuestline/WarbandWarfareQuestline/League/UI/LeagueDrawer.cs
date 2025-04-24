@@ -148,7 +148,7 @@ namespace WarbandWarfareQuestline.League.UI
             Text.Anchor = TextAnchor.MiddleCenter;
             if (Widgets.ButtonText(new Rect(centerBottom + new Vector2(-_buttonWidth / 2, _buttonHeight + _margin), new Vector2(_buttonWidth, _buttonHeight)), "WAW.RoadConstruct.Confirm".Translate()))
             {
-                GameComponent_League.Instance.RoadBuilder.BuildRoad();
+                GameComponent_League.Instance.RoadBuilder.TryToExecute();
                 SwitchDrawingMode(LeagueDrawingMode.None);
             }
             Text.Anchor = TextAnchor.UpperLeft;

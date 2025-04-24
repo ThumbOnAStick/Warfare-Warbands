@@ -34,6 +34,7 @@ namespace WarbandWarfareQuestline.League
         private TaxEvent _taxer;
         private SkirmishEvent _skirmish;
         private PolicyTree _policyTree;
+        private MilitaryDrillExecuter _militaryDrill;
         private RoadBuilder _roadbuilder;
         private PolicyCategoryDef _hatedPolicyCategory;
         private PolicyCategoryDef _lovedPolicyCategory;
@@ -52,6 +53,7 @@ namespace WarbandWarfareQuestline.League
             _skirmish = new SkirmishEvent();
             _policyTree = new PolicyTree();
             _roadbuilder = new RoadBuilder();
+            _militaryDrill = new MilitaryDrillExecuter();
             _isTradeTreatyActive = false;
             _baseEventGenerationTicks = BaseEventGenrationTicks;
         }
@@ -63,6 +65,7 @@ namespace WarbandWarfareQuestline.League
         public List<MinorFaction> Factions => _minorFactionsSettlements.Select(x => x.MinorFaction).ToList();
         public PolicyTree PolicyTree => _policyTree;
         public RoadBuilder RoadBuilder => _roadbuilder;
+        public MilitaryDrillExecuter MilitaryDrill => _militaryDrill;
         public float Cohesion => _cohesion;
         public int DevelopmentPoints => _developmentPoints;
         public int DevelopmentLevel => _developmentLevel;
@@ -223,6 +226,11 @@ namespace WarbandWarfareQuestline.League
             _isTradeTreatyActive = isActive;
         }
 
+        void TickPolicies()
+        {
+            _policyTree?.Tick();
+        }
+
         public override void GameComponentTick()
         {
             base.GameComponentTick();
@@ -237,9 +245,12 @@ namespace WarbandWarfareQuestline.League
                 // Check skirmish
                 CheckSkirmish();
 
-                ResetLastCheckTick();
+                // Policy Tree Tick
+                TickPolicies();
 
-                Log.Message("Check League");
+                //Reset
+                ResetLastCheckTick();
+                Log.Message("League Grand Tick");
             }
         }
 
@@ -277,6 +288,7 @@ namespace WarbandWarfareQuestline.League
             Scribe_Deep.Look(ref _taxer, "_taxer");
             Scribe_Deep.Look(ref _policyTree, "_policyTable");
             Scribe_Deep.Look(ref _roadbuilder, "_roadbuilder");
+            Scribe_Deep.Look(ref _militaryDrill, "_militaryDrill");
             Scribe_Defs.Look(ref _hatedPolicyCategory, "_hatedPolicy");
             Scribe_Defs.Look(ref _lovedPolicyCategory, "_lovedPolicy");
             Scribe_Values.Look(ref _developmentLevel, "_developmentLevel");
@@ -310,6 +322,10 @@ namespace WarbandWarfareQuestline.League
             if (_roadbuilder == null)
             {
                 _roadbuilder = new RoadBuilder();
+            }
+            if (_militaryDrill == null)
+            {
+                _militaryDrill = new MilitaryDrillExecuter();
             }
         }
     }

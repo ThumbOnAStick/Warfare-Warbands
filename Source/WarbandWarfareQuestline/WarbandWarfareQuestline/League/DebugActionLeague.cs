@@ -73,7 +73,7 @@ namespace WarbandWarfareQuestline.League
         [DebugAction("WAW", "Unlock Road Building", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
         public static void UnlockRoadBuilding()
         {
-            GameComponent_League.Instance.RoadBuilder.Unlock();
+            GameComponent_League.Instance.RoadBuilder.SetActive(true);
         }
 
         static bool SpawnSkirmish(GlobalTargetInfo info)
@@ -121,7 +121,7 @@ namespace WarbandWarfareQuestline.League
                 return false;
             }
             GameComponent_League.Instance.RoadBuilder.SetStartAndDest(dest: info.Tile);
-            GameComponent_League.Instance.RoadBuilder.BuildRoad();
+            GameComponent_League.Instance.RoadBuilder.TryToExecute();
             return true;
         }
 
