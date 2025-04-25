@@ -38,11 +38,10 @@ namespace WarbandWarfareQuestline.League
         private RoadBuilder _roadbuilder;
         private PolicyCategoryDef _hatedPolicyCategory;
         private PolicyCategoryDef _lovedPolicyCategory;
-        
+
         private readonly int _baseEventGenerationTicks;
         private const int baseEventGenerationDays = 5;
         private const int acceptedSettlementDistance = 50;
-
 
         public GameComponent_League(Game game)
         {
@@ -56,6 +55,104 @@ namespace WarbandWarfareQuestline.League
             _militaryDrill = new MilitaryDrillExecuter();
             _isTradeTreatyActive = false;
             _baseEventGenerationTicks = BaseEventGenrationTicks;
+        }
+
+        public override void GameComponentTick()
+        {
+            base.GameComponentTick();
+            if (ShouldCheckNow())
+            {
+                // Check village quests 
+                CheckQuest();
+
+                // Receive tax every month
+                CheckTax();
+
+                // Check skirmish
+                CheckSkirmish();
+
+                // Policy Tree Tick
+                TickPolicies();
+
+                // Reset
+                ResetLastCheckTick();
+                Log.Message("League Grand Tick");
+            }
+        }
+
+        public override void GameComponentOnGUI()
+        {
+            base.GameComponentOnGUI();
+            LeagueDrawer.Draw();
+        }
+
+        public override void StartedNewGame()
+        {
+            base.StartedNewGame();
+            AppendDrawingEvent();
+            RefreshPolicyTable();
+        }
+
+        public override void LoadedGame()
+        {
+            base.LoadedGame();
+            AppendDrawingEvent();
+            RefreshPolicyTable();
+        }
+
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            Log.Message("WAW: league module active");
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Collections.Look(ref _minorFactionsSettlements, "_minorFactions", LookMode.Reference);
+            Scribe_Deep.Look(ref _questChecker, "_questChecker");
+            Scribe_Deep.Look(ref _taxer, "_taxer");
+            Scribe_Deep.Look(ref _policyTree, "_policyTable");
+            Scribe_Deep.Look(ref _roadbuilder, "_roadbuilder");
+            Scribe_Deep.Look(ref _militaryDrill, "_militaryDrill");
+            Scribe_Defs.Look(ref _hatedPolicyCategory, "_hatedPolicy");
+            Scribe_Defs.Look(ref _lovedPolicyCategory, "_lovedPolicy");
+            Scribe_Values.Look(ref _developmentLevel, "_developmentLevel");
+            Scribe_Values.Look(ref _developmentPoints, "_developmentPoints");
+            Scribe_Values.Look(ref _cohesion, "_cohesion");
+            Scribe_Values.Look(ref _isTradeTreatyActive, "_isTradeTreatyActive");
+
+            if (_taxer == null)
+            {
+                _taxer = new TaxEvent();
+            }
+            if (_questChecker == null)
+            {
+                _questChecker = new QuestEvent();
+            }
+
+            if (_minorFactionsSettlements == null)
+            {
+                _minorFactionsSettlements = new List<MinorFactionSettlement>();
+            }
+            _minorFactionsSettlements.RemoveAll(x => x == null);
+
+            if (_skirmish == null)
+            {
+                _skirmish = new SkirmishEvent();
+            }
+            if (_policyTree == null)
+            {
+                _policyTree = new PolicyTree();
+            }
+            if (_roadbuilder == null)
+            {
+                _roadbuilder = new RoadBuilder();
+            }
+            if (_militaryDrill == null)
+            {
+                _militaryDrill = new MilitaryDrillExecuter();
+            }
         }
 
         public FloatRange dateOffset = new FloatRange(0.8f, 0.12f);
@@ -226,107 +323,9 @@ namespace WarbandWarfareQuestline.League
             _isTradeTreatyActive = isActive;
         }
 
-        void TickPolicies()
+        private void TickPolicies()
         {
             _policyTree?.Tick();
-        }
-
-        public override void GameComponentTick()
-        {
-            base.GameComponentTick();
-            if (ShouldCheckNow())
-            {
-                // Check village quests 
-                CheckQuest();
-
-                // Receive tax every month
-                CheckTax();
-
-                // Check skirmish
-                CheckSkirmish();
-
-                // Policy Tree Tick
-                TickPolicies();
-
-                //Reset
-                ResetLastCheckTick();
-                Log.Message("League Grand Tick");
-            }
-        }
-
-        public override void GameComponentOnGUI()
-        {
-            base.GameComponentOnGUI();
-            LeagueDrawer.Draw();
-        }
-
-        public override void StartedNewGame()
-        {
-            base.StartedNewGame();
-            AppendDrawingEvent();
-            RefreshPolicyTable();
-        }
-
-        public override void LoadedGame()
-        {
-            base.LoadedGame();
-            AppendDrawingEvent();
-            RefreshPolicyTable();
-        }
-
-        public override void FinalizeInit()
-        {
-            base.FinalizeInit();
-            Log.Message("WAW: league module active");
-        }
-
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Collections.Look(ref _minorFactionsSettlements, "_minorFactions", LookMode.Reference);
-            Scribe_Deep.Look(ref _questChecker, "_questChecker");
-            Scribe_Deep.Look(ref _taxer, "_taxer");
-            Scribe_Deep.Look(ref _policyTree, "_policyTable");
-            Scribe_Deep.Look(ref _roadbuilder, "_roadbuilder");
-            Scribe_Deep.Look(ref _militaryDrill, "_militaryDrill");
-            Scribe_Defs.Look(ref _hatedPolicyCategory, "_hatedPolicy");
-            Scribe_Defs.Look(ref _lovedPolicyCategory, "_lovedPolicy");
-            Scribe_Values.Look(ref _developmentLevel, "_developmentLevel");
-            Scribe_Values.Look(ref _developmentPoints, "_developmentPoints");
-            Scribe_Values.Look(ref _cohesion, "_cohesion");
-            Scribe_Values.Look(ref _isTradeTreatyActive, "_isTradeTreatyActive");
-
-            if (_taxer == null)
-            {
-                _taxer = new TaxEvent();
-            }
-            if (_questChecker == null)
-            {
-                _questChecker = new QuestEvent();
-            }
-      
-            if (_minorFactionsSettlements == null)
-            {
-                _minorFactionsSettlements = new List<MinorFactionSettlement>();
-            }
-            _minorFactionsSettlements.RemoveAll(x => x == null);
-          
-            if (_skirmish == null)
-            {
-                _skirmish = new SkirmishEvent();
-            }
-            if (_policyTree == null)
-            {
-                _policyTree = new PolicyTree();
-            }
-            if (_roadbuilder == null)
-            {
-                _roadbuilder = new RoadBuilder();
-            }
-            if (_militaryDrill == null)
-            {
-                _militaryDrill = new MilitaryDrillExecuter();
-            }
         }
     }
 }

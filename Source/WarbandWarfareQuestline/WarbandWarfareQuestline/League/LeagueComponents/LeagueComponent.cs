@@ -15,7 +15,6 @@ namespace WarbandWarfareQuestline.League
         private bool _isActive;
         private int _lastExecuteTick;
 
-
         public LeagueComponent()
         {
             _isActive = false;
@@ -45,7 +44,6 @@ namespace WarbandWarfareQuestline.League
             {
                 SetLastExecuteTick();
                 Execute();
-                Log.Message("WAW: LeagueComponent executed");
             }
             else
             {
@@ -77,6 +75,12 @@ namespace WarbandWarfareQuestline.League
         public void SetLastExecuteTick()
         {
             _lastExecuteTick = GenTicks.TicksGame;
+        }
+
+        public void ResetLastExecuteTick()
+        {
+            _lastExecuteTick = -CooldownTicks;
+            Log.Message($"WAW: new _lastExecuteTick: {_lastExecuteTick}");
         }
 
         public virtual void ExposeData()

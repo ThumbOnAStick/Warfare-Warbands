@@ -46,7 +46,7 @@ namespace WarbandWarfareQuestline.League.MinorFactions
         public FactionTraitDef Trait => _trait;
         public string FactionID => this.ID;
         public Color FactionColor => _factionColor;
-        public int Tax => this._techLevel < TechLevel.Industrial ? 3000 : 10000;
+        public int Tax => this._techLevel < TechLevel.Industrial ? 1000 : 5000;
         public TechLevel TechLevel => this._techLevel;
 
         public void Init()

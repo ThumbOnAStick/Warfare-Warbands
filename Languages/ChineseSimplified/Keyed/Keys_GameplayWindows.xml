@@ -94,5 +94,7 @@
 	<WAW.CombatPowerOutOfLimit.Desc>兵种战斗力超过限制（{0}）</WAW.CombatPowerOutOfLimit.Desc>
 	<WAW.EquipmentImprovingPolicy.Desc>这个政策会增加你可以选择的士兵的最大战斗力（+{0}）</WAW.EquipmentImprovingPolicy.Desc>
     <WAW.EliteUpgradeRequirement>升级需要“精锐部队”政策。</WAW.EliteUpgradeRequirement>
-
+    <WAW.MilitaryDrills.NoPlayerWarband>不是玩家战团</WAW.MilitaryDrills.NoPlayerWarband>
+	<WAW.MilitaryDrills.NoLeader>没有团长</WAW.MilitaryDrills.NoLeader>
+    <WAW.MilitaryDrills.ValidObject>目标符合</WAW.MilitaryDrills.ValidObject>
 </LanguageData>

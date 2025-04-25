@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,7 +52,6 @@ namespace WAWLeadership
                 atrributeSet?.GainPoints(levelUpAmount, oldLevel);
             }
         }
-
 
         public void Tick()
         {
