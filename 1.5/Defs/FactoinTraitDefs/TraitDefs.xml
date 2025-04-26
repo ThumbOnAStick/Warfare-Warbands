@@ -8,6 +8,7 @@
         <supplyBonus>1</supplyBonus>
         <description>Leaders of this faction are risk-averse, they contribute to a conservative power in the league congress.</description>
         <dislikedCategory>Warfare</dislikedCategory>
+        <hatedTrait>WAW_Aggressive</hatedTrait>
     </WarbandWarfareQuestline.FactionTraitDef>
 
     <!-- New Traits -->
@@ -18,6 +19,7 @@
         <supplyBonus>2</supplyBonus>
         <description>Leaders of this faction are skilled in trade and commerce, favoring economic policies in the league congress.</description>
         <dislikedCategory>Warfare</dislikedCategory>
+        <hatedTrait>WAW_Militarist</hatedTrait>
     </WarbandWarfareQuestline.FactionTraitDef>
 
     <WarbandWarfareQuestline.FactionTraitDef>
@@ -27,6 +29,7 @@
         <supplyBonus>5</supplyBonus>
         <description>Leaders of this faction are warlike and favor aggressive policies, often pushing for military expansion.</description>
         <dislikedCategory>Economy</dislikedCategory>
+        <hatedTrait>WAW_Cautious</hatedTrait>
     </WarbandWarfareQuestline.FactionTraitDef>
 
     <WarbandWarfareQuestline.FactionTraitDef>
@@ -35,6 +38,7 @@
         <commonality>1.5</commonality>
         <supplyBonus>1</supplyBonus>
         <description>Leaders of this faction are skilled in planning and tactics, balancing warfare and economic policies.</description>
+        <hatedTrait>WAW_Industrialist</hatedTrait>
     </WarbandWarfareQuestline.FactionTraitDef>
 
     <WarbandWarfareQuestline.FactionTraitDef>
@@ -44,6 +48,7 @@
         <supplyBonus>3</supplyBonus>
         <description>Leaders of this faction focus on resource optimization and economic growth, often at the expense of military priorities.</description>
         <dislikedCategory>Warfare</dislikedCategory>
+        <hatedTrait>WAW_Aggressive</hatedTrait>
     </WarbandWarfareQuestline.FactionTraitDef>
 
     <WarbandWarfareQuestline.FactionTraitDef>
@@ -53,5 +58,47 @@
         <supplyBonus>2</supplyBonus>
         <description>Leaders of this faction prioritize military strength and weapon upgrades, often neglecting economic policies.</description>
         <dislikedCategory>Economy</dislikedCategory>
+        <hatedTrait>WAW_Cautious</hatedTrait>
     </WarbandWarfareQuestline.FactionTraitDef>
+
+    <WarbandWarfareQuestline.FactionTraitDef>
+        <defName>WAW_Diplomat</defName>
+        <label>Diplomat</label>
+        <commonality>1.8</commonality>
+        <supplyBonus>2</supplyBonus>
+        <description>Leaders of this faction excel in negotiation and diplomacy, favoring peaceful resolutions over conflict.</description>
+        <dislikedCategory>Warfare</dislikedCategory>
+        <hatedTrait>WAW_Aggressive</hatedTrait>
+    </WarbandWarfareQuestline.FactionTraitDef>
+
+    <WarbandWarfareQuestline.FactionTraitDef>
+        <defName>WAW_Expansionist</defName>
+        <label>Expansionist</label>
+        <commonality>1.2</commonality>
+        <supplyBonus>4</supplyBonus>
+        <description>Leaders of this faction prioritize territorial expansion and resource acquisition.</description>
+        <dislikedCategory>Economy</dislikedCategory>
+        <hatedTrait>WAW_Cautious</hatedTrait>
+    </WarbandWarfareQuestline.FactionTraitDef>
+
+    <WarbandWarfareQuestline.FactionTraitDef>
+        <defName>WAW_Pacifist</defName>
+        <label>Pacifist</label>
+        <commonality>1.5</commonality>
+        <supplyBonus>1</supplyBonus>
+        <description>Leaders of this faction avoid conflict and focus on internal development and harmony.</description>
+        <dislikedCategory>Warfare</dislikedCategory>
+        <hatedTrait>WAW_Militarist</hatedTrait>
+    </WarbandWarfareQuestline.FactionTraitDef>
+
+    <WarbandWarfareQuestline.FactionTraitDef>
+        <defName>WAW_Defender</defName>
+        <label>Defender</label>
+        <commonality>1.4</commonality>
+        <supplyBonus>2</supplyBonus>
+        <description>Leaders of this faction focus on protecting their territory and people, often resisting aggressive expansion.</description>
+        <dislikedCategory>Economy</dislikedCategory>
+        <hatedTrait>WAW_Expansionist</hatedTrait>
+    </WarbandWarfareQuestline.FactionTraitDef>
+
 </Defs>

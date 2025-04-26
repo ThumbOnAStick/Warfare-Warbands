@@ -97,4 +97,8 @@
     <WAW.MilitaryDrills.NoPlayerWarband>不是玩家战团</WAW.MilitaryDrills.NoPlayerWarband>
 	<WAW.MilitaryDrills.NoLeader>没有团长</WAW.MilitaryDrills.NoLeader>
     <WAW.MilitaryDrills.ValidObject>目标符合</WAW.MilitaryDrills.ValidObject>
+    <WAW.LocateFaction>定位{0}</WAW.LocateFaction>
+	<WAW.KickoutFaction>驱逐{0}</WAW.KickoutFaction>
+	<WAW.KickoutProposal>我们应该驱逐{0}。</WAW.KickoutProposal>
+
 </LanguageData>

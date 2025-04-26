@@ -76,6 +76,7 @@ namespace WarbandWarfareQuestline.League.UI
             if (DrawButton(new Rect(policyTreeButtonX, policyTreeButtonY + verticalOffset, policyTreeButtonWidth, policyTreeButtonHeight), "WAW.ManageLeague"))
             {
                 // Open League Management Window
+                Find.WindowStack.Add(new Window_LeagueManagement());
             }
 
             if (DrawButton(new Rect(policyTreeButtonX, policyTreeButtonY + 2 * verticalOffset, policyTreeButtonWidth, policyTreeButtonHeight), "WAW.LeagueAction"))

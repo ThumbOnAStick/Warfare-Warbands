@@ -98,4 +98,8 @@
     <WAW.MilitaryDrills.NoPlayerWarband>Not a player warband</WAW.MilitaryDrills.NoPlayerWarband>
 	<WAW.MilitaryDrills.NoLeader>No leader</WAW.MilitaryDrills.NoLeader>
     <WAW.MilitaryDrills.ValidObject>Valid object</WAW.MilitaryDrills.ValidObject>
+    <WAW.LocateFaction>Locate settlement of {0}</WAW.LocateFaction>
+    <WAW.KickoutFaction>Kick out {0} from the league.</WAW.KickoutFaction>
+	<WAW.KickoutProposal>We should kick {0} out</WAW.KickoutProposal>
+
 </LanguageData>

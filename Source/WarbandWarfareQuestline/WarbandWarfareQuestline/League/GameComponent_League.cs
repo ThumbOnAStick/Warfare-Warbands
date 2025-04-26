@@ -57,6 +57,19 @@ namespace WarbandWarfareQuestline.League
             _baseEventGenerationTicks = BaseEventGenrationTicks;
         }
 
+        public FloatRange dateOffset = new FloatRange(0.8f, 0.12f);
+        public int BaseEventGenrationTicks => (int)(baseEventGenerationDays * dateOffset.RandomInRange) * GenDate.TicksPerDay;
+
+        public List<MinorFactionSettlement> MinorFactionSettlements => _minorFactionsSettlements;
+        public List<MinorFaction> Factions => _minorFactionsSettlements.Select(x => x.MinorFaction).ToList();
+        public PolicyTree PolicyTree => _policyTree;
+        public RoadBuilder RoadBuilder => _roadbuilder;
+        public MilitaryDrillExecuter MilitaryDrill => _militaryDrill;
+        public float Cohesion => _cohesion;
+        public int DevelopmentPoints => _developmentPoints;
+        public int DevelopmentLevel => _developmentLevel;
+        public bool IsTradeTreatyActive => _isTradeTreatyActive;
+
         public override void GameComponentTick()
         {
             base.GameComponentTick();
@@ -155,19 +168,6 @@ namespace WarbandWarfareQuestline.League
             }
         }
 
-        public FloatRange dateOffset = new FloatRange(0.8f, 0.12f);
-        public int BaseEventGenrationTicks => (int)(baseEventGenerationDays * dateOffset.RandomInRange) * GenDate.TicksPerDay;
-
-        public List<MinorFactionSettlement> MinorFactionSettlements => _minorFactionsSettlements;
-        public List<MinorFaction> Factions => _minorFactionsSettlements.Select(x => x.MinorFaction).ToList();
-        public PolicyTree PolicyTree => _policyTree;
-        public RoadBuilder RoadBuilder => _roadbuilder;
-        public MilitaryDrillExecuter MilitaryDrill => _militaryDrill;
-        public float Cohesion => _cohesion;
-        public int DevelopmentPoints => _developmentPoints;
-        public int DevelopmentLevel => _developmentLevel;
-        public bool IsTradeTreatyActive => _isTradeTreatyActive;
-
         private bool ShouldCheckNow()
         {
             return GenTicks.TicksGame - _lastCheckTick > _baseEventGenerationTicks;
@@ -255,6 +255,12 @@ namespace WarbandWarfareQuestline.League
             }
         }
 
+        public void RemoveFactionFromLeague(MinorFactionSettlement settlement)
+        {
+            this._minorFactionsSettlements.RemoveAll(x => x.MinorFaction == settlement.MinorFaction);
+            settlement.Destroy();
+        }
+
         public bool NoFactionInLeague()
         {
             return _minorFactionsSettlements.Count <= 0;
@@ -327,5 +333,7 @@ namespace WarbandWarfareQuestline.League
         {
             _policyTree?.Tick();
         }
+
+       
     }
 }

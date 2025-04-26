@@ -116,7 +116,7 @@ namespace WarbandWarfareQuestline.League.Policies.UI
                 .Where(x => !dissenters.Contains(x))
                 .ToList();
 
-            Find.WindowStack.Add(new Window_Congress(pros, dissenters, p)); 
+            Find.WindowStack.Add(new Window_PolicyCongress(pros, dissenters, p)); 
         }
     }
 }

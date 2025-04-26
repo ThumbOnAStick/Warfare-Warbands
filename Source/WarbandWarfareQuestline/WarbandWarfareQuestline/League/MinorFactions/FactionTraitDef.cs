@@ -16,6 +16,8 @@ namespace WarbandWarfareQuestline
         public float supplyBonus;
 
         public PolicyCategoryDef dislikedCategory;
+
+        public FactionTraitDef hatedTrait;
  
     }
 }

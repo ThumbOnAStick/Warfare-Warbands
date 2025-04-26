@@ -26,7 +26,7 @@ namespace WarbandWarfareQuestline.League.Policies
             {
                 SetLastExecuteTick();
                 Log.Message("Infrastructure Development policy ticked");
-                GameComponent_WAW.Instance.SetEliteUpgradeAvailable(true);
+                GameComponent_League.Instance.AddCohesion(1);
             }
         }
     }

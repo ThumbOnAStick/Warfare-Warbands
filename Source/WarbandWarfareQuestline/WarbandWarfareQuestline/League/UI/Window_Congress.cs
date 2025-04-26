@@ -10,13 +10,12 @@ using Verse.Noise;
 using Verse.Sound;
 using WarbandWarfareQuestline.League.MinorFactions;
 
-namespace WarbandWarfareQuestline.League.Policies.UI
+namespace WarbandWarfareQuestline.League.UI
 {
     public class Window_Congress : Window
     {
         private readonly List<MinorFaction> _pros;
         private readonly List<MinorFaction> _dissenters;
-        private readonly Policy _policy;
         private const float voteSessionHeight = 200f;
         private const float PlayerWeight = 0.3f;
         private const float IconDrawSize = 25f;
@@ -24,28 +23,27 @@ namespace WarbandWarfareQuestline.League.Policies.UI
         private const float DistributionFactor = 0.2f;
         private const float votingSessionPosY = 500f;
 
-        private float _leftPercentage;
-        private float _leftPercentageRaw;
+        protected float _leftPercentage;
+        protected float _leftPercentageRaw;
         private Rect _leftRect;
         private Rect _rightRect;
-        private Rect _topTextDrawingArea;
+        protected Rect _topTextDrawingArea;
         private enum MouseState { None, HoverLeft, HoverRight };
         private MouseState _mouseState = MouseState.None;
-        private bool _closeRequestLock;
+        protected bool _closeRequestLock;
 
         public Window_Congress()
         {
             _pros = new List<MinorFaction>();
             _dissenters = new List<MinorFaction>();
-            _policy = new Policy(PolicyDefOf.TaxReform, true);
+           
             _closeRequestLock = true;
         }
 
-        public Window_Congress(List<MinorFaction> pros, List<MinorFaction> dissenters, Policy policy)
+        public Window_Congress(List<MinorFaction> pros, List<MinorFaction> dissenters)
         {
             _pros = pros ?? new List<MinorFaction>();
             _dissenters = dissenters ?? new List<MinorFaction>();
-            _policy = policy;
         }
 
         public override Vector2 InitialSize => new Vector2(500, 1000);
@@ -141,110 +139,64 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             MinorFactionDrawer.DrawFactionIconCircularDisplay(_rightRect, _dissenters, IconDrawSize, DistributionFactor);
         }
 
-        void DrawHeader()
-        {
-            Widgets.Label(_topTextDrawingArea, "WAW.Weshouldapprove".Translate(_policy.Def.label));
-        }
-
-        void DrawPolicyDescription()
-        {
-            _topTextDrawingArea.position += new Vector2(0, _topTextDrawingArea.height);
-            string desc = $"<color=#808080>{_policy.Def.description}</color>";
-            if(_policy.Def.equipmentBudgetLimitOffset > 0)
-            {
-                desc += " " + "WAW.EquipmentImprovingPolicy".Translate(_policy.Def.equipmentBudgetLimitOffset);
-            }
-            Widgets.Label(_topTextDrawingArea, desc + "WAW.TaxOffset".Translate(String.Format("{0:P2}", _policy.Def.taxBonus)));
-        }
-
-        void DrawVotingResult()
-        {
-            _topTextDrawingArea.position += new Vector2(0, _topTextDrawingArea.height);
-            if (_leftPercentage < 0.5f)
-            {
-                GUI.color = Color.red;
-                Widgets.Label(_topTextDrawingArea, "WAW.PolicyWillBeDisapproved".Translate(_policy.Def.label));
-            }
-            else
-            {
-                GUI.color = Color.green;
-                Widgets.Label(_topTextDrawingArea, "WAW.PolicyWillBeApproved".Translate(_policy.Def.label));
-            }
-            GUI.color = Color.white;
-        }
-
-        bool PlayerOpinionIsntMainstream()
+        protected bool PlayerOpinionIsntMainstream()
         {
             return (_leftPercentageRaw < 0.5f && _leftPercentage > _leftPercentageRaw)
                 || (_leftPercentageRaw > 0.5f && _leftPercentage < _leftPercentageRaw);
         }
 
-        /// <summary>
-        /// Draws the opinion impacts based on the voting results.
-        /// </summary>
-        void DrawOpinionImpacts()
+        protected bool AnyDecisionMade()
         {
-            if (!PlayerOpinionIsntMainstream()) return;
-
-            // Draw negative impact
-            GUI.color = new Color(1f, 0.2f, 0);
-            _topTextDrawingArea.position += Vector2.up * _topTextDrawingArea.height;
-            Widgets.Label(_topTextDrawingArea, "WAW.FactionsUnhappy".Translate(10));
-
-            // Draw positive impact
-            GUI.color = Color.white;
-            _topTextDrawingArea.position += Vector2.up * _topTextDrawingArea.height;
-            Widgets.Label(_topTextDrawingArea, "WAW.GiveDevelopmentPoints".Translate(1));
+            return Widgets.ButtonInvisible(_leftRect) || Widgets.ButtonInvisible(_rightRect);
         }
 
-        void ForceQuit()
+        protected void ForceQuit()
         {
             this._closeRequestLock = false;
             this.Close();
         }
 
-        void OnAgreed()
+        protected virtual void DrawTopicDescriptions(Rect inRect)
         {
-            GameComponent_League.Instance.OnPolicyChosen(_policy.Def);
-            SoundDefOf.Quest_Succeded.PlayOneShotOnCamera();
-            this._policy.Execute();
+            _topTextDrawingArea = inRect.TopPart(0.1f);
+            Text.Anchor = TextAnchor.MiddleCenter;
         }
 
-        void OnDisagreed()
+        protected virtual void DoApproveResult()
+        {
+            SoundDefOf.Quest_Succeded.PlayOneShotOnCamera();
+        }
+
+        protected virtual void DoRejectResult()
         {
             SoundDefOf.TabClose.PlayOneShotOnCamera();
         }
 
-        void OnOpinionConflict()
+        protected void OnOpinionConflict()
         {
             GameComponent_League.Instance.AddDevelopmentPoints(1);
             GameComponent_League.Instance.AddCohesion(-0.1f);
         }
 
-        bool AnyDecisionMade()
-        {
-            return Widgets.ButtonInvisible(_leftRect) || Widgets.ButtonInvisible(_rightRect);
-        }
-
-        bool ShouldAgree()
-        {
-            return _leftPercentage > .5f;
-        }
-
-        void DrawInvisibleButtons()
+        protected void UpondecisionMade()
         {
             if (!AnyDecisionMade())
             {
                 return;
             }
 
+            bool ShouldAgree()
+            {
+                return _leftPercentage > .5f;
+            }
+
             if (ShouldAgree())
             {
-                OnAgreed();
+                DoApproveResult();
             }
             else
             {
-                OnDisagreed();
+                DoRejectResult();
             }
 
             if (PlayerOpinionIsntMainstream())
@@ -255,27 +207,23 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             ForceQuit();
         }
 
-        void DrawPolicyLabels(Rect inRect)
+        void DrawOpinionImpacts()
         {
-            _topTextDrawingArea = inRect.TopPart(0.1f);
+            if (!PlayerOpinionIsntMainstream()) return;
+
             Text.Anchor = TextAnchor.MiddleCenter;
+            // Draw negative impact
+            GUI.color = new Color(1f, 0.2f, 0);
+            _topTextDrawingArea.position += Vector2.up * _topTextDrawingArea.height;
+            Widgets.Label(_topTextDrawingArea, "WAW.FactionsUnhappy".Translate(10));
 
-            // Draw header
-            DrawHeader();
-
-            // Draw policy description
-            DrawPolicyDescription();
-
-            // Draw opinion impacts
-            DrawOpinionImpacts();
-
-            // Draw voting results
-            DrawVotingResult();
-
-            // Draw buttons
-            DrawInvisibleButtons();
+            // Draw positive impact
+            GUI.color = Color.white;
+            _topTextDrawingArea.position += Vector2.up * _topTextDrawingArea.height;
+            Widgets.Label(_topTextDrawingArea, "WAW.GiveDevelopmentPoints".Translate(1));
 
             Text.Anchor = TextAnchor.UpperLeft;
+
         }
 
         private void DrawOptionLabels()
@@ -291,7 +239,9 @@ namespace WarbandWarfareQuestline.League.Policies.UI
             DrawPlayerFaction();
             DrawFactions();
             DrawOptionLabels();
-            DrawPolicyLabels(inRect);
+            DrawTopicDescriptions(inRect);
+            DrawOpinionImpacts();
+            UpondecisionMade();
         }
     }
 }
