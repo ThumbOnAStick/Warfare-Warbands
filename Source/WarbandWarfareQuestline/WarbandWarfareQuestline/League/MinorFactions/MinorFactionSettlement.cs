@@ -94,7 +94,7 @@ namespace WarbandWarfareQuestline.League.MinorFactions
                 PawnGroupMaker pawnGroupMaker = (from x in Faction.def.pawnGroupMakers
                                                  where x.kindDef == PawnGroupKindDefOf.Combat && x.maxTotalPoints > 1000f
                                                  select x).RandomElement<PawnGroupMaker>();
-                float points = Math.Max(StorytellerUtility.DefaultThreatPointsNow(Find.AnyPlayerHomeMap), 5000f);
+                float points = Math.Min(100f, StorytellerUtility.DefaultThreatPointsNow(Find.AnyPlayerHomeMap));
                 PawnGroupMakerParms pawnGroupMakerParms = new PawnGroupMakerParms
                 {
                     points = points,
@@ -105,7 +105,6 @@ namespace WarbandWarfareQuestline.League.MinorFactions
                 IEnumerable<PawnGenOptionWithXenotype> enumerable = PawnGroupMakerUtility.ChoosePawnGenOptionsByPoints(pawnGroupMakerParms.points, pawnGroupMaker.options, pawnGroupMakerParms);
                 IEnumerable<Pawn> list = PawnGroupMakerUtility.GeneratePawns(pawnGroupMakerParms);
                 this.SpawnPawnsNearCenter(list);
-
             }
         }
 

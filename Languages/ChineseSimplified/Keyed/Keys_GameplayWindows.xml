@@ -81,7 +81,7 @@
 	<WAW.ApprovePolicy>通过</WAW.ApprovePolicy>
 	<WAW.RejectPolicy>否决</WAW.RejectPolicy>
 	<WAW.Weshouldapprove>提议:我们应该通过{0}。</WAW.Weshouldapprove>
-    <WAW.PolicyWillBeDisaproved>结果：{0} 会被否决</WAW.PolicyWillBeDisaproved>
+    <WAW.PolicyWillBeDisapproved>结果：{0} 会被否决</WAW.PolicyWillBeDisapproved>
 	<WAW.FactionsUnhappy>你的行动将减少{0}点凝聚力。</WAW.FactionsUnhappy>
 	<WAW.GiveDevelopmentPoints>你的行动将为联盟提供{0}点发展点数。</WAW.GiveDevelopmentPoints>
 	<WAW.PolicyWillBeApproved>结果：{0} 会被通过。</WAW.PolicyWillBeApproved>
@@ -91,8 +91,8 @@
 	<WAW.RoadConstruct.DecideDest>选择目的地</WAW.RoadConstruct.DecideDest>
 	<WAW.RoadConstruct.Info>你只能选择玩家基地或附庸据点。</WAW.RoadConstruct.Info>
     <WAW.RoadConstruct.Confirm>确认</WAW.RoadConstruct.Confirm>
-	<WAW.CombatPowerOutOfLimit.Desc>兵种战斗力超过限制（{0}）</WAW.CombatPowerOutOfLimit.Desc>
-	<WAW.EquipmentImprovingPolicy.Desc>这个政策会增加你可以选择的士兵的最大战斗力（+{0}）</WAW.EquipmentImprovingPolicy.Desc>
+    <WAW.CombatPowerOutOfLimit>兵种战斗力超过限制（{0}）</WAW.CombatPowerOutOfLimit>
+	<WAW.EquipmentImprovingPolicy>这个政策会增加你可以选择的士兵的最大战斗力（+{0}）</WAW.EquipmentImprovingPolicy>
     <WAW.EliteUpgradeRequirement>升级需要“精锐部队”政策。</WAW.EliteUpgradeRequirement>
     <WAW.MilitaryDrills.NoPlayerWarband>不是玩家战团</WAW.MilitaryDrills.NoPlayerWarband>
 	<WAW.MilitaryDrills.NoLeader>没有团长</WAW.MilitaryDrills.NoLeader>
@@ -100,5 +100,6 @@
     <WAW.LocateFaction>定位{0}</WAW.LocateFaction>
 	<WAW.KickoutFaction>驱逐{0}</WAW.KickoutFaction>
 	<WAW.KickoutProposal>我们应该驱逐{0}。</WAW.KickoutProposal>
+    <WAW.TaxOffset>(<color value="#FFFFFF">税收偏移: {0}</color>)</WAW.TaxOffset>
 
 </LanguageData>

@@ -109,7 +109,11 @@
 	<WAW.RoadConstruct.DaysAhead.Desc>你需要等到<color value="#00FFFF">{0}天</color>后才能建造道路。</WAW.RoadConstruct.DaysAhead.Desc>
 	<WAW.MilitaryDrills.DaysAhead>无法在<color value="#00FFFF">{0}天</color>内启动军事演习。</WAW.MilitaryDrills.DaysAhead>
 	<WAW.FLTM.ConstructRoad>建造道路</WAW.FLTM.ConstructRoad>
-``	<WAW.FLTM.NoActions.Desc>没有可用的操作</WAW.FLTM.NoActions.Desc>
+``	<WAW.FLTM.NoActions>没有可用的操作</WAW.FLTM.NoActions>
 	<WAW.FLTM.PlayerSkirmish>军事挑衅 （随机战役）</WAW.FLTM.PlayerSkirmish>
-	<WAW.FLTM.MilitaryDrill>启动军事演习</WAW.FLTM.MilitaryDrill>
+	<WAW.FLTM.MilitaryDrill>启动军事演习</WAW.FLTM.MilitaryDrill>	
+	<WAW.RandomResign>退出</WAW.RandomResign>
+	<WAW.RandomResign.Desc>由于凝聚力低下，{0} 已经退出你的联盟。</WAW.RandomResign.Desc>
+	<WAW.TaxPaid.Desc>季节性税收${0}已存入你的银行账户。</WAW.TaxPaid.Desc>
+
 </LanguageData>

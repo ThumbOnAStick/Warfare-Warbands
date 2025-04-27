@@ -314,7 +314,7 @@ namespace WarbandWarfareQuestline.League
 
         public void FullfillDevelopmentPoints()
         {
-            AddDevelopmentPoints(GetNeededPoints());
+            _developmentPoints = GetNeededPoints();
         }
 
         public string GetPointsAndNeededPoints()

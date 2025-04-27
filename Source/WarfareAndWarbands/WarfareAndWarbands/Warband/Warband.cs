@@ -262,7 +262,7 @@ namespace WarfareAndWarbands.Warband
 
         void SpawnPawnsNearEdge(List<Pawn> pawnList, Map m)
         {
-            IntVec3 cell = CellFinder.RandomEdgeCell(m);
+            CellFinder.TryFindRandomEdgeCellWith(c => !c.Impassable(m), m, 1 ,out IntVec3 cell);
             try
             {
                 CellFinder.TryFindRandomCellNear(cell, m, 15, (IntVec3 c) => c.Walkable(m), out IntVec3 newCell);

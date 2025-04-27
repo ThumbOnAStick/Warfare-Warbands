@@ -21,6 +21,8 @@ namespace WarbandWarfareQuestline.Skirmish
 
         public virtual int Bonus => 7500;
 
+        public virtual int DevelopmentPointsBonus => 10;
+
         protected int SkirmishEndTicks => _creationTick + GenDate.TicksPerDay * 5;
 
         public Skirmish()
@@ -48,7 +50,8 @@ namespace WarbandWarfareQuestline.Skirmish
 
         public void SendBonus()
         {
-            GameComponent_League.Instance.AffectCohesion(0.5f);
+            GameComponent_League.Instance.AddDevelopmentPoints(DevelopmentPointsBonus);
+            GameComponent_League.Instance.AffectCohesion(0.05f);
             GameComponent_WAW.playerBankAccount.Deposit(Bonus);
             Letter l = LetterMaker.MakeLetter("WAW.SkirmishBonus".Translate(), "WAW.SkirmishBonus.Desc".Translate(Bonus), LetterDefOf.PositiveEvent);
             Find.LetterStack.ReceiveLetter(l);   
@@ -66,7 +69,7 @@ namespace WarbandWarfareQuestline.Skirmish
 
         public virtual void PostDestroy()
         {
-
+            Log.Message("Skirmish destroyed");
         }
 
         public virtual void NotifyPlayer()
@@ -107,6 +110,7 @@ namespace WarbandWarfareQuestline.Skirmish
             Scribe_Collections.Look(ref _warbads, "warband", LookMode.Reference);
             Scribe_Collections.Look(ref _sites, "sites", LookMode.Reference);
             Scribe_References.Look(ref _faction, "_faction");
+            Scribe_Values.Look(ref _creationTick, "_creationTick");
 
         }
     }

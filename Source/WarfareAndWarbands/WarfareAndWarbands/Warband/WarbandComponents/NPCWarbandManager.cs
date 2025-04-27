@@ -14,9 +14,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         private bool defeated = false;
         private int targetTile;
         private readonly Warband warband;
-        private static readonly int progressPoint = 5;
         private static readonly int defeatAward = 5;
-        private static readonly int assaultDuration = WAWSettings.eventFrequency * 60000;
 
         public NPCWarbandManager(Warband warband)
         {
@@ -26,14 +24,18 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public void Tick()
         {
-            if(warband.Faction == Faction.OfPlayer)
+            if(GenTicks.TicksGame % 2500 != 0)
+            {
+                return;
+            }
+            if (warband.Faction == Faction.OfPlayer)
             {
                 return;
             }
             CheckAllEnemiesDefeated();
             CheckShouldDestroySite();
             AIWarbandRaidUpdate();
-            SpawnWarbandMembersInTargetMap();
+            TryToSpawnWarbandMembersInTargetMap();
         }
 
         public void SetTargetTile(int targetTile)
@@ -41,10 +43,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             this.targetTile = targetTile;
         }
 
-        public void SpawnWarbandMembersInTargetMap()
+        public void TryToSpawnWarbandMembersInTargetMap()
         {
             var mapP = TryGetTarget();
-            if (!this.warband.HasMap && mapP != null && mapP.HasMap)
+            if (mapP != null && mapP.HasMap && !this.warband.HasMap )
             {
                 //Spawn warband
                 this.warband.SpawnOffenders(mapP.Map);
@@ -75,7 +77,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         void DescreaseDurability()
         {
-            GameComponent_WAW.Instance.DecreaseDurability(warband.Faction, progressPoint);
+            GameComponent_WAW.Instance.DecreaseDurability(warband.Faction, defeatAward);
         }
 
         public MapParent TryGetTarget()
@@ -85,40 +87,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             else
                 return null;
         }
-
-
-        void TryAffectGoodwill()
-        {
-            if (HasTargetingFaction())
-            {
-                Faction.OfPlayer.TryAffectGoodwillWith(Find.WorldObjects.WorldObjectAt<MapParent>(this.targetTile).Faction, defeatAward);
-            }
-        }
-
-        void TryToOccupySettlement(ref MapParent factionBase)
-        {
-            IntRange range = new IntRange(0, 100);
-            int val = range.RandomInRange;
-            if (val < WAWSettings.occupyChance)
-            {
-                factionBase.Destroy();
-                WarbandUtil.AddNewHome(targetTile, warband.Faction, factionBase.def);
-                BeatOpponent();
-            }
-        }
-
-        void MoveAndDestroy(MapParent factionBase)
-        {
-            var tile = factionBase.Tile;
-            factionBase.Destroy();
-            warband.ResettleTo(tile);
-        }
-
-         void BeatOpponent()
-        {
-            GameComponent_WAW.Instance.AddDurability(this.warband.Faction, progressPoint);
-        }
-
+   
         void SendHostileWarbandDefeatedMessage()
         {
             Letter defeatLetter = LetterMaker.MakeLetter("WAW.DefeatWarbandLetter.Label".Translate(), "WAW.DefeatWarbandLetter.Desc".Translate(warband.Faction.NameColored), LetterDefOf.PositiveEvent);

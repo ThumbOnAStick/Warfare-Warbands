@@ -117,7 +117,7 @@
     <Compile Include="Warband\Compatibility_VPE\VPE.cs" />
     <Compile Include="Warband\Compatibility_VPE\Window_VPEWarband.cs" />
     <Compile Include="Warband\HarmonyPatches\WorldPawnPatch.cs" />
-    <Compile Include="Warband\Mercenary\JobGiver_RecycleVehicle.cs" />
+    <Compile Include="Mercenary\JobGiver_RecycleVehicle.cs" />
     <Compile Include="Warband\UI\Dialog_SetCustomName.cs" />
     <Compile Include="Warband\UI\WarbandConfigureSteps\StepOne.cs" />
     <Compile Include="Warband\UI\WarbandConfigureSteps\StepThree.cs" />
@@ -145,9 +145,9 @@
     <Compile Include="Warband\DebugActionWarband.cs" />
     <Compile Include="Warband\HarmonyPatches\ExitMapPatch.cs" />
     <Compile Include="Warband\HarmonyPatches\GetHomeFactionPatch.cs" />
-    <Compile Include="Warband\Mercenary\CompMercenary.cs" />
+    <Compile Include="Mercenary\CompMercenary.cs" />
     <Compile Include="Warband\HarmonyPatches\WorldObjectGizmosPatch.cs" />
-    <Compile Include="Warband\Mercenary\MercenaryUtil.cs" />
+    <Compile Include="Mercenary\MercenaryUtil.cs" />
     <Compile Include="Warband\PlayerWarbandArrangement.cs" />
     <Compile Include="Warband\PlayerWarbandRaid\GameComponent_PlayerWarbandRaidManager.cs" />
     <Compile Include="Warband\PlayerWarbandRaid\MapComponent_WarbandRaidTracker.cs" />

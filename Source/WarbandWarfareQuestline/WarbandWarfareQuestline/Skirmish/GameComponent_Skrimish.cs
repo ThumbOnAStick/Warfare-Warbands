@@ -142,7 +142,7 @@ namespace WarbandWarfareQuestline.Skirmish
         public override void GameComponentTick()
         {
             base.GameComponentTick();
-            if(GenTicks.TicksGame % 100 != 0)
+            if(GenTicks.TicksGame % 1000 != 0)
             {
                 return;
             }
@@ -152,14 +152,15 @@ namespace WarbandWarfareQuestline.Skirmish
                 _skirmishes = new List<Skirmish>();
                 return;
             }
-            
-            _skirmishes.RemoveAll(s => s == null);
-            
+                       
             for (int i = 0; i < _skirmishes.Count; i++)
             {
                 var skirmish = _skirmishes[i];
                 if (skirmish == null)
+                {
+                    _skirmishes.Remove(_skirmishes[i]);
                     continue;
+                }
                     
                 if (skirmish.ShouldDestroy())
                 {

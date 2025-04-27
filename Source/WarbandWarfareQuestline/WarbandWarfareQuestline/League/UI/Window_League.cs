@@ -59,6 +59,7 @@ namespace WarbandWarfareQuestline.League.UI
 
         private static void DrawIconInfo(Rect iconRect, Texture2D icon, TaggedString value, bool isCurrency = false)
         {
+            icon = icon==null ? Texture2D.whiteTexture : icon;
             Widgets.DrawTextureFitted(iconRect, icon, 1);
             string label = isCurrency ? $"${value}" : value.ToString();
             Widgets.Label(new Rect(settlementCountDisplayOffsetX, iconRect.y + margin, 100, 50), label);

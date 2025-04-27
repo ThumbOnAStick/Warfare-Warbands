@@ -126,19 +126,34 @@ namespace WarfareAndWarbands.Warband
                 return;
             }
             this.warband?.playerWarbandManager?.injuriesManager?.InjurePawn(pawnKindName, GenTicks.TicksGame);
-            var faction = Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband);
             this.Retreat();
         }
         public string RemainingDays()
         {
             return GenDate.TicksToDays(lastServeTick + ServeDuration - Find.TickManager.TicksGame).ToString("0.0");
         }
+
+        void OnLeaderDied()
+        {
+            TryNotifyPlayerLeaderKilled();
+            warband?.playerWarbandManager?.leader?.OnLeaderChanged();
+        }
+
+        void OnSoliderDied()
+        {
+            TryKillPlayerMercenary(out bool survived);
+            TryNotifyPlayerPawnKilled(survived);
+            if (warband != null && warband.playerWarbandManager.ShouldPlayerWarbandBeRemoved())
+            {
+                warband.Destroy();
+            }
+        }
+
         void Notify_Killed()
         {
             if (isLeaderCache)
             {
-                TryNotifyPlayerLeaderKilled();
-                warband?.playerWarbandManager?.leader?.OnLeaderChanged();
+                OnLeaderDied();
             }
 
             else if (IsFromEmpire)
@@ -147,12 +162,7 @@ namespace WarfareAndWarbands.Warband
             }
             else
             {
-                TryKillPlayerMercenary(out bool survived);
-                TryNotifyPlayerPawnKilled(survived);
-                if (warband.playerWarbandManager.ShouldPlayerWarbandBeRemoved())
-                {
-                    warband.Destroy();
-                }
+                OnSoliderDied();
             }
         }
 
@@ -325,13 +335,14 @@ namespace WarfareAndWarbands.Warband
         public override void CompTick()
         {
             base.CompTick();
-            if (this.servesPlayerFaction)
+            if (!this.servesPlayerFaction)
             {
-                if (Find.TickManager.TicksGame - LastServeTick > ServeDuration)
-                {
-                    LastServeTick = Find.TickManager.TicksGame;
-                    Retreat();
-                }
+                return;
+            }
+            if (Find.TickManager.TicksGame - LastServeTick > ServeDuration)
+            {
+                LastServeTick = Find.TickManager.TicksGame;
+                Retreat();
             }
         }
 
