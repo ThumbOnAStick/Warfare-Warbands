@@ -255,6 +255,24 @@ namespace WarbandWarfareQuestline.League
             }
         }
 
+        void DoRandomFactionResign()
+        {
+            if(_minorFactionsSettlements.Count < 1)
+            {
+                return;
+            }
+            RemoveRandomFactionFromLeague(out string factionName);
+            Letter l = LetterMaker.MakeLetter("WAW.RandomResign".Translate(), "WAW.RandomResign.Desc".Translate(factionName), LetterDefOf.NegativeEvent);
+            Find.LetterStack.ReceiveLetter(l);
+        }
+
+        void RemoveRandomFactionFromLeague(out string factionName)
+        {
+            var settlement = _minorFactionsSettlements.RandomElement();
+            factionName = settlement.MinorFaction.FactionName;  
+            RemoveFactionFromLeague(settlement);
+        }
+
         public void RemoveFactionFromLeague(MinorFactionSettlement settlement)
         {
             this._minorFactionsSettlements.RemoveAll(x => x.MinorFaction == settlement.MinorFaction);
@@ -309,19 +327,15 @@ namespace WarbandWarfareQuestline.League
             LevelUP();
         }
 
-        public void AddCohesion(float amount)
+        public void AffectCohesion(float amount)
         {
             if (_cohesion + amount < 0)
             {
-                // TODO: Add cohesion penalty
+                //Remove a random faction
+                DoRandomFactionResign();
                 return;
             }
             _cohesion = Mathf.Min(Mathf.Max(_cohesion + amount, 0), 1);
-        }
-
-        public void SetCohesion(float amount)
-        {
-            _cohesion = amount;
         }
 
         public void SetTradeTreaty(bool isActive)

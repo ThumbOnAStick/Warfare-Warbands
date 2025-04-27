@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using WarbandWarfareQuestline.League;
 using WarfareAndWarbands;
 using WarfareAndWarbands.Warband;
 
@@ -47,6 +48,7 @@ namespace WarbandWarfareQuestline.Skirmish
 
         public void SendBonus()
         {
+            GameComponent_League.Instance.AffectCohesion(0.5f);
             GameComponent_WAW.playerBankAccount.Deposit(Bonus);
             Letter l = LetterMaker.MakeLetter("WAW.SkirmishBonus".Translate(), "WAW.SkirmishBonus.Desc".Translate(Bonus), LetterDefOf.PositiveEvent);
             Find.LetterStack.ReceiveLetter(l);   

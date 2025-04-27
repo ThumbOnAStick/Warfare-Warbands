@@ -35,7 +35,7 @@ namespace WarbandWarfareQuestline.League.UI
                 {
                     continue;
                 }
-                if (factionSettlement.MinorFaction.Trait.hatedTrait != mS.MinorFaction.Trait || 
+                if (factionSettlement.MinorFaction.Trait.hatedTrait != mS.MinorFaction.Trait && 
                     factionSettlement.MinorFaction.Trait.dislikedCategory == mS.MinorFaction.Trait.dislikedCategory)
                 {
                     dissenters.Add(factionSettlement.MinorFaction);
@@ -48,6 +48,7 @@ namespace WarbandWarfareQuestline.League.UI
         
             Find.WindowStack.Add(new Window_KickoutCongress(pros, dissenters, mS));
         }
+
 
         void DrawOneRow(float y, MinorFactionSettlement mS)
         {

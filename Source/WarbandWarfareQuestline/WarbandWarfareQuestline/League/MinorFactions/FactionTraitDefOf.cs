@@ -11,10 +11,6 @@ namespace WarbandWarfareQuestline
     [DefOf]
     public static class FactionTraitDefOf
     {
-        //static FactionTraitDefOf()
-        //{
-        //    DefOfHelper.EnsureInitializedInCtor(typeof(FactionTraitDefOf));
-        //}
         public static FactionTraitDef WAW_Cautious;
     }
 }

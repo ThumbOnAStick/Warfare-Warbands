@@ -175,7 +175,7 @@ namespace WarbandWarfareQuestline.League.UI
         protected void OnOpinionConflict()
         {
             GameComponent_League.Instance.AddDevelopmentPoints(1);
-            GameComponent_League.Instance.AddCohesion(-0.1f);
+            GameComponent_League.Instance.AffectCohesion(-0.1f);
         }
 
         protected void UpondecisionMade()

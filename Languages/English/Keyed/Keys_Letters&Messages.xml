@@ -119,5 +119,6 @@
 	<WAW.FLTM.PodAttackUnavailable>Attack in transport pods (requires "Advanced Tatics" policy)</WAW.FLTM.PodAttackUnavailable>
 	<WAW.FLTM.PlayerSkirmish>Military Provocation (random skirmish)</WAW.FLTM.PlayerSkirmish>
 	<WAW.FLTM.MilitaryDrill>Start Military Drill</WAW.FLTM.MilitaryDrill>
-
+	<WAW.RandomResign>Resign</WAW.RandomResign>
+	<WAW.RandomResign.Desc>Due to low cohesion, {0} has resigned from your league.</WAW.RandomResign.Desc>
 </LanguageData>	
