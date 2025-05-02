@@ -49,6 +49,10 @@
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2890901044\Assemblies\CombatExtended.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="MothballedAndDeadPawns">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2982026860\1.5\Assemblies\MothballedAndDeadPawns.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -112,6 +116,7 @@
     <Compile Include="CharacterCustomization\GameComponent_Customization.cs" />
     <Compile Include="Misc\Alert_ClosingPlayerWarbandMap.cs" />
     <Compile Include="QuickRaid\UI\Window_QuickRaid.cs" />
+    <Compile Include="Warband\Compatibility_BetterGC\BetterGCHarmony.cs" />
     <Compile Include="Warband\Compatibility_Vehicle\Vehicle.cs" />
     <Compile Include="Warband\Compatibility_Vehicle\VehicleSelectionPanel.cs" />
     <Compile Include="Warband\Compatibility_VPE\VPE.cs" />

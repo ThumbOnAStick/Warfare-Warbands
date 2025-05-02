@@ -119,7 +119,6 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
         {
             Scribe_References.Look(ref leader, "leader");
             Scribe_Values.Look(ref spawnLeader, "spawnLeader", true);
-
         }
 
 
