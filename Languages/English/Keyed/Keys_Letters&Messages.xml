@@ -121,4 +121,6 @@
 	<WAW.FLTM.MilitaryDrill>Start Military Drill</WAW.FLTM.MilitaryDrill>
 	<WAW.RandomResign>Resign</WAW.RandomResign>
 	<WAW.RandomResign.Desc>Due to low cohesion, {0} has resigned from your league.</WAW.RandomResign.Desc>
+	<WAW.ArtilleryStrike>Artillery strike</WAW.ArtilleryStrike>
+	<WAW.ArtilleryStrikeNoAmmo>Artillery strike (no ammo)</WAW.ArtilleryStrikeNoAmmo>
 </LanguageData>	

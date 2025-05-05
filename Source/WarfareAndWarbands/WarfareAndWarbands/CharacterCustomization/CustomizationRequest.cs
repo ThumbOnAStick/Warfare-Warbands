@@ -24,6 +24,7 @@ namespace WarfareAndWarbands.CharacterCustomization
         public Dictionary<string, string> thingDefsAndStyles;
         public Dictionary<ThingDef, ThingDef> itemAndStuff;
         public ThingDef weaponRequest;
+        public ThingDef sideArm;
         private int combatPowerCache = 0;
         private List<ThingDef> itemCache;
         private List<ThingDef> stuffCache;
@@ -59,6 +60,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             this.thingDefsAndStyles = new Dictionary<string, string>(other.thingDefsAndStyles);
             this.itemAndStuff = new Dictionary<ThingDef, ThingDef>(other.itemAndStuff);
             this.weaponRequest = other.weaponRequest;
+            this.sideArm = other.sideArm;
         }
 
         public int CombatPowerCache => combatPowerCache;
@@ -66,6 +68,7 @@ namespace WarfareAndWarbands.CharacterCustomization
         public void CustomizePawn(ref Pawn p)
         {
             GenerateWeaponFor(ref p);
+            GenerateSidearmFor(ref p);  
             GenerateApparelsFor(ref p);
             SetXenoForPawn(ref p);    
         }
@@ -131,18 +134,27 @@ namespace WarfareAndWarbands.CharacterCustomization
             return curve;
         }
 
-
-        public ThingWithComps GenerateWeapon()
+        public ThingWithComps GenerateWeaponItem(ThingDef def)
         {
-            if (this.weaponRequest == null)
+            if (def == null)
             {
                 return null;
             }
-            var stuff = GetStuff(weaponRequest);
-            ThingWithComps weapon = (ThingWithComps)ThingMaker.MakeThing(weaponRequest, stuff);
+            var stuff = GetStuff(def);
+            ThingWithComps weapon = (ThingWithComps)ThingMaker.MakeThing(def, stuff);
             weapon.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
             TryToStyleEquipment(ref weapon);
             return weapon;
+        }
+
+        public ThingWithComps GenerateSidearm()
+        {
+            return GenerateWeaponItem(sideArm);
+        }
+
+        public ThingWithComps GenerateWeapon()
+        {
+            return GenerateWeaponItem(weaponRequest);
         }
 
         void TryToStyleEquipment(ref Apparel equipment)
@@ -161,6 +173,13 @@ namespace WarfareAndWarbands.CharacterCustomization
             }
         }
 
+        public ThingWithComps GenerateSidearmFor(ref Pawn p)
+        {
+            var weapon = GenerateSidearm();
+            if ((weapon!=null))
+               p.inventory.TryAddAndUnforbid(weapon);
+            return weapon;
+        }
         public ThingWithComps GenerateWeaponFor(ref Pawn p)
         {
             var weapon = GenerateWeapon();
@@ -191,11 +210,19 @@ namespace WarfareAndWarbands.CharacterCustomization
             List<ThingWithComps> result = new List<ThingWithComps>();
             foreach (ThingDef apparelRequest in apparelRequests)
             {
-                ThingDef stuff = GetStuff(apparelRequest);
-                ThingWithComps apparel = (Apparel)ThingMaker.MakeThing(apparelRequest, stuff);
-                apparel.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
-                TryToStyleEquipment(ref apparel);
-                result.Add(apparel);
+                try
+                {
+                    ThingDef stuff = GetStuff(apparelRequest);
+                    ThingWithComps apparel = (Apparel)ThingMaker.MakeThing(apparelRequest, stuff);
+                    apparel.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Normal, null);
+                    TryToStyleEquipment(ref apparel);
+                    result.Add(apparel);
+                }
+                catch (Exception e)
+                {
+                    Log.Error("WAW: Failed to generate apparel " + apparelRequest.defName + " " + e);
+
+                }
             }
             return result;
         }
@@ -275,12 +302,6 @@ namespace WarfareAndWarbands.CharacterCustomization
             ThingDef apparelDef = DefDatabase<ThingDef>.GetNamed(apparelName);
             apparelRequests.Add(apparelDef);
         }
-        public void SetWeapon(string weaponName)
-        {
-            ThingDef weaponDef = DefDatabase<ThingDef>.GetNamed(weaponName);
-            weaponRequest = weaponDef;
-        }
-
 
         public string GetUniqueLoadID()
         {
@@ -295,6 +316,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             Scribe_Values.Look(ref this.alienDefName, "alienDefName");
             Scribe_Collections.Look(ref this.apparelRequests, "apparelRequests", LookMode.Def);
             Scribe_Defs.Look(ref this.weaponRequest, "weaponRequest");
+            Scribe_Defs.Look(ref this.sideArm, "sideArm");
             Scribe_Collections.Look<string, string>(ref this.thingDefsAndStyles,
 "thingDefsAndStyles", LookMode.Value, LookMode.Value, ref defNameCache, ref styleCache, false);
             Scribe_Collections.Look<ThingDef, ThingDef>(ref this.itemAndStuff,

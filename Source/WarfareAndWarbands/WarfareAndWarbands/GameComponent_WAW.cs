@@ -17,6 +17,7 @@ namespace WarfareAndWarbands
     {
         List<Faction> factions = new List<Faction>();
         List<int> durabilitities = new List<int>();
+        List<ThingDef> _mortarShells = new List<ThingDef>();
         Dictionary<Faction, int> factionsAndWarDurabilities = new Dictionary<Faction, int>();
         public static PlayerWarbandArrangement playerWarband;
         public static WAWBankAccount playerBankAccount;
@@ -46,6 +47,8 @@ namespace WarfareAndWarbands
 
         public bool IsEliteUpgradeAvailable => _isEliteUpgradeAvailable;
 
+        public List<ThingDef> MortarShells => _mortarShells;
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -64,12 +67,14 @@ namespace WarfareAndWarbands
             }
         }
 
+
         public override void LoadedGame()
         {
             base.LoadedGame();
             LoadAllFactions();
             RefreshPlayerWarbands();
             TryToSetRelation();
+            FindShells();
         }
 
 
@@ -80,6 +85,12 @@ namespace WarfareAndWarbands
             LoadAllFactions();
             RefreshPlayerWarbands();
             TryToSetRelation();
+            FindShells();
+        }
+
+        void FindShells()
+        {
+            _mortarShells = DefDatabase<ThingDef>.AllDefs.Where(x => x.projectileWhenLoaded != null).ToList();
         }
 
         public bool CanPlayerUseEliteUpgrade()

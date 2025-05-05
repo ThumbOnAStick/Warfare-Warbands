@@ -65,6 +65,14 @@ namespace WarfareAndWarbands.Warfare.UI
             }
         }
 
+        public static void DrawCloseButton(this Window window, Rect inRect)
+        {
+            if (Widgets.ButtonImage(new Rect(inRect.xMax - 15, 0, 15, 15), TexButton.CloseXSmall))
+            {
+                window.Close();
+            }
+        }
+
         private static void DrawSelectionMenu(Rect inRect, Window_WAW window)
         {
             if (window == null) return;

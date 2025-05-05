@@ -101,5 +101,9 @@
     <WAW.LocateFaction>Locate settlement of {0}</WAW.LocateFaction>
     <WAW.KickoutFaction>Kick out {0} from the league.</WAW.KickoutFaction>
 	<WAW.KickoutProposal>We should kick {0} out</WAW.KickoutProposal>
-
+    <WAW.SidearmLabel>Sidearm</WAW.SidearmLabel>
+    <WAW.NoShellDefs>No shell defs</WAW.NoShellDefs>
+    <WAW.ShellManagement>Mortar Shells</WAW.ShellManagement>
+    <WAW.ResourceLoadout>Spawn-with Resources</WAW.ResourceLoadout>
+    <WAW.HowToFireArtillery>To fire these rounds, use warband's attack command button on an open map, there will be an extra option.</WAW.HowToFireArtillery>
 </LanguageData>

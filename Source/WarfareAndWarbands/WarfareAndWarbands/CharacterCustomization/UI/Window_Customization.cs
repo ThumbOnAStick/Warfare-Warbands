@@ -22,7 +22,7 @@ namespace WarfareAndWarbands.CharacterCustomization
 {
     public class Window_Customization : Window
     {
-        public enum SelectionType { head, top, bottom, utils, weapons, none };
+        public enum SelectionType { head, top, bottom, utils, weapons, side ,none };
         SelectionType selectionType = SelectionType.head;
         private List<ThingDef> selectedList;
         private List<ThingDef> apparelHeadsCache;
@@ -373,6 +373,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             Rect bottomGearRect = new Rect(headRect.x, headRect.y + 150, boxSize, boxSize);
             Rect weaponRect = new Rect(topGearRect.x + 100, topGearRect.y + 25, boxSize, boxSize);
             Rect utilRect = new Rect(bottomGearRect.x - 100, weaponRect.y, boxSize, boxSize);
+            Rect sideArmsRect = new Rect(utilRect.x, headRect.y, boxSize, boxSize);
 
             Widgets.DrawTextureFitted(bodyRect, WAWTex.BodyTex, 8);
             Widgets.DrawTextureFitted(headRect, WAWTex.HeadTex, 8);
@@ -381,6 +382,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             Widgets.DrawBoxSolidWithOutline(bottomGearRect, Color.black, Color.white);
             Widgets.DrawBoxSolidWithOutline(weaponRect, Color.black, Color.white);
             Widgets.DrawBoxSolidWithOutline(utilRect, Color.black, Color.white);
+            Widgets.DrawBoxSolidWithOutline(sideArmsRect, Color.black, Color.white);
 
             if (selectedRequest != null)
             {
@@ -405,12 +407,42 @@ namespace WarfareAndWarbands.CharacterCustomization
                     DrawEquipments(utilRect, null, SelectionType.utils);
 
                 DrawEquipments(weaponRect, new List<ThingDef>() { selectedRequest.weaponRequest }, SelectionType.weapons);
+                DrawEquipments(sideArmsRect, new List<ThingDef>() { selectedRequest.sideArm }, SelectionType.side);
 
+                // Display sidearm label
+                GUI.color = Color.yellow;
+                Widgets.Label(sideArmsRect, "WAW.SidearmLabel".Translate());
+                GUI.color = Color.white;
 
+                // Draw highlight for selection
+                switch (selectionType)
+                { 
+                    case SelectionType.head:
+                        Widgets.DrawHighlight(headGearRect);
+                        break;
+                    case SelectionType.top:
+                        Widgets.DrawHighlight(topGearRect);
+                        break;
+                    case SelectionType.bottom:
+                        Widgets.DrawHighlight(bottomGearRect);
+                        break;
+                    case SelectionType.utils:
+                        Widgets.DrawHighlight(utilRect);
+                        break;
+                    case SelectionType.weapons:
+                        Widgets.DrawHighlight(weaponRect);
+                        break;
+                    case SelectionType.side:
+                        Widgets.DrawHighlight(sideArmsRect);
+                        break;
+                    default:
+                        break;
+                }
 
             }
 
         }
+
 
 
         #region SelectionPanel
@@ -439,7 +471,7 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             Widgets.ButtonImage(searchBoxRect, TexButton.Search);
         }
 
-        void TryMakeStuffOptions(ThingDef equipment)
+        void TryMakeSelection(ThingDef equipment)
         {
             if (CanAddFloatMenu(equipment))
             {
@@ -527,7 +559,7 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
                 baseColor: stuff == null ? Color.white : stuff.stuffProps.color);
             if (selectEquipment)
             {
-                TryMakeStuffOptions(item);
+                TryMakeSelection(item);
             }
             TryToDrawStyleButton(rect, item);
         }
@@ -581,7 +613,8 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
         bool Equipped(ThingDef item)
         {
             return selectedRequest.apparelRequests.Any(x => x.defName == item.defName)
-               || (selectedRequest.weaponRequest != null && selectedRequest.weaponRequest.defName == item.defName);
+               || (selectedRequest.weaponRequest != null && selectedRequest.weaponRequest.defName == item.defName)
+               || (selectionType ==  SelectionType.side && selectedRequest.sideArm != null && selectedRequest.sideArm.defName == item.defName);
         }
 
        
@@ -608,7 +641,7 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
                 SelectList(selectionType);
             }
 
-            if (selectionType != SelectionType.weapons)
+            if (selectionType != SelectionType.weapons && selectionType != SelectionType.side)
             {
                 Rect labelRect = new Rect(rect.xMax - 20, rect.yMax - 20, 25, 25);
                 Widgets.Label(labelRect, $"+{CurrentSelectionWorn(selectionType).Count()}".Colorize(Color.cyan));
@@ -629,24 +662,45 @@ selectedRequest.apparelRequests.Any(a => a.defName == x.defName)
             !selectedRequest.apparelRequests.Any(x => x.defName == equipment.defName);
         }
 
-        public void MakeSelection(ThingDef equipment)
+        void SelectApperals(ThingDef equipment)
         {
-            if (selectionType != SelectionType.weapons)
+            if (selectedRequest.apparelRequests.Any(x => x.defName == equipment.defName))
             {
-                if (selectedRequest.apparelRequests.Any(x => x.defName == equipment.defName))
-                {
-                    selectedRequest.apparelRequests.RemoveAll(x => x.defName == equipment.defName);
-                }
-                else
-                {
-                    selectedRequest.apparelRequests.Add(equipment);
-                    TryToChangeEquipmentStyle(equipment);
-                }
+                selectedRequest.apparelRequests.RemoveAll(x => x.defName == equipment.defName);
             }
             else
             {
-                selectedRequest.weaponRequest = equipment;
+                selectedRequest.apparelRequests.Add(equipment);
                 TryToChangeEquipmentStyle(equipment);
+            }
+        }
+
+        void SelectWeapon(ThingDef equipment)
+        {
+
+            selectedRequest.weaponRequest = equipment;
+            TryToChangeEquipmentStyle(equipment);
+        }
+
+        void SelectSideArm(ThingDef equipment)
+        {
+            selectedRequest.sideArm = equipment;
+            TryToChangeEquipmentStyle(equipment);
+        }
+
+        public void MakeSelection(ThingDef equipment)
+        {
+            if(selectionType == SelectionType.weapons)
+            {
+                SelectWeapon(equipment);
+            }
+            else if (selectionType == SelectionType.side)
+            {
+                SelectSideArm(equipment);
+            }
+            else 
+            {
+                SelectApperals(equipment);
             }
             UpdatePawnKindDef();
         }

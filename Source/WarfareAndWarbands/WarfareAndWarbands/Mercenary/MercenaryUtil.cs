@@ -268,7 +268,16 @@ namespace WarfareAndWarbands.Warband.Mercenary
         {
             foreach (var item in apparel.WornApparel)
             {
-                item.SetColor(color);
+                try
+                {
+                    if (item.HasComp<CompColorable>())
+                        item.SetColor(color);
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning("WAW: Failed to set color for apparel " + item + " " + ex);
+                    continue;
+                }
             }
         }
 

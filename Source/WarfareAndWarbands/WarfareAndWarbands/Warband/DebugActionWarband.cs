@@ -94,8 +94,29 @@ namespace WarfareAndWarbands.Warband
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
             Find.WorldSelector.ClearSelection();
             Find.WorldTargeter.BeginTargeting(new Func<GlobalTargetInfo, bool>(SpawnVehicleCaravan), true);
-
         }
+
+        [DebugAction("WAW", "Spawn Mortar Shell", actionType = DebugActionType.ToolMap)]
+        public static void SpawnShellOn()
+        {
+            if(GameComponent_WAW.Instance.MortarShells.Count < 1)
+            {
+                return;
+            }
+            LocalTargetInfo info = Verse.UI.MouseCell();
+            ThingDef shellDef = GameComponent_WAW.Instance.MortarShells.RandomElement().projectileWhenLoaded;
+            if (shellDef == null)
+            {
+                return;
+            }
+            Projectile shell = (Projectile)GenSpawn.Spawn(shellDef, new IntVec3(0, 0, 0), map: Find.CurrentMap);
+            int maxExclusive = GenRadial.NumCellsInRadius(5);
+            int num = Rand.Range(0, maxExclusive);
+            var rndCell = info.Cell + GenRadial.RadialPattern[num];
+            shell.Launch(launcher: null, usedTarget: rndCell, intendedTarget: info, ProjectileHitFlags.All);
+        }
+
+
 
         static bool SpawnVehicleCaravan(GlobalTargetInfo info)
         {
@@ -184,6 +205,12 @@ namespace WarfareAndWarbands.Warband
                 var playerWarband = GenerateRandomPlayerWarband(info);
                 playerWarband.SetFaction(Faction.OfPlayer);
                 playerWarband.playerWarbandManager.upgradeHolder.GainPsycasterUpgrade();
+            });
+            yield return new FloatMenuOption("engineer upgrade", delegate
+            {
+                var playerWarband = GenerateRandomPlayerWarband(info);
+                playerWarband.SetFaction(Faction.OfPlayer);
+                playerWarband.playerWarbandManager.upgradeHolder.GainEngineerUpgrade();
             });
         }
 

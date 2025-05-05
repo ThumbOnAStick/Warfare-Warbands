@@ -42,5 +42,6 @@
   <WAW.SpawnVassalCommand>建立临时战团</WAW.SpawnVassalCommand>
 	<WAW.SpawnVassalCommand.Desc>利用盟友的预算建立一支只能部署一次的战团。</WAW.SpawnVassalCommand.Desc>
 	<WAW.VassalWillBeAvialableIn>{0}天后可用</WAW.VassalWillBeAvialableIn>
-
+  <WAW.ManageLoadout>管理配置</WAW.ManageLoadout>
+	<WAW.ManageLoadoutDesc>决定迫击炮种类和士兵生成时携带的资源。</WAW.ManageLoadoutDesc>
 </LanguageData>

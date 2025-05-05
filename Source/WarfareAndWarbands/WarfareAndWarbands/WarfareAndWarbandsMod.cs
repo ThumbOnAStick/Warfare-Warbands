@@ -22,7 +22,6 @@ namespace WarfareAndWarbands
         {
             base.DoSettingsWindowContents(inRect);
             settings.DoWindowsContent(inRect);
-            Log.Message("Bruh");
         }
      
 

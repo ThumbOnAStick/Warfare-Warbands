@@ -127,6 +127,7 @@
     <Compile Include="Warband\UI\WarbandConfigureSteps\StepOne.cs" />
     <Compile Include="Warband\UI\WarbandConfigureSteps\StepThree.cs" />
     <Compile Include="Warband\UI\WarbandConfigureSteps\StepTwo.cs" />
+    <Compile Include="Warband\UI\Window_EngineerManagerment.cs" />
     <Compile Include="Warband\VassalWarband\UI\VassalWarbandUI.cs" />
     <Compile Include="Warband\VassalWarband\UI\Window_CreateVassalWarband.cs" />
     <Compile Include="Warband\VassalWarband\VassalHolder.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\PlayerWarbandUpgradeHolder.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Psycaster\PsycasterInfo.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Elite.cs" />
+    <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Engineer.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Outpost.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Psycaster\Upgrade_Psycaster.cs" />
     <Compile Include="Warband\WarbandComponents\PlayerWarbandUpgrades\Upgrade_Vehicle.cs" />

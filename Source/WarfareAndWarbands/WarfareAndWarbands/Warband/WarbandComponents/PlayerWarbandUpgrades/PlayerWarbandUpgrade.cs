@@ -101,6 +101,11 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
             }
         }
 
+        public virtual IEnumerable<FloatMenuOption> GetExtraAttackFloatMenuOptions(PlayerWarbandManager pManager)
+        {
+            return new List<FloatMenuOption>();
+        }
+
 
         public virtual bool CanAttackCurrent()
         {

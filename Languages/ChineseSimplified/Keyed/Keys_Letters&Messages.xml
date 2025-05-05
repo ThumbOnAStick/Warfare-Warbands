@@ -115,5 +115,8 @@
 	<WAW.RandomResign>退出</WAW.RandomResign>
 	<WAW.RandomResign.Desc>由于凝聚力低下，{0} 已经退出你的联盟。</WAW.RandomResign.Desc>
 	<WAW.TaxPaid.Desc>季节性税收${0}已存入你的银行账户。</WAW.TaxPaid.Desc>
+	<WAW.ArtilleryStrike>炮击</WAW.ArtilleryStrike>
+	<WAW.ArtilleryStrikeNoAmmo>炮击（无弹药）</WAW.ArtilleryStrikeNoAmmo>
+	<WAW.FLTM.PodAttackUnavailable>使用空投仓进攻 （需要“高级战术”政策）</WAW.FLTM.PodAttackUnavailable>
 
 </LanguageData>

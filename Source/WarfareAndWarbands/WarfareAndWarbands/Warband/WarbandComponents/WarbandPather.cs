@@ -163,6 +163,11 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             tweenedPos = warbandPos + dir *  (1 - nextTileCostLeft);
         }
 
+        float MovermentPerTick()
+        {
+            return warband.playerWarbandManager.upgradeHolder.MoveSpeed / Find.WorldGrid.GetRoadMovementDifficultyMultiplier(this.warband.Tile, this.nextTile);
+        }
+
         public void Tick()
         {
             if (!this.moving)
@@ -171,7 +176,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             }
             if (this.nextTileCostLeft > 0f)
             {
-                this.nextTileCostLeft -= warband.playerWarbandManager.upgradeHolder.MoveSpeed;
+                this.nextTileCostLeft -= MovermentPerTick();
                 ResolveDrawPos();
                 return;
             }
@@ -184,6 +189,42 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         {
             this.nextTileCostLeft = 0f;
             this.moving = false;    
+        }
+
+        public void DrawPath()
+        {
+            if(this.curPath == null)
+            {
+                return;
+            }
+            if (!this.curPath.Found)
+            {
+                return;
+            }
+            if (curPath.NodesLeftCount > 0)
+            {
+                WorldGrid worldGrid = Find.WorldGrid;
+                float d = 0.05f;
+                for (int i = 0; i < curPath.NodesLeftCount - 1; i++)
+                {
+                    Vector3 a = worldGrid.GetTileCenter(curPath.Peek(i));
+                    Vector3 vector = worldGrid.GetTileCenter(curPath.Peek(i + 1));
+                    a += a.normalized * d;
+                    vector += vector.normalized * d;
+                    GenDraw.DrawWorldLineBetween(a, vector, 1f);
+                }
+                if (warband != null)
+                {
+                    Vector3 a2 = warband.DrawPos;
+                    Vector3 vector2 = worldGrid.GetTileCenter(curPath.Peek(0));
+                    a2 += a2.normalized * d;
+                    vector2 += vector2.normalized * d;
+                    if ((a2 - vector2).sqrMagnitude > 0.005f)
+                    {
+                        GenDraw.DrawWorldLineBetween(a2, vector2, 1f);
+                    }
+                }
+            }
         }
 
 

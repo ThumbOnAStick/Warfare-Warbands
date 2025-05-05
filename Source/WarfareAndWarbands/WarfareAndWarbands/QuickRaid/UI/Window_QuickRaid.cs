@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using WarfareAndWarbands.Warband;
+using WarfareAndWarbands.Warfare.UI;
 
 namespace WarfareAndWarbands.QuickRaid.UI
 {
@@ -40,11 +41,7 @@ namespace WarfareAndWarbands.QuickRaid.UI
         public override void DoWindowContents(Rect inRect)
         {
             Rect exitButtonRect = new Rect(430, 0, 30, 30);
-            bool exit = Widgets.ButtonImage(exitButtonRect, TexButton.CloseXSmall);
-            if (exit)
-            {
-                this.Close();
-            }
+            this.DrawCloseButton(inRect);
 
             Rect renameLabelRect = new Rect(30, 30f, 200, 50);
             Widgets.Label(renameLabelRect,"WAW.YouCanRename".Translate());

@@ -4,6 +4,7 @@
 <WAW.OutpostLore>哨站不能移动，但是能免费为殖民地提供帮助。</WAW.OutpostLore>
 <WAW.VehicleLore>配备车辆的佣兵团。</WAW.VehicleLore>
 <WAW.PsyCasterLore>来自破碎帝国的灵能使将会带领这支队伍，不过他们要求灵质作为补偿。</WAW.PsyCasterLore>
+<WAW.Engineer.Lore>由专家领导的战斗工程师小队。他们可以发射火炮并携带建筑材料。</WAW.Engineer.Lore>
 
 <!-- Events -->
 <WAW.SkirmishEvent>一场遭遇战正在进行，如果我们消灭所有的敌对战团，我们能够得到赏金。</WAW.SkirmishEvent>

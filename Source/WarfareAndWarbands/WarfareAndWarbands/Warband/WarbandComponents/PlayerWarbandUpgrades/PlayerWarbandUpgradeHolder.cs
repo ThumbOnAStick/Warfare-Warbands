@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using VanillaWeaponsExpanded;
 using Verse;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
@@ -50,6 +51,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
         {
             Upgrade_Psycaster psy = new Upgrade_Psycaster();
             SetUpgrade(psy);
+        }
+
+        public void GainEngineerUpgrade()
+        {
+            Upgrade_Engineer eng = new Upgrade_Engineer();
+            SetUpgrade(eng);
         }
 
         public T GetUpgrade<T>() where T: PlayerWarbandUpgrade

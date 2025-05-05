@@ -45,4 +45,6 @@
 	<WAW.SpawnVassalCommand>Spawn Vassal Warband</WAW.SpawnVassalCommand>
 	<WAW.SpawnVassalCommand.Desc>Spawn a temporary warband that can be deployed only once using this vassal faction's budget.</WAW.SpawnVassalCommand.Desc>
 	<WAW.VassalWillBeAvialableIn>Avialable in {0} days</WAW.VassalWillBeAvialableIn>
+    <WAW.ManageLoadout>Manage loaout</WAW.ManageLoadout>
+	<WAW.ManageLoadoutDesc>Decide artillery shells and spawn-with resources.</WAW.ManageLoadoutDesc>
 </LanguageData>	

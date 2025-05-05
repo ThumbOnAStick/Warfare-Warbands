@@ -69,6 +69,7 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.icon = TexCommand.Attack;
             command_Action.action = delegate ()
             {
+                band.playerWarbandManager.SetAttackTile(band.Tile);
                 band.playerWarbandManager.OrderPlayerWarbandToAttack();
             };
             command_Action.Order = 3000f;
@@ -134,6 +135,14 @@ namespace WarfareAndWarbands.Warband.UI
                 else
                 {
                     yield return new FloatMenuOption("WAW.FLTM.PodAttackUnavailable".Translate(), null);
+                }
+            }
+            if(attackManager.targetMapP.HasMap && attackManager.upgradeHolder.HasUpgrade)
+            {
+                var opts = attackManager.upgradeHolder.SelectedUpgrade.GetExtraAttackFloatMenuOptions(attackManager);
+                foreach (var option in opts)
+                {
+                    yield return option;
                 }
             }
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
+using WarfareAndWarbands.Warfare.UI;
 
 namespace WarfareAndWarbands.Warband.UI
 {
@@ -32,12 +33,7 @@ namespace WarfareAndWarbands.Warband.UI
         public override void DoWindowContents(Rect inRect)
         {
             //Draw close button
-            Rect exitButtonRect = new Rect(430, 0, 30, 30);
-            bool exit = Widgets.ButtonImage(exitButtonRect, TexButton.CloseXSmall);
-            if (exit)
-            {
-                this.Close();
-            }
+            this.DrawCloseButton(inRect);
 
             int boxWidth = 300;
             int boxHight = 50;

@@ -136,7 +136,7 @@ namespace WarfareAndWarbands.Warband
                 if (member.Value > 0)
                     outString += "\n" + WarbandUtil.GetSoldierLabel(member.Key) + "(" + member.Value + ")";
             }
-            if (npcWarbandManager != null && npcWarbandManager.HasTargetingFaction())
+            if (npcWarbandManager != null && npcWarbandManager.HasTargetingFaction()) 
             {
                 outString += "\n" + "WAW.TargetingMapParent".Translate(npcWarbandManager.TryGetTarget().Label);
 
@@ -244,7 +244,11 @@ namespace WarfareAndWarbands.Warband
                 LordMaker.MakeNewLord(this.Faction, lordJobDefendPoint, m, pawnList);
             }
         }
-
+        public override void DrawExtraSelectionOverlays()
+        {
+            base.DrawExtraSelectionOverlays();
+            this.worldPather?.DrawPath();
+        }
 
         void SpawnPawnsNearCenter(List<Pawn> pawnList)
         {

@@ -32,6 +32,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         public float NewRecruitCostMultiplier => newRecruitCostMultiplier;
         private float respawnChance;
         private float newRecruitCostMultiplier;
+        private int _attackTileCache;
 
         private readonly Warband warband;
         public static readonly int playerAttackRange = 10;
@@ -54,6 +55,13 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             leader.onLeaderChanged.AddListener(ResetNewRecruitCostMultiplier);
             leader.onLeaderChanged.AddListener(ResetRespawnChance);
             newRecruitCostMultiplier = 1;
+        }
+
+        public int AttackTile => _attackTileCache;
+
+        public void SetAttackTile(int tile)
+        {
+            _attackTileCache = tile;
         }
 
         public void OrderPlayerWarbandToAttack()
