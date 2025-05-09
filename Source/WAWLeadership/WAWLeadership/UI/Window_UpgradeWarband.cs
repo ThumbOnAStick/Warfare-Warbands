@@ -56,9 +56,9 @@ namespace WAWLeadership.UI
             {
                 new Upgrade_Outpost(),
                 new Upgrade_Elite(),
+                new Upgrade_Engineer(),
                 new Upgrade_Vehicle(),
-                new Upgrade_Psycaster()
-
+                new Upgrade_Psycaster(),
             };
             float distance = _buttonWidth / 2 - _elemenetWidth / 2;
             Rect outRect = new Rect(inRect.position, new Vector2(InitialSize.x, _groupHeight));
@@ -173,6 +173,9 @@ namespace WAWLeadership.UI
                     return RequireSkill<Attribute_Engineering>(out attribute, out minLevel);
                 case nameof(Upgrade_Psycaster):
                     return RequireSkill<Attribute_Diplomacy>(out attribute, out minLevel);
+                case nameof(Upgrade_Engineer):
+                    return RequireSkill<Attribute_Engineering>(out attribute, out minLevel);
+
             }
 
             return true;

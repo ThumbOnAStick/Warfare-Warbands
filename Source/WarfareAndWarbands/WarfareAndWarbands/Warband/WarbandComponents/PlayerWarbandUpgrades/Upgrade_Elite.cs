@@ -33,9 +33,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
             return WAWTex.WarbandEliteTex;
         }
 
-        public override void OnArrived(List<Pawn> pawns)
+        public override void OnPawnsGenerated(List<Pawn> pawns)
         {
-            base.OnArrived(pawns);
+            base.OnPawnsGenerated(pawns);
             if (ModsConfig.RoyaltyActive)
             {
                 SoundDefOf.MechClusterDefeated.PlayOneShotOnCamera();

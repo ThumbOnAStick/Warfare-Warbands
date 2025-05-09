@@ -85,8 +85,7 @@ namespace WarfareAndWarbands.Warband.UI
             command_Action.icon = WAWTex.WarbandWithdrawTex;
             command_Action.action = delegate ()
             {
-                FloatMenu floatMenuMap = new FloatMenu(WithDrawLootOptions(band).ToList());
-                Find.WindowStack.Add(floatMenuMap);
+                Find.WindowStack.Add(new Window_LootManagement(band.playerWarbandManager.lootManager));
             };
             command_Action.Order = 3000f;
             return command_Action;
@@ -108,13 +107,7 @@ namespace WarfareAndWarbands.Warband.UI
             return command_Action;
         }
 
-        static IEnumerable<FloatMenuOption> WithDrawLootOptions(Warband band)
-        {
-            yield return new FloatMenuOption("WAW.InItems".Translate(), delegate { band.WithdrawLoot(); });
-            yield return new FloatMenuOption("WAW.InSilvers".Translate(), delegate { band.WithdrawLootInSilver(); });
-            yield return new FloatMenuOption("WAW.DepositeLoots".Translate(), delegate { band.WithdrawLootToBank(); });
-
-        }
+     
 
         public static IEnumerable<FloatMenuOption> PlayerWarbandAttackOptions(PlayerWarbandManager attackManager)
         {

@@ -392,7 +392,6 @@ namespace WarfareAndWarbands.Warband
         }
 
 
-
         public void StoreAll(IEnumerable<Thing> things)
         {
 

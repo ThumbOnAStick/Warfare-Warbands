@@ -118,5 +118,6 @@
 	<WAW.ArtilleryStrike>炮击</WAW.ArtilleryStrike>
 	<WAW.ArtilleryStrikeNoAmmo>炮击（无弹药）</WAW.ArtilleryStrikeNoAmmo>
 	<WAW.FLTM.PodAttackUnavailable>使用空投仓进攻 （需要“高级战术”政策）</WAW.FLTM.PodAttackUnavailable>
+	<WAW.LootValueBankAccount>${1} 被存入, 价值为战利品的{0}%。</WAW.LootValueBankAccount>
 
 </LanguageData>

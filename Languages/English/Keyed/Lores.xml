@@ -5,8 +5,8 @@
 <WAW.OutpostLore>Outposts are designed to assist your colony at any time. Although they cannot move between tiles, they are reliable defensive forces.</WAW.OutpostLore>
 <WAW.VehicleLore>A squad equipped with ground vehicles, providing enhanced mobility and firepower.</WAW.VehicleLore>
 <WAW.PsyCasterLore>A group of mercenaries led by powerful psycasters from the Shattered Empire. They demand eltex as payment for their services.</WAW.PsyCasterLore>
-<WAW.Engineer.Label>Combat Engineers</WAW.Engineer.Label>
-<WAW.Engineer.Lore>A team of combat engineers led by an expert. They can fire artillery and spawn with building materials.</WAW.Engineer.Lore>
+<WAW.Engineer.Label>Artillery</WAW.Engineer.Label>
+<WAW.Engineer.Lore>A team of combat engineers led by an expert. They can fire artillery on opened maps.</WAW.Engineer.Lore>
 
 <!-- Events -->
 <WAW.SkirmishEvent>A field battle is underway. Destroy all three hostile warbands to claim rewards.</WAW.SkirmishEvent>

@@ -66,9 +66,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
             return WAWTex.WarbandVehicleTex;
         }
 
-        public override void OnArrived(List<Pawn> pawns)
+        public override void OnPawnsGenerated(List<Pawn> pawns)
         {
-            base.OnArrived(pawns);
+            base.OnPawnsGenerated(pawns);
             OnSquadSent();
         }
 

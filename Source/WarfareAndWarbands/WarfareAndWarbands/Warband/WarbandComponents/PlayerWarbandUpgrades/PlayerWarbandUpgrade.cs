@@ -58,10 +58,16 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades
             yield break;
         }
 
-        public virtual void OnArrived(List<Pawn> pawns)
+        public virtual void OnPawnsGenerated(List<Pawn> pawns)
         {
 
         }
+
+        public virtual void OnMapLoaded(Map map)
+        {
+
+        }
+
         public virtual bool RequiresRelation(out Faction faction, out int relation)
         {
             faction = null;

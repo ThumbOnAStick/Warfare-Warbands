@@ -11,14 +11,18 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 {
     public class PlayerWarbandLootManager: IExposable
     {
-        private List<Thing> storage;
+        private List<Thing> _storage;
+        private List<Thing> _toBesold;
         private float lootValueMultiplier;
 
         public PlayerWarbandLootManager()
         {
-            this.storage = new List<Thing>();
+            this._storage = new List<Thing>();
+            this._toBesold = new List<Thing>();
             lootValueMultiplier = 0.3f;
         }
+
+        public List<Thing> Storage => this._storage;
 
         public void StoreAll(IEnumerable<Thing> things)
         {
@@ -26,7 +30,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             {
                 if (thing.Spawned)
                     thing.DeSpawn();
-                storage.Add(thing);
+                _storage.Add(thing);
             }
         }
 
@@ -34,26 +38,46 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         {
             if (thing.Spawned)
                 thing.DeSpawn();
-            storage.Add(thing);
+            _storage.Add(thing);
         }
 
-        public void WidthdrawLoot()
+        private void RemoveSoldItems()
         {
-            if (storage.Count < 1)
+            for (int i = 0; i < _toBesold.Count; i++)
+            {
+                var thing = _toBesold[i];
+                for (int j = _storage.Count - 1; j >= 0; j--)
+                {
+                    if (_storage[j].ThingID == thing.ThingID)
+                    {
+                        _storage.RemoveAt(j);
+                    }
+                }
+            }
+            _toBesold.Clear();
+        }
+
+        public void WithdrawLoot()
+        {
+            if (_toBesold.Count < 1)
             {
                 Message m = new Message("WAW.EmptyStorage".Translate(), MessageTypeDefOf.RejectInput);
                 Messages.Message(m);
                 return;
             }
-            LaunchItemsToHome(ref storage);
-            storage.Clear();
+            LaunchItemsToHome(ref _toBesold);
+            RemoveSoldItems();
         }
 
+        public void SetToBeSold(List<Thing> things)
+        {
+            this._toBesold = things;
+        }
 
         public void WithdrawLootInSilver()
         {
 
-            if (storage.Count < 1)
+            if (_toBesold.Count < 1)
             {
                 Message m = new Message("WAW.EmptyWarband".Translate(), MessageTypeDefOf.RejectInput);
                 Messages.Message(m);
@@ -62,14 +86,13 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             List<Thing> silvers = GetLootValueInSilver();
             Messages.Message("WAW.LootValue".Translate(this.lootValueMultiplier * 100), MessageTypeDefOf.NeutralEvent);
             LaunchItemsToHome(ref silvers);
-            storage?.Clear();
-
+            RemoveSoldItems();
         }
 
         public void WithdrawLootToBank()
         {
 
-            if (storage.Count < 1)
+            if (_toBesold.Count < 1)
             {
                 Message m = new Message("WAW.EmptyWarband".Translate(), MessageTypeDefOf.RejectInput);
                 Messages.Message(m);
@@ -77,9 +100,8 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             }
             int amount = (int)(GetLootValue() * this.lootValueMultiplier);
             Messages.Message("WAW.LootValueBankAccount".Translate(this.lootValueMultiplier * 100, amount), MessageTypeDefOf.NeutralEvent);
-            GameComponent_WAW.playerBankAccount.Deposit(amount); 
-            storage?.Clear();
-
+            GameComponent_WAW.playerBankAccount.Deposit(amount);
+            RemoveSoldItems();
         }
 
         public List<Thing> GetLootValueInSilver()
@@ -102,7 +124,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         {
             float value = 0;
 
-            foreach (var thing in storage)
+            foreach (var thing in _storage)
             {
                 if (!thing.DestroyedOrNull())
                     value += thing.MarketValue * thing.stackCount;
@@ -112,7 +134,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public int GetLootCount()
         {
-            return this.storage.Count;
+            return this._storage.Count;
         }
         void LaunchItemsToHome(ref List<Thing> items)
         {
@@ -149,7 +171,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public void ExposeData()
         {
-            Scribe_Collections.Look(ref storage, "storage", LookMode.Reference);
+            Scribe_Collections.Look(ref _storage, "storage", LookMode.Deep);
             Scribe_Values.Look(ref lootValueMultiplier, "lootValueMultiplier", 0.3f);
             if(lootValueMultiplier < 0.3f)
             {

@@ -3,7 +3,15 @@
   "WorkspaceRootPath": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\wawleadership\\leadership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\wawleadership\\ui\\window_upgradewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|solutionrelative:wawleadership\\ui\\window_upgradewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\wawleadership\\ui\\leadershipui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|solutionrelative:wawleadership\\ui\\leadershipui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\wawleadership\\wawleadership\\leadership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|solutionrelative:wawleadership\\leadership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -25,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\wawleadership\\leadershiptex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|solutionrelative:wawleadership\\leadershiptex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|d:\\steamlibrary\\steamapps\\common\\rimworld\\mods\\warfare\u0026warbands\\source\\wawleadership\\wawleadership\\ui\\window_upgradewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|solutionrelative:wawleadership\\ui\\window_upgradewarband.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\wawleadership\\ui\\window_leadership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -87,10 +91,6 @@
       "RelativeMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|solutionrelative:wawleadership\\leadershipattributes\\attribute_engineering.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\wawleadership\\ui\\leadershipui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|solutionrelative:wawleadership\\ui\\leadershipui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\wawleadership\\gamecomponent_leadership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7A3A8491-3CF7-48F5-84BE-FD07277DC8EC}|WAWLeadership\\WAWLeadership.csproj|solutionrelative:wawleadership\\gamecomponent_leadership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -109,7 +109,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -117,32 +117,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Window_Leadership.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_Leadership.cs",
-              "RelativeDocumentMoniker": "WAWLeadership\\UI\\Window_Leadership.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_Leadership.cs",
-              "RelativeToolTip": "WAWLeadership\\UI\\Window_Leadership.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAADgvz4AAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T08:40:37.077Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Window_UpgradeWarband.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_UpgradeWarband.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\UI\\Window_UpgradeWarband.cs",
               "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_UpgradeWarband.cs",
               "RelativeToolTip": "WAWLeadership\\UI\\Window_UpgradeWarband.cs",
-              "ViewState": "AgIAAH4AAAAAAAAAAAAAAI4AAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAzwDYAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-25T13:55:36.925Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "LeadershipDebugActions.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipDebugActions.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipDebugActions.cs",
@@ -154,7 +142,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Attribute_Diplomacy.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipAttributes\\Attribute_Diplomacy.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipAttributes\\Attribute_Diplomacy.cs",
@@ -166,7 +154,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "LeadershipTex.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipTex.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipTex.cs",
@@ -174,12 +162,11 @@
               "RelativeToolTip": "WAWLeadership\\LeadershipTex.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T09:17:46.097Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-11T09:17:46.097Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "LeadershipExp.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipExp.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipExp.cs",
@@ -187,12 +174,11 @@
               "RelativeToolTip": "WAWLeadership\\LeadershipExp.cs",
               "ViewState": "AgIAADkAAAAAAAAAAAAowCkAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T02:46:11.167Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-10T02:46:11.167Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "LeadershipUtility.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipUtility.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipUtility.cs",
@@ -200,12 +186,11 @@
               "RelativeToolTip": "WAWLeadership\\LeadershipUtility.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAAACMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T01:04:39.889Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-10T01:04:39.889Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Leadership.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\Leadership.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\Leadership.cs",
@@ -218,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "InteractionUtility.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\InteractionUtility.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\InteractionUtility.cs",
@@ -226,12 +211,11 @@
               "RelativeToolTip": "WAWLeadership\\InteractionUtility.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAnwDsAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T12:55:13.016Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T12:55:13.016Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "CompLeadership.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\PawnComp\\CompLeadership.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\PawnComp\\CompLeadership.cs",
@@ -239,8 +223,32 @@
               "RelativeToolTip": "WAWLeadership\\PawnComp\\CompLeadership.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAnwDsAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T10:00:03.671Z",
+              "WhenOpened": "2024-12-10T10:00:03.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LeadershipUI.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\LeadershipUI.cs",
+              "RelativeDocumentMoniker": "WAWLeadership\\UI\\LeadershipUI.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\LeadershipUI.cs",
+              "RelativeToolTip": "WAWLeadership\\UI\\LeadershipUI.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAAAEAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T00:12:57.904Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Window_Leadership.cs",
+              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_Leadership.cs",
+              "RelativeDocumentMoniker": "WAWLeadership\\UI\\Window_Leadership.cs",
+              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\Window_Leadership.cs",
+              "RelativeToolTip": "WAWLeadership\\UI\\Window_Leadership.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAADgvz4AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T08:40:37.077Z"
             },
             {
               "$type": "Bookmark",
@@ -248,7 +256,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "ITab_Leadership.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\ITab_Leadership.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\UI\\ITab_Leadership.cs",
@@ -260,7 +268,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "WorldObjectCompProperties_PlayerWarbandLeader.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\WorldObjectComps\\WorldObjectCompProperties_PlayerWarbandLeader.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\WorldObjectComps\\WorldObjectCompProperties_PlayerWarbandLeader.cs",
@@ -272,7 +280,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "LeadershipAttribute.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipAttributes\\LeadershipAttribute.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipAttributes\\LeadershipAttribute.cs",
@@ -284,7 +292,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "WorldObjectComp_PlayerWarbandLeader.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\WorldObjectComps\\WorldObjectComp_PlayerWarbandLeader.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\WorldObjectComps\\WorldObjectComp_PlayerWarbandLeader.cs",
@@ -296,7 +304,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Attribute_Recruiting.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipAttributes\\Attribute_Recruiting.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipAttributes\\Attribute_Recruiting.cs",
@@ -308,7 +316,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "Attribute_Commanding.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipAttributes\\Attribute_Commanding.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipAttributes\\Attribute_Commanding.cs",
@@ -320,7 +328,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "LeadershipDefof.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipDefof.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipDefof.cs",
@@ -332,7 +340,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Attribute_Economy.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipAttributes\\Attribute_Economy.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipAttributes\\Attribute_Economy.cs",
@@ -344,7 +352,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Attribute_Engineering.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipAttributes\\Attribute_Engineering.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipAttributes\\Attribute_Engineering.cs",
@@ -368,7 +376,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "AttributeSet.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipAttributes\\AttributeSet.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipAttributes\\AttributeSet.cs",
@@ -380,19 +388,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "LeadershipUI.cs",
-              "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\LeadershipUI.cs",
-              "RelativeDocumentMoniker": "WAWLeadership\\UI\\LeadershipUI.cs",
-              "ToolTip": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\UI\\LeadershipUI.cs",
-              "RelativeToolTip": "WAWLeadership\\UI\\LeadershipUI.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAAAEAAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-10T00:12:57.904Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "Attribute_Medic.cs",
               "DocumentMoniker": "D:\\SteamLibrary\\steamapps\\common\\RimWorld\\Mods\\Warfare\u0026Warbands\\Source\\WAWLeadership\\WAWLeadership\\LeadershipAttributes\\Attribute_Medic.cs",
               "RelativeDocumentMoniker": "WAWLeadership\\LeadershipAttributes\\Attribute_Medic.cs",

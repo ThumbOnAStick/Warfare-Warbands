@@ -18,6 +18,8 @@ namespace WarfareAndWarbands
         List<Faction> factions = new List<Faction>();
         List<int> durabilitities = new List<int>();
         List<ThingDef> _mortarShells = new List<ThingDef>();
+        List<ThingDef> _minifiables = new List<ThingDef>();
+        List<ThingDef> _rawResources = new List<ThingDef>();
         Dictionary<Faction, int> factionsAndWarDurabilities = new Dictionary<Faction, int>();
         public static PlayerWarbandArrangement playerWarband;
         public static WAWBankAccount playerBankAccount;
@@ -48,6 +50,8 @@ namespace WarfareAndWarbands
         public bool IsEliteUpgradeAvailable => _isEliteUpgradeAvailable;
 
         public List<ThingDef> MortarShells => _mortarShells;
+        public List<ThingDef> Minifiables => _minifiables;
+        public List<ThingDef> RawResources => _rawResources;
 
         public override void ExposeData()
         {
@@ -74,7 +78,7 @@ namespace WarfareAndWarbands
             LoadAllFactions();
             RefreshPlayerWarbands();
             TryToSetRelation();
-            FindShells();
+            LoadSpecialThingdefs();
         }
 
 
@@ -85,12 +89,14 @@ namespace WarfareAndWarbands
             LoadAllFactions();
             RefreshPlayerWarbands();
             TryToSetRelation();
-            FindShells();
+            LoadSpecialThingdefs();
         }
 
-        void FindShells()
+        void LoadSpecialThingdefs()
         {
             _mortarShells = DefDatabase<ThingDef>.AllDefs.Where(x => x.projectileWhenLoaded != null).ToList();
+            _minifiables = DefDatabase<ThingDef>.AllDefs.Where(x => x.Minifiable && x.building !=null && x.building.IsTurret).ToList();
+            _rawResources = DefDatabase<ThingDef>.AllDefs.Where(x => x.IsStuff).ToList();
         }
 
         public bool CanPlayerUseEliteUpgrade()

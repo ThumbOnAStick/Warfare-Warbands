@@ -269,8 +269,9 @@ namespace WarfareAndWarbands.Warband
         public static void OrderPlayerWarbandToAttack(MapParent mapP, Warband warband)
         {
             Caravan caravan = SpawnWarbandCaravan(mapP.Tile, warband);
-            Map orGenerateMap = GetOrGenerateMapUtility.GetOrGenerateMap(mapP.Tile, null);
-            CaravanEnterMapUtility.Enter(caravan, orGenerateMap, CaravanEnterMode.Edge, CaravanDropInventoryMode.DoNotDrop, draftColonists: true);
+            Map generateMap = GetOrGenerateMapUtility.GetOrGenerateMap(mapP.Tile, null);
+            warband.playerWarbandManager.upgradeHolder.SelectedUpgrade?.OnMapLoaded(generateMap);
+            CaravanEnterMapUtility.Enter(caravan, generateMap, CaravanEnterMode.Edge, CaravanDropInventoryMode.DoNotDrop, draftColonists: true);
         }
 
 
@@ -285,7 +286,7 @@ namespace WarfareAndWarbands.Warband
             Caravan caravan =
                 isVehicle ? Compatibility_Vehicle.Vehicle.GenerateVehicleCaravan(tileId, list, upgrade.Vehicles) :
                 CaravanMaker.MakeCaravan(list, Faction.OfPlayer, tileId, true);
-            warband.playerWarbandManager.upgradeHolder.SelectedUpgrade?.OnArrived(list);
+            warband.playerWarbandManager.upgradeHolder.SelectedUpgrade?.OnPawnsGenerated(list);
             return caravan;
         }
 

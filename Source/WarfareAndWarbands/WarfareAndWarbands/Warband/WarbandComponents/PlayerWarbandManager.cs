@@ -168,7 +168,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public void WithdrawLoot()
         {
-            this.lootManager.WidthdrawLoot();
+            this.lootManager.WithdrawLoot();
         }
 
         public void WithdrawLootInSilver()

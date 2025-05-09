@@ -13,12 +13,9 @@ namespace WarfareAndWarbands.Warband.UI
     public class Window_EngineerManagerment : Window
     {
         private readonly Upgrade_Engineer _engineerUpgrade;
-        private int currentPanel = 0;
-        private List<TabRecord> _tabs = new List<TabRecord>();
-        private static readonly int shellPanel = 0;
-        private static readonly int resourcePanel = 1;
         private Vector2 scrollPosition1;
         private readonly List<string> _shellNumbuffers;
+
 
 
         public Window_EngineerManagerment()
@@ -40,31 +37,16 @@ namespace WarfareAndWarbands.Warband.UI
 
         public override void DoWindowContents(Rect inRect)
         {
-            if (currentPanel <= 0)
-            {
-                DrawShellManagement(inRect);
-            }
-            else
-            {
-                DrawResourceSelection();
-            }
+            // Draw closeX
+            this.DrawCloseButton(inRect);
 
-        }
+            DrawShellManagement(inRect);
 
-        public override void PostOpen()
-        {
-            base.PostOpen();
-            // Init Tabs 
-            _tabs = new List<TabRecord>();
-            this._tabs.Add(new TabRecord("WAW.ShellManagement".Translate(), () => { this.SwitchToShellManagement(); }, () => this.currentPanel == shellPanel));
-            this._tabs.Add(new TabRecord("WAW.ResourceLoadout".Translate(), () => { this.SwitchToResourseSelection(); }, () => this.currentPanel == resourcePanel));
+
         }
 
         void DrawShellManagement(Rect inRect)
         {
-            // Draw closeX
-            this.DrawCloseButton(inRect);
-
             // Check shell count
             var shellDefs = GameComponent_WAW.Instance.MortarShells;
             if (shellDefs.Count < 1)
@@ -76,13 +58,13 @@ namespace WarfareAndWarbands.Warband.UI
             }
 
             // List all shell defs
-            Rect shellSelectionRect = inRect.TopPart(.7f);
-            Rect viewRect = new Rect(0, 0, shellSelectionRect.width - 16f, shellDefs.Count * 30f);
+            Rect shellSelectionRect = inRect.BottomPart(.9f);
+            Rect viewRect = new Rect(shellSelectionRect.x, shellSelectionRect.y + Margin, shellSelectionRect.width - 16f, shellDefs.Count * 30f);
             Widgets.BeginScrollView(shellSelectionRect, ref scrollPosition1, viewRect);
             for (int i = 0; i < shellDefs.Count; i++)
             {
                 var shellDef = shellDefs[i];
-                Rect rowRect = new Rect(0, i * 30f, viewRect.width, 30f);
+                Rect rowRect = new Rect(0, i * 30f + viewRect.y, viewRect.width, 30f);
                 Widgets.DrawTextureFitted(rowRect.LeftPart(.2f), shellDef.uiIcon, 1);
                 Widgets.Label(rowRect.LeftHalf().RightHalf(), shellDef.LabelCap);
                 _shellNumbuffers[i] = _engineerUpgrade.Shells.TryGetValue(shellDef, out int val) ? val.ToString() : "0";
@@ -106,19 +88,6 @@ namespace WarfareAndWarbands.Warband.UI
             Widgets.Label(infoRect, "WAW.HowToFireArtillery".Translate());
         }
 
-        void DrawResourceSelection()
-        {
-        }
-
-        void SwitchToShellManagement()
-        {
-            currentPanel = shellPanel;
-        }
-
-        void SwitchToResourseSelection()
-        {
-            currentPanel = resourcePanel;
-        }
 
     }
 }

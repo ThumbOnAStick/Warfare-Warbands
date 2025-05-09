@@ -128,6 +128,7 @@
     <Compile Include="Warband\UI\WarbandConfigureSteps\StepThree.cs" />
     <Compile Include="Warband\UI\WarbandConfigureSteps\StepTwo.cs" />
     <Compile Include="Warband\UI\Window_EngineerManagerment.cs" />
+    <Compile Include="Warband\UI\Window_LootManagement.cs" />
     <Compile Include="Warband\VassalWarband\UI\VassalWarbandUI.cs" />
     <Compile Include="Warband\VassalWarband\UI\Window_CreateVassalWarband.cs" />
     <Compile Include="Warband\VassalWarband\VassalHolder.cs" />

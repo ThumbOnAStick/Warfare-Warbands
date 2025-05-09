@@ -71,11 +71,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
 
         public void Arrived(List<ActiveDropPodInfo> pods, LocalTargetInfo info, List<Pawn> pawns)
         {
-            warband.playerWarbandManager.upgradeHolder.SelectedUpgrade?.OnArrived(pawns);
+            warband.playerWarbandManager.upgradeHolder.SelectedUpgrade?.OnPawnsGenerated(pawns);
             Thing lookTarget = TransportPodsArrivalActionUtility.GetLookTarget(pods);
             TaggedString label = "LetterLabelCaravanEnteredEnemyBase".Translate();
             TaggedString text = "LetterTransportPodsLandedInEnemyBase".Translate(mapCached.Parent.Label).CapitalizeFirst();
             Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.NeutralEvent, lookTarget, mapCached.Parent.Faction, null, null, null, 0, true);
+            warband.playerWarbandManager.upgradeHolder.SelectedUpgrade?.OnMapLoaded(mapCached);
             TravelingTransportPodsArrived(pods, mapCached, info);
         }
 
