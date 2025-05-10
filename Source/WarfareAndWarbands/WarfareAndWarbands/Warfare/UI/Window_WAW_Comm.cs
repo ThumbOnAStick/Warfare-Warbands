@@ -68,8 +68,6 @@ namespace WarfareAndWarbands.Warfare.UI
             _tabs = new List<TabRecord>();
             this._tabs.Add(new TabRecord("WAW.MainPanelWarband".Translate(), () => { this.DoWarband(); }, () => this.currentPanel == warbandPanel));
             this._tabs.Add(new TabRecord("WAW.MainPanelLeague".Translate(), () => { this.DoLeague(); }, () => this.currentPanel == leaguePanel));
-            this._tabs.Add(new TabRecord("WAW.MainPanelWarfare".Translate(), () => { this.DoWarfare(); }, () => this.currentPanel == warfarePanel));
-
         }
         public override void DoWindowContents(Rect inRect)
         {
