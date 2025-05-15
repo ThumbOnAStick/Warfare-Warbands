@@ -174,15 +174,15 @@ namespace WarbandWarfareQuestline.Skirmish
         {
             if (skirmish == null)
                 return;
-            
+
             if (_skirmishes == null)
                 return;
-                
+
             if (_skirmishes.Contains(skirmish))
                 _skirmishes.Remove(skirmish);
-            
-            skirmish.PreDestroy();
+
             skirmish.PostDestroy();
+            skirmish.GetWorldObjects().ForEach(x => { if (x != null && !x.HasMap && !x.Destroyed) x.Destroy(); });
         }
 
         public override void ExposeData()
@@ -190,7 +190,7 @@ namespace WarbandWarfareQuestline.Skirmish
             base.ExposeData();
             Scribe_Collections.Look(ref _skirmishes, "skirmishes", LookMode.Deep);
             Scribe_Values.Look(ref _isProvocationActivated, "_isProvocationActivated");
-            if(_skirmishes == null)
+            if (_skirmishes == null)
             {
                 _skirmishes = new List<Skirmish>();
             }

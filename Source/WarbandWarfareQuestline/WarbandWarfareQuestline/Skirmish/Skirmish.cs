@@ -16,8 +16,8 @@ namespace WarbandWarfareQuestline.Skirmish
     {
         private List<Warband> _warbads;
         private List<MapParent> _sites;
-        private int _creationTick;
         protected Faction _faction;
+        private int _creationTick;
 
         public virtual int Bonus => 7500;
 
@@ -29,7 +29,7 @@ namespace WarbandWarfareQuestline.Skirmish
         {
 
         }
-        public Skirmish(List<Warband> warbands, int creationTick)
+        public Skirmish(List<Warband> warbands, int creationTick) : this()
         {
             this._warbads = warbands;
             this._sites = new List<MapParent>();
@@ -41,7 +41,7 @@ namespace WarbandWarfareQuestline.Skirmish
             this._sites = sites;
             this._creationTick = creationTick;
         }
-        public Skirmish(List<Warband> warbands, List<MapParent> sites, int creationTick)
+        public Skirmish(List<Warband> warbands, List<MapParent> sites, int creationTick) 
         {
             this._warbads = warbands;
             this._sites = sites;    
@@ -87,23 +87,14 @@ namespace WarbandWarfareQuestline.Skirmish
             this._faction = f;
         }
 
-        public void PreDestroy()
+        public List<MapParent> GetWorldObjects()
         {
-            _warbads.ForEach(x =>
-            {
-                if (x != null && !x.HasMap && !x.Destroyed)
-                {
-                    x.Destroy();
-                }
-            });
-            _sites.ForEach(x =>
-            {
-                if (x != null && !x.HasMap && !x.Destroyed)
-                {
-                    x.Destroy();
-                }
-            });
+            var result = _sites;
+            this._warbads.ForEach(x => result.Add(x));  
+            return result;
         }
+
+      
 
         public void ExposeData()
         {

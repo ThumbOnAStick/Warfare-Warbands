@@ -42,14 +42,20 @@ namespace WarbandWarfareQuestline.Skirmish
             return CreateSkirmish(info.Tile);
         }
 
+        static bool ValidateFaction(Faction fac) =>
+               fac.AllyOrNeutralTo(Faction.OfPlayer)
+               && !fac.Hidden
+               && !fac.defeated
+               && !fac.IsPlayer
+               && !fac.temporary;
+
         public static Skirmish CreateSkirmish(int tile)
         {
-            bool p(Faction fac) => fac.AllyOrNeutralTo(Faction.OfPlayer) && !fac.Hidden && !fac.IsPlayer;
-            if (!Find.FactionManager.AllFactions.Any(p))
+            if (!Find.FactionManager.AllFactions.Any(ValidateFaction))
             {
                 return null;
             }
-            Faction ally = Find.FactionManager.AllFactions.Where(p).RandomElement();
+            Faction ally = Find.FactionManager.AllFactions.Where(ValidateFaction).RandomElement();
             Faction enemy = GetRandomHostileFaction();
             List<Warband> warbands = new List<Warband>();
             for (int i = 0; i < 3; i++)
@@ -73,16 +79,12 @@ namespace WarbandWarfareQuestline.Skirmish
         }
         public static Siege CreateSiege()
         {
-            bool p(Faction fac) =>
-                fac.AllyOrNeutralTo(Faction.OfPlayer)
-                && !fac.Hidden
-                && !fac.defeated
-                && !fac.IsPlayer;
-            if (!Find.FactionManager.AllFactions.Any(p))
+           
+            if (!Find.FactionManager.AllFactions.Any(ValidateFaction))
             {
                 return null;
             }
-            Faction ally = Find.FactionManager.AllFactions.Where(p).RandomElement();
+            Faction ally = Find.FactionManager.AllFactions.Where(ValidateFaction).RandomElement();
             Faction enemy = GetRandomHostileFaction();
             WorldObject settlement = Find.World.worldObjects.AllWorldObjects.Where(x => x is Settlement && x.Faction == enemy).First();
             List<Warband> warbands = new List<Warband>();
