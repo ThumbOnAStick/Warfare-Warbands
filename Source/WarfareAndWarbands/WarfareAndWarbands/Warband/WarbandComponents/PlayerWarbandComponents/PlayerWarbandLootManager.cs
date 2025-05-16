@@ -71,7 +71,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public void SetToBeSold(List<Thing> things)
         {
-            this._toBesold = things;
+            this._toBesold = things;    
         }
 
         public void WithdrawLootInSilver()
@@ -124,7 +124,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         {
             float value = 0;
 
-            foreach (var thing in _storage)
+            foreach (var thing in _toBesold)
             {
                 if (!thing.DestroyedOrNull())
                     value += thing.MarketValue * thing.stackCount;

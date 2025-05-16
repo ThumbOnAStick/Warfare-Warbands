@@ -111,6 +111,7 @@
     <Compile Include="CharacterCustomization\Compatibility\HAR.cs" />
     <Compile Include="CharacterCustomization\CustomizationRequest.cs" />
     <Compile Include="CharacterCustomization\CustomizationUtil.cs" />
+    <Compile Include="CharacterCustomization\FileIO.cs" />
     <Compile Include="CharacterCustomization\UI\CustomizationUI.cs" />
     <Compile Include="CharacterCustomization\UI\Window_Customization.cs" />
     <Compile Include="CharacterCustomization\GameComponent_Customization.cs" />

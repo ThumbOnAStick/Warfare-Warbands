@@ -1,18 +1,16 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 using System.Reflection;
-using UnityEngine;
-using static RimWorld.PsychicRitualRoleDef;
+
 
 namespace WarfareAndWarbands.CharacterCustomization
 {
     public static class CustomizationUtil
     {
+
+
         public static void DefineSkillRange(this SkillRange skillRange, SkillDef skillDef,
             IntRange skillRangeInt)
         {
@@ -22,6 +20,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                 BindingFlags.NonPublic | BindingFlags.Instance).SetValue(skillRange, skillDef);
 
         }
+
 
         public static PawnKindDef GenerateDefaultKindDef(CustomizationRequest customizationRequest,
             FactionDef faction = null)
@@ -37,7 +36,9 @@ namespace WarfareAndWarbands.CharacterCustomization
                 modExtensions = PawnKindDefOf.Pirate.modExtensions,
                 allowOldAgeInjuries = false,
                 maxGenerationAge = 30,
+                
             };
+            
             AddSkills(defaultKindDef);
 
             return defaultKindDef;

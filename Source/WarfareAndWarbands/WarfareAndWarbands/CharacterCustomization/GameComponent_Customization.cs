@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -55,6 +56,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                     defaultKindDef.race = request.GetAlienRace();
                 }
                 _generatedKindDefs.Add(defaultKindDef);
+                TryAddDefToDatabase(defaultKindDef);
             }
             WarbandUtil.RefreshSoldierPawnKinds();
         }
@@ -85,6 +87,16 @@ namespace WarfareAndWarbands.CharacterCustomization
             AddRequest(defaultKindDef, request);
         }
 
+        void TryAddDefToDatabase(PawnKindDef def)
+        {
+            if(DefDatabase<PawnKindDef>.GetNamed(def.defName, false) != null)
+            {
+                return;
+            }
+
+            DefDatabase<PawnKindDef>.Add(def);
+        }
+
         public void AddRequest(PawnKindDef def, CustomizationRequest request)
         {
             if (!_customizationRequests.Any(x => x.defName == def.defName))
@@ -93,6 +105,9 @@ namespace WarfareAndWarbands.CharacterCustomization
                 _generatedKindDefs.Add(def);
                 WarbandUtil.RefreshSoldierPawnKinds();
                 GameComponent_WAW.playerWarband.Refresh();
+                FileIO.WriteDefs(def.defName);
+                TryAddDefToDatabase(def);
+
             }
         }
 

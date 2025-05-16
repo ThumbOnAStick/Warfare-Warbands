@@ -122,6 +122,20 @@ namespace WarfareAndWarbands.Warband.Mercenary
             return ModsConfig.IsActive("CETeam.CombatExtended");
         }
 
+        static PawnKindDef GetPawnkindFromWarband(Warband warband, string kindDefName)
+        {
+            PawnKindDef kindDef = WarbandUtil.SoldierPawnKindsCache.Where(x => x.combatPower > 50).RandomElement();
+            if (GameComponent_Customization.Instance.CustomizationRequests.Any(x => x.defName == kindDefName))
+            {
+                kindDef = GameComponent_Customization.Instance.GeneratedKindDefs.First(x => x.defName == kindDefName);
+            }
+            else if (WarbandUtil.SoldierPawnKindsCache.Any(x => x.defName == kindDefName))
+            {
+                kindDef = WarbandUtil.SoldierPawnKindsCache.First(x => x.defName == kindDefName);
+            }
+            return kindDef;
+        }
+
         static PawnGenerationRequest GetRequestFromWarband(Warband warband, string kindDefName, out bool succeed)
         {
             PawnKindDef kindDef = WarbandUtil.SoldierPawnKindsCache.Where(x => x.combatPower > 50).RandomElement();
@@ -160,7 +174,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
             {
                 succeed = false;
                 warband.SetFactionType(null);
-                Log.Error("WAW: Failed to generate pawn generation request: " + e);
+                Log.Error($"WAW: Failed to generate pawn generation request for {kindDef.label}: " + e);
                 return new PawnGenerationRequest(kindDef, warband.Faction);
             }
         }
@@ -289,12 +303,14 @@ namespace WarfareAndWarbands.Warband.Mercenary
 
         static Pawn GenerateRequestedPawn(Warband warband, string kindefName, out bool succeed)
         {
-            PawnGenerationRequest request = GetRequestFromWarband(warband, kindefName, out succeed);
             Pawn pawn;
+            succeed = false;
             try
             {
-                pawn = PawnGenerator.GeneratePawn(request);
+                var pawnKind = GetPawnkindFromWarband(warband, kindefName);
 
+                pawn = PawnGenerator.GeneratePawn(pawnKind);
+                succeed = true;
             }
             catch (Exception ex)
             {

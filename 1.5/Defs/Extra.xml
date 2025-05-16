@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <PawnKindDef ParentName="MercenaryBase">
+    <defName>93a6265b-7578-4dfa-9d14-cc1dfbd58e75</defName>
+    <combatPower>100</combatPower>
+    <initialResistanceRange>10~16</initialResistanceRange>
+    <initialWillRange>2~4</initialWillRange>
+  </PawnKindDef>
+</Defs>

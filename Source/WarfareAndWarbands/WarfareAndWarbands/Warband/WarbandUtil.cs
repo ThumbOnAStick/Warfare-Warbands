@@ -12,23 +12,30 @@ using WarfareAndWarbands.CharacterCustomization;
 using WarfareAndWarbands.Warband.Mercenary;
 using WarfareAndWarbands.Warband.UI;
 using WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandUpgrades;
-using static System.Collections.Specialized.BitVector32;
+using System.IO;
+using System.Reflection;
+using System.Xml;
+using CombatExtended;
 
 namespace WarfareAndWarbands.Warband
 {
     [StaticConstructorOnStartup]
     public static class WarbandUtil
     {
+
         static WarbandUtil()
         {
             AllPlayerWarbandsCache = new HashSet<Warband>();
             AllPlayerRecruitingWarbandsCache = new HashSet<WorldObject_WarbandRecruiting>();
             RefreshSoldierPawnKinds();
+        
+
         }
 
         public static HashSet<Warband> AllPlayerWarbandsCache;
         public static HashSet<WorldObject_WarbandRecruiting> AllPlayerRecruitingWarbandsCache;
 
+      
 
         public static void RefreshAllPlayerWarbands()
         {
@@ -126,7 +133,12 @@ namespace WarfareAndWarbands.Warband
             {
                 return kind.titleRequired != null && !kind.titleRequired.bedroomRequirements.NullOrEmpty();
             }
-            var cache = DefDatabase<PawnKindDef>.AllDefs.Where(x => x.isFighter && x.race.race.Humanlike && !IsNoble(x)).OrderBy(x => x.combatPower).ToList();
+
+            bool IsCustom(PawnKindDef kind)
+            {
+                return kind.defName.Length > 20;
+            }
+            var cache = DefDatabase<PawnKindDef>.AllDefs.Where(x => x.isFighter && x.race.race.Humanlike && !IsNoble(x) && !IsCustom(x)).OrderBy(x => x.combatPower).ToList();
             List<PawnKindDef> result = new List<PawnKindDef>(cache);
             if (GameComponent_Customization.Instance != null)
             {
