@@ -1,15 +1,12 @@
 ﻿using RimWorld;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity.Jobs.LowLevel.Unsafe;
 using UnityEngine;
 using Verse;
 using WarfareAndWarbands.CharacterCustomization;
 using WarfareAndWarbands.CharacterCustomization.Compatibility;
-using WarfareAndWarbands.Warband.UI;
 using WarfareAndWarbands.Warband.VassalWarband;
 
 namespace WarfareAndWarbands.Warband.Mercenary
@@ -58,7 +55,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
                     Pawn pawn;
                     try
                     {
-                        pawn = warband.Faction == Faction.OfPlayer ? GenerateWarbandPawnForPlayer(warband, ele.Key, out bool succeed) : GenerateWarbandPawnForNPC(warband, ele.Key);
+                        pawn = warband.Faction == Faction.OfPlayer ? GenerateWarbandPawnForPlayer(warband, ele.Key) : GenerateWarbandPawnForNPC(warband, ele.Key);
                     }
                     catch
                     {
@@ -90,7 +87,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
                     Pawn pawn;
                     try
                     {
-                        pawn = GenerateVassalPawn(warband, ele.Key, out bool succeed);
+                        pawn = GenerateVassalPawn(warband, ele.Key);
                         if (pawn != null && GameComponent_Customization.Instance.CustomizationRequests.Any(x => x.defName == ele.Key))
                         {
                             var targetRequest = GameComponent_Customization.Instance.CustomizationRequests.First(x => x.defName == ele.Key);
@@ -122,55 +119,43 @@ namespace WarfareAndWarbands.Warband.Mercenary
             return ModsConfig.IsActive("CETeam.CombatExtended");
         }
 
-        static PawnGenerationRequest GetRequestFromWarband(Warband warband, string kindDefName, out bool succeed)
+        static void SendOnAlienFetchingFailed(Exception e)
         {
-            PawnKindDef kindDef = WarbandUtil.SoldierPawnKindsCache.Where(x => x.combatPower > 50).RandomElement();
-            bool isCustom = false;
-            if (GameComponent_Customization.Instance.CustomizationRequests.Any(x => x.defName == kindDefName))
+            string message = "WAW: Warband warfare tried to generate an alien but there were no pawn kind loaded for the alien race";
+            Log.Error($"{message}, {e}");
+            Dialog_Confirm confirmlog = new Dialog_Confirm(message, delegate
             {
-                kindDef = GameComponent_Customization.Instance.GeneratedKindDefs.First(x => x.defName == kindDefName);
-                isCustom = true;
-            }
-            else if (WarbandUtil.SoldierPawnKindsCache.Any(x => x.defName == kindDefName))
-            {
-                kindDef = WarbandUtil.SoldierPawnKindsCache.First(x => x.defName == kindDefName);
-            }
-            Faction pawnFaction = kindDef.defaultFactionType != null ? Find.FactionManager.FirstFactionOfDef(kindDef.defaultFactionType) : warband.Faction;
-            if (warband.PawnKindFactionType != null && !isCustom)
-            {
-                var f = Find.FactionManager.FirstFactionOfDef(warband.PawnKindFactionType);
-                if (f != null)
-                {
-                    pawnFaction = f;
-                }
-            }
+                Find.WindowStack.TryRemove(typeof(Dialog_Confirm));
+            });
+            Find.WindowStack.Add(confirmlog);
 
-            if(warband.Faction != Faction.OfPlayer)
-            {
-                pawnFaction = warband.Faction;
-            }
-
-            try
-            {
-                succeed = true;
-                PawnGenerationRequest request = new PawnGenerationRequest(kindDef, pawnFaction, mustBeCapableOfViolence: true, developmentalStages: DevelopmentalStage.Adult);
-                return request;
-            }
-            catch (Exception e)
-            {
-                succeed = false;
-                warband.SetFactionType(null);
-                Log.Error("WAW: Failed to generate pawn generation request: " + e);
-                return new PawnGenerationRequest(kindDef, warband.Faction);
-            }
         }
 
-        static PawnGenerationRequest GetRequestFromVassal(WorldObject_VassalWarband warband, string kindDefName, out bool succeed)
+        static void SendOnRequestGenrationFailed(Exception e)
+        {
+            string message = "WAW: Warband warfare failed to generate pawn generation request.";
+            Log.Error($"{message}, {e}");
+            Dialog_Confirm confirmlog = new Dialog_Confirm(message, delegate
+            {
+                Find.WindowStack.TryRemove(typeof(Dialog_Confirm));
+            });
+            Find.WindowStack.Add(confirmlog);
+        }
+
+        static PawnGenerationRequest GetRequestFromWarband(WorldObject warband, string kindDefName)
         {
             PawnKindDef kindDef = WarbandUtil.SoldierPawnKindsCache.Where(x => x.combatPower > 50).RandomElement();
-            if (GameComponent_Customization.Instance.CustomizationRequests.Any(x => x.defName == kindDefName))
+            if (GameComponent_Customization.Instance.IsPawnkindCustom(kindDefName))
             {
-                kindDef = GameComponent_Customization.Instance.GeneratedKindDefs.First(x => x.defName == kindDefName);
+                // When kinddef is customized
+                try
+                {
+                    kindDef = DefDatabase<PawnKindDef>.AllDefs.First(x => x.race == GameComponent_Customization.Instance.GetCustomDef(kindDefName).race);
+                }
+                catch (Exception e)
+                {
+                    SendOnAlienFetchingFailed(e);
+                }
             }
             else if (WarbandUtil.SoldierPawnKindsCache.Any(x => x.defName == kindDefName))
             {
@@ -180,64 +165,17 @@ namespace WarfareAndWarbands.Warband.Mercenary
 
             try
             {
-                succeed = true;
                 PawnGenerationRequest request = new PawnGenerationRequest(kindDef, faction, mustBeCapableOfViolence: true, developmentalStages: DevelopmentalStage.Adult);
                 return request;
             }
             catch (Exception e)
             {
-                succeed = false;
-                Log.Message("WAW: Failed to generate pawn generation request: " + e);
+                SendOnRequestGenrationFailed(e);
                 return new PawnGenerationRequest(kindDef, warband.Faction);
             }
         }
 
-        static Pawn GenerateWarbandPawnForPlayer(Warband warband, string kindDefName, out bool succeed)
-        {
-            Pawn pawn;
-            pawn = GenerateRequestedPawn(warband, kindDefName, out succeed);
-            if(!succeed)
-            {
-                return null;
-            }
-
-            if (GameComponent_Customization.Instance.CustomizationRequests.Any(x => x.defName == kindDefName))
-            {
-                var targetRequest = GameComponent_Customization.Instance.CustomizationRequests.First(x => x.defName == kindDefName);
-                targetRequest?.CustomizePawn(ref pawn);
-            }
-
-            var equipments = pawn.equipment.AllEquipmentListForReading;
-            if (equipments != null)
-                foreach (var equipment in equipments)
-                {
-                    if (equipment.def.IsWeapon && equipment.TryGetComp<CompBiocodable>() != null)
-                    {
-                        equipment.TryGetComp<CompBiocodable>().CodeFor(pawn);
-                        equipment.TryGetComp<CompQuality>()?.SetQuality(warband.playerWarbandManager.upgradeHolder.GearQuality, ArtGenerationContext.Outsider);
-                    }
-                }
-            TryToSetSkillFor(pawn, warband);
-            if (pawn.apparel != null)
-            {
-                foreach(var apparel in pawn.apparel.WornApparel)
-                {
-                    apparel.TryGetComp<CompQuality>()?.SetQuality(warband.playerWarbandManager.upgradeHolder.GearQuality, ArtGenerationContext.Outsider);
-                }
-                pawn.apparel.SetColor(warband.playerWarbandManager.colorOverride.GetColorOverride());
-                pawn.apparel.LockAll();
-            }
-
-            for (int i = 0; i < 24; i++)
-            {
-                pawn.timetable.SetAssignment(i, TimeAssignmentDefOf.Anything);
-            }
-            if (!pawn.WorkTagIsDisabled(WorkTags.Violent))
-            {
-                pawn.playerSettings.hostilityResponse = HostilityResponseMode.Attack;
-            }
-            return pawn;
-        }
+     
 
         static void TryToSetSkillFor(Pawn p, Warband warband)
         {
@@ -281,15 +219,58 @@ namespace WarfareAndWarbands.Warband.Mercenary
             }
         }
 
-        static Pawn GenerateWarbandPawnForNPC(Warband warband, string kindefName)
+        static Pawn GenerateWarbandPawnForPlayer(Warband warband, string kindDefName)
         {
-            Pawn pawn = GenerateRequestedPawn(warband, kindefName, out bool succeed);
+            Pawn pawn;
+            pawn = GenerateRequestedPawn(warband, kindDefName);
+
+            if (GameComponent_Customization.Instance.CustomizationRequests.Any(x => x.defName == kindDefName))
+            {
+                var targetRequest = GameComponent_Customization.Instance.CustomizationRequests.First(x => x.defName == kindDefName);
+                targetRequest?.CustomizePawn(ref pawn);
+            }
+
+            var equipments = pawn.equipment.AllEquipmentListForReading;
+            if (equipments != null)
+                foreach (var equipment in equipments)
+                {
+                    if (equipment.def.IsWeapon && equipment.TryGetComp<CompBiocodable>() != null)
+                    {
+                        equipment.TryGetComp<CompBiocodable>().CodeFor(pawn);
+                        equipment.TryGetComp<CompQuality>()?.SetQuality(warband.playerWarbandManager.upgradeHolder.GearQuality, ArtGenerationContext.Outsider);
+                    }
+                }
+            TryToSetSkillFor(pawn, warband);
+            if (pawn.apparel != null)
+            {
+                foreach(var apparel in pawn.apparel.WornApparel)
+                {
+                    apparel.TryGetComp<CompQuality>()?.SetQuality(warband.playerWarbandManager.upgradeHolder.GearQuality, ArtGenerationContext.Outsider);
+                }
+                pawn.apparel.SetColor(warband.playerWarbandManager.colorOverride.GetColorOverride());
+                pawn.apparel.LockAll();
+            }
+
+            for (int i = 0; i < 24; i++)
+            {
+                pawn.timetable.SetAssignment(i, TimeAssignmentDefOf.Anything);
+            }
+            if (!pawn.WorkTagIsDisabled(WorkTags.Violent))
+            {
+                pawn.playerSettings.hostilityResponse = HostilityResponseMode.Attack;
+            }
             return pawn;
         }
 
-        static Pawn GenerateRequestedPawn(Warband warband, string kindefName, out bool succeed)
+        static Pawn GenerateWarbandPawnForNPC(Warband warband, string kindefName)
         {
-            PawnGenerationRequest request = GetRequestFromWarband(warband, kindefName, out succeed);
+            Pawn pawn = GenerateRequestedPawn(warband, kindefName);
+            return pawn;
+        }
+
+        static Pawn GenerateRequestedPawn(Warband warband, string kindefName)
+        {
+            PawnGenerationRequest request = GetRequestFromWarband(warband, kindefName);
             Pawn pawn;
             try
             {
@@ -306,9 +287,9 @@ namespace WarfareAndWarbands.Warband.Mercenary
             return pawn;
         }
 
-        static Pawn GenerateVassalPawn(WorldObject_VassalWarband vassal, string kindefName, out bool succeed)
+        static Pawn GenerateVassalPawn(WorldObject_VassalWarband vassal, string kindefName)
         {
-            PawnGenerationRequest request = GetRequestFromVassal(vassal, kindefName, out succeed);
+            PawnGenerationRequest request = GetRequestFromWarband(vassal, kindefName);
             Pawn pawn;
             try
             {

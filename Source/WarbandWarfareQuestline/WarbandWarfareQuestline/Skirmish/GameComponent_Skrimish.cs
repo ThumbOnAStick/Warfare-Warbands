@@ -181,8 +181,8 @@ namespace WarbandWarfareQuestline.Skirmish
             if (_skirmishes.Contains(skirmish))
                 _skirmishes.Remove(skirmish);
 
-            skirmish.PostDestroy();
             skirmish.GetWorldObjects().ForEach(x => { if (x != null && !x.HasMap && !x.Destroyed) x.Destroy(); });
+            skirmish.PostDestroy();
         }
 
         public override void ExposeData()

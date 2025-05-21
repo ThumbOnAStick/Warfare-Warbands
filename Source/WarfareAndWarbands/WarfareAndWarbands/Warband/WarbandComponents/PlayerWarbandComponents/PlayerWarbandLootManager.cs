@@ -57,23 +57,16 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             _toBesold.Clear();
         }
 
-        public void WithdrawLoot()
-        {
-            if (_toBesold.Count < 1)
-            {
-                Message m = new Message("WAW.EmptyStorage".Translate(), MessageTypeDefOf.RejectInput);
-                Messages.Message(m);
-                return;
-            }
-            LaunchItemsToHome(ref _toBesold);
-            RemoveSoldItems();
-        }
+
 
         public void SetToBeSold(List<Thing> things)
         {
             this._toBesold = things;
         }
 
+        /// <summary>
+        /// Sends stacks of silvers to player map
+        /// </summary>
         public void WithdrawLootInSilver()
         {
 
@@ -89,6 +82,9 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             RemoveSoldItems();
         }
 
+        /// <summary>
+        /// Withdraws the loot to the bank account of the player.
+        /// </summary>
         public void WithdrawLootToBank()
         {
 
@@ -103,6 +99,39 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             GameComponent_WAW.playerBankAccount.Deposit(amount);
             RemoveSoldItems();
         }
+
+        /// <summary>
+        /// Sends items to the player map.
+        /// </summary>
+        /// <param name="items"></param>
+        public void WithdrawLoot()
+        {
+            if (_toBesold.Count < 1)
+            {
+                Message m = new Message("WAW.EmptyStorage".Translate(), MessageTypeDefOf.RejectInput);
+                Messages.Message(m);
+                return;
+            }
+            LaunchItemsToHome(ref _toBesold);
+            RemoveSoldItems();
+        }
+        void LaunchItemsToHome(ref List<Thing> items)
+        {
+            Log.Message(items.Count);
+            Map playerMap = Find.AnyPlayerHomeMap;
+            if (playerMap == null)
+            {
+                return;
+            }
+            Current.Game.CurrentMap = playerMap;
+            if (DropCellFinder.TryFindDropSpotNear(playerMap.Center, playerMap, out IntVec3 cell, false, false))
+            {
+                CameraJumper.TryJump(cell, playerMap);
+                //DropPodUtility.MakeDropPodAt(cell, playerMap, activeDropPodInfo);
+                DropPodUtility.DropThingsNear(cell, playerMap, items, canRoofPunch: false, forbid: false);
+            }
+        }
+
 
         public List<Thing> GetLootValueInSilver()
         {
@@ -124,7 +153,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         {
             float value = 0;
 
-            foreach (var thing in _storage)
+            foreach (var thing in _toBesold)
             {
                 if (!thing.DestroyedOrNull())
                     value += thing.MarketValue * thing.stackCount;
@@ -135,22 +164,6 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         public int GetLootCount()
         {
             return this._storage.Count;
-        }
-        void LaunchItemsToHome(ref List<Thing> items)
-        {
-            Log.Message(items.Count);
-            Map playerMap = Find.AnyPlayerHomeMap;
-            if (playerMap == null)
-            {
-                return;
-            }
-            Current.Game.CurrentMap = playerMap;
-            if (DropCellFinder.TryFindDropSpotNear(playerMap.Center, playerMap, out IntVec3 cell, false, false))
-            {
-                CameraJumper.TryJump(cell, playerMap);
-                //DropPodUtility.MakeDropPodAt(cell, playerMap, activeDropPodInfo);
-                DropPodUtility.DropThingsNear(cell, playerMap, items, canRoofPunch: false, forbid: false);
-            }
         }
 
         public float GetLootMultiplier()

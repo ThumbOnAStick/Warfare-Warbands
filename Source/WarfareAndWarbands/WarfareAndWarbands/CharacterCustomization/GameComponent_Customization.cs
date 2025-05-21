@@ -65,6 +65,20 @@ namespace WarfareAndWarbands.CharacterCustomization
             return ModsConfig.IsActive("erdelf.HumanoidAlienRaces");
         }
 
+        public bool IsPawnkindCustom(string name)
+        {
+            return CustomizationRequests.Any(x => x.defName == name);
+        }
+
+        public PawnKindDef GetCustomDef(string name)
+        {
+            if (IsPawnkindCustom(name))
+            {
+                return _generatedKindDefs.FirstOrDefault(x => x.defName == name);
+            }
+            return PawnKindDefOf.Refugee;
+        }
+
 
         public void AddRequest(string defName, string label, CustomizationRequest request)
         {
