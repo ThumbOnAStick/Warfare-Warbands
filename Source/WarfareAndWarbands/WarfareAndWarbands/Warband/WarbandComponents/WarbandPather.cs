@@ -1,4 +1,5 @@
-﻿using RimWorld.Planet;
+﻿using RimWorld;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -147,12 +148,13 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         private WorldPath GenerateNewPath()
         {
             this.lastPathedTargetTile = this.destTile;
-            WorldPath worldPath = Find.WorldPathFinder.FindPath(this.warband.Tile, this.destTile, null);
-            if (worldPath.Found)
+            curPath = warband.Tile.Layer.Pather.FindPath(warband.Tile, this.destTile, null, null);
+   
+            if (curPath.Found)
             {
-                worldPath.AddNodeAtStart(this.warband.Tile);
+                curPath.AddNodeAtStart(this.warband.Tile);
             }
-            return worldPath;
+            return curPath;
         }
 
         void ResolveDrawPos()

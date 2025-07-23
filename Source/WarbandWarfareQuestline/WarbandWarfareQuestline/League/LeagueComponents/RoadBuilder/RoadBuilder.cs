@@ -39,7 +39,7 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
 
         private WorldPath GenerateNewPath()
         {
-            WorldPath worldPath = Find.WorldPathFinder.FindPath(_startingTile, _destTile, null);
+            WorldPath worldPath = Find.WorldGrid.Surface.Pather.FindPath(_startingTile, _destTile, null);
             if (worldPath.Found)
             {
                 worldPath.AddNodeAtStart(_startingTile);
@@ -82,10 +82,9 @@ namespace WarbandWarfareQuestline.League.RoadBuilding
             // Redraw the road
             try
             {
-                Find.World.renderer.SetDirty<WorldLayer_Roads>();
-                Find.World.renderer.SetDirty<WorldLayer_Paths>();
-                Find.WorldPathGrid.RecalculatePerceivedMovementDifficultyAt(_fromTileTemp, null);
-                Find.WorldPathGrid.RecalculatePerceivedMovementDifficultyAt(_toTileTemp, null);
+                Find.World.renderer.SetDirty<WorldDrawLayer_Roads>(Find.WorldGrid.Surface);
+                Find.World.renderer.SetDirty<WorldDrawLayer_Paths>(Find.WorldGrid.Surface);
+                Find.WorldPathGrid.RecalculateLayerPerceivedPathCosts(Find.WorldGrid.Surface);
             }
             catch (Exception e)
             {

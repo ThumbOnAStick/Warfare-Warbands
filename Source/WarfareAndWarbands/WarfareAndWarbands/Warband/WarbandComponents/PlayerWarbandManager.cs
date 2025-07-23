@@ -152,7 +152,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                     GameComponent_WAW.Instance.OnRaid(this.leader.Leader);
                     this.cooldownManager.SetLastRaidTick();
                     WarbandUtil.OrderPlayerWarbandToAttack(this.targetMapP, this.warband);
-                }, "GeneratingMapForNewEncounter", false, null, true, null);
+                }, "GeneratingMapForNewEncounter", false, null, true);
       
             }
         }

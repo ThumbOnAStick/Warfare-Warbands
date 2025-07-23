@@ -60,7 +60,7 @@ namespace WarfareAndWarbands.Warband.VassalWarband
             {
                 EnterMap(p);
                 this.Destroy();
-            }, "GeneratingMapForNewEncounter", false, null, true, null);
+            }, "GeneratingMapForNewEncounter", false, null, true);
         }
 
         public bool SelectAttackTarget(GlobalTargetInfo info)

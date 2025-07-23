@@ -119,9 +119,10 @@ namespace WarbandWarfareQuestline.Skirmish
             return result;
         }
 
-        static Warband RandomWarbandNear(Faction f, int tile)
+        static Warband RandomWarbandNear(Faction f, PlanetTile tile)
         {
-            TileFinder.TryFindNewSiteTile(out int allyTile, 3, 7, false, TileFinderMode.Near, tile);
+             
+            TileFinder.TryFindRandomPlayerTile(out PlanetTile allyTile, true, validator: (PlanetTile pt) => Find.WorldGrid.TraversalDistanceBetween(pt, tile) < 7);
             Warband warband = WarbandUtil.SpawnWarband(f, allyTile);
             return warband;
         }

@@ -267,22 +267,6 @@ namespace WarfareAndWarbands.Warband.UI
             return command_Action;
         }
 
-        public static Command PlaceLootChest(Warband warband)
-        {
-            Command_Action command_Action = new Command_Action
-            {
-                defaultLabel = "WAW.PlaceLootBox".Translate(),
-                defaultDesc = "WAW.PlaceLootBox.Desc".Translate(),
-                icon = WAWTex.OpenTex,
-                action = delegate ()
-                {
-                    WarbandUtil.TryToSpawnLootChest(warband);
-                },
-                Order = 3000f
-            };
-            return command_Action;
-        }
-
 
         //Loot chest
         public static Command TransferContent(CompLootChest lootComp)
@@ -520,10 +504,10 @@ namespace WarfareAndWarbands.Warband.UI
                     if (warband != null && warband.bandMembers.TryGetValue(p.defName, out int warbandCount) && warbandCount > 0)
                         Widgets.DrawBox(boxRect, lineTexture: BaseContent.GreyTex);
 
-                    if (p.defaultFactionType != null)
+                    if (p.defaultFactionDef != null)
                     {
-                        GUI.color = p.defaultFactionType.DefaultColor;
-                        Widgets.DrawTextureFitted(CenterRectFor(boxRect, new Vector2(30, 30), Vector2.up * 30), p.defaultFactionType.FactionIcon, 1f);
+                        GUI.color = p.defaultFactionDef.DefaultColor;
+                        Widgets.DrawTextureFitted(CenterRectFor(boxRect, new Vector2(30, 30), Vector2.up * 30), p.defaultFactionDef.FactionIcon, 1f);
                         GUI.color = Color.white;
                     }
                 }

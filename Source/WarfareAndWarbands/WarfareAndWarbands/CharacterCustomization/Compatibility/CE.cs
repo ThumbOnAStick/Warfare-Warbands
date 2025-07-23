@@ -1,5 +1,4 @@
-﻿using CombatExtended;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -14,12 +13,7 @@ namespace WarfareAndWarbands.CharacterCustomization.Compatibility
 
         public static void GenerateAmmoFor(Pawn p)
         {
-            var modExtension = p.kindDef.GetModExtension<LoadoutPropertiesExtension>();
-            if (modExtension != null)
-            {
-                modExtension.minAmmoCount = 300;
-                modExtension.GenerateLoadoutFor(p, 1);
-            }
+          
         }
 
     }

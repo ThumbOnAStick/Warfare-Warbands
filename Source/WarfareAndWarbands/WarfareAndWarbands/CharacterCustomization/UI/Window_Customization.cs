@@ -330,7 +330,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             var xenoTypes = DefDatabase<XenotypeDef>.AllDefs;
             foreach (XenotypeDef xeno in xenoTypes)
             {
-                var option = new FloatMenuOption(xeno.label, delegate { SetXeno(xeno); }, itemIcon: xeno.Icon, iconColor: Color.white);
+                var option = new FloatMenuOption(xeno.label, delegate { SetXeno(xeno); }, iconTex: xeno.Icon, iconColor: Color.white);
                 yield return option;
             }
         }
@@ -351,7 +351,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                     selectedRequest.SetStuff(equipment, stuff);
                     MakeSelection(equipment);
                 },
-                 itemIcon: Widgets.GetIconFor(stuff),
+                 iconTex: Widgets.GetIconFor(stuff),
                  iconColor: Color.white);
             }
         }

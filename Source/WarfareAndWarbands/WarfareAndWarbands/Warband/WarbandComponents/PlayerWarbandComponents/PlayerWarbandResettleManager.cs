@@ -86,7 +86,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             }
             warband.worldPather.ResetPath();
             TransportPodsArrivalAction_SpawnWarband action = new TransportPodsArrivalAction_SpawnWarband(warband);
-            TravelingTransportPods travelingTransportPods = (TravelingTransportPods)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.TravelingTransportPods);
+            TravellingTransporters travelingTransportPods = (TravellingTransporters)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.TravellingTransporters);
             travelingTransportPods.Tile = warband.Tile;
             travelingTransportPods.SetFaction(Faction.OfPlayer);
             travelingTransportPods.destinationTile = info.Tile;

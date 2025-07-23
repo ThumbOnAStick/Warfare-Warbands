@@ -148,7 +148,7 @@ namespace WarfareAndWarbands
 
         public static void SpawnWarbandTargetingBase(Faction f, GlobalTargetInfo info)
         {
-            TileFinder.TryFindNewSiteTile(out int warbandTile, 3, 7, false, TileFinderMode.Near, info.Tile);
+            TileFinder.TryFindNewSiteTile(out PlanetTile warbandTile, minDist: 3, maxDist: 7);
             Warband.Warband generated = WarbandUtil.SpawnWarband(f, warbandTile);
             generated.SetFaction(f);
             generated.npcWarbandManager?.SetTargetTile(info.Tile);

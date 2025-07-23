@@ -21,7 +21,7 @@ namespace WarfareAndWarbands.Warband
 {
     public static class DebugActionWarband
     {
-        [DebugAction("WAW", null, false, false, false, false, 0, false, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("WAW", null, false, false, false, false, false, 0, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         public static void SpawnRandomMercenary()
         {
             Faction faction = FactionUtility.DefaultFactionFrom(WAWDefof.PlayerWarband);
@@ -34,7 +34,7 @@ namespace WarfareAndWarbands.Warband
             lord.AddPawn(mercenary);
         }
 
-        [DebugAction("WAW", "Spawn imperial skipmaster", requiresRoyalty: true,  false, false, false, 0, false, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("WAW", "Spawn imperial skipmaster", requiresRoyalty: true,  false, false, false, false, 0, actionType = DebugActionType.ToolMap, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         public static void DoDropHeavyItemsJob()
         {
             if (GameComponent_Customization.Instance.CustomizationRequests.Count < 1)

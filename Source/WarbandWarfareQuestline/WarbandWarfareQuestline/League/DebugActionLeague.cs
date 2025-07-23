@@ -19,58 +19,58 @@ namespace WarbandWarfareQuestline.League
 {
     public static class DebugActionLeague
     {
-        [DebugAction("WAW", "Random faction join player league", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Random faction join player league", false, false, false, false, false, actionType = DebugActionType.Action)]
         public static void SpawnRandomMercenary() =>
             MinorFactionHelper.GenerateRandomMinorFactionAndJoinPlayer();
 
-        [DebugAction("WAW", "Create Random Skirmish", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Create Random Skirmish", false, false, false, false, false, actionType = DebugActionType.Action)]
         public static void CreateRandomSkirmish() =>
             GameComponent_Skrimish.Instance.CreateRandomSkirmsish();
 
-        [DebugAction("WAW", "Initiate Skirmish", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Initiate Skirmish", false, false, false, false, false, actionType = DebugActionType.Action)]
         public static void InitiateSkirmish() =>
             Find.WorldTargeter.BeginTargeting(SpawnSkirmish, true);
 
-        [DebugAction("WAW", "Spawn Siege", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Spawn Siege", false, false, false, false, false, actionType = DebugActionType.Action)]
         public static void SpawnSiege() =>
             SpawnSiegeEvent();
 
-        [DebugAction("WAW", "Spawn Settlement Construction", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Spawn Settlement Construction", false, false, false, false, false, actionType = DebugActionType.Action)]
         public static void SpawnSettlementConstruction()
         {
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
             Find.WorldTargeter.BeginTargeting(SpawnTownConstruction, true);
         }
 
-        [DebugAction("WAW", "Build Road1", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Build Road1", false, false, false, false, false, actionType = DebugActionType.Action)]
         public static void DecideRoadStart()
         {
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
             Find.WorldTargeter.BeginTargeting(DecideRoadStartingTile, true);
         }
 
-        [DebugAction("WAW", "Build Road2", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Build Road2", false, false, false, false, false, actionType = DebugActionType.Action)]
         public static void DecideRoadEnd()
         {
             CameraJumper.TryJump(CameraJumper.GetWorldTarget(Find.AnyPlayerHomeMap.Parent), CameraJumper.MovementMode.Pan);
             Find.WorldTargeter.BeginTargeting(DecideRoadEndingTile, true);
         }
 
-        [DebugAction("WAW", "Fullfill development points", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Fullfill development points", false, false, false, false, false, actionType = DebugActionType.Action)]
         public static void FullfllDevelopmentPoints()
         {
             GameComponent_League.Instance.FullfillDevelopmentPoints();
             Messages.Message("Development points fullfilled!", MessageTypeDefOf.PositiveEvent);
         }
 
-        [DebugAction("WAW", "Give Village Quest", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Give Village Quest", false, false, false, false, false, actionType = DebugActionType.Action)]
         public static void GiveVillageQuest()
         {
             Quests.GiveVillageQuest();
             Messages.Message("Village quest given!", MessageTypeDefOf.PositiveEvent);
         }
 
-        [DebugAction("WAW", "Unlock Road Building", false, false, false, false, 0, false, actionType = DebugActionType.Action)]
+        [DebugAction("WAW", "Unlock Road Building", false, false, false, false, false, actionType = DebugActionType.Action)]
         public static void UnlockRoadBuilding()
         {
             GameComponent_League.Instance.RoadBuilder.SetActive(true);
@@ -127,7 +127,7 @@ namespace WarbandWarfareQuestline.League
 
         static WorldObject GenerateTownConstructionAround(int tile)
         {
-            TileFinder.TryFindPassableTileWithTraversalDistance(tile, 5, 10, out int randomTile);
+            TileFinder.TryFindPassableTileWithTraversalDistance(tile, 5, 10, out PlanetTile randomTile);
             return GenerateTownConstruction(randomTile);
         }
 

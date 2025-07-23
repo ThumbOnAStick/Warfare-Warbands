@@ -19,7 +19,6 @@ namespace WarfareAndWarbands.Warband.PlayerWarbandRaid
         public MapComponent_WarbandRaidTracker(Map map) : base(map)
         {
             this.startTicks = GenTicks.TicksGame;
-            this.map = map;
         }
 
         public override void MapComponentTick()

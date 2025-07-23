@@ -50,10 +50,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
                 return;
             GameComponent_WAW.Instance.OnRaid(warband.playerWarbandManager.leader.Leader);
             List<Pawn> list = MercenaryUtil.GenerateWarbandPawns(warband);
-            List<ActiveDropPodInfo> pods = new List<ActiveDropPodInfo>();   
+            List<ActiveTransporterInfo> pods = new List<ActiveTransporterInfo>();   
             foreach (Pawn p in list) 
             {
-                ActiveDropPodInfo podInfo = new ActiveDropPodInfo();
+                ActiveTransporterInfo podInfo = new ActiveTransporterInfo();
                 podInfo.innerContainer.TryAddOrTransfer(p);
                 pods.Add(podInfo);
             }
@@ -69,10 +69,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
 
         }
 
-        public void Arrived(List<ActiveDropPodInfo> pods, LocalTargetInfo info, List<Pawn> pawns)
+        public void Arrived(List<ActiveTransporterInfo> pods, LocalTargetInfo info, List<Pawn> pawns)
         {
             warband.playerWarbandManager.upgradeHolder.SelectedUpgrade?.OnPawnsGenerated(pawns);
-            Thing lookTarget = TransportPodsArrivalActionUtility.GetLookTarget(pods);
+            Thing lookTarget = TransportersArrivalActionUtility.GetLookTarget(pods);
             TaggedString label = "LetterLabelCaravanEnteredEnemyBase".Translate();
             TaggedString text = "LetterTransportPodsLandedInEnemyBase".Translate(mapCached.Parent.Label).CapitalizeFirst();
             Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.NeutralEvent, lookTarget, mapCached.Parent.Faction, null, null, null, 0, true);
@@ -80,13 +80,13 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
             TravelingTransportPodsArrived(pods, mapCached, info);
         }
 
-        public void TravelingTransportPodsArrived(List<ActiveDropPodInfo> dropPods, Map map, LocalTargetInfo info)
+        public void TravelingTransportPodsArrived(List<ActiveTransporterInfo> dropPods, Map map, LocalTargetInfo info)
         {
             if (!DropCellFinder.TryFindDropSpotNear(info.Cell, map, out IntVec3 near, allowFogged: false, true))
             {
                 near = DropCellFinder.FindRaidDropCenterDistant(map, false);
             }
-            TransportPodsArrivalActionUtility.DropTravelingTransportPods(dropPods, near, map);
+            TransportersArrivalActionUtility.DropTravellingDropPods(dropPods, near, map);
         }
 
 

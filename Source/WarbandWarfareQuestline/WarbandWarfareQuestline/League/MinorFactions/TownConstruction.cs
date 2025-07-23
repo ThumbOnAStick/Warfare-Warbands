@@ -45,9 +45,9 @@ namespace WarbandWarfareQuestline.League.MinorFactions
         }
 
 
-        public override void Tick()
+        protected override void TickInterval(int delta)
         {
-            base.Tick();
+            base.TickInterval(delta);
             if (ShouldComplete())
             {
                 // Complete Construction
@@ -58,7 +58,7 @@ namespace WarbandWarfareQuestline.League.MinorFactions
                 Destroy();
             }
         }
-
+ 
         public override string GetInspectString()
         {
             return "WAW.RemainingConstructionDays".Translate(RemainingConstructionDays.ToString("0.0"), _durationDays.ToString("0.0"));

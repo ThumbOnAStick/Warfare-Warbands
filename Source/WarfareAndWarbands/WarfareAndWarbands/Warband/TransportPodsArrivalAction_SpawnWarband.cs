@@ -9,20 +9,18 @@ using Verse;
 
 namespace WarfareAndWarbands.Warband
 {
-    public class TransportPodsArrivalAction_SpawnWarband : TransportPodsArrivalAction
+    public class TransportPodsArrivalAction_SpawnWarband : TransportersArrivalAction
     {
         public TransportPodsArrivalAction_SpawnWarband(Warband savedWarband)
         {
             this.savedWarband = savedWarband;
         }
 
-        public override void Arrived(List<ActiveDropPodInfo> pods, int tile)
+        public override void Arrived(List<ActiveTransporterInfo> transporters, PlanetTile tile)
         {
             savedWarband.ResettleTo(tile);
-
         }
-
-
+ 
         public override void ExposeData()
         {
             base.ExposeData();
@@ -30,5 +28,7 @@ namespace WarfareAndWarbands.Warband
         }
 
         public Warband savedWarband;
+
+        public override bool GeneratesMap => false;
     }
 }

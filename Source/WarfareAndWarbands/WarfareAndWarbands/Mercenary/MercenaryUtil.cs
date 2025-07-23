@@ -161,7 +161,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
             {
                 kindDef = WarbandUtil.SoldierPawnKindsCache.First(x => x.defName == kindDefName);
             }
-            Faction faction = kindDef.defaultFactionType != null ? Find.FactionManager.FirstFactionOfDef(kindDef.defaultFactionType) : warband.Faction;
+            Faction faction = kindDef.defaultFactionDef != null ? Find.FactionManager.FirstFactionOfDef(kindDef.defaultFactionDef) : warband.Faction;
 
             try
             {

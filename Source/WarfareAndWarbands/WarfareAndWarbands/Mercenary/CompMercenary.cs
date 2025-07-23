@@ -83,8 +83,6 @@ namespace WarfareAndWarbands.Warband
         {
             if (this.ServesPlayerFaction)
             {
-                if (!Find.CurrentMap.listerThings.AllThings.Any(x => x.def == WAWDefof.WAW_LootChest))
-                    yield return WarbandUI.PlaceLootChest(this.warband);
                 if (!Mercenary.Downed && !retreated)
                 {
                     yield return WarbandUI.RetreatPawn(this);
@@ -310,7 +308,7 @@ namespace WarfareAndWarbands.Warband
             return this.warband;
         }
 
-        public override void PostDeSpawn(Map map)
+        public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
         {
             base.PostDeSpawn(map);
             var inventory = Mercenary.inventory;
@@ -320,7 +318,7 @@ namespace WarfareAndWarbands.Warband
                 this.warband?.Store(ref t);
             }
         }
-
+ 
         public override void PostPostMake()
         {
             base.PostPostMake();

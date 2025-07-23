@@ -15,7 +15,7 @@ namespace WAWLeadership
 {
     public static class LeadershipDebugActions
     {
-        [DebugAction("WAW", null, false, false, false, false, 0, false, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        [DebugAction("WAW", null, false, false, false, false, false, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         public static void TryAddTenExp(Pawn p)
         {
             var compLeader = p.TryGetComp<CompLeadership>();

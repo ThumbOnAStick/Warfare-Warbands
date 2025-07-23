@@ -33,7 +33,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                 label = customizationRequest.label,
                 isFighter = true,
                 race = ThingDefOf.Human,
-                defaultFactionType = faction,
+                defaultFactionDef = faction,
                 modExtensions = PawnKindDefOf.Pirate.modExtensions,
                 allowOldAgeInjuries = false,
                 maxGenerationAge = 30,

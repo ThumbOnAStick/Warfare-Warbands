@@ -23,7 +23,7 @@ namespace WarbandWarfareQuestline.Questline
                 challengeRating = 4,
                 name = nameKey.Translate(),
                 description = descriptionKey.Translate(),
-                ticksUntilAcceptanceExpiry = GenDate.TicksPerDay * 5,
+                acceptanceExpireTick = GenDate.TicksPerDay * 5,
                 root = WAWDefof.WAW_SaveVillage
             };
             return quest;

@@ -6,4 +6,4 @@ D:\Steam\steamapps\common\RimWorld\Mods\Warfare-Warbands\1.5\Assemblies\WarbandW
 D:\Steam\steamapps\common\RimWorld\Mods\Warfare-Warbands\Source\WarbandWarfareQuestline\WarbandWarfareQuestline\obj\Debug\WarbandWarfareQuestline.csproj.AssemblyReference.cache
 D:\Steam\steamapps\common\RimWorld\Mods\Warfare-Warbands\Source\WarbandWarfareQuestline\WarbandWarfareQuestline\obj\Debug\WarbandWarfareQuestline.csproj.CoreCompileInputs.cache
 D:\Steam\steamapps\common\RimWorld\Mods\Warfare-Warbands\Source\WarbandWarfareQuestline\WarbandWarfareQuestline\obj\Debug\WarbandWarfareQuestline.dll
-D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\Source\WarbandWarfareQuestline\WarbandWarfareQuestline\obj\Debug\WarbandW.B56F28F6.Up2Date
+D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\1.6\Assemblies\WarbandWarfareQuestline.dll

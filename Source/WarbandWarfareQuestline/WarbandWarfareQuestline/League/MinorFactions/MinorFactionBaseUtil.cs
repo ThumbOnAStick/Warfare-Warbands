@@ -36,7 +36,7 @@ namespace WarbandWarfareQuestline.League.MinorFactions
             try
             {
                 MinorFactionSettlement result = (MinorFactionSettlement)WorldObjectMaker.MakeWorldObject(WAWDefof.WAW_MinorFactionSettlement);
-                TileFinder.TryFindNewSiteTile(out int tile, 20, 50);
+                TileFinder.TryFindNewSiteTile(out PlanetTile tile, 20, 50);
                 result.Tile = tile;
                 result.Name = faction.NameForSettlement();
                 result.SetMinorFaction(faction);
@@ -95,7 +95,7 @@ namespace WarbandWarfareQuestline.League.MinorFactions
                 Log.Error("Settlement is null!");
                 return;
             }
-            TileFinder.TryFindNewSiteTile(out int tile, maxDist: 50);
+            TileFinder.TryFindNewSiteTile(out PlanetTile tile, maxDist: 50);
             settlement.Tile = tile;
             Log.Message("Settlement ressetled!");
         }

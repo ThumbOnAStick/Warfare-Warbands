@@ -103,7 +103,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
             leader.TryGetComp<CompMercenary>()?.ResetAll();
             leader.SetFaction(Faction.OfPlayer);
             CameraJumper.TryJump(cell, playerMap);
-            ActiveDropPodInfo activeDropPodInfo = new ActiveDropPodInfo();
+            ActiveTransporterInfo activeDropPodInfo = new ActiveTransporterInfo();
             List<Thing> leaders = new List<Thing>() { this.leader };
             activeDropPodInfo.innerContainer.TryAddRangeOrTransfer(leaders, true, false);
             activeDropPodInfo.spawnWipeMode = new WipeMode?(WipeMode.Vanish);

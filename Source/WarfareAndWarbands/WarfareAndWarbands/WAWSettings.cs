@@ -26,7 +26,6 @@ namespace WarfareAndWarbands
         public static bool enableEquipmentBudgetLimit = true;
         public static bool enableDroppodPolicyRequirement = true;
         public static bool enableEliteUpgradePolicyRequirement = true;
-        private static bool enableDebugSettings = false;
         public static float warbandRaidCooldown = 1.5f;
         public static float warbandRecruitTimeMultiplier = 1f;
         public static int townConstructionDuration= 10;

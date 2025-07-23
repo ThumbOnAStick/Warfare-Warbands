@@ -94,16 +94,16 @@ namespace WAWLeadership
             return loots;
         }
 
-        static ActiveDropPodInfo MakeDropPodInfo(List<Thing> loots)
+        static ActiveTransporterInfo MakeDropPodInfo(List<Thing> loots)
         {
-            ActiveDropPodInfo activeDropPodInfo = new ActiveDropPodInfo();
+            ActiveTransporterInfo activeDropPodInfo = new ActiveTransporterInfo();
             activeDropPodInfo.innerContainer.TryAddRangeOrTransfer(loots, true, false);
             activeDropPodInfo.spawnWipeMode = new WipeMode?(WipeMode.Vanish);
             return activeDropPodInfo;   
 
         }
 
-        static void DropAtHome(ActiveDropPodInfo activeDropPodInfo)
+        static void DropAtHome(ActiveTransporterInfo activeDropPodInfo)
         {
             Map playerMap = Find.AnyPlayerHomeMap;
             if (playerMap == null)
@@ -232,7 +232,7 @@ namespace WAWLeadership
 
         static WorldObject GenerateTownConstructionAround(int tile)
         {
-            TileFinder.TryFindPassableTileWithTraversalDistance(tile, 5, 10, out int randomTile);
+            TileFinder.TryFindPassableTileWithTraversalDistance(tile, 5, 10, out PlanetTile randomTile);
             return GenerateTownConstruction(randomTile);
         }
 

@@ -184,16 +184,13 @@ namespace WarfareAndWarbands.Warband
             WarbandUtil.RefreshAllPlayerWarbands();
         }
 
-
-        public override void Tick()
+        protected override void TickInterval(int delta)
         {
-
-            base.Tick();
+            base.TickInterval(delta);
             npcWarbandManager?.Tick();
             playerWarbandManager?.Tick();
             worldPather?.Tick();
             RemoveMapCheck();
-
         }
 
         public override bool ShouldRemoveMapNow(out bool alsoRemoveWorldObject)
@@ -289,21 +286,26 @@ namespace WarfareAndWarbands.Warband
             }
         }
 
-
-        public override IEnumerable<FloatMenuOption> GetTransportPodsFloatMenuOptions(IEnumerable<IThingHolder> pods, CompLaunchable representative)
+        public override IEnumerable<FloatMenuOption> GetTransportersFloatMenuOptions(IEnumerable<IThingHolder> pods, Action<PlanetTile, TransportersArrivalAction> launchAction)
         {
-            yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate ()
+            if (TransportersArrivalAction_FormCaravan.CanFormCaravanAt(pods, Tile))
             {
-                representative.TryLaunch(this.Tile, new TransportPodsArrivalAction_FormCaravan());
-            }, MenuOptionPriority.Default, null, null, 0f, null, null, true, 0);
+                 yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate ()
+                {
+                    launchAction(Tile, new TransportersArrivalAction_FormCaravan("MessageTransportPodsArrived"));
+                }, MenuOptionPriority.Default, null, null, 0f, null, null, true, 0);
+            }
         }
 
-        public override IEnumerable<FloatMenuOption> GetShuttleFloatMenuOptions(IEnumerable<IThingHolder> pods, Action<int, TransportPodsArrivalAction> launchAction)
+        public override IEnumerable<FloatMenuOption> GetShuttleFloatMenuOptions(IEnumerable<IThingHolder> pods, Action<PlanetTile, TransportersArrivalAction> launchAction)
         {
-            yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate ()
+            if (TransportersArrivalAction_FormCaravan.CanFormCaravanAt(pods, Tile))
             {
-                launchAction(this.Tile, new TransportPodsArrivalAction_FormCaravan());
-            }, MenuOptionPriority.Default, null, null, 0f, null, null, true, 0);
+                yield return new FloatMenuOption("FormCaravanHere".Translate(), delegate ()
+                {
+                    launchAction(Tile, new TransportersArrivalAction_FormCaravan("MessageTransportPodsArrived"));
+                }, MenuOptionPriority.Default, null, null, 0f, null, null, true, 0);
+            }
         }
 
         public void OrderPlayerWarbandToResettle()

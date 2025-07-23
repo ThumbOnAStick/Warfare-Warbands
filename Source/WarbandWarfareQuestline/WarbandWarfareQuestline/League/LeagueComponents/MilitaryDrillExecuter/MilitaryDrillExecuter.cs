@@ -56,7 +56,7 @@ namespace WarbandWarfareQuestline.League
             return false;
         }
 
-        private string GetTargeterLabel(GlobalTargetInfo info)
+        private TaggedString GetTargeterLabel(GlobalTargetInfo info)
         {
             if (!IsPlayerWarband(info))
             {
@@ -78,8 +78,6 @@ namespace WarbandWarfareQuestline.League
             return false;
         }
 
-
-
         private bool LocatePlayerWarband(GlobalTargetInfo info)
         {
             if (!(info.WorldObject is Warband))
@@ -88,25 +86,30 @@ namespace WarbandWarfareQuestline.League
             }
 
             Warband playerWarband = info.WorldObject as Warband;
-            if (!playerWarband.HasLeader())
+            if (playerWarband == null || !playerWarband.HasLeader())
             {
                 return false;
             }
 
             WorldObjectComp_PlayerWarbandLeader lComp = playerWarband.GetComponent<WorldObjectComp_PlayerWarbandLeader>();
-            if (lComp == null)
+            if (lComp == null || lComp.LeadershipInfo == null)
             {
                 return false;
             }
 
             // Add exp to the leader
-            lComp.LeadershipInfo?.AddExpFor(expAmountForLeader);
-            // Play sound
-            SoundDefOf.Quest_Succeded.PlayOneShotOnCamera();
+            lComp.LeadershipInfo.AddExpFor(expAmountForLeader);
+
+            // Play sound (ensure SoundDefOf.Quest_Succeded exists)
+            var questSucceededSound = SoundDef.Named("Quest_Succeded");
+            if (questSucceededSound != null)
+            {
+                questSucceededSound.PlayOneShotOnCamera();
+            }
+
             // Set usage
             this.SetLastExecuteTick();
             return true;
         }
-
     }
 }

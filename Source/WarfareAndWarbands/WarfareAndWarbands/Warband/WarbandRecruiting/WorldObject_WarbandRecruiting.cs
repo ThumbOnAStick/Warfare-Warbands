@@ -76,9 +76,9 @@ namespace WarfareAndWarbands.Warband
 
         }
 
-        public override void Tick()
+        protected override void TickInterval(int delta)
         {
-            base.Tick();
+            base.TickInterval(delta);
             if (this.creationGameTicks + GetWaitTicks() < GenTicks.TicksGame)
             {
                 CreateWarband();

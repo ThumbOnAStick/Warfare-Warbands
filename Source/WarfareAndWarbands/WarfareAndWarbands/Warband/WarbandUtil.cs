@@ -148,7 +148,7 @@ namespace WarfareAndWarbands.Warband
 
         public static bool InTechLevel(PawnKindDef def, TechLevel level)
         {
-            return def.defaultFactionType != null && def.defaultFactionType.techLevel == level;
+            return def.defaultFactionDef != null && def.defaultFactionDef.techLevel == level;
         }
 
         public static bool HasPawnKind(string name)
@@ -434,30 +434,6 @@ namespace WarfareAndWarbands.Warband
             CurvePoint p3 = new CurvePoint(100, 1);
             List<CurvePoint> points = new List<CurvePoint>() { p1, p2, p3 };
             return new SimpleCurve(points);
-        }
-
-        public static void TryToSpawnLootChest(Warband warband)
-        {
-            SetWarband(warband);
-            Targeter targeter = Find.Targeter;
-            TargetingParameters targetParams = TargetingParameters.ForDropPodsDestination();
-            SoundDefOf.Designate_PlaceBuilding.PlayOneShotOnCamera();
-            targeter.BeginTargeting(targetParams: targetParams, action: SpawnLootChest, onGuiAction: GUIAction);
-        }
-
-        static void SpawnLootChest(LocalTargetInfo info)
-        {
-            if (Find.CurrentMap.listerThings.AllThings.Any(x => x.def == WAWDefof.WAW_LootChest ))
-            {
-                return;
-            }
-            Thing chest = ThingMaker.MakeThing(WAWDefof.WAW_LootChest);
-            chest.SetFaction(Faction.OfPlayer);
-            ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(WAWDefof.ActiveDropPodLootChest, null);
-            activeDropPod.Contents = new ActiveDropPodInfo();
-            activeDropPod.Contents.GetDirectlyHeldThings().TryAddOrTransfer(chest);
-            chest.TryGetComp<CompLootChest>()?.AssignWarband(warbandCache);
-            SkyfallerMaker.SpawnSkyfaller(WAWDefof.LootChestIncoming, activeDropPod, info.Cell, Find.CurrentMap);
         }
 
         static void GUIAction(LocalTargetInfo info)

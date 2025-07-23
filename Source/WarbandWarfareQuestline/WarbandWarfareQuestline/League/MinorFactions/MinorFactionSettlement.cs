@@ -115,7 +115,7 @@ namespace WarbandWarfareQuestline.League.MinorFactions
                 DamageBuildings();
                 GenerateLooters();
                 GenerateCorpses();
-            }, "WAW.GeneratingRaiders", false, null, true, null);
+            }, "WAW.GeneratingRaiders", false, null, true);
         }
         #endregion
 
@@ -166,12 +166,14 @@ namespace WarbandWarfareQuestline.League.MinorFactions
             return CaravanArrivalAction_Enter.GetFloatMenuOptions(caravan, this);
         }
 
-        public override IEnumerable<FloatMenuOption> GetTransportPodsFloatMenuOptions(IEnumerable<IThingHolder> pods, CompLaunchable representative)
+
+
+        public override IEnumerable<FloatMenuOption> GetTransportersFloatMenuOptions(IEnumerable<IThingHolder> pods, Action<PlanetTile, TransportersArrivalAction> launchAction)
         {
             yield break;
         }
 
-        public override IEnumerable<FloatMenuOption> GetShuttleFloatMenuOptions(IEnumerable<IThingHolder> pods, Action<int, TransportPodsArrivalAction> launchAction)
+        public override IEnumerable<FloatMenuOption> GetShuttleFloatMenuOptions(IEnumerable<IThingHolder> pods, Action<PlanetTile, TransportersArrivalAction> launchAction)
         {
             yield break;
         }
