@@ -6,23 +6,27 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using static System.Collections.Specialized.BitVector32;
+using Verse.Noise;
 
 namespace WarfareAndWarbands.Warband.WarbandComponents
 {
-    public class PlayerWarbandLootManager: IExposable
+    public class PlayerWarbandLootManager: IExposable, IThingHolder
     {
-        private List<Thing> _storage;
+        private ThingOwner<Thing> _storage;
         private List<Thing> _toBesold;
         private float lootValueMultiplier;
 
         public PlayerWarbandLootManager()
         {
-            this._storage = new List<Thing>();
+            this._storage = new ThingOwner<Thing>();
             this._toBesold = new List<Thing>();
             lootValueMultiplier = 0.3f;
         }
 
-        public List<Thing> Storage => this._storage;
+        public ThingOwner<Thing> Storage => this._storage;
+
+        public IThingHolder ParentHolder => throw new NotImplementedException();
 
         public void StoreAll(IEnumerable<Thing> things)
         {
@@ -30,7 +34,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             {
                 if (thing.Spawned)
                     thing.DeSpawn();
-                _storage.Add(thing);
+                _storage.TryAddOrTransfer(thing);
             }
         }
 
@@ -38,7 +42,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         {
             if (thing.Spawned)
                 thing.DeSpawn();
-            _storage.Add(thing);
+            _storage.TryAddOrTransfer(thing);
         }
 
         private void RemoveSoldItems()
@@ -115,9 +119,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             LaunchItemsToHome(ref _toBesold);
             RemoveSoldItems();
         }
-        void LaunchItemsToHome(ref List<Thing> items)
+        void LaunchItemsToHome(ref List<Thing> itemList)
         {
-            Log.Message(items.Count);
+            Log.Message($"Sent {itemList.Count} items to home");
+
             Map playerMap = Find.AnyPlayerHomeMap;
             if (playerMap == null)
             {
@@ -127,8 +132,12 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             if (DropCellFinder.TryFindDropSpotNear(playerMap.Center, playerMap, out IntVec3 cell, false, false))
             {
                 CameraJumper.TryJump(cell, playerMap);
-                //DropPodUtility.MakeDropPodAt(cell, playerMap, activeDropPodInfo);
-                DropPodUtility.DropThingsNear(cell, playerMap, items, canRoofPunch: false, forbid: false);
+                foreach (Thing thing in itemList)
+                {
+                    ActiveTransporterInfo activeTransporterInfo = new ActiveTransporterInfo();
+                    activeTransporterInfo.innerContainer.TryAddOrTransfer(thing, true);
+                    DropPodUtility.MakeDropPodAt(cell, playerMap, activeTransporterInfo);
+                }
             }
         }
 
@@ -184,7 +193,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public void ExposeData()
         {
-            Scribe_Collections.Look(ref _storage, "storage", LookMode.Deep);
+            Scribe_Deep.Look(ref _storage, "storage");
             Scribe_Values.Look(ref lootValueMultiplier, "lootValueMultiplier", 0.3f);
             if(lootValueMultiplier < 0.3f)
             {
@@ -192,5 +201,14 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             }
         }
 
+        public void GetChildHolders(List<IThingHolder> outChildren)
+        {
+            ThingOwnerUtility.AppendThingHoldersFromThings(outChildren, this.GetDirectlyHeldThings());
+        }
+
+        public ThingOwner GetDirectlyHeldThings()
+        {
+            return this._storage;
+        }
     }
 }

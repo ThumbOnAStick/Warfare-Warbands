@@ -49,14 +49,34 @@ namespace WarbandWarfareQuestline.Skirmish
                && !fac.IsPlayer
                && !fac.temporary;
 
-        public static Skirmish CreateSkirmish(int tile)
+        public static Skirmish CreateSkirmish(PlanetTile tile)
         {
+            // Ally Validation
             if (!Find.FactionManager.AllFactions.Any(ValidateFaction))
             {
+                Log.Error($"WAW: No valid factions found!");
                 return null;
             }
-            Faction ally = Find.FactionManager.AllFactions.Where(ValidateFaction).RandomElement();
-            Faction enemy = GetRandomHostileFaction();
+
+            // Faction Picking
+            Faction ally, enemy;
+            try
+            {
+                 ally = Find.FactionManager.AllFactions.Where(ValidateFaction).RandomElement();
+                 enemy = GetRandomHostileFaction();
+                if(ally == null || enemy == null)
+                {
+                    Log.Error("WAW: Invalid factions while trying to pick ally and enemy");
+                    return null;
+                }
+            }
+            catch(Exception e)
+            {
+                Log.Error($"WAW: Error while trying to find ally and enemy factions: {e}");
+                return null;
+            }
+
+            // Execute event;
             List<Warband> warbands = new List<Warband>();
             for (int i = 0; i < 3; i++)
             {
@@ -64,9 +84,9 @@ namespace WarbandWarfareQuestline.Skirmish
                 {
                     Warband hostileNpcWarband = RandomWarbandNear(enemy, tile);
                     Warband allyNpcWarband = RandomWarbandNear(ally, hostileNpcWarband.Tile);
-                    allyNpcWarband.npcWarbandManager.SetTargetTile(hostileNpcWarband.Tile);
-                    warbands.Add(hostileNpcWarband);
-                    warbands.Add(allyNpcWarband);
+                    //allyNpcWarband.npcWarbandManager?.SetTargetTile(hostileNpcWarband.Tile);
+                    //warbands.Add(hostileNpcWarband);
+                    //warbands.Add(allyNpcWarband);
                 }
                 catch (Exception ex)
                 {

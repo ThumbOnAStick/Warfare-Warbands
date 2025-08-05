@@ -3,3 +3,5 @@ Source/WAWLeadership/.vs
 Source/WarbandWarfareQuestline/.vs
 *.db
 *.json
+
+.fake

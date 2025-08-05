@@ -58,7 +58,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
                 pods.Add(podInfo);
             }
             this.warband.playerWarbandManager.cooldownManager.SetLastRaidTick();
-            Arrived(pods, lInfo, list);
+            this.Arrived(pods, lInfo, list);
         }
 
     
@@ -84,11 +84,10 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.WarbandUpdates
         {
             if (!DropCellFinder.TryFindDropSpotNear(info.Cell, map, out IntVec3 near, allowFogged: false, true))
             {
-                near = DropCellFinder.FindRaidDropCenterDistant(map, false);
+                DropCellFinder.TryFindRaidDropCenterClose(out near, map, false);
             }
             TransportersArrivalActionUtility.DropTravellingDropPods(dropPods, near, map);
         }
-
-
+   
     }
 }

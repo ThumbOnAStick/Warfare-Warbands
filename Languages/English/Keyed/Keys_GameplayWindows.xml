@@ -106,7 +106,7 @@
     <WAW.ShellManagement>Mortar Shells</WAW.ShellManagement>
     <WAW.ResourceLoadout>Spawn-with Resources</WAW.ResourceLoadout>
     <WAW.HowToFireArtillery>To fire these rounds, use warband's attack command button on an open map, there will be an extra option.</WAW.HowToFireArtillery>
-    <WAW.SellLoot>Sell</WAW.SellLoot>
+    <WAW.SellLoot>Select</WAW.SellLoot>
 	<WAW.SelectAll>Select all</WAW.SelectAll>
 
 </LanguageData>

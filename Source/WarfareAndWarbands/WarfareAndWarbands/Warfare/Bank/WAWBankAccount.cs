@@ -17,7 +17,7 @@ namespace WarfareAndWarbands.Warfare.Bank
 
         public WAWBankAccount()
         {
-
+            this._balance = 3000;
         }
 
         public WAWBankAccount(int balance)

@@ -41,17 +41,17 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         public bool StartPath(int destTile)
         {
-
             this.moving = true;
             this.destTile = destTile;
             this.tweenedPos = Find.WorldGrid.GetTileCenter(warband.Tile);
-            if (this.TrySetNewPath())
+            if (this.TrySetNewPath() )
             {
                 this.nextTile = warband.Tile;
                 this.TryEnterNextPathTile();
             }
             return true;
         }
+
         private void PatherArrived()
         {
             moving = false;
@@ -66,28 +66,24 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
         {
             if (this.curPath.NodesLeftCount < 2)
             {
-                Log.Error(string.Concat(new object[]
-                {
-                    this.warband.Label,
-                    " at ",
-                    this.warband.Tile,
-                    " ran out of path nodes while pathing to ",
-                    this.destTile,
-                    "."
-                }));
+                string[] array = new string[6];
+                int num = 0;
+                Warband warband = this.warband;
+                array[num] = ((warband != null) ? warband.ToString() : null);
+                array[1] = " at ";
+                array[2] = this.warband.Tile.ToString();
+                array[3] = " ran out of path nodes while pathing to ";
+                array[4] = this.destTile.ToString();
+                array[5] = ".";
+                Log.Error(string.Concat(array));
                 this.PatherFailed();
                 return;
             }
             this.nextTile = this.curPath.ConsumeNextNode();
              if (Find.World.Impassable(this.nextTile))
             {
-                Log.Error(string.Concat(new object[]
-                {
-                    this.warband.Label,
-                    " entering ",
-                    this.nextTile,
-                    " which is unwalkable."
-                }));
+                Warband warband2 = this.warband;
+                Log.Error(((warband2 != null) ? warband2.ToString() : null) + " entering " + this.nextTile.ToString() + " which is unwalkable.");
             }
             this.nextTileCostLeft = 1;
         }
@@ -99,21 +95,23 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 this.PatherFailed();
                 return;
             }
-         
+     
             this.warband.Tile = this.nextTile;
             if (this.AtDestinationPosition())
             {
                 this.PatherArrived();
                 return;
             }
-            if(this.curPath == null && !TrySetNewPath())
+            if (this.curPath == null)
+            {
+                if (!TrySetNewPath())
+                    return;
+            }
+            if (this.curPath.NodesLeftCount < 2)
             {
                 return;
             }
-            if (this.curPath.NodesLeftCount == 0)
-            {
-                return;
-            }
+
             this.SetupMoveIntoNextTile();
         }
 
@@ -129,7 +127,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
 
         private void PatherFailed()
         {
-
+            // Waiting to be implemented
         }
 
         private bool TrySetNewPath()
@@ -140,21 +138,30 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
                 this.PatherFailed();
                 return false;
             }
-            this.curPath?.ReleaseToPool();
+            this.curPath?.Dispose();
             this.curPath = worldPath;
+            this.nextTileCostLeft = 1;
+            Log.Message($"Nodes count: {curPath.NodesLeftCount}, Nodes reserved: {curPath.NodesReversed.Count}");
             return true;
+        }
+
+        private void ResetCurrentTile()
+        {
+            this.nextTile = this.warband.Tile;
+            this.nextTileCostLeft = 1;
         }
 
         private WorldPath GenerateNewPath()
         {
             this.lastPathedTargetTile = this.destTile;
-            curPath = warband.Tile.Layer.Pather.FindPath(warband.Tile, this.destTile, null, null);
-   
-            if (curPath.Found)
+            WorldPath result = warband.Tile.Layer.Pather.FindPath(warband.Tile, this.destTile, null, null);
+            if (result.Found)
             {
-                curPath.AddNodeAtStart(this.warband.Tile);
+                result.AddNodeAtStart(this.warband.Tile);
+                ResetCurrentTile();
             }
-            return curPath;
+
+            return result;
         }
 
         void ResolveDrawPos()
@@ -165,7 +172,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             tweenedPos = warbandPos + dir *  (1 - nextTileCostLeft);
         }
 
-        float MovermentPerTick()
+        float GetMovermentPerTick()
         {
             return warband.playerWarbandManager.upgradeHolder.MoveSpeed / Find.WorldGrid.GetRoadMovementDifficultyMultiplier(this.warband.Tile, this.nextTile);
         }
@@ -178,13 +185,13 @@ namespace WarfareAndWarbands.Warband.WarbandComponents
             }
             if (this.nextTileCostLeft > 0f)
             {
-                this.nextTileCostLeft -= MovermentPerTick();
+                this.nextTileCostLeft -= GetMovermentPerTick();
                 ResolveDrawPos();
                 return;
             }
 
             this.TryEnterNextPathTile();
-            
+
         }
 
         public void ResetPath()

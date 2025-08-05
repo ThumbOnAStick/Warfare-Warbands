@@ -94,7 +94,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Vehicles">
-      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\3014915404\1.5\Assemblies\Vehicles.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\3014915404\1.6\Assemblies\Vehicles.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VFECore">
@@ -117,6 +117,7 @@
     <Compile Include="Warband\Compatibility_Vehicle\VehicleSelectionPanel.cs" />
     <Compile Include="Warband\Compatibility_VPE\VPE.cs" />
     <Compile Include="Warband\Compatibility_VPE\Window_VPEWarband.cs" />
+    <Compile Include="Warband\HarmonyPatches\SpawnPatch.cs" />
     <Compile Include="Warband\HarmonyPatches\WorldPawnPatch.cs" />
     <Compile Include="Mercenary\JobGiver_RecycleVehicle.cs" />
     <Compile Include="Warband\UI\Dialog_SetCustomName.cs" />

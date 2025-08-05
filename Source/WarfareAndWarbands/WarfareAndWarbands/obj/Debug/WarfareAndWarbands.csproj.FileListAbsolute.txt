@@ -7,3 +7,7 @@ D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\Source\WarfareAn
 D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\Source\WarfareAndWarbands\WarfareAndWarbands\obj\Debug\WarfareAndWarbands.csproj.CoreCompileInputs.cache
 D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\Source\WarfareAndWarbands\WarfareAndWarbands\obj\Debug\WarfareAndWarbands.dll
 D:\SteamLibrary\steamapps\common\RimWorld\Mods\Warfare&Warbands\1.6\Assemblies\WarfareAndWarbands.dll
+F:\Steam\steamapps\common\RimWorld\Mods\Warfare-Warbands\Source\WarfareAndWarbands\WarfareAndWarbands\obj\Debug\WarfareAndWarbands.csproj.AssemblyReference.cache
+F:\Steam\steamapps\common\RimWorld\Mods\Warfare-Warbands\Source\WarfareAndWarbands\WarfareAndWarbands\obj\Debug\WarfareAndWarbands.csproj.CoreCompileInputs.cache
+F:\Steam\steamapps\common\RimWorld\Mods\Warfare-Warbands\Source\WarfareAndWarbands\WarfareAndWarbands\obj\Debug\WarfareAndWarbands.dll
+F:\Steam\steamapps\common\RimWorld\Mods\Warfare-Warbands\1.6\Assemblies\WarfareAndWarbands.dll

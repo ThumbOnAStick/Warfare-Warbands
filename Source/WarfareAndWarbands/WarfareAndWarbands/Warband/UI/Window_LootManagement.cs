@@ -74,7 +74,7 @@ namespace WarfareAndWarbands.Warband.UI
             Rect selectAllButtonRect = inRect.BottomHalf().TopPart(0.2f).LeftHalf();
             if (Widgets.ButtonText(selectAllButtonRect, "WAW.SelectAll".Translate()))
             {
-                _toBeSold = lootList;
+                _toBeSold = lootList.ToList();
             }
 
             if (_toBeSold.Count < 1)
@@ -108,13 +108,13 @@ namespace WarfareAndWarbands.Warband.UI
             if (Widgets.ButtonText(rowRect, "WAW.SellLoot".Translate()))
             {
                 // Sell loot
-                SellLoot(loot);
+                SetLootToBeSold(loot);
                 return true;
             }
             return false;
         }
 
-        void SellLoot(Thing loot)
+        void SetLootToBeSold(Thing loot)
         {
             _toBeSold.Add(loot);
         }

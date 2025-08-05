@@ -47,7 +47,7 @@ namespace WarfareAndWarbands.Warband.Compatibility_Vehicle
             for (int i = 0; i < allVehicles.Count(); i++)
             {
                 var vehicle = (VehicleDef)allVehicles.ElementAt(i);
-                if (vehicle.vehicleType == VehicleType.Land)
+                if (vehicle.type == VehicleType.Land)
                 {
                     allGroundVehicles.Add(vehicle);
                 }

@@ -104,6 +104,6 @@
     <WAW.SidearmLabel>副武器</WAW.SidearmLabel>
     <WAW.NoShellDefs>No shell defs</WAW.NoShellDefs>
 	<WAW.HowToFireArtillery>要发射这些炮弹，请在被打开的地图上使用战团的攻击命令按钮，会有一个额外的选项。</WAW.HowToFireArtillery>
-    <WAW.SellLoot>卖出</WAW.SellLoot>
+    <WAW.SellLoot>选择</WAW.SellLoot>
 	<WAW.SelectAll>将全部战利品加入卖出列表</WAW.SelectAll>
 </LanguageData>

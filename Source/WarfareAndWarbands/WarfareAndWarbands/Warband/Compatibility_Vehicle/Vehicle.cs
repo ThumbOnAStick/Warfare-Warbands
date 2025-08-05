@@ -57,10 +57,10 @@ namespace WarfareAndWarbands.Warband.Compatibility_Vehicle
                     vehicle.CompFueledTravel.Refuel(vehicle.CompFueledTravel.FuelCapacity);
                     if (vehicle.CompVehicleTurrets != null)
                     {
-                        var turrets = vehicle.CompVehicleTurrets.turrets;
+                        var turrets = vehicle.CompVehicleTurrets.Turrets;
                         foreach (var t in turrets)
                         {
-                            ThingDef thingDef = t.turretDef.ammunition.AllowedThingDefs.FirstOrDefault<ThingDef>();
+                            ThingDef thingDef = t.def.ammunition.AllowedThingDefs.FirstOrDefault<ThingDef>();
                             for (int j = 0; j < 5; j++)
                             {
                                 var fullStackOfAmmo = ThingMaker.MakeThing(thingDef);
@@ -103,7 +103,7 @@ namespace WarfareAndWarbands.Warband.Compatibility_Vehicle
                         var vehicleHandler = vehiclePawn.handlers[j];
                         if (vehicleHandler.AreSlotsAvailable)
                         {
-                            vehicleHandler.handlers.TryAddOrTransfer(list.Pop<Pawn>());
+                            vehicleHandler.thingOwner.TryAddOrTransfer(list.Pop<Pawn>());
                             break;
                         }
                     }
@@ -121,7 +121,7 @@ namespace WarfareAndWarbands.Warband.Compatibility_Vehicle
                         var vehicleHandler2 = vehiclePawn2.handlers[j];
                         if (vehicleHandler2.AreSlotsAvailable)
                         {
-                            vehicleHandler2.handlers.TryAddOrTransfer(list.Pop<Pawn>());
+                            vehicleHandler2.thingOwner.TryAddOrTransfer(list.Pop<Pawn>());
                             break;
                         }
                     }
