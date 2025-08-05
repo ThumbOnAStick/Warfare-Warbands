@@ -81,8 +81,8 @@ namespace WarbandWarfareQuestline.League
                 // Receive tax every month
                 CheckTax();
 
-                // Check skirmish
-                CheckSkirmish();
+                // Check skirmish -- Disabled for now
+                //CheckSkirmish();
 
                 // Policy Tree Tick
                 TickPolicies();

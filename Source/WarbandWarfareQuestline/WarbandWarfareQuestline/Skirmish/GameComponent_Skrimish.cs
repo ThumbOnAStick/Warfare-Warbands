@@ -142,6 +142,7 @@ namespace WarbandWarfareQuestline.Skirmish
         public override void GameComponentTick()
         {
             base.GameComponentTick();
+            return; // Disable skirmish system for now. 
             if(GenTicks.TicksGame % 1000 != 0)
             {
                 return;

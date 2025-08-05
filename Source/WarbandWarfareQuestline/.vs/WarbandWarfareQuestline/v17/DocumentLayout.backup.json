@@ -3,32 +3,56 @@
   "WorkspaceRootPath": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\league\\gamecomponent_league.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\league\\gamecomponent_league.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\questline\\gamecomponent_questline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\questline\\gamecomponent_questline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|f:\\steam\\steamapps\\common\\rimworld\\mods\\warfare-warbands\\source\\warbandwarfarequestline\\warbandwarfarequestline\\skirmish\\gamecomponent_skrimish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\skirmish\\gamecomponent_skrimish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\questline\\questpart_villagelooted.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\questline\\questpart_villagelooted.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\questline\\quests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\questline\\quests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\skirmish\\skirmishhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\skirmish\\skirmishhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\skirmish\\harmonypatches_skirmish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\skirmish\\harmonypatches_skirmish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\skirmish\\skirmish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\skirmish\\skirmish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\skirmish\\siege.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\skirmish\\siege.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\league\\leaguecomponents\\roadbuilder\\roadbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\league\\leaguecomponents\\roadbuilder\\roadbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\skirmish\\gamecomponent_skrimish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\skirmish\\gamecomponent_skrimish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\league\\debugactionleague.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\league\\debugactionleague.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|f:\\steam\\steamapps\\common\\rimworld\\mods\\warfare-warbands\\source\\warbandwarfarequestline\\warbandwarfarequestline\\league\\leaguecomponents\\militarydrillexecuter\\militarydrillexecuter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\league\\leaguecomponents\\militarydrillexecuter\\militarydrillexecuter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\league\\leaguecomponents\\militarydrillexecuter\\militarydrillexecuter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\league\\minorfactions\\minorfactionbaseutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\league\\minorfactions\\minorfactionbaseutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\questline\\quests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\questline\\quests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\league\\minorfactions\\minorfactionsettlement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,32 +67,8 @@
       "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\league\\harmonypatches_league.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\skirmish\\harmonypatches_skirmish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\skirmish\\harmonypatches_skirmish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\skirmish\\skirmish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\skirmish\\skirmish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\questline\\gamecomponent_questline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\questline\\gamecomponent_questline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\questline\\questpart_villagelooted.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\questline\\questpart_villagelooted.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\skirmish\\siege.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\skirmish\\siege.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\skirmish\\skirmishworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\skirmish\\skirmishworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\league\\gamecomponent_league.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|solutionrelative:warbandwarfarequestline\\league\\gamecomponent_league.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F233F894-EFE8-4B57-8B07-A52EFCC6C573}|WarbandWarfareQuestline\\WarbandWarfareQuestline.csproj|F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\warbandwarfarequestline\\league\\genstep_minorsettlement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -250,7 +250,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 268,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -258,75 +258,81 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DebugActionLeague.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\DebugActionLeague.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\DebugActionLeague.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\DebugActionLeague.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\League\\DebugActionLeague.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAIA0wBsAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T04:39:16.385Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MilitaryDrillExecuter.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\LeagueComponents\\MilitaryDrillExecuter\\MilitaryDrillExecuter.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\LeagueComponents\\MilitaryDrillExecuter\\MilitaryDrillExecuter.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\LeagueComponents\\MilitaryDrillExecuter\\MilitaryDrillExecuter.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\League\\LeagueComponents\\MilitaryDrillExecuter\\MilitaryDrillExecuter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T00:40:40.08Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "SkirmishHelper.cs",
               "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\SkirmishHelper.cs",
               "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Skirmish\\SkirmishHelper.cs",
               "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\SkirmishHelper.cs",
               "RelativeToolTip": "WarbandWarfareQuestline\\Skirmish\\SkirmishHelper.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAgwFUAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAxwJEAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T10:15:42.297Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-22T10:15:42.297Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Skirmish.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\Skirmish.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Skirmish\\Skirmish.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\Skirmish.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\Skirmish\\Skirmish.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAEwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-22T07:13:09.746Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "TownConstruction.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\TownConstruction.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\MinorFactions\\TownConstruction.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\TownConstruction.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\League\\MinorFactions\\TownConstruction.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAdAAAAAAAAAA==",
+              "Title": "Siege.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\Siege.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Skirmish\\Siege.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\Siege.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\Skirmish\\Siege.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAACcAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T06:30:23.014Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RoadBuilder.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\LeagueComponents\\RoadBuilder\\RoadBuilder.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\LeagueComponents\\RoadBuilder\\RoadBuilder.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\LeagueComponents\\RoadBuilder\\RoadBuilder.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\League\\LeagueComponents\\RoadBuilder\\RoadBuilder.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAgwDcAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T23:11:00.725Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T11:31:21.129Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "HarmonyPatches_Skirmish.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\HarmonyPatches_Skirmish.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Skirmish\\HarmonyPatches_Skirmish.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\HarmonyPatches_Skirmish.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\Skirmish\\HarmonyPatches_Skirmish.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAC0AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T08:39:05.819Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GameComponent_Skrimish.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\GameComponent_Skrimish.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Skirmish\\GameComponent_Skrimish.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\GameComponent_Skrimish.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\Skirmish\\GameComponent_Skrimish.cs",
+              "ViewState": "AgIAAIIAAAAAAAAAAIA0wJEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-22T07:37:11.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameComponent_League.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\GameComponent_League.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\GameComponent_League.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\GameComponent_League.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\League\\GameComponent_League.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAA0wFgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T00:15:41.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Quests.cs",
               "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Questline\\Quests.cs",
               "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Questline\\Quests.cs",
@@ -338,93 +344,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MinorFactionBaseUtil.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionBaseUtil.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionBaseUtil.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionBaseUtil.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionBaseUtil.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACYAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T08:39:22.203Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "HarmonyPatches_League.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\HarmonyPatches_League.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\HarmonyPatches_League.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\HarmonyPatches_League.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\League\\HarmonyPatches_League.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T06:58:44.032Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GameComponent_Skrimish.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\GameComponent_Skrimish.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Skirmish\\GameComponent_Skrimish.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\GameComponent_Skrimish.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\Skirmish\\GameComponent_Skrimish.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAIA0wFIAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T07:37:11.233Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MinorFactionSettlement.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionSettlement.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionSettlement.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionSettlement.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionSettlement.cs",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAMwLEAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T02:44:44.482Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "GameComponent_Questline.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Questline\\GameComponent_Questline.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Questline\\GameComponent_Questline.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Questline\\GameComponent_Questline.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\Questline\\GameComponent_Questline.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-09T08:19:06.498Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Skirmish.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\Skirmish.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Skirmish\\Skirmish.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\Skirmish.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\Skirmish\\Skirmish.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAIA2wEUAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T07:13:09.746Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "SkirmishWorker.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\SkirmishWorker.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Skirmish\\SkirmishWorker.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\SkirmishWorker.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\Skirmish\\SkirmishWorker.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAcwBMAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T07:16:19.261Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 3,
               "Title": "QuestPart_VillageLooted.cs",
               "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Questline\\QuestPart_VillageLooted.cs",
               "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Questline\\QuestPart_VillageLooted.cs",
@@ -436,39 +356,112 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "HarmonyPatches_Skirmish.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\HarmonyPatches_Skirmish.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Skirmish\\HarmonyPatches_Skirmish.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\HarmonyPatches_Skirmish.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\Skirmish\\HarmonyPatches_Skirmish.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAC0AAABBAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "GameComponent_Questline.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Questline\\GameComponent_Questline.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Questline\\GameComponent_Questline.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Questline\\GameComponent_Questline.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\Questline\\GameComponent_Questline.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T08:39:05.819Z"
+              "WhenOpened": "2024-12-09T08:19:06.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "HarmonyPatches_League.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\HarmonyPatches_League.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\HarmonyPatches_League.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\HarmonyPatches_League.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\League\\HarmonyPatches_League.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T06:58:44.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MinorFactionBaseUtil.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionBaseUtil.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionBaseUtil.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionBaseUtil.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionBaseUtil.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACYAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T08:39:22.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RoadBuilder.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\LeagueComponents\\RoadBuilder\\RoadBuilder.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\LeagueComponents\\RoadBuilder\\RoadBuilder.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\LeagueComponents\\RoadBuilder\\RoadBuilder.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\League\\LeagueComponents\\RoadBuilder\\RoadBuilder.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAgwDcAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T23:11:00.725Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "Siege.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\Siege.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Skirmish\\Siege.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\Siege.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\Skirmish\\Siege.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAA0wAwAAAAhAAAAAAAAAA==",
+              "Title": "TownConstruction.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\TownConstruction.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\MinorFactions\\TownConstruction.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\TownConstruction.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\League\\MinorFactions\\TownConstruction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T11:31:21.129Z"
+              "WhenOpened": "2025-03-10T06:30:23.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MilitaryDrillExecuter.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\LeagueComponents\\MilitaryDrillExecuter\\MilitaryDrillExecuter.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\LeagueComponents\\MilitaryDrillExecuter\\MilitaryDrillExecuter.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\LeagueComponents\\MilitaryDrillExecuter\\MilitaryDrillExecuter.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\League\\LeagueComponents\\MilitaryDrillExecuter\\MilitaryDrillExecuter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T00:40:40.08Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DebugActionLeague.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\DebugActionLeague.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\DebugActionLeague.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\DebugActionLeague.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\League\\DebugActionLeague.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAIA0wBsAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T04:39:16.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MinorFactionSettlement.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionSettlement.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionSettlement.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionSettlement.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\League\\MinorFactions\\MinorFactionSettlement.cs",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAMwLEAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-18T02:44:44.482Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 16,
-              "Title": "GameComponent_League.cs",
-              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\GameComponent_League.cs",
-              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\League\\GameComponent_League.cs",
-              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\League\\GameComponent_League.cs",
-              "RelativeToolTip": "WarbandWarfareQuestline\\League\\GameComponent_League.cs",
-              "ViewState": "AgIAAKIAAAAAAAAAAAA0wKwAAABBAAAAAAAAAA==",
+              "Title": "SkirmishWorker.cs",
+              "DocumentMoniker": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\SkirmishWorker.cs",
+              "RelativeDocumentMoniker": "WarbandWarfareQuestline\\Skirmish\\SkirmishWorker.cs",
+              "ToolTip": "F:\\Steam\\steamapps\\common\\RimWorld\\Mods\\Warfare-Warbands\\Source\\WarbandWarfareQuestline\\WarbandWarfareQuestline\\Skirmish\\SkirmishWorker.cs",
+              "RelativeToolTip": "WarbandWarfareQuestline\\Skirmish\\SkirmishWorker.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAcwBMAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-04T00:15:41.782Z"
+              "WhenOpened": "2025-02-26T07:16:19.261Z"
             },
             {
               "$type": "Document",
@@ -528,8 +521,7 @@
               "RelativeToolTip": "WarbandWarfareQuestline\\Questline\\Reward_MinorFactionJoin.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAADwvzgAAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-04T07:15:54.262Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-04T07:15:54.262Z"
             },
             {
               "$type": "Document",
@@ -577,8 +569,7 @@
               "RelativeToolTip": "WarbandWarfareQuestline\\League\\MinorFactions\\FactionTraitDefOf.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T10:25:00.294Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T10:25:00.294Z"
             },
             {
               "$type": "Document",
@@ -837,8 +828,7 @@
               "RelativeToolTip": "WarbandWarfareQuestline\\League\\Policies\\PolicyDef.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAIAxwBAAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T11:44:49.89Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T11:44:49.89Z"
             },
             {
               "$type": "Document",
@@ -896,8 +886,7 @@
               "RelativeToolTip": "WarbandWarfareQuestline\\League\\WAWScheduled\\WAWScheduledEvent.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T11:22:04.156Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-27T11:22:04.156Z"
             },
             {
               "$type": "Document",

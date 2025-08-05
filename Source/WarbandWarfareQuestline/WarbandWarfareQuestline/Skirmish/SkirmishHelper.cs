@@ -83,17 +83,18 @@ namespace WarbandWarfareQuestline.Skirmish
                 try
                 {
                     Warband hostileNpcWarband = RandomWarbandNear(enemy, tile);
-                    Warband allyNpcWarband = RandomWarbandNear(ally, hostileNpcWarband.Tile);
+                    Warband allyNpcWarband = RandomWarbandNear(ally, tile);
                     //allyNpcWarband.npcWarbandManager?.SetTargetTile(hostileNpcWarband.Tile);
-                    //warbands.Add(hostileNpcWarband);
-                    //warbands.Add(allyNpcWarband);
+                    warbands.Add(hostileNpcWarband);
+                    warbands.Add(allyNpcWarband);
                 }
                 catch (Exception ex)
                 {
                     Log.Error($"WAW: Exception while generating skirmish: {ex}");
                 }
             }
-
+            string warbandExists = warbands[0] != null ? "exists" : "does not Exist";
+            Log.Message($"Warband {warbandExists}");
             Skirmish result = new Skirmish(warbands, GenTicks.TicksGame);
             return result;
         }
@@ -113,12 +114,12 @@ namespace WarbandWarfareQuestline.Skirmish
             try
             {
                 Warband hostileNpcWarband = RandomWarbandNear(enemy, settlement.Tile);
-                hostileNpcWarband.npcWarbandManager.SetTargetTile(settlement.Tile);
+                //hostileNpcWarband.npcWarbandManager.SetTargetTile(settlement.Tile);
                 warbands.Add(hostileNpcWarband);
             }
             catch (Exception ex)
             {
-                Log.Error($"WAW: Exception while generating skirmish: {ex}");
+                Log.Error($"WAW: Exception while generating siege: {ex}");
             }
             for (int i = 0; i < 3; i++)
             {
@@ -126,24 +127,30 @@ namespace WarbandWarfareQuestline.Skirmish
                 {
                     //Spawn Ally warband
                     Warband allyNpcWarband = RandomWarbandNear(ally, settlement.Tile);
-                    allyNpcWarband.npcWarbandManager.SetTargetTile(settlement.Tile);
+                    //allyNpcWarband.npcWarbandManager.SetTargetTile(settlement.Tile);
                     warbands.Add(allyNpcWarband);
                 }
                 catch (Exception ex)
                 {
-                    Log.Error($"WAW: Exception while generating skirmish: {ex}");
+                    Log.Error($"WAW: Exception while generating siege: {ex}");
                 }
             }
 
             Siege result = new Siege(warbands, GenTicks.TicksGame, settlement);
+            CameraJumper.TryJump(warbands[1]);
+            string warbandExists = warbands[0] != null? "exists" : "does not Exist"; 
+            Log.Message($"Warband {warbandExists}");
             return result;
         }
 
         static Warband RandomWarbandNear(Faction f, PlanetTile tile)
         {
-             
-            TileFinder.TryFindRandomPlayerTile(out PlanetTile allyTile, true, validator: (PlanetTile pt) => Find.WorldGrid.TraversalDistanceBetween(pt, tile) < 7);
+            TileFinder.TryFindNewSiteTile(out PlanetTile allyTile, validator: (PlanetTile pt) => Find.WorldGrid.TraversalDistanceBetween(pt, tile) < 7);
             Warband warband = WarbandUtil.SpawnWarband(f, allyTile);
+            if (warband == null)
+            {
+                Log.Warning($"WAW: Generated a null warband at {allyTile} near {tile}");
+            }
             return warband;
         }
     }
