@@ -349,5 +349,14 @@ namespace WarfareAndWarbands.Warband.Mercenary
             comp.SetPawnKindName(pawnKindName);
             return true;
         }
+        
+        public static bool AnyMercenaryInMap(MapParent mapP)
+        {
+            return mapP.Map.mapPawns.AllHumanlikeSpawned.Any(x => x.TryGetComp<CompMercenary>() != null &&
+            x.GetComp<CompMercenary>().ServesPlayerFaction);
+        }
+
+
+            
     }
 }
