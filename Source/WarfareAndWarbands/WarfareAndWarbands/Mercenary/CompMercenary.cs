@@ -353,10 +353,13 @@ namespace WarfareAndWarbands.Warband
             Scribe_Values.Look(ref _isFromEmpire, "_isFromEmpire", false);
             Scribe_Values.Look(ref lastServeTick, "lastServeTick", 0);
             Scribe_Values.Look(ref pawnKindName, "pawnKindName", "none");
-            Scribe_References.Look(ref warband, "warband");
-            Scribe_References.Look(ref servingFaction, "servingFaction");
-
-
+            
+            // Fix for duplicate load ID registration error when multiple comps exist on same pawn
+            if (this.parent.GetComp<CompMercenary>() == this)
+            {
+                Scribe_References.Look(ref warband, "warband");
+                Scribe_References.Look(ref servingFaction, "servingFaction");
+            }
         }
 
 

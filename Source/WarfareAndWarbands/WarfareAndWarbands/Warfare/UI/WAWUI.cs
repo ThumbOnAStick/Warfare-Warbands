@@ -30,7 +30,7 @@ namespace WarfareAndWarbands.Warfare.UI
         }
 
 
-        public static void DoWindowContents(Rect inRect, Window window, Map map, int mode = 0)
+        public static void DoWindowContent(Rect inRect, Window window, Map map, int mode = 0)
         {
             inRect = inRect.ContractedBy(17f);
             _inRect = inRect;

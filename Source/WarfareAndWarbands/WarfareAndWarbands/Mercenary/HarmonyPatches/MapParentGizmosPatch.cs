@@ -33,6 +33,7 @@ namespace WarfareAndWarbands.Mercenary.HarmonyPatches
                 {
                     if(GenHostility.AnyHostileActiveThreatTo(mapP.Map, Faction.OfPlayer))
                     {
+                        Messages.Message("WAW.HostilityDetected".Translate(), MessageTypeDefOf.NeutralEvent);
                         return;
                     }
                     Find.WindowStack.Add(new Dialog_WarbandLoot(mapP));

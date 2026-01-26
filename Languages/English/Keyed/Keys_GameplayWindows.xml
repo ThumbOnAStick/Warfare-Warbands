@@ -109,5 +109,5 @@
     <WAW.SellLoot>Select</WAW.SellLoot>
 	<WAW.SelectAll>Select all</WAW.SelectAll>
 	<WAW.HostilityDetected>Hostile active in map</WAW.HostilityDetected>
-    <WAW.GatherMapLoot>Make {0} collect all loots and leave</WAW.GatherMapLoot>
+    <WAW.GatherMapLoot>Make {0} collect selected loots and leave</WAW.GatherMapLoot>
 </LanguageData>

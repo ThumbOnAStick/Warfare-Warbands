@@ -89,7 +89,7 @@ namespace WarfareAndWarbands.UI
         public override void DoWindowContents(Rect inRect)
         {
             DrawSelectionMenu(inRect);
-            WAWUI.DoWindowContents(inRect, this, map, this.currentPanel);
+            WAWUI.DoWindowContent(inRect, this, map, this.currentPanel);
         }
 
 
