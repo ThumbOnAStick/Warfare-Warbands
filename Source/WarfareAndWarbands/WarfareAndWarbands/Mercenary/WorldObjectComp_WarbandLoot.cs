@@ -17,7 +17,7 @@ namespace WarfareAndWarbands.Mercenary
                 defaultDesc = "WAW.OpenLootWindow.Desc".Translate(),
                 action = delegate
                 {
-                    Find.WindowStack.Add(new Dialog_WarbandLoot());
+                    Find.WindowStack.Add(new Dialog_WarbandLoot(this.MapP));
                 }
             };
 
@@ -36,7 +36,7 @@ namespace WarfareAndWarbands.Mercenary
 
             if (MercenaryUtil.AnyMercenaryInMap(MapP))
             {
-
+                yield return Command_OpenWarbandLootWindow();
             }
         }
     }

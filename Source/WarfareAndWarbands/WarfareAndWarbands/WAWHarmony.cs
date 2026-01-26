@@ -1,12 +1,13 @@
 ﻿using HarmonyLib;
+using RimWorld;
+using System.Collections.Generic;
 using Verse;
+using WarfareAndWarbands.CharacterCustomization;
+using WarfareAndWarbands.Mercenary.HarmonyPatches;
 using WarfareAndWarbands.UI;
+using WarfareAndWarbands.Warband.Compatibility_BetterGC;
 using WarfareAndWarbands.Warband.HarmonyPatches;
 using WarfareAndWarbands.Warfare.HarmonyPatches;
-using RimWorld;
-using WarfareAndWarbands.CharacterCustomization;
-using System.Collections.Generic;
-using WarfareAndWarbands.Warband.Compatibility_BetterGC;
 
 namespace WarfareAndWarbands.HarmonyPatches
 {
@@ -34,6 +35,7 @@ namespace WarfareAndWarbands.HarmonyPatches
             {
                 BetterGCHarmony.PatchHarmony();
             }
+            MapParentGizmosPatch.PatchHarmony();
             WAWHarmony.harmony.PatchAll();
             Log.Message("WAW: patches successful");
         }

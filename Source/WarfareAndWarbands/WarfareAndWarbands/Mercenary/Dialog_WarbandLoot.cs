@@ -3,6 +3,7 @@ using Verse;
 using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
+using WarfareAndWarbands.Warband;
 
 namespace WarfareAndWarbands.Mercenary
 {
@@ -10,32 +11,96 @@ namespace WarfareAndWarbands.Mercenary
     {
         private readonly MapParent mapP;
         private readonly int elementHeight = 50;
-        private readonly int elementWidth = 50;
-        private Vector2 scrollPosition; 
+        private readonly Warband.Warband looterWarband;
+        private readonly IEnumerable<CompMercenary> mercenaryComps;
+        private Vector2 scrollPosition;
         private List<Thing> toBesold;
         private IEnumerable<Thing> lootList;
         public Dialog_WarbandLoot(MapParent _mapP)
         {
             this.mapP = _mapP;
-            // Assign item list
+            toBesold = new List<Thing>();
             this.lootList = AllMapItems;
+            this.mercenaryComps = GetAllMercenaryComps;
+            this.looterWarband = GetLooterWarband;
         }
 
         private IEnumerable<Thing> AllMapItems => this.mapP.Map.listerThings.AllThings.
-            Where(x => x.def.category.Equals(ThingCategory.Item) &&
-            x.def.BaseMarketValue > 0.5f);
-      
+         Where(x => x.def.category.Equals(ThingCategory.Item) &&
+         x.def.BaseMarketValue > 0.5f);
+
+        private Warband.Warband GetLooterWarband 
+        {
+            get
+            {
+                if (mapP?.Map?.mapPawns == null)
+                {
+                    return null;
+                }
+
+                CompMercenary mercComp = mercenaryComps
+                    .FirstOrDefault(comp => comp != null && comp.ServesPlayerFaction);
+
+                return mercComp?.GetWarband();
+            }
+           
+        }
+
+        private IEnumerable<CompMercenary> GetAllMercenaryComps
+        {
+            get
+            {
+                return mapP.Map.mapPawns.AllHumanlike
+                   .Select(x => x.TryGetComp<CompMercenary>()).Where(x => x.ServesPlayerFaction) ?? new List<CompMercenary>();
+            }
+           
+        }
+
+        bool DrawSellLootButton(Rect rowRect, Thing loot)
+        {
+            // Draw button
+            if (Widgets.ButtonText(rowRect, "WAW.SellLoot".Translate()))
+            {
+                // Sell loot
+                SetLootToBeSold(loot);
+                return true;
+            }
+            return false;
+        }
+
+        void SetLootToBeSold(Thing loot)
+        {
+            toBesold.Add(loot);
+        }
+
+        void RetreatAll()
+        {
+            foreach (var mercanryComp in mercenaryComps)
+            {
+                mercanryComp.Retreat();
+            }
+        }
+
+        void OnConfirm()
+        {
+            looterWarband?.playerWarbandManager?.lootManager?.StoreAll(toBesold); // Sell selected loot
+            RetreatAll();
+            Close();
+        }
 
         public override void DoWindowContents(Rect inRect)
         {
+            // Draw warband name
+            if(looterWarband!=null) Widgets.Label(inRect.TopPart(0.1f), looterWarband.Label);
+
             // Draw a list of all loot
             var outRect = inRect.TopPart(.5f).BottomPart(0.8f);
             float elementDistance = elementHeight + Margin;
-            var viewRect = new Rect(outRect.x, outRect.y + Margin, outRect.width - Margin, elementDistance * lootList.Count);
+            var viewRect = new Rect(outRect.x, outRect.y + Margin, outRect.width - Margin, elementDistance * lootList.Count());
             Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect);
             for (int i = 0; i < this.lootList.Count(); i++)
             {
-                Rect rowRect = new Rect(viewRect.x, viewRect.y + elementDistance * i, viewRect.width, elementHight);
+                Rect rowRect = new Rect(viewRect.x, viewRect.y + elementDistance * i, viewRect.width, elementHeight);
                 Thing loot = lootList.ElementAt(i);
                 // Icon     
                 Widgets.ThingIcon(rowRect.LeftPart(elementHeight / rowRect.width), loot);
@@ -59,6 +124,28 @@ namespace WarfareAndWarbands.Mercenary
                     }
                 }
             }
+            Widgets.EndScrollView();
 
+
+            // Draw select all button
+            Rect selectAllButtonRect = inRect.BottomHalf().TopPart(0.2f).LeftHalf();
+            if (Widgets.ButtonText(selectAllButtonRect, "WAW.SelectAll".Translate()))
+            {
+                toBesold = lootList.ToList();
+            }
+
+            if (toBesold.Count < 1)
+            {
+                return;
+            }
+
+            //Draw confirm button
+            Rect confirmButtonRect = inRect.BottomPart(0.2f);
+            if (Widgets.ButtonText(confirmButtonRect, "WAW.GatherMapLoot".Translate(this.looterWarband?.Label)))
+            {
+                OnConfirm();
+            }
+
+        }
     }
 }

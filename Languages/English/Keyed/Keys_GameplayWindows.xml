@@ -108,5 +108,6 @@
     <WAW.HowToFireArtillery>To fire these rounds, use warband's attack command button on an open map, there will be an extra option.</WAW.HowToFireArtillery>
     <WAW.SellLoot>Select</WAW.SellLoot>
 	<WAW.SelectAll>Select all</WAW.SelectAll>
-
+	<WAW.HostilityDetected>Hostile active in map</WAW.HostilityDetected>
+    <WAW.GatherMapLoot>Make {0} collect all loots and leave</WAW.GatherMapLoot>
 </LanguageData>

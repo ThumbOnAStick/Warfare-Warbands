@@ -47,4 +47,6 @@
 	<WAW.VassalWillBeAvialableIn>Avialable in {0} days</WAW.VassalWillBeAvialableIn>
     <WAW.ManageLoadout>Manage loaout</WAW.ManageLoadout>
 	<WAW.ManageLoadoutDesc>Decide artillery shells and spawn-with resources.</WAW.ManageLoadoutDesc>
+	<WAW.OpenLootWindow>Open loot window</WAW.OpenLootWindow>
+	<WAW.OpenLootWindow.Desc>Retrive loot from the map and retreat.</WAW.OpenLootWindow.Desc>
 </LanguageData>	
