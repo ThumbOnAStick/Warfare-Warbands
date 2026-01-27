@@ -13,7 +13,7 @@ using WarfareAndWarbands.Warfare.UI;
 
 namespace WarfareAndWarbands
 {
-    public class GameComponent_WAW : GameComponent
+    public class GameComponent_WAW : GameComponent  
     {
         List<Faction> factions = new List<Faction>();
         List<int> durabilitities = new List<int>();
@@ -37,6 +37,9 @@ namespace WarfareAndWarbands
 
         public GameComponent_WAW(Game game)
         {
+            // 清理旧实例的事件监听器
+            CleanupOldInstance();
+            
             GameComponent_WAW.Instance = this;
             playerWarband = new PlayerWarbandArrangement();
             onRaid = new UnityEvent();
@@ -308,6 +311,7 @@ namespace WarfareAndWarbands
         {
             this.raidLeaderCache = raidLeaderCache;
         }
+        
         public Pawn GetRaidLeaderCache()
         {
             return this.raidLeaderCache;
@@ -327,6 +331,30 @@ namespace WarfareAndWarbands
                 WAWSettings.townConstructionDuration.ToString().Colorize(Color.cyan)
                 ), LetterDefOf.NeutralEvent);
             Find.LetterStack.ReceiveLetter(l);
+        }
+        private void CleanupOldInstance()
+        {
+            if (Instance != null && Instance != this)
+            {
+                // 清理旧实例的 UnityEvent
+                Instance.onRaid?.RemoveAllListeners();
+                Instance.onRaided?.RemoveAllListeners();
+                Instance.onLeaderAbilityUsed?.RemoveAllListeners();
+            }
+        }
+
+        public void Cleanup()
+        {
+            onRaid?.RemoveAllListeners();
+            onRaided?.RemoveAllListeners();
+            onLeaderAbilityUsed?.RemoveAllListeners();
+            
+            if (Instance == this)
+            {
+                Instance = null;
+                playerWarband = null;
+                playerBankAccount = null;
+            }
         }
     }
 }
