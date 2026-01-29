@@ -16,6 +16,7 @@ namespace WarfareAndWarbands.Warband.UI.WarbandConfigureSteps
         {
             WarbandUI.DrawPawnSelection(inRect, ref scrollPosition, warband);
             WarbandUI.DrawResetButton(inRect); 
+            WarbandUI.DrawShowCustomOnlyButton(inRect);
 
         }
 

@@ -55,7 +55,7 @@ namespace WarfareAndWarbands.Warband
         public bool IsFromEmpire => this._isFromEmpire;
 
 
-        public bool ServesPlayerFaction
+        public bool IsPlayerControlledMercenary
         {
             get
             {
@@ -81,7 +81,7 @@ namespace WarfareAndWarbands.Warband
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            if (this.ServesPlayerFaction)
+            if (this.IsPlayerControlledMercenary)
             {
                 if (!Mercenary.Downed && !retreated)
                 {

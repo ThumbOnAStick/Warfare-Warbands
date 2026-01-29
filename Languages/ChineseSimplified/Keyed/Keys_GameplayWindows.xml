@@ -108,4 +108,6 @@
 	<WAW.SelectAll>将全部战利品加入卖出列表</WAW.SelectAll>
 	<WAW.HostilityDetected>地图存在威胁</WAW.HostilityDetected>
     <WAW.GatherMapLoot>让{0}获取所有的战利品并且离开</WAW.GatherMapLoot>
+    <WAW.ShowCustomOnly>仅显示自定义兵种</WAW.ShowCustomOnly>
+    <WAW.LootTime>敌人已被击败，你现在可以通过下方的按钮打开战利品界面并离开。</WAW.LootTime>
 </LanguageData>

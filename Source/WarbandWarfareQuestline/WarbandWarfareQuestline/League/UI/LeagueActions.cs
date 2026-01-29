@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
-using WarbandWarfareQuestline.Skirmish;
 
 namespace WarbandWarfareQuestline.League.UI
 {
@@ -36,11 +35,6 @@ namespace WarbandWarfareQuestline.League.UI
             if (CanExecuteMilitaryDrill())
             {
                 yield return MilitaryDrillOption();
-            }
-
-            if (GameComponent_Skrimish.Instance.IsProvocationActivated)
-            {
-                yield return PlayerSkirmishOption();
             }
 
             yield break;
@@ -82,12 +76,6 @@ namespace WarbandWarfareQuestline.League.UI
 
         #endregion
 
-        #region PlayerSkirmish
-        public static FloatMenuOption PlayerSkirmishOption()
-        {
-            return new FloatMenuOption("WAW.FLTM.PlayerSkirmish".Translate(), () => { GameComponent_Skrimish.Instance.TryToCreatePlayerSkirmish(); });
-        }
-        #endregion
 
         #region MilitaryDrill
 

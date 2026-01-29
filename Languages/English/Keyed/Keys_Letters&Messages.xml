@@ -72,7 +72,7 @@
 	<WAW.LootValue>The silvers you can get are worth {0}% of the loots' value, this number is decided by leader's economy ability.</WAW.LootValue>
 	<WAW.LeaderKilled>Your warband has lost their leader.</WAW.LeaderKilled>
 	<WAW.CantDelete>Can't delete a pawn kind that is already in use.</WAW.CantDelete>
-	<WAW.WarbandLossFailed>Due to {0}'s recruiting ability, the lost unit is soon replaced.</WAW.WarbandLossFailed>
+	<WAW.WarbandLossFailed>Due to {0}'s recruiting ability, the lost unit was immediately replaced.</WAW.WarbandLossFailed>
 	<WAW.TransportedToWarband>All loots have been transfered to warband.</WAW.TransportedToWarband>
 	<WAW.NoVehicle>There's no vehicles in storage, plase pruchase more using "purchase vehicles" command.</WAW.NoVehicle>
     <WAW.AboutBrigadeCombatTeam>About: brigade Combat Team</WAW.AboutBrigadeCombatTeam>

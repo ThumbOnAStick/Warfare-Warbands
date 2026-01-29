@@ -36,6 +36,7 @@ namespace WarfareAndWarbands.HarmonyPatches
                 BetterGCHarmony.PatchHarmony();
             }
             MapParentGizmosPatch.PatchHarmony();
+            AnyHostileToPlayerCheckPatch.PatchHarmony();
             WAWHarmony.harmony.PatchAll();
             Log.Message("WAW: patches successful");
         }

@@ -64,18 +64,6 @@
         <cost>25000</cost>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 
-    <!-- New Warfare Policies -->
-    <WarbandWarfareQuestline.League.Policies.PolicyDef>
-        <defName>AdvancedTactics</defName>
-        <description>Develop advanced military tactics to improve battlefield performance, allows droppod raids for warbands.</description>
-        <label>Advanced Tactics</label>
-        <prerequisite>ArmExpansion</prerequisite>
-        <category>Warfare</category>
-        <taxBonus>-0.1</taxBonus>
-        <cost>2500</cost>
-        <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_AdvancedTactics</workerClass>
-    </WarbandWarfareQuestline.League.Policies.PolicyDef>
-
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>WeaponUpgrades</defName>
         <description>Upgrade weapons to enhance the combat effectiveness of the faction's forces.</description>
@@ -89,11 +77,11 @@
 
     <WarbandWarfareQuestline.League.Policies.PolicyDef>
         <defName>StartSkirmish</defName>
-        <description>Allows you to start a skirmish on your own.</description>
-        <label>Military Provocation</label>
-        <prerequisite>AdvancedTactics</prerequisite>
+        <description>Removed by author</description>
+        <label>Removed by author</label>
+        <prerequisite>ArmExpansion</prerequisite>
         <category>Warfare</category>
-        <cost>20000</cost>
+        <cost>0</cost>
         <workerClass>WarbandWarfareQuestline.League.Policies.PolicyWorker_StartSkirmish</workerClass>
     </WarbandWarfareQuestline.League.Policies.PolicyDef>
 

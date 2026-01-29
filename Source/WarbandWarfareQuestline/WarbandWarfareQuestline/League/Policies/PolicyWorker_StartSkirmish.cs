@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
-using WarbandWarfareQuestline.Skirmish;
+//using WarbandWarfareQuestline.Skirmish;
 
 namespace WarbandWarfareQuestline.League.Policies
 {
@@ -14,14 +14,14 @@ namespace WarbandWarfareQuestline.League.Policies
         {
             base.Execute();
             Log.Message("WAW : Skirmish Policy Executed");
-            GameComponent_Skrimish.Instance.SetProvocationActivated(true);
+            //GameComponent_Skrimish.Instance.SetProvocationActivated(true);
         }
 
         public override void OnDisable()
         {
             base.OnDisable();
             Log.Message("WAW : Skirmish Policy Disabled");
-            GameComponent_Skrimish.Instance.SetProvocationActivated(false);
+            //GameComponent_Skrimish.Instance.SetProvocationActivated(false);
         }
 
     }

@@ -25,7 +25,7 @@ namespace WarfareAndWarbands.Warband.UI
     {
 
         // Pawnkind selection window attribtes
-        private static readonly int incrementY = 30; 
+        private static readonly int incrementY = 30;
         private static readonly float pawnKindsEachRow = 5;
         private static readonly Vector2 pawnSelectionPanelSize = new Vector2(800, 500);
         private static readonly float xIncrement = pawnSelectionPanelSize.x / pawnKindsEachRow;
@@ -35,6 +35,9 @@ namespace WarfareAndWarbands.Warband.UI
         private static readonly float descriptionWidth = 120f;
         private static readonly float entryWidth = 20f;
         private static readonly float entryHeight = 20f;
+        private static readonly float noBackgroundButtonHeight = 20f;
+        private static readonly float noBackgroundButtonWidth = 100f;
+        private static bool showCustomPawnKindOnly = false;
 
         private static List<Color> AllApprealColors
         {
@@ -121,7 +124,7 @@ namespace WarfareAndWarbands.Warband.UI
             return command_Action;
         }
 
-     
+
 
         public static IEnumerable<FloatMenuOption> PlayerWarbandAttackOptions(PlayerWarbandManager attackManager)
         {
@@ -133,18 +136,14 @@ namespace WarfareAndWarbands.Warband.UI
             });
             if (attackManager.targetMapP.HasMap && attackManager.upgradeHolder.CanDroppod)
             {
-                if (GameComponent_WAW.Instance.IsDropRaidAvailable || !WAWSettings.enableDroppodPolicyRequirement)
-                    yield return new FloatMenuOption("WAW.PodAttack".Translate(), delegate
+                yield return new FloatMenuOption("WAW.PodAttack".Translate(), delegate
                     {
                         attackManager.AttackDropPod();
                         WarbandUtil.TryToSendQuickAttackLetter();
                     });
-                else
-                {
-                    yield return new FloatMenuOption("WAW.FLTM.PodAttackUnavailable".Translate(), null);
-                }
+
             }
-            if(attackManager.targetMapP.HasMap && attackManager.upgradeHolder.HasUpgrade)
+            if (attackManager.targetMapP.HasMap && attackManager.upgradeHolder.HasUpgrade)
             {
                 var opts = attackManager.upgradeHolder.SelectedUpgrade.GetExtraAttackFloatMenuOptions(attackManager);
                 foreach (var option in opts)
@@ -291,7 +290,7 @@ namespace WarfareAndWarbands.Warband.UI
                 foreach (var p in m.mapPawns.AllPawnsSpawned)
                 {
                     var comp = p.TryGetComp<CompMercenary>();
-                    if (comp != null && comp.ServesPlayerFaction)
+                    if (comp != null && comp.IsPlayerControlledMercenary)
                     {
                         comp.Retreat();
                     }
@@ -349,8 +348,6 @@ namespace WarfareAndWarbands.Warband.UI
             }
         }
 
-
-
         static FloatMenuOption AssignLeaderOption(Pawn pawn, Caravan caravan, Warband warband)
         {
             var option = new FloatMenuOption(
@@ -403,6 +400,7 @@ namespace WarfareAndWarbands.Warband.UI
 
             // Initialize combat pawns panel
             var allCombatPawns = WarbandUtil.SoldierPawnKindsWithTechLevel(GameComponent_WAW.playerWarbandPreset.techLevel);
+            if (showCustomPawnKindOnly) allCombatPawns = allCombatPawns.Where(x => GameComponent_Customization.Instance.CustomizationRequests.Any(y => y.defName == x.defName)).ToList();
             Rect outRect = CenterRectFor(inRect, new Vector2(inRect.width, 200f));
             Rect viewRect = new Rect(outRect.x, outRect.y, inRect.width - 30f, (allCombatPawns.Count() / pawnKindsEachRow + 1) * (descriptionHeight + entryHeight + 10));
             float depth = outRect.y;
@@ -426,42 +424,37 @@ namespace WarfareAndWarbands.Warband.UI
                         depth += descriptionHeight + incrementY;
                     }
 
-                    float pawnKindRectX = xIncrement * (pawnKindsStacked - 1);
+                    float pawnKindRectX = xIncrement * (pawnKindsStacked - 1); // Set up initial values
                     Rect pawnKindMetaRect = new Rect(pawnKindRectX, depth, pawnkindElementWidth, descriptionHeight + entryHeight);
 
-                    var amount = GameComponent_WAW.playerWarbandPreset.bandMembers[p.defName];
+                    Widgets.Label(new Rect(pawnKindMetaRect.position, new Vector2(descriptionWidth, descriptionHeight)), $"{GetPawnKindLabel(p)}({p.combatPower})"); // Display pawn kind label and combat power
 
-                    Rect labelRect = CenterRectFor(pawnKindMetaRect, new Vector2(entryWidth, entryHeight));
+                    int amount = 0; // Get amount
+                    if (GameComponent_WAW.playerWarbandPreset.bandMembers.ContainsKey(p.defName))
+                        amount = GameComponent_WAW.playerWarbandPreset.bandMembers[p.defName];
+
+                    Rect labelRect = CenterRectFor(pawnKindMetaRect, new Vector2(entryWidth * 2, entryHeight)); // Set band members amount
                     string v = Widgets.TextArea(labelRect, amount.ToString());
                     if (int.TryParse(v, out int parsedAmount))
                     {
                         GameComponent_WAW.playerWarbandPreset.bandMembers[p.defName] = parsedAmount;
                     }
-                    if (IsPawnkindAboveLimit(p))
-                    {
-                        // When the combat power of the pawnkind is above the limit, you cannot add more.
-                        GUI.color = new Color(1f, .5f, 0f);
-                        TooltipHandler.TipRegion(pawnKindMetaRect, "WAW.CombatPowerOutOfLimit".Translate(GameComponent_Customization.Instance.EquipmentBudgetLimit));
-                    }
-                    else
-                    {
-                        if (Widgets.ButtonImage(new Rect(labelRect.xMax, labelRect.y, entryWidth, entryHeight), TexButton.Plus))
-                            GameComponent_WAW.playerWarbandPreset.bandMembers[p.defName]++;
-                    }
 
-                    Widgets.Label(new Rect(pawnKindMetaRect.position, new Vector2(descriptionWidth, descriptionHeight)), $"{PawnKindLabel(p)}({p.combatPower})");
-                 
+                    if (Widgets.ButtonImage(new Rect(labelRect.xMax, labelRect.y, entryWidth, entryHeight), TexButton.Plus)) // Add member
+                        GameComponent_WAW.playerWarbandPreset.bandMembers[p.defName]++;
+
+
                     GUI.color = Color.white;
-                    if (Widgets.ButtonImage(new Rect(labelRect.x - entryWidth, labelRect.y, entryWidth, entryHeight), TexButton.Minus) && amount > 0)
+                    if (Widgets.ButtonImage(new Rect(labelRect.x - entryWidth, labelRect.y, entryWidth, entryHeight), TexButton.Minus) && amount > 0) // Decrease member
                         GameComponent_WAW.playerWarbandPreset.bandMembers[p.defName]--;
 
-                    if (GameComponent_WAW.playerWarbandPreset.bandMembers.TryGetValue(p.defName, out int count) && count > 0)
+                    if (GameComponent_WAW.playerWarbandPreset.bandMembers.TryGetValue(p.defName, out int count) && count > 0) // Display a box when there's more than one member.
                         Widgets.DrawBox(pawnKindMetaRect);
 
-                    if (warband != null && warband.bandMembers.TryGetValue(p.defName, out int warbandCount) && warbandCount > 0)
+                    if (warband != null && warband.bandMembers.TryGetValue(p.defName, out int warbandCount) && warbandCount > 0) // Display a box when editing an existing warband
                         Widgets.DrawBox(pawnKindMetaRect, lineTexture: BaseContent.GreyTex);
 
-                    if (p.defaultFactionDef != null)
+                    if (p.defaultFactionDef != null) // Display faction def icon
                     {
                         GUI.color = p.defaultFactionDef.DefaultColor;
                         Widgets.DrawTextureFitted(CenterRectFor(pawnKindMetaRect, new Vector2(30, 30), Vector2.up * 30), p.defaultFactionDef.FactionIcon, 1f);
@@ -473,17 +466,13 @@ namespace WarfareAndWarbands.Warband.UI
             Widgets.EndScrollView();
         }
 
-        static bool IsPawnkindAboveLimit(PawnKindDef p)
-        {
-            return false;
-            // This was a bad design.
-            //return WAWSettings.enableEquipmentBudgetLimit && p.combatPower > GameComponent_Customization.Instance.EquipmentBudgetLimit; 
-        }
-
 
         public static void DrawResetButton(Rect inRect)
         {
-            bool doReset = Widgets.ButtonText(new Rect(inRect.RightHalf().x - 50, inRect.BottomPart(.05f).y, 100, 20), "WAW.ResetWarband".Translate(), false);
+            bool doReset = Widgets.ButtonText(new Rect(inRect.RightHalf().x - noBackgroundButtonWidth / 2, inRect.BottomPart(.1f).y,
+                noBackgroundButtonWidth,
+                noBackgroundButtonHeight),
+                "WAW.ResetWarband".Translate(), false);
             if (doReset)
             {
                 for (int i = 0; i < GameComponent_WAW.playerWarbandPreset.bandMembers.Count; i++)
@@ -491,6 +480,18 @@ namespace WarfareAndWarbands.Warband.UI
                     var key = GameComponent_WAW.playerWarbandPreset.bandMembers.ElementAt(i).Key;
                     GameComponent_WAW.playerWarbandPreset.bandMembers[key] = 0;
                 }
+            }
+        }
+
+        public static void DrawShowCustomOnlyButton(Rect inRect)
+        {
+            Widgets.CheckboxLabeled(new Rect(inRect.RightHalf().x - noBackgroundButtonWidth, inRect.BottomPart(.9f).y,
+                noBackgroundButtonWidth * 2, noBackgroundButtonHeight * 2),
+                "WAW.ShowCustomOnly".Translate(),
+                ref showCustomPawnKindOnly);
+            if (showCustomPawnKindOnly)
+            {
+                GameComponent_WAW.playerWarbandPreset.techLevel = TechLevel.Industrial;
             }
         }
 
@@ -529,8 +530,8 @@ namespace WarfareAndWarbands.Warband.UI
         }
         public static void DrawNextStepButton(Rect inRect, ref int step)
         {
-            Rect nextStepButtonRect = new Rect(inRect.x + inRect.width/ 2 - 100, 400, 200, 50);
-            if(Widgets.ButtonText(nextStepButtonRect, "WAW.NextStep".Translate()))
+            Rect nextStepButtonRect = new Rect(inRect.x + inRect.width / 2 - 100, 400, 200, 50);
+            if (Widgets.ButtonText(nextStepButtonRect, "WAW.NextStep".Translate()))
             {
                 step++;
             }
@@ -540,7 +541,7 @@ namespace WarfareAndWarbands.Warband.UI
             warband.playerWarbandManager?.leader?.AssignLeader(pawn, caravan);
         }
 
-        public static string PawnKindLabel(PawnKindDef p)
+        public static string GetPawnKindLabel(PawnKindDef p)
         {
             string label = GameComponent_Customization.Instance.CustomizationRequests.Any(x => x.defName == p.defName) ?
         p.label.Colorize(FactionDefOf.PlayerColony.DefaultColor) : p.label;
@@ -556,7 +557,7 @@ namespace WarfareAndWarbands.Warband.UI
                 !p.MapHeld.GetComponent<MapComponent_WarbandRaidTracker>().LtterSent();
         }
 
-        public static void FillSlots(Rect slotRect,IEnumerable<Texture> textures)
+        public static void FillSlots(Rect slotRect, IEnumerable<Texture> textures)
         {
             float heightRate = slotRect.height / slotRect.width;
             int count = textures.Count();

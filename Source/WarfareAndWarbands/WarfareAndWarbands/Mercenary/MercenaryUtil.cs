@@ -314,7 +314,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
                 return false;
             }
             comp.ResetAll();
-            comp.ServesPlayerFaction = warband.Faction == Faction.OfPlayer;
+            comp.IsPlayerControlledMercenary = warband.Faction == Faction.OfPlayer;
             if (pawn.Faction != faction)
                 pawn.SetFaction(faction);
             comp.SetWarband(warband);
@@ -337,7 +337,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
                 return false;
             }
             comp.ResetAll();
-            comp.ServesPlayerFaction = faction == Faction.OfPlayer;
+            comp.IsPlayerControlledMercenary = faction == Faction.OfPlayer;
             if (pawn.Faction != faction)
                 pawn.SetFaction(faction);
             comp.SetRetreat(false);
@@ -353,7 +353,7 @@ namespace WarfareAndWarbands.Warband.Mercenary
         public static bool AnyMercenaryInMap(MapParent mapP)
         {
             return mapP.Map.mapPawns.AllHumanlikeSpawned.Any(x => x.TryGetComp<CompMercenary>() != null &&
-            x.GetComp<CompMercenary>().ServesPlayerFaction);
+            x.GetComp<CompMercenary>().IsPlayerControlledMercenary);
         }
 
 

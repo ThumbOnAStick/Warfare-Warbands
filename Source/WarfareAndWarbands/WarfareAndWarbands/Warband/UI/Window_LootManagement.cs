@@ -13,14 +13,14 @@ namespace WarfareAndWarbands.Warband.UI
     class Window_LootManagement : Window
     {
         private readonly PlayerWarbandLootManager _lootManager;
-        private List<Thing> _toBeSold;  
+        private readonly HashSet<Thing> _selectedItems;
         private Vector2 _scrollPosition = Vector2.zero;
 
-        private const float elementHight = 30;
+        private const float elementSize = 30;
 
         public Window_LootManagement()
         {
-            _toBeSold = new List<Thing>();
+            _selectedItems = new HashSet<Thing>();
         }
 
         public Window_LootManagement(PlayerWarbandLootManager lootManager) : this()
@@ -31,92 +31,59 @@ namespace WarfareAndWarbands.Warband.UI
 
         public override void DoWindowContents(Rect inRect)
         {
-            // Do closex 
             this.DrawCloseButton(inRect);
 
-            // Draw a list of all loot
-            var lootList = _lootManager.Storage;
-            var outRect = inRect.TopPart(.5f).BottomPart(0.8f);
-            float elementDistance = elementHight + Margin;
-            var viewRect = new Rect(outRect.x, outRect.y + Margin, outRect.width - Margin, elementDistance * lootList.Count);
-            Widgets.BeginScrollView(outRect, ref _scrollPosition, viewRect);
-            for (int i = 0; i < lootList.Count; i++)
-            {
-                Rect rowRect = new Rect(viewRect.x, viewRect.y + elementDistance * i, viewRect.width, elementHight);
-                Thing loot = lootList[i]; 
-                // Icon     
-                Widgets.ThingIcon(rowRect.LeftPart(elementHight / rowRect.width), loot);
-                // Number
-                Widgets.Label(rowRect.LeftHalf().RightHalf(), loot.stackCount.ToString());
+            var lootList = _lootManager.Storage.ToList();
+            var outRect = inRect.TopPart(.7f).BottomPart(0.8f);
 
-                // If loot is not in sold list
-                Rect buttonRect = rowRect.RightPart(elementHight / rowRect.width);
-                if (!_toBeSold.Contains(loot))
+            LootUIHelper.DrawLootList(
+                outRect,
+                ref _scrollPosition,
+                lootList,
+                _selectedItems,
+                "WAW.SellLoot",
+                (thing, isSelected) =>
                 {
-                    // Sell button
-                    DrawSellLootButton(buttonRect, loot);
-                }
-                else
-                {
-                    // Small X button
-                    buttonRect.position += Vector2.left * elementHight;
-                    if (Widgets.ButtonImage(buttonRect.ScaledBy(0.9f), TexButton.CloseXSmall))
+                    if (isSelected)
                     {
-                        _toBeSold.Remove(loot);
+                        _selectedItems.Add(thing);
                     }
-                }
+                    else
+                    {
+                        _selectedItems.Remove(thing);
+                    }
+                },
+                false,
+                elementSize);
 
-            }
-
-            Widgets.EndScrollView();
-
-            // Draw select all button
-            Rect selectAllButtonRect = inRect.BottomHalf().TopPart(0.2f).LeftHalf();
-            if (Widgets.ButtonText(selectAllButtonRect, "WAW.SelectAll".Translate()))
+            Rect selectAllButtonRect = new Rect(inRect.x, inRect.y + inRect.height * 0.7f, inRect.width * 0.5f, inRect.height * 0.1f);
+            LootUIHelper.DrawSelectAllButton(selectAllButtonRect, () =>
             {
-                _toBeSold = lootList.ToList();
-            }
+                _selectedItems.Clear();
+                foreach (var item in lootList)
+                {
+                    _selectedItems.Add(item);
+                }
+            });
 
-            if (_toBeSold.Count < 1)
+            if (_selectedItems.Count < 1)
             {
                 return;
             }
 
-            //Draw confirm button
             Rect confirmButtonRect = inRect.BottomPart(0.2f);
-            if (Widgets.ButtonText(confirmButtonRect, "Confirm".Translate()))
+            if(LootUIHelper.DrawConfirmButton(confirmButtonRect, "Confirm"))
             {
-                // Sell selected loot
-                _lootManager.SetToBeSold(_toBeSold);
+                _lootManager.SetToBeSold(_selectedItems.ToList());
                 Find.WindowStack.Add(new FloatMenu(WithDrawLootOptions().ToList()));
             }
-
         }
-
 
         private IEnumerable<FloatMenuOption> WithDrawLootOptions()
         {
             yield return new FloatMenuOption("WAW.InItems".Translate(), delegate {_lootManager.WithdrawLoot(); Close(); });
             yield return new FloatMenuOption("WAW.InSilvers".Translate(), delegate { _lootManager.WithdrawLootInSilver(); Close(); });
             yield return new FloatMenuOption("WAW.DepositeLoots".Translate(), delegate { _lootManager.WithdrawLootToBank(); Close(); });
-
-        }
-
-        bool DrawSellLootButton(Rect rowRect, Thing loot)
-        {
-            // Draw button
-            if (Widgets.ButtonText(rowRect, "WAW.SellLoot".Translate()))
-            {
-                // Sell loot
-                SetLootToBeSold(loot);
-                return true;
-            }
-            return false;
-        }
-
-        void SetLootToBeSold(Thing loot)
-        {
-            _toBeSold.Add(loot);
         }
     }
 }

@@ -24,7 +24,6 @@ namespace WarfareAndWarbands
         public static bool everReadUpdateLog = false;
         public static bool upgradeRequiresLeader= true;
         public static bool enableEquipmentBudgetLimit = false;
-        public static bool enableDroppodPolicyRequirement = true;
         public static bool enableEliteUpgradePolicyRequirement = true;
         public static float warbandRaidCooldown = 1.5f;
         public static float warbandRecruitTimeMultiplier = 1f;
@@ -49,7 +48,6 @@ namespace WarfareAndWarbands
             Scribe_Values.Look(ref warbandRecruitTimeMultiplier, "warbandRecruitTimeMultiplier", 1f);
             Scribe_Values.Look(ref upgradeRequiresLeader, "upgradeRequiresLeader", true);
             Scribe_Values.Look(ref enableEquipmentBudgetLimit, "enableEquipmentBudgetLimit", false);
-            Scribe_Values.Look(ref enableDroppodPolicyRequirement, "enableDroppodPolicyRequirement", true);
             Scribe_Values.Look(ref enableEliteUpgradePolicyRequirement, "enableEliteUpgradePolicyRequirement", true);
         }
 

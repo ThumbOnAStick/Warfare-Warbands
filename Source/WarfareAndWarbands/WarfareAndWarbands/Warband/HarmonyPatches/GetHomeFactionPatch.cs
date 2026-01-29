@@ -27,7 +27,7 @@ namespace WarfareAndWarbands.Warband.HarmonyPatches
             var comp = p.TryGetComp<CompMercenary>();
             if (__result != null ||
                 comp == null ||
-                p.GetComp<CompMercenary>().ServesPlayerFaction != true ||
+                p.GetComp<CompMercenary>().IsPlayerControlledMercenary != true ||
 PlayerWarbandLeaderUtil.IsLeader(p, out Warband warband)
                 )
                 return;

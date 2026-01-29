@@ -23,9 +23,9 @@ namespace WarfareAndWarbands.Warband.HarmonyPatches
         public static void ExitPatch(ref Pawn __instance)
         {
             var comp = __instance.TryGetComp<CompMercenary>();
-            if (comp != null && comp.ServesPlayerFaction == true)
+            if (comp != null && comp.IsPlayerControlledMercenary == true)
             {
-                comp.ServesPlayerFaction = false;
+                comp.IsPlayerControlledMercenary = false;
                 var warbandFac = Find.FactionManager.FirstFactionOfDef(WAWDefof.PlayerWarband);
                 if (__instance.Faction != warbandFac)
                     __instance.SetFaction(warbandFac);

@@ -85,7 +85,7 @@
     <WAW.PolicyWillBeApproved>Result: {0} will be approved.</WAW.PolicyWillBeApproved>
     <WAW.FactionsUnhappy>Your action will reduce cohesion by {0}.</WAW.FactionsUnhappy>
     <WAW.GiveDevelopmentPoints>Your action will give {0} development points to your league.</WAW.GiveDevelopmentPoints>
-    <WAW.NoFactionsInLeague>There's zero faction in your league</WAW.NoFactionsInLeague>
+    <WAW.NoFactionsInLeague>There's zero faction in your league.</WAW.NoFactionsInLeague>
     <WAW.NotEnoughDevelopmentPoints>There's not enough development points</WAW.NotEnoughDevelopmentPoints>
     <WAW.TaxOffset>(<color value="#FFFFFF">Tax income offset: {0}</color>)</WAW.TaxOffset>
 	<WAW.RoadConstruct.DecideStarting>Select Starting Point</WAW.RoadConstruct.DecideStarting>
@@ -100,7 +100,7 @@
     <WAW.MilitaryDrills.ValidObject>Valid object</WAW.MilitaryDrills.ValidObject>
     <WAW.LocateFaction>Locate settlement of {0}</WAW.LocateFaction>
     <WAW.KickoutFaction>Kick out {0} from the league.</WAW.KickoutFaction>
-	<WAW.KickoutProposal>We should kick {0} out</WAW.KickoutProposal>
+	<WAW.KickoutProposal>We should kick {0} out</WAW.KickoutProposal> 
     <WAW.SidearmLabel>Sidearm</WAW.SidearmLabel>
     <WAW.NoShellDefs>No shell defs</WAW.NoShellDefs>
     <WAW.ShellManagement>Mortar Shells</WAW.ShellManagement>
@@ -110,4 +110,6 @@
 	<WAW.SelectAll>Select all</WAW.SelectAll>
 	<WAW.HostilityDetected>Hostile active in map</WAW.HostilityDetected>
     <WAW.GatherMapLoot>Make {0} collect selected loots and leave</WAW.GatherMapLoot>
+    <WAW.ShowCustomOnly>Show custom pawn kinds only</WAW.ShowCustomOnly>
+    <WAW.LootTime>Enemies have been defeated, you can now collect loots by opening loot window. The command is located down there.</WAW.LootTime>
 </LanguageData>

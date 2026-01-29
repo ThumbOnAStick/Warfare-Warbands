@@ -51,7 +51,7 @@ namespace WAWLeadership.UI
             // Draw Pawn Portrait
             GUI.color = Color.white;
             Rect portraitRect = new Rect(Vector2.zero, new Vector2(this.size.x / 2, 400));
-            Widgets.ThingIcon(portraitRect, this.SelPawn, 1f, null, false);
+            Widgets.ThingIcon(portraitRect, this.SelPawn, 1f, null, false, .3f);
             Widgets.Label(portraitRect, "WAW.LeadershipTitle".Translate());
             // Draw Attribute Panel
             Rect otherHalf = new Rect(new Vector2(portraitRect.xMax + 100, 100), new Vector2(this.size.x / 2, this.size.y));

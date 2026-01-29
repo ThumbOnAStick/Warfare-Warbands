@@ -20,7 +20,8 @@ namespace WAWLeadership.UI
         public Window_Leadership(CompLeadership leader, Warband warband)
         {
             this.leader = leader;   
-            this.warband = warband; 
+            this.warband = warband;
+            this.doCloseX = true;
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -42,7 +43,7 @@ namespace WAWLeadership.UI
             // Draw Pawn Portrait
             GUI.color = Color.white;
             Rect portraitRect = new Rect(Vector2.zero, new Vector2(InitialSize.x / 2, 400));
-            Widgets.ThingIcon(portraitRect, leader.Pawn, 1f, null, false);
+            Widgets.ThingIcon(portraitRect, leader.Pawn, 1f, null, false, .3f);
             Widgets.Label(portraitRect, "WAW.LeadershipTitle".Translate());
             // Draw Attribute Panel
             Rect otherHalf = new Rect(new Vector2(portraitRect.xMax + 100, 100), new Vector2(InitialSize.x / 2, InitialSize.y));

@@ -10,7 +10,6 @@ using Verse;
 using WarfareAndWarbands.Warband;
 using WarfareAndWarbands;
 using RimWorld.Planet;
-using WarbandWarfareQuestline.Skirmish;
 using WarbandWarfareQuestline.League.MinorFactions;
 using System.Threading;
 using WarbandWarfareQuestline.Questline;
@@ -23,17 +22,6 @@ namespace WarbandWarfareQuestline.League
         public static void SpawnRandomMercenary() =>
             MinorFactionHelper.GenerateRandomMinorFactionAndJoinPlayer();
 
-        [DebugAction("WAW", "Create Random Skirmish", false, false, false, false, false, actionType = DebugActionType.Action)]
-        public static void CreateRandomSkirmish() =>
-            GameComponent_Skrimish.Instance.CreateRandomSkirmsish();
-
-        [DebugAction("WAW", "Initiate Skirmish", false, false, false, false, false, actionType = DebugActionType.Action)]
-        public static void InitiateSkirmish() =>
-            Find.WorldTargeter.BeginTargeting(SpawnSkirmish, true);
-
-        [DebugAction("WAW", "Spawn Siege", false, false, false, false, false, actionType = DebugActionType.Action)]
-        public static void SpawnSiege() =>
-            SpawnSiegeEvent();
 
         [DebugAction("WAW", "Spawn Settlement Construction", false, false, false, false, false, actionType = DebugActionType.Action)]
         public static void SpawnSettlementConstruction()
@@ -74,23 +62,6 @@ namespace WarbandWarfareQuestline.League
         public static void UnlockRoadBuilding()
         {
             GameComponent_League.Instance.RoadBuilder.SetActive(true);
-        }
-
-        static bool SpawnSkirmish(GlobalTargetInfo info)
-        {
-            if (info.WorldObject != null)
-            {
-                return false;
-            }
-            var skirmish = SkirmishHelper.CreateSkirmish(info);
-            GameComponent_Skrimish.Instance.Register(skirmish);
-            return true;
-        }
-
-        static void SpawnSiegeEvent()
-        {
-            var skirmish = SkirmishHelper.CreateSiege();
-            GameComponent_Skrimish.Instance.Register(skirmish);
         }
 
         static bool SpawnTownConstruction(GlobalTargetInfo info)

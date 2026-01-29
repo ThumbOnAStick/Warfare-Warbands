@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponent_Skrimish.cs" />
     <Compile Include="League\DebugActionLeague.cs" />
     <Compile Include="League\HarmonyPatches_League.cs" />
     <Compile Include="League\LeagueComponents\LeagueComponent.cs" />
@@ -123,7 +124,6 @@
     <Compile Include="League\UI\Window_League.cs" />
     <Compile Include="League\UI\Window_LeagueManagement.cs" />
     <Compile Include="League\WAWScheduled\QuestEvent.cs" />
-    <Compile Include="League\WAWScheduled\SkirmishEvent.cs" />
     <Compile Include="League\WAWScheduled\TaxEvent.cs" />
     <Compile Include="League\WAWScheduled\WAWScheduledEvent.cs" />
     <Compile Include="Questline\GameComponent_Questline.cs" />
@@ -132,12 +132,6 @@
     <Compile Include="Questline\Quests.cs" />
     <Compile Include="Questline\QuestPart_VillageLooted.cs" />
     <Compile Include="Questline\Reward_MinorFactionJoin.cs" />
-    <Compile Include="Skirmish\GameComponent_Skrimish.cs" />
-    <Compile Include="Skirmish\HarmonyPatches_Skirmish.cs" />
-    <Compile Include="Skirmish\Siege.cs" />
-    <Compile Include="Skirmish\Skirmish.cs" />
-    <Compile Include="Skirmish\SkirmishHelper.cs" />
-    <Compile Include="Skirmish\SkirmishWorker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\..\..\..\..\workshop\content\294100\2009463077\1.5\Assemblies\0Harmony.dll" />

@@ -18,14 +18,8 @@
   <InfrastructureDevelopment.label>基础设施发展</InfrastructureDevelopment.label>
   <InfrastructureDevelopment.description>为公民投资基础设施，随着时间的推移提高凝聚力。</InfrastructureDevelopment.description>
 
-  <AdvancedTactics.label>高级战术</AdvancedTactics.label>
-  <AdvancedTactics.description>开发高级军事战术以提高战场表现，允许战团进行空投突袭。</AdvancedTactics.description>
-
   <WeaponUpgrades.label>武器升级</WeaponUpgrades.label>
   <WeaponUpgrades.description>升级武器以增强派系部队的战斗能力。</WeaponUpgrades.description>
-
-  <StartSkirmish.label>军事挑衅</StartSkirmish.label>
-  <StartSkirmish.description>允许您自行发起小规模冲突。</StartSkirmish.description>
 
   <EliteForces.label>精英部队</EliteForces.label>
   <EliteForces.description>训练并装备精英部队，以卓越的技能和装备主宰战场，解锁精英战团升级。</EliteForces.description>

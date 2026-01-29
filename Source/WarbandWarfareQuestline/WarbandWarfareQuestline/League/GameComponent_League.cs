@@ -30,9 +30,8 @@ namespace WarbandWarfareQuestline.League
                 new CurvePoint(20, 100)
             };
         private List<MinorFactionSettlement> _minorFactionsSettlements;
-        private QuestEvent _questChecker;
+        //private QuestEvent _questChecker;
         private TaxEvent _taxer;
-        private SkirmishEvent _skirmish;
         private PolicyTree _policyTree;
         private MilitaryDrillExecuter _militaryDrill;
         private RoadBuilder _roadbuilder;
@@ -47,9 +46,7 @@ namespace WarbandWarfareQuestline.League
         {
             Instance = this;
             _minorFactionsSettlements = new List<MinorFactionSettlement>();
-            _questChecker = new QuestEvent();
             _taxer = new TaxEvent();
-            _skirmish = new SkirmishEvent();
             _policyTree = new PolicyTree();
             _roadbuilder = new RoadBuilder();
             _militaryDrill = new MilitaryDrillExecuter();
@@ -75,13 +72,13 @@ namespace WarbandWarfareQuestline.League
             base.GameComponentTick();
             if (ShouldCheckNow())
             {
-                // Check village quests 
-                CheckQuest();
+                // Check village quests -- Disabled for now, will be redesigned
+                //CheckQuest();
 
                 // Receive tax every month
                 CheckTax();
 
-                // Check skirmish -- Disabled for now
+                // Check skirmish -- Disabled for now, will be redesigned
                 //CheckSkirmish();
 
                 // Policy Tree Tick
@@ -123,7 +120,7 @@ namespace WarbandWarfareQuestline.League
         {
             base.ExposeData();
             Scribe_Collections.Look(ref _minorFactionsSettlements, "_minorFactions", LookMode.Reference);
-            Scribe_Deep.Look(ref _questChecker, "_questChecker");
+            //Scribe_Deep.Look(ref _questChecker, "_questChecker");
             Scribe_Deep.Look(ref _taxer, "_taxer");
             Scribe_Deep.Look(ref _policyTree, "_policyTable");
             Scribe_Deep.Look(ref _roadbuilder, "_roadbuilder");
@@ -139,10 +136,6 @@ namespace WarbandWarfareQuestline.League
             {
                 _taxer = new TaxEvent();
             }
-            if (_questChecker == null)
-            {
-                _questChecker = new QuestEvent();
-            }
 
             if (_minorFactionsSettlements == null)
             {
@@ -150,10 +143,6 @@ namespace WarbandWarfareQuestline.League
             }
             _minorFactionsSettlements.RemoveAll(x => x == null);
 
-            if (_skirmish == null)
-            {
-                _skirmish = new SkirmishEvent();
-            }
             if (_policyTree == null)
             {
                 _policyTree = new PolicyTree();
@@ -181,16 +170,6 @@ namespace WarbandWarfareQuestline.League
         private void CheckTax()
         {
             _taxer.Check();
-        }
-
-        private void CheckSkirmish()
-        {
-            _skirmish.Check();
-        }
-
-        private void CheckQuest()
-        {
-            _questChecker.Check();
         }
 
         private void RefreshPolicyTable()

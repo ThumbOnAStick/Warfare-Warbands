@@ -13,14 +13,14 @@ namespace WarbandWarfareQuestline.League.Policies
         public override void Execute()
         {
             base.Execute();
-            Log.Message("WAW : Advanced Tactics Policy Executed");
-            GameComponent_WAW.Instance.SetDropRaidAvailable(true);
+            //Log.Message("WAW : Advanced Tactics Policy Executed");
+            //GameComponent_WAW.Instance.SetDropRaidAvailable(true);
         }
         public override void OnDisable()
         {
             base.OnDisable();
-            Log.Message("WAW : Advanced Tactics Policy Disabled");
-            GameComponent_WAW.Instance.SetDropRaidAvailable(false);
+            //Log.Message("WAW : Advanced Tactics Policy Disabled");
+            //GameComponent_WAW.Instance.SetDropRaidAvailable(false);
         }
     }
 }

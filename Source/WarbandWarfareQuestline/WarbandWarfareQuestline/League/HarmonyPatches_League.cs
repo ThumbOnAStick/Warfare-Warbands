@@ -8,7 +8,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
-using WarbandWarfareQuestline.Skirmish;
 
 namespace WarbandWarfareQuestline.League
 {

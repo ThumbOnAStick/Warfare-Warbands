@@ -30,14 +30,12 @@ namespace WarfareAndWarbands
         private bool everUsedQuickRaid = false;
         private bool everAssignedWarbandLeader = false;
         private bool everInformedAboutTownBuilding = false;
-        private bool _isDropRaidAvailable = false;
         private bool _isEliteUpgradeAvailable = false;
         private Pawn raidLeaderCache;
         private int lastTick = 0;
 
         public GameComponent_WAW(Game game)
         {
-            // 清理旧实例的事件监听器
             CleanupOldInstance();
             
             GameComponent_WAW.Instance = this;
@@ -48,7 +46,6 @@ namespace WarfareAndWarbands
             playerBankAccount = new WAWBankAccount();
         }
 
-        public bool IsDropRaidAvailable => _isDropRaidAvailable;
 
         public bool IsEliteUpgradeAvailable => _isEliteUpgradeAvailable;
 
@@ -65,7 +62,6 @@ namespace WarfareAndWarbands
             Scribe_Values.Look(ref everAssignedWarbandLeader, "everAssignedWarbandLeader");
             Scribe_Values.Look(ref everUsedQuickRaid, "everUsedQuickRaid");
             Scribe_Values.Look(ref everInformedAboutTownBuilding, "everInformedAboutTownBuilding");
-            Scribe_Values.Look(ref _isDropRaidAvailable, "isDropRaidAvailable");
             Scribe_Deep.Look(ref playerBankAccount, "playerBank");
             playerWarbandPreset.ExposeData();
             if (playerBankAccount == null)
@@ -104,7 +100,7 @@ namespace WarfareAndWarbands
 
         public bool CanPlayerUseEliteUpgrade()
         {
-            return IsEliteUpgradeAvailable || !WAWSettings.enableEliteUpgradePolicyRequirement;
+            return true;
         }
 
         public void SetEliteUpgradeAvailable(bool value)
@@ -254,11 +250,6 @@ namespace WarfareAndWarbands
         {
             Letter modLoadded = LetterMaker.MakeLetter("WAW.Welcome".Translate(), "WAW.Welcome.Desc".Translate(), LetterDefOf.NeutralEvent);
             Find.LetterStack.ReceiveLetter(modLoadded);
-        }
-
-        public void SetDropRaidAvailable(bool value)
-        {
-            this._isDropRaidAvailable = value;
         }
 
         public override void GameComponentTick()

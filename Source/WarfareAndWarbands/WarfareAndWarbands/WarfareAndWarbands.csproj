@@ -115,6 +115,7 @@
     <Compile Include="CharacterCustomization\UI\Window_Customization.cs" />
     <Compile Include="CharacterCustomization\GameComponent_Customization.cs" />
     <Compile Include="Mercenary\Dialog_WarbandLoot.cs" />
+    <Compile Include="Mercenary\HarmonyPatches\HostileCheckPatch.cs" />
     <Compile Include="Mercenary\HarmonyPatches\MapParentGizmosPatch.cs" />
     <Compile Include="Mercenary\WorldObjectComp_WarbandLoot.cs" />
     <Compile Include="Misc\Alert_ClosingPlayerWarbandMap.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Warband\HarmonyPatches\WorldPawnPatch.cs" />
     <Compile Include="Mercenary\JobGiver_RecycleVehicle.cs" />
     <Compile Include="Warband\UI\Dialog_SetCustomName.cs" />
+    <Compile Include="Warband\UI\LootUIHelper.cs" />
     <Compile Include="Warband\UI\WarbandConfigureSteps\StepOne.cs" />
     <Compile Include="Warband\UI\WarbandConfigureSteps\StepThree.cs" />
     <Compile Include="Warband\UI\WarbandConfigureSteps\StepTwo.cs" />
