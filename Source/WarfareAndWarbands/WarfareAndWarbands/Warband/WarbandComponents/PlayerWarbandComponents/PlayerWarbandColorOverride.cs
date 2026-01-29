@@ -35,7 +35,7 @@ namespace WarfareAndWarbands.Warband.WarbandComponents.PlayerWarbandComponents
 
         public void SetColorOverride()
         {
-            this.colorOverride = GameComponent_WAW.playerWarband.colorOverride;
+            this.colorOverride = GameComponent_WAW.playerWarbandPreset.colorOverride;
         }
 
         private Color colorOverride;

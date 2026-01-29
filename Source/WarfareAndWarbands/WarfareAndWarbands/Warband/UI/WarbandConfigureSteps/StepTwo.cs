@@ -55,7 +55,7 @@ namespace WarfareAndWarbands.Warband.UI.WarbandConfigureSteps
                     GUI.color = currentDef.DefaultColor;
                     Widgets.DrawTextureFitted(elementRect, currentDef.FactionIcon, 1.0f);
                     GUI.color = Color.white;
-                    GameComponent_WAW.playerWarband.pawnFactionType = currentDef;
+                    GameComponent_WAW.playerWarbandPreset.pawnFactionType = currentDef;
                 }
                 else
                 {

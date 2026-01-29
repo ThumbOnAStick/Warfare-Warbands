@@ -5,7 +5,7 @@
     <WAW.TechLevel>Tech level: {0}</WAW.TechLevel>
     <WAW.FoundZeroPawns>No combat pawns were found at this tech level.</WAW.FoundZeroPawns>
     <WAW.RecruitWarband>Recruit warband</WAW.RecruitWarband>
-    <WAW.ResetWarband>Reset warband</WAW.ResetWarband>
+    <WAW.ResetWarband>Clear selection</WAW.ResetWarband>
     <WAW.ColorOverride>Color override: </WAW.ColorOverride>
     <WAW.ConfigWarband>Confirm changes</WAW.ConfigWarband>
     <WAW.PawnKindName>Pawn kind name:</WAW.PawnKindName>

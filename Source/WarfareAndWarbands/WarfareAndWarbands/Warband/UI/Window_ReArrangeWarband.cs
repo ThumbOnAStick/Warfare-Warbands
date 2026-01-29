@@ -16,29 +16,25 @@ namespace WarfareAndWarbands.Warband
     public class Window_ReArrangeWarband : Window
     {
         private Vector2 scrollPosition;
-        private Warband warband;
-        private readonly float descriptionHeight = 70f;
-        private readonly float descriptionWidth = 120f;
-        private readonly float entryHeight = 20f;
-        private readonly float entryWidth = 20f;
-        private readonly int pawnKindsEachRow = 6;
+        private readonly Warband warband;
         private int step = 0;
+
 
         public Window_ReArrangeWarband(Warband warband)
         {
             WarbandUtil.RefreshSoldierPawnKinds();
             this.warband = warband;
-            for (int i = 0; i < GameComponent_WAW.playerWarband.bandMembers.Count; i++)
+            for (int i = 0; i < GameComponent_WAW.playerWarbandPreset.bandMembers.Count; i++)
             {
-                var ele = GameComponent_WAW.playerWarband.bandMembers.ElementAt(i);
-                GameComponent_WAW.playerWarband.bandMembers[ele.Key] = 0;
+                var ele = GameComponent_WAW.playerWarbandPreset.bandMembers.ElementAt(i);
+                GameComponent_WAW.playerWarbandPreset.bandMembers[ele.Key] = 0;
                 if (warband.bandMembers.ContainsKey(ele.Key))
                 {
-                    GameComponent_WAW.playerWarband.bandMembers[ele.Key] = warband.bandMembers[ele.Key];
+                    GameComponent_WAW.playerWarbandPreset.bandMembers[ele.Key] = warband.bandMembers[ele.Key];
                 }
             }
-            GameComponent_WAW.playerWarband.pawnFactionType = warband.PawnKindFactionType;
-            GameComponent_WAW.playerWarband.colorOverride = warband.playerWarbandManager.colorOverride.GetColorOverride();
+            GameComponent_WAW.playerWarbandPreset.pawnFactionType = warband.PawnKindFactionType;
+            GameComponent_WAW.playerWarbandPreset.colorOverride = warband.playerWarbandManager.colorOverride.GetColorOverride();
             StepTwo.currentIndex = 0;
             if (warband.PawnKindFactionType != null)
             {
@@ -53,16 +49,11 @@ namespace WarfareAndWarbands.Warband
                     StepTwo.SetFaction(faction.def);
                 }
             }
+        }
+
+        public override Vector2 InitialSize => WarbandUI.PawnSelectionPanelSize;
 
 
-        }
-        public override Vector2 InitialSize
-        {
-            get
-            {
-                return new Vector2(800f, 500f);
-            }
-        }
         protected override void SetInitialSizeAndPosition()
         {
             base.SetInitialSizeAndPosition();
@@ -94,18 +85,18 @@ namespace WarfareAndWarbands.Warband
             }
             else
             {
-                StepThree.Draw(inRect, ref scrollPosition, pawnKindsEachRow, descriptionHeight, descriptionWidth, entryWidth, entryHeight, warband);
+                StepThree.Draw(inRect, ref scrollPosition, warband);
                 DrawExtraCost(inRect);
                 DrawRecruitButton(inRect);
             }
-            WarbandUI.DrawNextStepButton(inRect, ref step);
+            if (step < 2) WarbandUI.DrawNextStepButton(inRect, ref step);
         }
 
         void DrawExtraCost(Rect inRect)
         {
             Rect costRect = new Rect(30, inRect.y, 200, 50);
             Rect balanceRect = new Rect(30, costRect.yMax + 10, 200, 50);
-            TaggedString costLabel = "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostExtra(warband.bandMembers, warband.playerWarbandManager.NewRecruitCostMultiplier).ToString());
+            TaggedString costLabel = "WAW.Cost".Translate(GameComponent_WAW.playerWarbandPreset.GetCostExtra(warband.bandMembers, warband.playerWarbandManager.NewRecruitCostMultiplier).ToString());
             Widgets.Label(costRect, costLabel + $"(-{(1 - warband.playerWarbandManager.NewRecruitCostMultiplier) * 100}%)");
             Widgets.Label(balanceRect, "WAW.AccountBalance".Translate(GameComponent_WAW.playerBankAccount.Balance.ToString()));
 
@@ -117,7 +108,7 @@ namespace WarfareAndWarbands.Warband
             if (doRecruit)
             {
                 this.Close();
-                GameComponent_WAW.playerWarband.SetNewWarBandMembers(warband);
+                GameComponent_WAW.playerWarbandPreset.SetNewWarBandMembers(warband);
 
             }
         }

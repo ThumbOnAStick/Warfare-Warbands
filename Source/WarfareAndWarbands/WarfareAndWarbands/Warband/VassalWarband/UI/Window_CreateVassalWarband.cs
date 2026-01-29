@@ -14,11 +14,6 @@ namespace WarfareAndWarbands.Warband.VassalWarband.UI
     public class Window_CreateVassalWarband : Window
     {
         private Vector2 scrollPosition;
-        private readonly float descriptionHeight = 100f;
-        private readonly float descriptionWidth = 120f;
-        private readonly float entryHeight = 20f;
-        private readonly float entryWidth = 20f;
-        private readonly int pawnKindsEachRow = 6;
         private readonly int _budget = 0;
         private int step = 0;
         private VassalHolder holder;
@@ -44,13 +39,7 @@ namespace WarfareAndWarbands.Warband.VassalWarband.UI
             _budget = holder.Budget;
         }
 
-        public override Vector2 InitialSize
-        {
-            get
-            {
-                return new Vector2(800f, 500f);
-            }
-        }
+        public override Vector2 InitialSize => WarbandUI.PawnSelectionPanelSize;
 
         public override void DoWindowContents(Rect inRect)
         {
@@ -65,11 +54,11 @@ namespace WarfareAndWarbands.Warband.VassalWarband.UI
             }
             else
             {
-                StepThree.Draw(inRect, ref scrollPosition, pawnKindsEachRow, descriptionHeight, descriptionWidth, entryWidth, entryHeight);
+                StepThree.Draw(inRect, ref scrollPosition);
                 DrawCost(inRect);
                 DrawRecruitButton(inRect);
             }
-            WarbandUI.DrawNextStepButton(inRect, ref step);
+            if (step < 2) WarbandUI.DrawNextStepButton(inRect, ref step);
 
         }
 
@@ -79,7 +68,7 @@ namespace WarfareAndWarbands.Warband.VassalWarband.UI
             Rect costRect = new Rect(30, inRect.y, 200, 50);
             Rect balanceRect = new Rect(30, costRect.yMax + 10, 200, 50);
 
-            Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostEstablishment().ToString()));
+            Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarbandPreset.GetCostEstablishment().ToString()));
             Widgets.Label(balanceRect, "WAW.VassalBudget".Translate(_budget));
 
         }
@@ -90,7 +79,7 @@ namespace WarfareAndWarbands.Warband.VassalWarband.UI
             if (doRecruit)
             {
                 this.Close();
-                GameComponent_WAW.playerWarband.CreateVassalWarbandWorldObject(this.target, this._budget);
+                GameComponent_WAW.playerWarbandPreset.CreateVassalWarbandWorldObject(this.target, this._budget);
                 this.holder.OnUsed();
             }
         }

@@ -18,25 +18,16 @@ namespace WarfareAndWarbands.Warband
     {
         private Vector2 scrollPosition;
         private readonly Map map;
-        private readonly float descriptionHeight = 100f;
-        private readonly float descriptionWidth = 120f;
-        private readonly float entryHeight = 20f;
-        private readonly float entryWidth = 20f;
-        private readonly int pawnKindsEachRow = 6;
         private int step = 0;
 
-        public override Vector2 InitialSize
-        {
-            get
-            {
-                return new Vector2(800f, 500f);
-            }
-        }
+    
         public Window_ArrangeWarband(Map map)
         {
             this.map = map;
             WarbandUtil.RefreshSoldierPawnKinds();
         }
+
+        public override Vector2 InitialSize => WarbandUI.PawnSelectionPanelSize;
 
         public override void DoWindowContents(Rect inRect)
         {
@@ -51,21 +42,21 @@ namespace WarfareAndWarbands.Warband
             }
             else
             {
-                StepThree.Draw(inRect, ref scrollPosition, pawnKindsEachRow, descriptionHeight, descriptionWidth, entryWidth, entryHeight);
+                StepThree.Draw(inRect, ref scrollPosition);
                 DrawCost(inRect);
                 DrawRecruitButton(inRect);
             }
-            WarbandUI.DrawNextStepButton(inRect, ref step);
+            if (step < 2) WarbandUI.DrawNextStepButton(inRect, ref step);
 
         }
-
+            
         void DrawCost(Rect inRect)
         {
 
             Rect costRect = new Rect(30, inRect.y, 200, 50);
             Rect balanceRect = new Rect(30, costRect.yMax + 10, 200, 50);
 
-            Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostEstablishment().ToString()));
+            Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarbandPreset.GetCostEstablishment().ToString()));
             Widgets.Label(balanceRect, "WAW.AccountBalance".Translate(GameComponent_WAW.playerBankAccount.Balance.ToString()));
 
         }
@@ -76,7 +67,7 @@ namespace WarfareAndWarbands.Warband
             if (doRecruit)
             {
                 this.Close();
-                GameComponent_WAW.playerWarband.CreateWarbandWorldObject(map);
+                GameComponent_WAW.playerWarbandPreset.CreateWarbandWorldObject(map);
             }
         }
 

@@ -45,6 +45,10 @@
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="CombatExtended">
+      <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2890901044\Assemblies\CombatExtended.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="MothballedAndDeadPawns">
       <HintPath>..\..\..\..\..\..\..\workshop\content\294100\2982026860\1.6\Assemblies\MothballedAndDeadPawns.dll</HintPath>
       <Private>False</Private>

@@ -118,15 +118,6 @@ namespace WarfareAndWarbands.Warband
         
         }
 
-        public override IEnumerable<Gizmo> CompGetGizmosExtra()
-        {
-            if (this.MyTransporter.innerContainer.Count > 0)
-                yield return WarbandUI.TransferContent(this);
-            if (!this.MyTransporter.LoadingInProgressOrReadyToLaunch)
-                yield return WarbandUI.AutoLoadLoot(this);
-            yield return WarbandUI.LinkWarband(this);
-        }
-
         public override void CompTick()
         {
             base.CompTick();

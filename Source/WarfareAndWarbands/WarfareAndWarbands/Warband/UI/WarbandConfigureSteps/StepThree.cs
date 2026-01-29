@@ -12,11 +12,10 @@ namespace WarfareAndWarbands.Warband.UI.WarbandConfigureSteps
 {
     internal static class StepThree
     {
-        public static void Draw(Rect inRect, ref Vector2 scrollPosition, int pawnKindsEachRow, float descriptionHeight, float descriptionWidth,
-            float entryWidth, float entryHeight, Warband warband = null)
+        public static void Draw(Rect inRect, ref Vector2 scrollPosition, Warband warband = null)
         {
-            WarbandUI.DrawPawnSelection(inRect, ref scrollPosition, pawnKindsEachRow, descriptionHeight, descriptionWidth, entryWidth, entryHeight, warband);
-            WarbandUI.DrawResetButton(); 
+            WarbandUI.DrawPawnSelection(inRect, ref scrollPosition, warband);
+            WarbandUI.DrawResetButton(inRect); 
 
         }
 

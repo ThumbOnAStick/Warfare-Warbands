@@ -106,7 +106,7 @@ namespace WarfareAndWarbands.CharacterCustomization
                 _customizationRequests.Add(request);
                 _generatedKindDefs.Add(def);
                 WarbandUtil.RefreshSoldierPawnKinds();
-                GameComponent_WAW.playerWarband.Refresh();
+                GameComponent_WAW.playerWarbandPreset.Refresh();
             }
         }
 
@@ -124,7 +124,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             }
             _customizationRequests.RemoveAll(x => x.defName == request.defName);
             WarbandUtil.RefreshSoldierPawnKinds();
-            GameComponent_WAW.playerWarband.Refresh();
+            GameComponent_WAW.playerWarbandPreset.Refresh();
 
         }
 
@@ -137,7 +137,7 @@ namespace WarfareAndWarbands.CharacterCustomization
             _customizationRequests.RemoveAll(x => x.defName == def.defName);
 
             WarbandUtil.RefreshSoldierPawnKinds();
-            GameComponent_WAW.playerWarband.Refresh();
+            GameComponent_WAW.playerWarbandPreset.Refresh();
         }
 
         public void IncreaseLimitOffset(int amount)

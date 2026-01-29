@@ -21,7 +21,7 @@ namespace WarfareAndWarbands
         List<ThingDef> _minifiables = new List<ThingDef>();
         List<ThingDef> _rawResources = new List<ThingDef>();
         Dictionary<Faction, int> factionsAndWarDurabilities = new Dictionary<Faction, int>();
-        public static PlayerWarbandArrangement playerWarband;
+        public static PlayerWarbandArrangement playerWarbandPreset;
         public static WAWBankAccount playerBankAccount;
         public static GameComponent_WAW Instance;
         public UnityEvent onRaid;
@@ -41,7 +41,7 @@ namespace WarfareAndWarbands
             CleanupOldInstance();
             
             GameComponent_WAW.Instance = this;
-            playerWarband = new PlayerWarbandArrangement();
+            playerWarbandPreset = new PlayerWarbandArrangement();
             onRaid = new UnityEvent();
             onRaided = new UnityEvent();
             onLeaderAbilityUsed = new UnityEvent();
@@ -67,7 +67,7 @@ namespace WarfareAndWarbands
             Scribe_Values.Look(ref everInformedAboutTownBuilding, "everInformedAboutTownBuilding");
             Scribe_Values.Look(ref _isDropRaidAvailable, "isDropRaidAvailable");
             Scribe_Deep.Look(ref playerBankAccount, "playerBank");
-            playerWarband.ExposeData();
+            playerWarbandPreset.ExposeData();
             if (playerBankAccount == null)
             {
                 playerBankAccount = new WAWBankAccount(); 
@@ -352,7 +352,7 @@ namespace WarfareAndWarbands
             if (Instance == this)
             {
                 Instance = null;
-                playerWarband = null;
+                playerWarbandPreset = null;
                 playerBankAccount = null;
             }
         }

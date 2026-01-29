@@ -47,7 +47,7 @@ namespace WarfareAndWarbands.Warband.WarbandRecruiting
 
         static bool EmptyWarbandArrangement()
         {
-            return !GameComponent_WAW.playerWarband.bandMembers.Any(x => x.Value > 0);
+            return !GameComponent_WAW.playerWarbandPreset.bandMembers.Any(x => x.Value > 0);
         }
 
     }

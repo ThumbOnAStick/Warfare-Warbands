@@ -18,25 +18,13 @@ namespace WarfareAndWarbands.Warband.WAWCaravan.UI
     {
         private Vector2 scrollPosition;
         private int _step = 0;
-        private readonly float descriptionHeight = 100f;
-        private readonly float descriptionWidth = 120f;
-        private readonly float entryHeight = 20f;
-        private readonly float entryWidth = 20f;
-        private readonly int pawnKindsEachRow = 6;
         private readonly Pawn leader;
         private readonly Caravan caravan;
 
-        public override Vector2 InitialSize
-        {
-            get
-            {
-                return new Vector2(800f, 500f);
-            }
-        }
+        public override Vector2 InitialSize => WarbandUI.PawnSelectionPanelSize;
 
         public Window_ArrangeWarband_Caravan()
         {
-
         }
 
         public Window_ArrangeWarband_Caravan(Pawn leader, Caravan caravan)
@@ -59,11 +47,11 @@ namespace WarfareAndWarbands.Warband.WAWCaravan.UI
             }
             else
             {
-                StepThree.Draw(inRect, ref scrollPosition, pawnKindsEachRow, descriptionHeight, descriptionWidth, entryWidth, entryHeight);
+                StepThree.Draw(inRect, ref scrollPosition);
                 DrawCost(inRect);
                 DrawRecruitButton(inRect);
             }
-            WarbandUI.DrawNextStepButton(inRect, ref _step);
+            if (_step < 2) WarbandUI.DrawNextStepButton(inRect, ref _step);
 
         }
 
@@ -73,7 +61,7 @@ namespace WarfareAndWarbands.Warband.WAWCaravan.UI
             Rect costRect = new Rect(30, inRect.y, 200, 50); 
             Rect balanceRect = new Rect(30, costRect.yMax + 10, 200, 50);
             Widgets.Label(balanceRect, "WAW.AccountBalance".Translate(GameComponent_WAW.playerBankAccount.Balance.ToString()));
-            Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarband.GetCostEstablishment().ToString()));
+            Widgets.Label(costRect, "WAW.Cost".Translate(GameComponent_WAW.playerWarbandPreset.GetCostEstablishment().ToString()));
         }
 
 
@@ -83,11 +71,11 @@ namespace WarfareAndWarbands.Warband.WAWCaravan.UI
             if (doRecruit)
             {
                 this.Close();
-                if (!GameComponent_WAW.playerWarband.ValidateCreation(caravan))
+                if (!GameComponent_WAW.playerWarbandPreset.ValidateCreation(caravan))
                 {
                     return;
                 }
-                if (!CaravanWarbandUtility.TryToSpendSilverFromCaravan(caravan, GameComponent_WAW.playerWarband.GetCostEstablishment()))
+                if (!CaravanWarbandUtility.TryToSpendSilverFromCaravan(caravan, GameComponent_WAW.playerWarbandPreset.GetCostEstablishment()))
                 {
                     return;
                 }

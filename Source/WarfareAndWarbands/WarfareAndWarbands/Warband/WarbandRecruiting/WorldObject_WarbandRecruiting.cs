@@ -33,8 +33,8 @@ namespace WarfareAndWarbands.Warband
         public override void PostAdd()
         {
             base.PostAdd();
-            this.bandMembers = new Dictionary<string, int>(GameComponent_WAW.playerWarband.bandMembers);
-            this.color = GameComponent_WAW.playerWarband.colorOverride;
+            this.bandMembers = new Dictionary<string, int>(GameComponent_WAW.playerWarbandPreset.bandMembers);
+            this.color = GameComponent_WAW.playerWarbandPreset.colorOverride;
             waitDays = GetWaitDays();
             WarbandUtil.RefreshAllPlayerWarbands();
         }
@@ -152,7 +152,7 @@ namespace WarfareAndWarbands.Warband
 
         public void SetColorOverride()
         {
-            this.color = GameComponent_WAW.playerWarband.colorOverride;
+            this.color = GameComponent_WAW.playerWarbandPreset.colorOverride;
         }
 
         public void AssignLeader(Pawn p, Caravan caravan)

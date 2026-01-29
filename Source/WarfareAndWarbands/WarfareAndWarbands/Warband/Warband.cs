@@ -125,7 +125,7 @@ namespace WarfareAndWarbands.Warband
 
         public void GeneratePlayerCombatGroup()
         {
-            this.bandMembers = new Dictionary<string, int>(GameComponent_WAW.playerWarband.bandMembers);
+            this.bandMembers = new Dictionary<string, int>(GameComponent_WAW.playerWarbandPreset.bandMembers);
         }
 
         public override string GetInspectString()
